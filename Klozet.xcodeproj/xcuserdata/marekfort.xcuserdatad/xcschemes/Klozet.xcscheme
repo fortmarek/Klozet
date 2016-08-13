@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0800"
+   LastUpgradeVersion = "0730"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F844B1E01D5F79E50008C724"
+               BlueprintIdentifier = "F8EAE7F51D5FA6A900D60DAB"
                BuildableName = "Klozet.app"
                BlueprintName = "Klozet"
                ReferencedContainer = "container:Klozet.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F844B1F41D5F79E50008C724"
+               BlueprintIdentifier = "F8EAE8091D5FA6A900D60DAB"
                BuildableName = "KlozetTests.xctest"
                BlueprintName = "KlozetTests"
                ReferencedContainer = "container:Klozet.xcodeproj">
@@ -42,7 +42,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F844B1FF1D5F79E50008C724"
+               BlueprintIdentifier = "F8EAE8141D5FA6A900D60DAB"
                BuildableName = "KlozetUITests.xctest"
                BlueprintName = "KlozetUITests"
                ReferencedContainer = "container:Klozet.xcodeproj">
@@ -52,7 +52,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F844B1E01D5F79E50008C724"
+            BlueprintIdentifier = "F8EAE7F51D5FA6A900D60DAB"
             BuildableName = "Klozet.app"
             BlueprintName = "Klozet"
             ReferencedContainer = "container:Klozet.xcodeproj">
@@ -75,7 +75,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F844B1E01D5F79E50008C724"
+            BlueprintIdentifier = "F8EAE7F51D5FA6A900D60DAB"
             BuildableName = "Klozet.app"
             BlueprintName = "Klozet"
             ReferencedContainer = "container:Klozet.xcodeproj">
@@ -94,7 +94,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F844B1E01D5F79E50008C724"
+            BlueprintIdentifier = "F8EAE7F51D5FA6A900D60DAB"
             BuildableName = "Klozet.app"
             BlueprintName = "Klozet"
             ReferencedContainer = "container:Klozet.xcodeproj">
