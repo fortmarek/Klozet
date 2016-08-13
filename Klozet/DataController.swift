@@ -17,9 +17,9 @@ struct Location {
 }
 
 struct Toilet {
-    let adress: String
-    let openingTime: String
-    let price: String
+    var adress: String
+    var openingTime: String
+    var price: String
 }
 
 
@@ -40,6 +40,10 @@ class DataController {
         
         return Toilet(adress: String(), openingTime: String(), price: String())
 
+    }
+    
+    private func getToiletProperties(propertiesJSON: JSON, toilet: Toilet) {
+    
     }
 
 }
