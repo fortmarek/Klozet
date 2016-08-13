@@ -1,0 +1,526 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F844B1E51D5F79E50008C724 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F844B1E41D5F79E50008C724 /* AppDelegate.swift */; };
+		F844B1E71D5F79E50008C724 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F844B1E61D5F79E50008C724 /* ViewController.swift */; };
+		F844B1EA1D5F79E50008C724 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F844B1E81D5F79E50008C724 /* Main.storyboard */; };
+		F844B1EC1D5F79E50008C724 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F844B1EB1D5F79E50008C724 /* Assets.xcassets */; };
+		F844B1EF1D5F79E50008C724 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F844B1ED1D5F79E50008C724 /* LaunchScreen.storyboard */; };
+		F844B1FA1D5F79E50008C724 /* KlozetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F844B1F91D5F79E50008C724 /* KlozetTests.swift */; };
+		F844B2051D5F79E50008C724 /* KlozetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F844B2041D5F79E50008C724 /* KlozetUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F844B1F61D5F79E50008C724 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F844B1D91D5F79E50008C724 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F844B1E01D5F79E50008C724;
+			remoteInfo = Klozet;
+		};
+		F844B2011D5F79E50008C724 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F844B1D91D5F79E50008C724 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F844B1E01D5F79E50008C724;
+			remoteInfo = Klozet;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F844B1E11D5F79E50008C724 /* Klozet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Klozet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F844B1E41D5F79E50008C724 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F844B1E61D5F79E50008C724 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F844B1E91D5F79E50008C724 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F844B1EB1D5F79E50008C724 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F844B1EE1D5F79E50008C724 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F844B1F01D5F79E50008C724 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F844B1F51D5F79E50008C724 /* KlozetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KlozetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F844B1F91D5F79E50008C724 /* KlozetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KlozetTests.swift; sourceTree = "<group>"; };
+		F844B1FB1D5F79E50008C724 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F844B2001D5F79E50008C724 /* KlozetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KlozetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F844B2041D5F79E50008C724 /* KlozetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KlozetUITests.swift; sourceTree = "<group>"; };
+		F844B2061D5F79E50008C724 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F844B1DE1D5F79E50008C724 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F844B1F21D5F79E50008C724 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F844B1FD1D5F79E50008C724 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F844B1D81D5F79E50008C724 = {
+			isa = PBXGroup;
+			children = (
+				F844B1E31D5F79E50008C724 /* Klozet */,
+				F844B1F81D5F79E50008C724 /* KlozetTests */,
+				F844B2031D5F79E50008C724 /* KlozetUITests */,
+				F844B1E21D5F79E50008C724 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F844B1E21D5F79E50008C724 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F844B1E11D5F79E50008C724 /* Klozet.app */,
+				F844B1F51D5F79E50008C724 /* KlozetTests.xctest */,
+				F844B2001D5F79E50008C724 /* KlozetUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F844B1E31D5F79E50008C724 /* Klozet */ = {
+			isa = PBXGroup;
+			children = (
+				F844B1E41D5F79E50008C724 /* AppDelegate.swift */,
+				F844B1E61D5F79E50008C724 /* ViewController.swift */,
+				F844B1E81D5F79E50008C724 /* Main.storyboard */,
+				F844B1EB1D5F79E50008C724 /* Assets.xcassets */,
+				F844B1ED1D5F79E50008C724 /* LaunchScreen.storyboard */,
+				F844B1F01D5F79E50008C724 /* Info.plist */,
+			);
+			path = Klozet;
+			sourceTree = "<group>";
+		};
+		F844B1F81D5F79E50008C724 /* KlozetTests */ = {
+			isa = PBXGroup;
+			children = (
+				F844B1F91D5F79E50008C724 /* KlozetTests.swift */,
+				F844B1FB1D5F79E50008C724 /* Info.plist */,
+			);
+			path = KlozetTests;
+			sourceTree = "<group>";
+		};
+		F844B2031D5F79E50008C724 /* KlozetUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F844B2041D5F79E50008C724 /* KlozetUITests.swift */,
+				F844B2061D5F79E50008C724 /* Info.plist */,
+			);
+			path = KlozetUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F844B1E01D5F79E50008C724 /* Klozet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F844B2091D5F79E50008C724 /* Build configuration list for PBXNativeTarget "Klozet" */;
+			buildPhases = (
+				F844B1DD1D5F79E50008C724 /* Sources */,
+				F844B1DE1D5F79E50008C724 /* Frameworks */,
+				F844B1DF1D5F79E50008C724 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Klozet;
+			productName = Klozet;
+			productReference = F844B1E11D5F79E50008C724 /* Klozet.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F844B1F41D5F79E50008C724 /* KlozetTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F844B20C1D5F79E50008C724 /* Build configuration list for PBXNativeTarget "KlozetTests" */;
+			buildPhases = (
+				F844B1F11D5F79E50008C724 /* Sources */,
+				F844B1F21D5F79E50008C724 /* Frameworks */,
+				F844B1F31D5F79E50008C724 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F844B1F71D5F79E50008C724 /* PBXTargetDependency */,
+			);
+			name = KlozetTests;
+			productName = KlozetTests;
+			productReference = F844B1F51D5F79E50008C724 /* KlozetTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F844B1FF1D5F79E50008C724 /* KlozetUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F844B20F1D5F79E50008C724 /* Build configuration list for PBXNativeTarget "KlozetUITests" */;
+			buildPhases = (
+				F844B1FC1D5F79E50008C724 /* Sources */,
+				F844B1FD1D5F79E50008C724 /* Frameworks */,
+				F844B1FE1D5F79E50008C724 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F844B2021D5F79E50008C724 /* PBXTargetDependency */,
+			);
+			name = KlozetUITests;
+			productName = KlozetUITests;
+			productReference = F844B2001D5F79E50008C724 /* KlozetUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F844B1D91D5F79E50008C724 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Marek Fořt";
+				TargetAttributes = {
+					F844B1E01D5F79E50008C724 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = QH95ER52SG;
+						DevelopmentTeamName = "Marek Fort";
+						ProvisioningStyle = Automatic;
+					};
+					F844B1F41D5F79E50008C724 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = QH95ER52SG;
+						DevelopmentTeamName = "Marek Fort";
+						ProvisioningStyle = Automatic;
+						TestTargetID = F844B1E01D5F79E50008C724;
+					};
+					F844B1FF1D5F79E50008C724 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = QH95ER52SG;
+						DevelopmentTeamName = "Marek Fort";
+						ProvisioningStyle = Automatic;
+						TestTargetID = F844B1E01D5F79E50008C724;
+					};
+				};
+			};
+			buildConfigurationList = F844B1DC1D5F79E50008C724 /* Build configuration list for PBXProject "Klozet" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F844B1D81D5F79E50008C724;
+			productRefGroup = F844B1E21D5F79E50008C724 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F844B1E01D5F79E50008C724 /* Klozet */,
+				F844B1F41D5F79E50008C724 /* KlozetTests */,
+				F844B1FF1D5F79E50008C724 /* KlozetUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F844B1DF1D5F79E50008C724 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F844B1EF1D5F79E50008C724 /* LaunchScreen.storyboard in Resources */,
+				F844B1EC1D5F79E50008C724 /* Assets.xcassets in Resources */,
+				F844B1EA1D5F79E50008C724 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F844B1F31D5F79E50008C724 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F844B1FE1D5F79E50008C724 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F844B1DD1D5F79E50008C724 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F844B1E71D5F79E50008C724 /* ViewController.swift in Sources */,
+				F844B1E51D5F79E50008C724 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F844B1F11D5F79E50008C724 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F844B1FA1D5F79E50008C724 /* KlozetTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F844B1FC1D5F79E50008C724 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F844B2051D5F79E50008C724 /* KlozetUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F844B1F71D5F79E50008C724 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F844B1E01D5F79E50008C724 /* Klozet */;
+			targetProxy = F844B1F61D5F79E50008C724 /* PBXContainerItemProxy */;
+		};
+		F844B2021D5F79E50008C724 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F844B1E01D5F79E50008C724 /* Klozet */;
+			targetProxy = F844B2011D5F79E50008C724 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F844B1E81D5F79E50008C724 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F844B1E91D5F79E50008C724 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F844B1ED1D5F79E50008C724 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F844B1EE1D5F79E50008C724 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F844B2071D5F79E50008C724 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F844B2081D5F79E50008C724 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F844B20A1D5F79E50008C724 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Klozet/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = marekfort.Klozet;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		F844B20B1D5F79E50008C724 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Klozet/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = marekfort.Klozet;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		F844B20D1D5F79E50008C724 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = KlozetTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = marekfort.KlozetTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Klozet.app/Klozet";
+			};
+			name = Debug;
+		};
+		F844B20E1D5F79E50008C724 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = KlozetTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = marekfort.KlozetTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Klozet.app/Klozet";
+			};
+			name = Release;
+		};
+		F844B2101D5F79E50008C724 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = KlozetUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = marekfort.KlozetUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Klozet;
+			};
+			name = Debug;
+		};
+		F844B2111D5F79E50008C724 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = KlozetUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = marekfort.KlozetUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Klozet;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F844B1DC1D5F79E50008C724 /* Build configuration list for PBXProject "Klozet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F844B2071D5F79E50008C724 /* Debug */,
+				F844B2081D5F79E50008C724 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F844B2091D5F79E50008C724 /* Build configuration list for PBXNativeTarget "Klozet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F844B20A1D5F79E50008C724 /* Debug */,
+				F844B20B1D5F79E50008C724 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F844B20C1D5F79E50008C724 /* Build configuration list for PBXNativeTarget "KlozetTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F844B20D1D5F79E50008C724 /* Debug */,
+				F844B20E1D5F79E50008C724 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F844B20F1D5F79E50008C724 /* Build configuration list for PBXNativeTarget "KlozetUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F844B2101D5F79E50008C724 /* Debug */,
+				F844B2111D5F79E50008C724 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F844B1D91D5F79E50008C724 /* Project object */;
+}
