@@ -14,6 +14,7 @@
 		F844B1EF1D5F79E50008C724 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F844B1ED1D5F79E50008C724 /* LaunchScreen.storyboard */; };
 		F844B1FA1D5F79E50008C724 /* KlozetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F844B1F91D5F79E50008C724 /* KlozetTests.swift */; };
 		F844B2051D5F79E50008C724 /* KlozetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F844B2041D5F79E50008C724 /* KlozetUITests.swift */; };
+		F8DF0F411D5F7E910027ED5B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8DF0F401D5F7E910027ED5B /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		F844B2001D5F79E50008C724 /* KlozetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KlozetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F844B2041D5F79E50008C724 /* KlozetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KlozetUITests.swift; sourceTree = "<group>"; };
 		F844B2061D5F79E50008C724 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F8DF0F401D5F7E910027ED5B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8DF0F411D5F7E910027ED5B /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +84,7 @@
 				F844B1F81D5F79E50008C724 /* KlozetTests */,
 				F844B2031D5F79E50008C724 /* KlozetUITests */,
 				F844B1E21D5F79E50008C724 /* Products */,
+				F8DF0F3F1D5F7E910027ED5B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -123,6 +127,14 @@
 				F844B2061D5F79E50008C724 /* Info.plist */,
 			);
 			path = KlozetUITests;
+			sourceTree = "<group>";
+		};
+		F8DF0F3F1D5F7E910027ED5B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F8DF0F401D5F7E910027ED5B /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -505,6 +517,7 @@
 				F844B20B1D5F79E50008C724 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F844B20C1D5F79E50008C724 /* Build configuration list for PBXNativeTarget "KlozetTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +526,7 @@
 				F844B20E1D5F79E50008C724 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F844B20F1D5F79E50008C724 /* Build configuration list for PBXNativeTarget "KlozetUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +535,7 @@
 				F844B2111D5F79E50008C724 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
