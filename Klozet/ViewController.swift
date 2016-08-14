@@ -12,6 +12,8 @@ import MapKit
 
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
+    @IBOutlet weak var filterButton: UIButton!
+    @IBOutlet weak var currentLocationButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
     var toilets = [Toilet]()
     
@@ -41,8 +43,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 
         })
         
-        let toilet = Toilet(adress: "", openingTime: "", price: "", coordinate: CLLocationCoordinate2D(latitude: 14.0, longitude:  20.0))
-        mapView.addAnnotation(toilet)
+        view.bringSubviewToFront(currentLocationButton)
+        view.bringSubviewToFront(filterButton)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -74,17 +76,27 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
-        guard
-            let toiletAnnotation = annotation as? Toilet,
-            let reusableAnnotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("ToiletAnnotation")
-            else {return nil}
+        guard let toiletAnnotation = annotation as? Toilet else {return nil}
         
-        let annotationView = reusableAnnotationView as MKAnnotationView
+        var annotationView = MKAnnotationView()
+        if let reusableAnnotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("toiletAnnotation") {
+            annotationView = reusableAnnotationView
+            annotationView.canShowCallout = true
+        }
+        
+        else {
+            annotationView = MKAnnotationView(annotation: toiletAnnotation, reuseIdentifier: "toiletAnnotation")
+        }
         
         annotationView.annotation = toiletAnnotation
+        annotationView.image = UIImage(named: "Pin")
+        
         return annotationView
     }
     
+    @IBAction func currentLocationButtonTapped(sender: UIButton) {
+        locationManager.startUpdatingLocation()
+    }
 
 
 
