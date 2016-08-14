@@ -8,7 +8,7 @@
 
 import UIKit
 import MapKit
-import CoreLocation
+//import CoreLocation
 
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
@@ -25,25 +25,33 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        mapView.showsUserLocation = true
         
+        mapView.delegate = self
+        mapView.showsUserLocation = true
         
         let dataController = DataController()
         
         dataController.getToilets({
             toilets in
             self.toilets = toilets
-            //print(self.toilets)
+            dispatch_async(dispatch_get_main_queue(), {
+                self.mapView.addAnnotations(toilets)
+                print(toilets[0].coordinate)
+            })
+
         })
         
+        let toilet = Toilet(adress: "", openingTime: "", price: "", coordinate: CLLocationCoordinate2D(latitude: 14.0, longitude:  20.0))
+        mapView.addAnnotation(toilet)
     }
     
     override func viewDidAppear(animated: Bool) {
         locationManager.requestWhenInUseAuthorization()
     }
+
     
     
-    // MARK: Location manager methods 
+    // MARK: Location manager methods
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else {return}
@@ -58,6 +66,23 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print("Errors: \(error)")
+    }
+    
+    
+    // MARK: Dropping toilet pins
+    
+    
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        guard
+            let toiletAnnotation = annotation as? Toilet,
+            let reusableAnnotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("ToiletAnnotation")
+            else {return nil}
+        
+        let annotationView = reusableAnnotationView as MKAnnotationView
+        
+        annotationView.annotation = toiletAnnotation
+        return annotationView
     }
     
 

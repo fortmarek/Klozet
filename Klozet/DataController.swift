@@ -9,18 +9,25 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import MapKit
 
-//Location of the toilet
-struct Location {
-    let latitude: Double
-    let longitude: Double
-}
 
-struct Toilet {
-    let adress: String
+class Toilet: NSObject, MKAnnotation {
+    let title: String?
     let openingTime: String
     let price: String
-    let location: Location
+    let coordinate: CLLocationCoordinate2D
+    
+    init(adress: String, openingTime: String, price: String, coordinate: CLLocationCoordinate2D) {
+        self.title = adress
+        self.openingTime = openingTime
+        self.price = price
+        self.coordinate = coordinate
+        
+        super.init()
+    }
+    
+
 }
 
 
@@ -28,7 +35,7 @@ class DataController {
     // TODO: Add filters
     func getToilets(completion: (toilets: [Toilet]) -> () ){
 
-        Alamofire.request(.GET, "http://opendata.iprpraha.cz/CUR/FSV/FSV_VerejnaWC_b/S_JTSK/FSV_VerejnaWC_b.json")
+        Alamofire.request(.GET, "http://opendata.iprpraha.cz/CUR/FSV/FSV_VerejnaWC_b/WGS_84/FSV_VerejnaWC_b.json")
             .responseJSON { response in
                 
                 var toilets = [Toilet]()
@@ -37,8 +44,8 @@ class DataController {
                 let json = JSON(data: data)["features"]
                 
                 for (_, toiletJson) in json {
-                    guard let location = self.getLocation(toiletJson["geometry"]) else {return}
-                    let toilet = self.getToilet(toiletJson["properties"], location: location)
+                    guard let coordinate = self.getCoordinate(toiletJson["geometry"]) else {return}
+                    let toilet = self.getToilet(toiletJson["properties"], coordinate: coordinate)
                     toilets.append(toilet)
                 }
                 
@@ -47,23 +54,23 @@ class DataController {
 
     }
 
-    private func getToilet(propertiesJson: JSON, location: Location) -> Toilet {
+    private func getToilet(propertiesJson: JSON, coordinate: CLLocationCoordinate2D) -> Toilet {
         guard
             let price = propertiesJson["CENA"].string,
             let openingTime = propertiesJson["OTEVRENO"].string,
             let adress = propertiesJson["ADRESA"].string
-        else {return Toilet(adress: "", openingTime: "", price: "", location: location)}
+        else {return Toilet(adress: "", openingTime: "", price: "", coordinate: coordinate)}
         
-        return Toilet(adress: adress, openingTime: openingTime, price: price, location: location)
+        return Toilet(adress: adress, openingTime: openingTime, price: price, coordinate: coordinate)
     }
     
-    private func getLocation(locationJson: JSON) -> Location? {
+    private func getCoordinate(coordinateJson: JSON) -> CLLocationCoordinate2D? {
         guard
-            let latitude = locationJson["coordinates"][0].double,
-            let longitude = locationJson["coordinates"][1].double
+            let coordinates = coordinateJson["coordinates"].array,
+            let latitude = coordinates[1].double,
+            let longitude = coordinates[0].double
         else {return nil}
-        
-        return Location(latitude: latitude, longitude: longitude)
+        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 
 }
