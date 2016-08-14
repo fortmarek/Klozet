@@ -54,6 +54,9 @@
                                     <constraint firstAttribute="width" constant="60" id="r5R-Xp-iMZ"/>
                                 </constraints>
                                 <state key="normal" image="Filter"/>
+                                <connections>
+                                    <action selector="filterButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="voy-RR-h2y"/>
+                                </connections>
                             </button>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="xsx-64-7cX">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>

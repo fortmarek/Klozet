@@ -38,7 +38,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             self.toilets = toilets
             dispatch_async(dispatch_get_main_queue(), {
                 self.mapView.addAnnotations(toilets)
-                print(toilets[0].coordinate)
             })
 
         })
@@ -98,6 +97,26 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         locationManager.startUpdatingLocation()
     }
 
+    @IBAction func filterButtonTapped(sender: UIButton) {
+        
+        UIView.animateKeyframesWithDuration(1, delay: 0, options: .CalculationModePaced, animations: {
+            
+            let fullRotation = CGFloat(M_PI * 2)
+            UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 1/3, animations: {
+                self.filterButton.transform = CGAffineTransformMakeRotation(1 / 3 * fullRotation)
+            })
+            
+            UIView.addKeyframeWithRelativeStartTime(1/3, relativeDuration: 1/3, animations: {
+                self.filterButton.transform = CGAffineTransformMakeRotation(2 / 3 * fullRotation)
+            })
+            
+            UIView.addKeyframeWithRelativeStartTime(2/3, relativeDuration: 1/3, animations: {
+                self.filterButton.transform = CGAffineTransformMakeRotation(3 / 3 * fullRotation)
+            })
+            
+            }, completion: nil)
+        
+    }
 
 
 }
