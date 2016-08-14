@@ -20,6 +20,7 @@
 		F8EAE8351D5FC81300D60DAB /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE8341D5FC81300D60DAB /* DataController.swift */; };
 		F8EAE8371D5FCDA700D60DAB /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8EAE8361D5FCDA700D60DAB /* SwiftyJSON.framework */; };
 		F8EAE8381D5FCF0400D60DAB /* SwiftyJSON.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8EAE8361D5FCDA700D60DAB /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F8EAE83A1D6072EF00D60DAB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8EAE8391D6072EF00D60DAB /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		F8EAE82F1D5FB4DD00D60DAB /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		F8EAE8341D5FC81300D60DAB /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		F8EAE8361D5FCDA700D60DAB /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		F8EAE8391D6072EF00D60DAB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8EAE83A1D6072EF00D60DAB /* CoreLocation.framework in Frameworks */,
 				F8EAE82A1D5FAAF300D60DAB /* MapKit.framework in Frameworks */,
 				F8EAE8301D5FB4DD00D60DAB /* Alamofire.framework in Frameworks */,
 				F8EAE8371D5FCDA700D60DAB /* SwiftyJSON.framework in Frameworks */,
@@ -123,6 +126,7 @@
 		C2831FEAD92CB08690D3ADE7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F8EAE8391D6072EF00D60DAB /* CoreLocation.framework */,
 				F8EAE8361D5FCDA700D60DAB /* SwiftyJSON.framework */,
 				F8EAE82F1D5FB4DD00D60DAB /* Alamofire.framework */,
 				F8EAE8291D5FAAF300D60DAB /* MapKit.framework */,
@@ -416,6 +420,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
