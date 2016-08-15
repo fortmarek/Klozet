@@ -23,7 +23,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
@@ -43,17 +43,31 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 
         })
         
-        cancelButton.alpha = 0.0
-        view.bringSubviewToFront(cancelButton)
-        view.bringSubviewToFront(currentLocationButton)
-        view.bringSubviewToFront(filterButton)
+        
+        
     }
     
     override func viewDidAppear(animated: Bool) {
         locationManager.requestWhenInUseAuthorization()
     }
-
     
+    override func viewDidLayoutSubviews() {
+        print(view.frame)
+        print(currentLocationButton.frame)
+        let rightBottomCircle = UIView(frame: CGRect(x: view.frame.width - 52, y: view.frame.height - 58, width: 42, height: 42))
+        //let rightBottomCircle = UIView(frame: CGRect(x: 10, y: 615, width: 42, height: 42))
+        rightBottomCircle.backgroundColor = UIColor.cyanColor()
+        rightBottomCircle.layer.cornerRadius = 21
+        view.addSubview(rightBottomCircle)
+        
+        
+        cancelButton.alpha = 0.0
+        view.bringSubviewToFront(cancelButton)
+        view.bringSubviewToFront(currentLocationButton)
+        view.bringSubviewToFront(filterButton)
+        view.bringSubviewToFront(rightBottomCircle)
+        
+    }
     
     // MARK: Location manager methods
     
