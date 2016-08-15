@@ -12,6 +12,7 @@ import MapKit
 
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var currentLocationButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
@@ -42,6 +43,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 
         })
         
+        cancelButton.alpha = 0.0
+        view.bringSubviewToFront(cancelButton)
         view.bringSubviewToFront(currentLocationButton)
         view.bringSubviewToFront(filterButton)
     }
@@ -98,8 +101,13 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
 
     @IBAction func filterButtonTapped(sender: UIButton) {
+        rotate()
+        fadeOut()
         
-        UIView.animateKeyframesWithDuration(1, delay: 0, options: .CalculationModePaced, animations: {
+    }
+    
+    func rotate() {
+        UIView.animateKeyframesWithDuration(1, delay: 0, options: [.CalculationModePaced, UIViewKeyframeAnimationOptions(animationOptions: .CurveEaseOut)], animations: {
             
             let fullRotation = CGFloat(M_PI * 2)
             UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 1/3, animations: {
@@ -115,9 +123,25 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             })
             
             }, completion: nil)
-        
     }
+    
+    func fadeOut() {
+        UIView.animateWithDuration(1, animations: {
+            self.filterButton.alpha = 0.0
+            }, completion: nil)
+        
+        UIView.animateWithDuration(1, animations: {
+            self.cancelButton.alpha = 1.0
+            }, completion: nil)
+    }
+    
+}
 
-
+extension UIViewKeyframeAnimationOptions {
+    
+    init(animationOptions: UIViewAnimationOptions) {
+        rawValue = animationOptions.rawValue
+    }
+    
 }
 
