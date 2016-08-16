@@ -85,6 +85,15 @@ extension ViewController {
         cancelImage.image = UIImage(named:"Cancel")
         cancelImage.alpha = 0.0
         
+        // cornerConstant for filterButton constraint, 30 for center of filterButton, 31 / 2 for center of filterImage
+        let constant = (cornerConstant + 30) - 31 / 2
+        
+        //Bottom constraint for filterImage is different (shape makes it look not centerd when it is centered)
+        view.addConstraint(NSLayoutConstraint(item: filterImage, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(-constant + 3)))
+        
+        //Bottom constraint for cancelImage
+        view.addConstraint(NSLayoutConstraint(item: cancelImage, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(-constant)))
+        
         let filterImages = [filterImage, cancelImage]
         
         for image in filterImages {
@@ -94,12 +103,9 @@ extension ViewController {
             //Width and height
             view.addConstraint(NSLayoutConstraint(item: image, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 31))
             view.addConstraint(NSLayoutConstraint(item: image, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 31))
-            
-            // cornerConstant for filterButton constraint, 30 for center of filterButton, 31 / 2 for center of filterImage
-            let constant = (cornerConstant + 30) - 31 / 2
+        
             view.addConstraint(NSLayoutConstraint(item: image, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-constant)))
-            //Bottom constraint
-            view.addConstraint(NSLayoutConstraint(item: image, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(-constant + 3)))
+            
         }
         
         

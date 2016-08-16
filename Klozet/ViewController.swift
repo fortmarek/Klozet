@@ -108,11 +108,3 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
 }
 
-extension UIViewKeyframeAnimationOptions {
-    
-    init(animationOptions: UIViewAnimationOptions) {
-        rawValue = animationOptions.rawValue
-    }
-    
-}
-

@@ -11,13 +11,19 @@ import UIKit
 
 extension ViewController {
     func filterButtonTapped(sender: UIButton) {
-        print("HEY")
         rotate()
         fadeOut()
+        colorTransition()
         
     }
     
-    func rotate() {
+    private func colorTransition() {
+        UIView.animateWithDuration(1, animations: {
+            self.filterButton.backgroundColor = UIColor(red:1.00, green:0.42, blue:0.20, alpha: 1.0)
+        })
+    }
+    
+    private func rotate() {
         UIView.animateKeyframesWithDuration(1, delay: 0, options: [.CalculationModePaced, UIViewKeyframeAnimationOptions(animationOptions: .CurveEaseOut)], animations: {
             
             let fullRotation = CGFloat(M_PI * 2)
@@ -34,9 +40,11 @@ extension ViewController {
             })
             
             }, completion: nil)
+        
+        
     }
     
-    func fadeOut() {
+    private func fadeOut() {
         UIView.animateWithDuration(1, animations: {
             self.filterImage.alpha = 0.0
             }, completion: nil)
@@ -46,3 +54,13 @@ extension ViewController {
             }, completion: nil)
     }
 }
+
+extension UIViewKeyframeAnimationOptions {
+    
+    init(animationOptions: UIViewAnimationOptions) {
+        rawValue = animationOptions.rawValue
+    }
+    
+}
+
+
