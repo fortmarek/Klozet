@@ -72,7 +72,8 @@ extension ViewController {
     private func setFilterButton() {
         view.addConstraint(NSLayoutConstraint(item: filterButton, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: -cornerConstant))
         filterButton.backgroundColor = UIColor.whiteColor()
-        filterButton.layer.cornerRadius = 30
+        filterButton.layer.cornerRadius = 27.5
+        print(filterButton.layer.cornerRadius)
         
         filterButton.addTarget(UIButton(), action: #selector(filterButtonTapped(_:)), forControlEvents: .TouchUpInside)
         
@@ -85,8 +86,8 @@ extension ViewController {
         cancelImage.image = UIImage(named:"Cancel")
         cancelImage.alpha = 0.0
         
-        // cornerConstant for filterButton constraint, 30 for center of filterButton, 31 / 2 for center of filterImage
-        let constant = (cornerConstant + 30) - 31 / 2
+        // cornerConstant for filterButton constraint, 22.5 for center of filterButton, 31 / 2 for center of filterImage
+        let constant = (cornerConstant + 27.5) - 31 / 2
         
         //Bottom constraint for filterImage is different (shape makes it look not centerd when it is centered)
         view.addConstraint(NSLayoutConstraint(item: filterImage, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(-constant + 3)))

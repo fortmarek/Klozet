@@ -22,10 +22,12 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     //Default button distance from the edges of the screen
     let cornerConstant = CGFloat(20)
     //Default width and height of buttons
-    let sizeConstant = CGFloat(60)
+    let sizeConstant = CGFloat(55)
     
     var toilets = [Toilet]()
     let locationManager = CLLocationManager()
+    
+    var isFilterSelected = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
