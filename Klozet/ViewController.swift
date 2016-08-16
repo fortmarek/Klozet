@@ -11,13 +11,20 @@ import MapKit
 //import CoreLocation
 
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
-    
-    @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var filterButton: UIButton!
-    @IBOutlet weak var currentLocationButton: UIButton!
+
+    //UI elements
     @IBOutlet weak var mapView: MKMapView!
-    var toilets = [Toilet]()
+    let currentLocationButton = UIButton()
+    let filterButton = UIButton()
+    let filterImage = UIImageView()
+    let cancelImage = UIImageView()
     
+    //Default button distance from the edges of the screen
+    let cornerConstant = CGFloat(20)
+    //Default width and height of buttons
+    let sizeConstant = CGFloat(60)
+    
+    var toilets = [Toilet]()
     let locationManager = CLLocationManager()
 
     override func viewDidLoad() {
@@ -43,7 +50,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 
         })
         
-        
+        createButtons()
         
     }
     
@@ -51,23 +58,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         locationManager.requestWhenInUseAuthorization()
     }
     
-    override func viewDidLayoutSubviews() {
-        print(view.frame)
-        print(currentLocationButton.frame)
-        let rightBottomCircle = UIView(frame: CGRect(x: view.frame.width - 52, y: view.frame.height - 58, width: 42, height: 42))
-        //let rightBottomCircle = UIView(frame: CGRect(x: 10, y: 615, width: 42, height: 42))
-        rightBottomCircle.backgroundColor = UIColor.cyanColor()
-        rightBottomCircle.layer.cornerRadius = 21
-        view.addSubview(rightBottomCircle)
-        
-        
-        cancelButton.alpha = 0.0
-        view.bringSubviewToFront(cancelButton)
-        view.bringSubviewToFront(currentLocationButton)
-        view.bringSubviewToFront(filterButton)
-        view.bringSubviewToFront(rightBottomCircle)
-        
-    }
     
     // MARK: Location manager methods
     
@@ -110,44 +100,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         return annotationView
     }
     
-    @IBAction func currentLocationButtonTapped(sender: UIButton) {
+    func currentLocationButtonTapped(sender: UIButton) {
         locationManager.startUpdatingLocation()
     }
 
-    @IBAction func filterButtonTapped(sender: UIButton) {
-        rotate()
-        fadeOut()
-        
-    }
     
-    func rotate() {
-        UIView.animateKeyframesWithDuration(1, delay: 0, options: [.CalculationModePaced, UIViewKeyframeAnimationOptions(animationOptions: .CurveEaseOut)], animations: {
-            
-            let fullRotation = CGFloat(M_PI * 2)
-            UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 1/3, animations: {
-                self.filterButton.transform = CGAffineTransformMakeRotation(1 / 3 * fullRotation)
-            })
-            
-            UIView.addKeyframeWithRelativeStartTime(1/3, relativeDuration: 1/3, animations: {
-                self.filterButton.transform = CGAffineTransformMakeRotation(2 / 3 * fullRotation)
-            })
-            
-            UIView.addKeyframeWithRelativeStartTime(2/3, relativeDuration: 1/3, animations: {
-                self.filterButton.transform = CGAffineTransformMakeRotation(3 / 3 * fullRotation)
-            })
-            
-            }, completion: nil)
-    }
-    
-    func fadeOut() {
-        UIView.animateWithDuration(1, animations: {
-            self.filterButton.alpha = 0.0
-            }, completion: nil)
-        
-        UIView.animateWithDuration(1, animations: {
-            self.cancelButton.alpha = 1.0
-            }, completion: nil)
-    }
     
 }
 
