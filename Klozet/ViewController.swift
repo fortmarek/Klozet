@@ -16,8 +16,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBOutlet weak var mapView: MKMapView!
     let currentLocationButton = UIButton()
     let filterButton = UIButton()
+    let priceButton = UIButton()
+    let timeButton = UIButton()
     let filterImage = UIImageView()
     let cancelImage = UIImageView()
+    
+    var priceButtonConstraint = NSLayoutConstraint()
+    var timeButtonConstraint = NSLayoutConstraint()
+
     
     //Default button distance from the edges of the screen
     let cornerConstant = CGFloat(20)
