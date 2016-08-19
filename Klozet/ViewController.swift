@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 //import CoreLocation
 
-class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate {
 
     //UI elements
     @IBOutlet weak var mapView: MKMapView!
@@ -33,7 +33,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var toilets = [Toilet]()
     let locationManager = CLLocationManager()
     
+    var currentLocationHeadingSelected = false
     var isFilterSelected = false
+    var dragRecognizer = UIPanGestureRecognizer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,14 +62,42 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         createButtons()
         
+        dragRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didDragMap))
+        dragRecognizer.delegate = self
+        mapView.addGestureRecognizer(dragRecognizer)
+        
     }
     
     override func viewDidAppear(animated: Bool) {
         locationManager.requestWhenInUseAuthorization()
     }
     
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
+    func didDragMap() {
+        if dragRecognizer.state == .Began {
+            currentLocationButton.selected = false
+            
+            currentLocationHeadingSelected = false
+            locationManager.stopUpdatingHeading()
+        }
+        
+    }
+    
     
     // MARK: Location manager methods
+    
+    func locationManager(manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        let heading = newHeading.trueHeading > 0 ? newHeading.trueHeading : newHeading.magneticHeading
+    
+        let mapCamera = mapView.camera
+        mapCamera.heading = heading
+        
+        mapView.setCamera(mapCamera, animated: false)
+        
+    }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else {return}
@@ -79,7 +109,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         mapView.setRegion(region, animated: true)
         locationManager.stopUpdatingLocation()
     }
-    
+
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print("Errors: \(error)")
     }
@@ -110,7 +140,52 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func currentLocationButtonTapped(sender: UIButton) {
         locationManager.startUpdatingLocation()
+        determineCurrentLocationButtonImage()
     }
+    
+    private func determineCurrentLocationButtonImage() {
+        if currentLocationHeadingSelected {
+            currentLocationHeadingSelected = false
+            currentLocationButton.selected = false
+            locationManager.stopUpdatingHeading()
+            setImageForSelectedHighlighted(currentLocationButton, image: "CurrentLocationSelected")
+        }
+        else if currentLocationButton.selected {
+            currentLocationHeadingSelected = true
+            setImageForSelectedHighlighted(currentLocationButton, image: "CurrentLocationHeading")
+            locationManager.startUpdatingHeading()
+        }
+        else {
+            setImageForSelectedHighlighted(currentLocationButton, image: "CurrentLocationSelected")
+            currentLocationButton.selected = true
+        }
+    }
+    
+    private func setImageForSelectedHighlighted(button: UIButton, image: String) {
+        button.setImage(UIImage(named: image), forState: .Selected)
+        button.setImage(UIImage(named: image), forState: [.Selected, .Highlighted])
+    }
+    
+    func priceButtonTapped(sender: UIButton) {
+        priceButton.selected = !(priceButton.selected)
+        
+        let toiletsForFree = toilets.filter({$0.price != "Zdarma"})
+        
+        if priceButton.selected {
+            mapView.removeAnnotations(toiletsForFree)
+        }
+        else {
+            mapView.addAnnotations(toiletsForFree)
+        }
+        
+        
+    }
+    
+    func timeButtonTapped(sender: UIButton) {
+        timeButton.selected = !(timeButton.selected)
+    }
+    
+    
 
     
     

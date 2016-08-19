@@ -16,8 +16,18 @@ extension ViewController {
         addSubviews()
         
         setForEveryButton()
-        setButtonProperties(currentLocationButton, image: "CurrentLocation", selectedImage: "CurrentLocation", action: #selector(currentLocationButtonTapped(_:)), attribute: .Leading)
+        
+        //CurrentLocationButton
+        setButtonProperties(currentLocationButton, image: "CurrentLocation", selectedImage: "CurrentLocationSelected", action: #selector(currentLocationButtonTapped(_:)), attribute: .Leading)
+        currentLocationButton.selected = true
+        currentLocationButton.adjustsImageWhenHighlighted = false
+        currentLocationButton.setImage(UIImage(named:"CurrentLocationSelected"), forState: [.Selected, .Highlighted])
+        
+        
+        //FilterButton
         setFilterButton()
+        
+        //OptionButtons
         setOptionButtons()
     }
     
@@ -54,9 +64,16 @@ extension ViewController {
     }
     
     private func setButtonProperties(button: UIButton, image: String, selectedImage: String, action: Selector, attribute: NSLayoutAttribute) {
+        
+        //image
         button.setImage(UIImage(named: image), forState: .Normal)
         button.setImage(UIImage(named: selectedImage), forState: .Selected)
+        button.setImage(UIImage(named: selectedImage), forState: .Highlighted)
+        
+        //Target function
         button.addTarget(UIButton(), action: action, forControlEvents: .TouchUpInside)
+        
+        //Constraint
         let constant = attribute == .Leading ? CGFloat(cornerConstant) : CGFloat(-cornerConstant)
         view.addConstraint(NSLayoutConstraint(item: button, attribute: attribute, relatedBy: .Equal, toItem: view, attribute: attribute, multiplier: 1.0, constant: constant))
         view.addConstraint(NSLayoutConstraint(item: button, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: -cornerConstant))
@@ -110,6 +127,9 @@ extension ViewController {
         
         timeButton.layer.shadowOpacity = 0.0
         priceButton.layer.shadowOpacity = 0.0
+        
+        timeButton.addTarget(self, action: #selector(timeButtonTapped(_:)), forControlEvents: .TouchUpInside)
+        priceButton.addTarget(self, action: #selector(priceButtonTapped(_:)), forControlEvents: .TouchUpInside)
         
         timeButton.setImage(UIImage(named: "Clock"), forState: .Normal)
         timeButton.setImage(UIImage(named: "ClockSelected"), forState: .Selected)
