@@ -18,17 +18,50 @@ extension ViewController {
         setForEveryButton()
         
         //CurrentLocationButton
-        setButtonProperties(currentLocationButton, image: "CurrentLocation", selectedImage: "CurrentLocationSelected", action: #selector(currentLocationButtonTapped(_:)), attribute: .Leading)
-        currentLocationButton.selected = true
-        currentLocationButton.adjustsImageWhenHighlighted = false
-        currentLocationButton.setImage(UIImage(named:"CurrentLocationSelected"), forState: [.Selected, .Highlighted])
-        
+        setCurrentLocationButton()
         
         //FilterButton
         setFilterButton()
         
         //OptionButtons
         setOptionButtons()
+    }
+    
+    //Left callout view in MKAnnotationView
+    func setLeftCalloutView() -> UIButton {
+        let leftButton = UIButton.init(type: .Custom)
+        leftButton.frame = CGRect(x: 0, y: 0, width: 55, height: 50)
+        //BackgroundColor
+        leftButton.backgroundColor = UIColor.orangeColor()
+        
+        //Image
+        leftButton.setImage(UIImage(named: "Walking"), forState: .Normal)
+        leftButton.setImage((UIImage(named: "Walking")), forState: .Highlighted)
+        
+        
+        //Center image in view, 22 is for image width
+        let leftImageInset = (leftButton.frame.size.width - 22) / 2
+        leftButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: leftImageInset, bottom: 10, right: 0)
+        
+        //Title
+        let attributes = [NSFontAttributeName: UIFont.systemFontOfSize(10), NSForegroundColorAttributeName: UIColor.whiteColor()]
+        let randNumber = Int(arc4random_uniform(100))
+        leftButton.setAttributedTitle(NSAttributedString(string: "\(randNumber) min", attributes: attributes), forState: .Normal)
+        leftButton.setAttributedTitle(NSAttributedString(string: "\(randNumber) min", attributes: attributes), forState: .Highlighted)
+        
+        //Title inset
+        guard let titleLabel = leftButton.titleLabel else {return leftButton}
+        let leftTitleLabelInset = -(titleLabel.frame.size.width) / 2 - (leftButton.frame.size.width - titleLabel.frame.size.width) / 2 + 5
+        leftButton.titleEdgeInsets = UIEdgeInsets(top: 30, left: leftTitleLabelInset, bottom: 0, right: 0)
+        
+        return leftButton
+    }
+    
+    private func setCurrentLocationButton() {
+        setButtonProperties(currentLocationButton, image: "CurrentLocation", selectedImage: "CurrentLocationSelected", action: #selector(currentLocationButtonTapped(_:)), attribute: .Leading)
+        currentLocationButton.selected = true
+        currentLocationButton.adjustsImageWhenHighlighted = false
+        currentLocationButton.setImage(UIImage(named:"CurrentLocationSelected"), forState: [.Selected, .Highlighted])
     }
     
     //Same for every button
@@ -74,6 +107,7 @@ extension ViewController {
         button.addTarget(UIButton(), action: action, forControlEvents: .TouchUpInside)
         
         //Constraint
+        //If constraint leading (ie on the left of the screen) constraint positive, if trailing negative
         let constant = attribute == .Leading ? CGFloat(cornerConstant) : CGFloat(-cornerConstant)
         view.addConstraint(NSLayoutConstraint(item: button, attribute: attribute, relatedBy: .Equal, toItem: view, attribute: attribute, multiplier: 1.0, constant: constant))
         view.addConstraint(NSLayoutConstraint(item: button, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: -cornerConstant))
