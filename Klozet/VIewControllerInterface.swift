@@ -8,6 +8,10 @@
 
 import Foundation
 import UIKit
+import MapKit
+
+
+let pumpkinColor = UIColor(red: 1.00, green: 0.42, blue: 0.20, alpha: 1.0)
 
 extension ViewController {
     
@@ -31,8 +35,9 @@ extension ViewController {
     func setLeftCalloutView() -> UIButton {
         let leftButton = UIButton.init(type: .Custom)
         leftButton.frame = CGRect(x: 0, y: 0, width: 55, height: 50)
+        
         //BackgroundColor
-        leftButton.backgroundColor = UIColor.orangeColor()
+        leftButton.backgroundColor = pumpkinColor
         
         //Image
         leftButton.setImage(UIImage(named: "Walking"), forState: .Normal)
@@ -41,20 +46,40 @@ extension ViewController {
         
         //Center image in view, 22 is for image width
         let leftImageInset = (leftButton.frame.size.width - 22) / 2
-        leftButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: leftImageInset, bottom: 10, right: 0)
+        leftButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: leftImageInset, bottom: 10, right: 0)        
+        
+        return leftButton
+    }
+    
+    func getEta(destination: CLLocationCoordinate2D, annotationView: MKAnnotationView) {
+        
+        let directions = requestDirections(destination)
+        directions.calculateETAWithCompletionHandler({
+            etaResponse, error in
+            guard let expectedTravelTime = etaResponse?.expectedTravelTime else {return}
+            self.setTitle(expectedTravelTime, annotationView: annotationView)
+            
+        })
+        
+        
+    }
+    
+    private func setTitle(ETA: NSTimeInterval, annotationView: MKAnnotationView) {
+        
+        guard let leftButton = annotationView.leftCalloutAccessoryView as? UIButton else {return}
+        
+        //Converting ETA in NSTimeInterval to minutes
+        let minutes = (NSInteger(ETA) / 60) % 60
         
         //Title
         let attributes = [NSFontAttributeName: UIFont.systemFontOfSize(10), NSForegroundColorAttributeName: UIColor.whiteColor()]
-        let randNumber = Int(arc4random_uniform(100))
-        leftButton.setAttributedTitle(NSAttributedString(string: "\(randNumber) min", attributes: attributes), forState: .Normal)
-        leftButton.setAttributedTitle(NSAttributedString(string: "\(randNumber) min", attributes: attributes), forState: .Highlighted)
+        leftButton.setAttributedTitle(NSAttributedString(string: "\(minutes) min", attributes: attributes), forState: .Normal)
+        leftButton.setAttributedTitle(NSAttributedString(string: "\(minutes) min", attributes: attributes), forState: .Highlighted)
         
         //Title inset
-        guard let titleLabel = leftButton.titleLabel else {return leftButton}
+        guard let titleLabel = leftButton.titleLabel else {return}
         let leftTitleLabelInset = -(titleLabel.frame.size.width) / 2 - (leftButton.frame.size.width - titleLabel.frame.size.width) / 2 + 5
         leftButton.titleEdgeInsets = UIEdgeInsets(top: 30, left: leftTitleLabelInset, bottom: 0, right: 0)
-        
-        return leftButton
     }
     
     private func setCurrentLocationButton() {

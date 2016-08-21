@@ -138,16 +138,24 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let rightButton = UIButton.init(type: .DetailDisclosure)
         annotationView.rightCalloutAccessoryView = rightButton
         
-        let leftButton = UIButton.init(type: .Custom)
-        
-        
-
-        
-        
-        
+        let leftButton = setLeftCalloutView()
         annotationView.leftCalloutAccessoryView = leftButton
         
+        //Add target
+        leftButton.addTarget(self, action: #selector(getDirectionsFromAnnotation), forControlEvents: .TouchUpInside)
+        
         return annotationView
+    }
+    
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        guard let toiletAnnotation = view.annotation as? Toilet else {return}
+        
+        view.tag = 1
+        getEta(toiletAnnotation.coordinate, annotationView: view)
+    }
+    
+    func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
+        view.tag = 0
     }
     
     func currentLocationButtonTapped(sender: UIButton) {
@@ -197,8 +205,36 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         timeButton.selected = !(timeButton.selected)
     }
     
+    func getDirectionsFromAnnotation(sender: UIButton) {
     
-
+        guard
+            let toiletView = view.viewWithTag(1) as? MKAnnotationView,
+            let toiletAnnotation = toiletView.annotation as? Toilet
+        else {return}
+        
+        getDirections(toiletAnnotation.coordinate)
+    }
+    
+    
+    func requestDirections(destination: CLLocationCoordinate2D) -> MKDirections {
+        
+        let request = MKDirectionsRequest()
+        
+        guard let userLocation = locationManager.location else {return MKDirections()}
+        request.source = MKMapItem(placemark: MKPlacemark(coordinate: userLocation.coordinate, addressDictionary: nil))
+        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: destination, addressDictionary: nil))
+        request.transportType = .Walking
+        
+        let directions = MKDirections(request: request)
+        
+        return directions
+    }
+    
+    func getDirections(destination: CLLocationCoordinate2D) {
+        
+    }
+    
+    
     
     
 }
