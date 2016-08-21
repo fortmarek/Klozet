@@ -63,6 +63,7 @@
 		64FAEE6D86EBB51AC1E892EC /* Pods-KlozetTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KlozetTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KlozetTests/Pods-KlozetTests.release.xcconfig"; sourceTree = "<group>"; };
 		67D98F14D4389FC6AA72E2F3 /* Pods-KlozetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KlozetTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KlozetTests/Pods-KlozetTests.debug.xcconfig"; sourceTree = "<group>"; };
 		68349D920E93E823BFCB4670 /* Pods-Klozet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Klozet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Klozet/Pods-Klozet.debug.xcconfig"; sourceTree = "<group>"; };
+		F82247E11D6784F000C0FB3E /* KlozetPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = KlozetPlayground.playground; sourceTree = "<group>"; };
 		F8EAE7F61D5FA6A900D60DAB /* Klozet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Klozet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8EAE7F91D5FA6A900D60DAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8EAE7FB1D5FA6A900D60DAB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +169,7 @@
 				F8EAE83B1D630E0500D60DAB /* VIewControllerInterface.swift */,
 				F8EAE83D1D63238000D60DAB /* ViewControllerAnimations.swift */,
 				F8EAE8341D5FC81300D60DAB /* DataController.swift */,
+				F82247E11D6784F000C0FB3E /* KlozetPlayground.playground */,
 				F8EAE7FD1D5FA6A900D60DAB /* Main.storyboard */,
 				F8EAE8001D5FA6A900D60DAB /* Assets.xcassets */,
 				F8EAE8021D5FA6A900D60DAB /* LaunchScreen.storyboard */,

@@ -135,6 +135,30 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         annotationView.annotation = toiletAnnotation
         annotationView.image = UIImage(named: "Pin")
         
+        let rightButton = UIButton.init(type: .DetailDisclosure)
+        annotationView.rightCalloutAccessoryView = rightButton
+        
+        let leftButton = UIButton.init(type: .Custom)
+        
+        leftButton.backgroundColor = UIColor.orangeColor()
+        leftButton.setImage(UIImage(named: "Walking"), forState: .Normal)
+        leftButton.setImage((UIImage(named: "Walking")), forState: .Highlighted)
+        let attributes = [NSFontAttributeName: UIFont.systemFontOfSize(10), NSForegroundColorAttributeName: UIColor.whiteColor()]
+        let randNumber = Int(arc4random_uniform(100))
+        leftButton.setAttributedTitle(NSAttributedString(string: "\(randNumber) min", attributes: attributes), forState: .Normal)
+        leftButton.setAttributedTitle(NSAttributedString(string: "\(randNumber) min", attributes: attributes), forState: .Highlighted)
+        leftButton.titleLabel?.sizeToFit()
+        leftButton.frame = CGRect(x: 0, y: 0, width: 55, height: 50)
+        //image width is 22
+        leftButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 16.5, bottom: 10, right: 0)
+        leftButton.titleEdgeInsets = UIEdgeInsets(top: 30, left: -(leftButton.titleLabel!.frame.size.width) / 2 - (leftButton.frame.size.width - leftButton.titleLabel!.frame.size.width) / 2 + 5, bottom: 0, right: 0)
+        print(leftButton.titleLabel?.frame)
+        print((leftButton.frame.size.width - leftButton.titleLabel!.frame.size.width) / 2)
+        
+        
+        
+        annotationView.leftCalloutAccessoryView = leftButton
+        
         return annotationView
     }
     

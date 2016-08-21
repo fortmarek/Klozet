@@ -15,14 +15,14 @@ import MapKit
 class Toilet: NSObject, MKAnnotation {
     let title: String?
     let subtitle: String?
-    let openingTime: String
+    let openTimes: [String]
     let price: String
     let coordinate: CLLocationCoordinate2D
     
-    init(adress: String, detailedAdress: String, openingTime: String, price: String, coordinate: CLLocationCoordinate2D) {
+    init(adress: String, detailedAdress: String, openTimes: [String], price: String, coordinate: CLLocationCoordinate2D) {
         self.title = adress
         self.subtitle = detailedAdress
-        self.openingTime = openingTime
+        self.openTimes = openTimes
         self.price = price
         self.coordinate = coordinate
     }
@@ -57,17 +57,39 @@ class DataController {
     private func getToilet(propertiesJson: JSON, coordinate: CLLocationCoordinate2D) -> Toilet {
         guard
             let price = propertiesJson["CENA"].string,
-            let openingTime = propertiesJson["OTEVRENO"].string,
+            let openTime = propertiesJson["OTEVRENO"].string,
             let adress = propertiesJson["ADRESA"].string
-        else {return Toilet(adress: "", detailedAdress: "", openingTime: "", price: "", coordinate: coordinate)}
+        else {return Toilet(adress: "", detailedAdress: "", openTimes: [String](), price: "", coordinate: coordinate)}
         
-        let uppercasePrice = price.uppercaseString
         
-        return Toilet(adress: adress.uppercaseString, detailedAdress: "", openingTime: openingTime, price: uppercasePrice, coordinate: coordinate)
+        let capitalizedPrice = price.capitalizeFirstLetter()
+        let capitalizedAdress = adress.capitalizeFirstLetter()
+        
+        let openTimes = openTime.componentsSeparatedByString(";")
+        
+        //let capitalizedOpenTimes = openTimes.map({capitalize($0)})
+        
+        //print(capitalizedOpenTimes)
+        
+        return Toilet(adress: capitalizedAdress, detailedAdress: "", openTimes: [String](), price: capitalizedPrice, coordinate: coordinate)
     }
     
-    private func getOpeningTime(openingTime: String) {
+    private func capitalize(openTime: String) -> String {
         
+        var openTimeCapitalized = [String]()
+        
+        for openTimeComponent in openTime.componentsSeparatedByString("-") {
+            
+            //Removing space at the sart of openTime
+            if String(openTimeComponent.characters.prefix(1)) == " " {
+                openTimeCapitalized.append(String(openTimeComponent.characters.dropFirst()).capitalizeFirstLetter())
+            }
+                
+            else {
+                openTimeCapitalized.append(openTimeComponent.capitalizeFirstLetter())
+            }
+        }
+        return openTimeCapitalized.joinWithSeparator("-")
     }
     
     private func getCoordinate(coordinateJson: JSON) -> CLLocationCoordinate2D? {
@@ -79,4 +101,14 @@ class DataController {
         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 
+}
+
+
+extension String {
+    func capitalizeFirstLetter() -> String {
+        let firstLetterCapitalized = String(self.characters.prefix(1)).uppercaseString
+        let dropFirstLetter = String(self.characters.dropFirst())
+        
+        return firstLetterCapitalized + dropFirstLetter
+    }
 }
