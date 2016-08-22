@@ -33,21 +33,27 @@ extension ViewController {
     
     //Left callout view in MKAnnotationView
     func setLeftCalloutView() -> UIButton {
+        
         let leftButton = UIButton.init(type: .Custom)
         leftButton.frame = CGRect(x: 0, y: 0, width: 55, height: 50)
         
         //BackgroundColor
         leftButton.backgroundColor = pumpkinColor
         
+        
         //Image
         leftButton.setImage(UIImage(named: "Walking"), forState: .Normal)
         leftButton.setImage((UIImage(named: "Walking")), forState: .Highlighted)
         
-        
         //Center image in view, 22 is for image width
         let leftImageInset = (leftButton.frame.size.width - 22) / 2
-        leftButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: leftImageInset, bottom: 10, right: 0)        
+        leftButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: leftImageInset, bottom: 0, right: leftImageInset)
         
+        
+        //Title inset
+        leftButton.titleEdgeInsets = UIEdgeInsets(top: 30, left: -22.5, bottom: 0, right: 0)
+        leftButton.titleLabel?.textAlignment = .Center
+
         return leftButton
     }
     
@@ -68,18 +74,29 @@ extension ViewController {
         
         guard let leftButton = annotationView.leftCalloutAccessoryView as? UIButton else {return}
         
-        //Converting ETA in NSTimeInterval to minutes
-        let minutes = (NSInteger(ETA) / 60) % 60
+        //Converting ETA in NSTimeInterval to minutes or hours
+        let etaInt = NSInteger(ETA)
+        var time = ""
+        
+        let oneHour = 3600
+        let minutes = (etaInt / 60) % 60
+        if etaInt > oneHour {
+            let hours = (etaInt / oneHour) % oneHour
+            time = "\(hours)h \(minutes)m"
+        }
+            
+        else {
+            time = "\(minutes) min"
+        }
         
         //Title
+        leftButton.titleLabel?.alpha = 0
         let attributes = [NSFontAttributeName: UIFont.systemFontOfSize(10), NSForegroundColorAttributeName: UIColor.whiteColor()]
-        leftButton.setAttributedTitle(NSAttributedString(string: "\(minutes) min", attributes: attributes), forState: .Normal)
-        leftButton.setAttributedTitle(NSAttributedString(string: "\(minutes) min", attributes: attributes), forState: .Highlighted)
+        leftButton.setAttributedTitle(NSAttributedString(string: time, attributes: attributes), forState: .Normal)
+        leftButton.setAttributedTitle(NSAttributedString(string: time, attributes: attributes), forState: .Highlighted)
         
-        //Title inset
-        guard let titleLabel = leftButton.titleLabel else {return}
-        let leftTitleLabelInset = -(titleLabel.frame.size.width) / 2 - (leftButton.frame.size.width - titleLabel.frame.size.width) / 2 + 5
-        leftButton.titleEdgeInsets = UIEdgeInsets(top: 30, left: leftTitleLabelInset, bottom: 0, right: 0)
+        animateETA(leftButton)
+        
     }
     
     private func setCurrentLocationButton() {

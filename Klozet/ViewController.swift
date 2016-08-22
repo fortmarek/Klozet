@@ -151,6 +151,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         guard let toiletAnnotation = view.annotation as? Toilet else {return}
         
         view.tag = 1
+        
         getEta(toiletAnnotation.coordinate, annotationView: view)
     }
     

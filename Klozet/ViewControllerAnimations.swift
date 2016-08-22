@@ -90,6 +90,35 @@ extension ViewController {
         
     }
     
+    func animateETA(leftButton: UIButton) {
+    
+        //Start with label rotated to then rotate it to the right angle
+        leftButton.titleLabel?.layer.transform = CATransform3DMakeRotation(CGFloat(M_PI / 2), 1, 0, 0)
+        leftButton.titleLabel?.sizeToFit()
+        
+        //layoutIfNeeded after sizeToFit() so I don't animate the position only rotation
+        view.layoutIfNeeded()
+        
+        //Center image in view, 22 is for image width
+        let leftImageInset = (leftButton.frame.size.width - 22) / 2
+        leftButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: leftImageInset, bottom: 10, right: leftImageInset)
+        
+        UIView.animateWithDuration(0.4, delay: 0, options: .CurveEaseInOut, animations: {
+            //Rotation
+            var perspective = CATransform3DIdentity
+            perspective.m34 = -1.0 / 500
+            leftButton.titleLabel?.layer.transform = CATransform3DConcat(perspective, CATransform3DMakeRotation(0, 0, 0, 0))
+            
+            //Opacity
+            leftButton.titleLabel?.alpha = 1
+            
+            //Needed to animate imageEdgeInset
+            self.view.layoutIfNeeded()
+            
+        }, completion: nil)
+        
+    }
+    
 }
 
 extension UIViewKeyframeAnimationOptions {
