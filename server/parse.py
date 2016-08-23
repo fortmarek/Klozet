@@ -1,18 +1,6 @@
+# -*- coding: utf-8 -*-
+from open_times import get_open_times
 import simplejson as json
-
-
-def split_intervals(different_intervals):
-    split_interval = different_intervals.split(', ')
-    if len(split_interval) > 1:
-        return split_interval
-    split_interval = different_intervals.split('; ')
-    if len(split_interval) > 1:
-        return split_interval
-    return [different_intervals]
-def get_open_times(open_times):
-    # for example from monday-thursday the toilets are opened different times than friday-sunday
-    diffent_intervals = split_intervals(open_times)
-    print(diffent_intervals)
 
 
 def capitalize_price(price):
@@ -26,20 +14,29 @@ def capitalize_price(price):
         capitalized_price = first_word
         return capitalized_price
 
+dict = {
+
+}
+
 def get_properties(properties_json):
 
-    # Price
+    # Object_id
+    object_id = properties_json['OBJECTID']
+    dict[object_id] = {}
 
+    # Price
     try:
         price = properties_json['CENA'].encode('utf-8')
         capitalized_price = capitalize_price(price)
     # Price is null
     except AttributeError:
         pass
+
     # Open times
     try:
         open_times = properties_json['OTEVRENO'].encode('utf-8')
-        get_open_times(open_times)
+        open_times = get_open_times(open_times)
+        dict[object_id]['open_times'] = open_times
     # Open_time is set to null
     except AttributeError:
         pass
