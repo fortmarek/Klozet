@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from open_times import get_open_times
+from adress import get_adresses
 import simplejson as json
 
 
@@ -18,7 +19,7 @@ dict = {
 
 }
 
-def get_properties(properties_json):
+def get_properties(properties_json, coordinates):
 
     # Object_id
     object_id = properties_json['OBJECTID']
@@ -41,13 +42,16 @@ def get_properties(properties_json):
     except AttributeError:
         pass
 
-
+    adress = properties['ADRESA'].encode('utf-8')
+    get_adresses(adress, coordinates)
 
 
 file = open('verejnawc.json', 'r')
 js = json.load(file)
-data = js['features']
+data = js['features'][10:30]
 for toilet_json in data:
     properties = toilet_json['properties']
-    get_properties(properties)
+    coordinates = toilet_json['geometry']['coordinates']
+
+    get_properties(properties, coordinates)
 
