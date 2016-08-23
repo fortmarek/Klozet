@@ -38,20 +38,28 @@ def get_properties(properties_json, coordinates):
         open_times = properties_json['OTEVRENO'].encode('utf-8')
         open_times = get_open_times(open_times)
         dict[object_id]['open_times'] = open_times
-    # Open_time is set to null
+    # Open_time is null
     except AttributeError:
         pass
 
-    adress = properties['ADRESA'].encode('utf-8')
-    get_adresses(adress, coordinates)
-
+    try:
+        adress = properties['ADRESA'].encode('utf-8')
+        dict[object_id]['address'] = get_adresses(adress, coordinates)
+    #Adress is null
+    except AttributeError:
+        pass
 
 file = open('verejnawc.json', 'r')
 js = json.load(file)
-data = js['features'][10:30]
+data = js['features']
 for toilet_json in data:
     properties = toilet_json['properties']
     coordinates = toilet_json['geometry']['coordinates']
 
     get_properties(properties, coordinates)
 
+
+js = json.dumps(dict)
+file = open('wc.json', 'w+')
+file.write(js)
+file.close()
