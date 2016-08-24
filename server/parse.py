@@ -2,7 +2,7 @@
 from open_times import get_open_times
 from adress import get_adresses
 import simplejson as json
-
+import io
 
 def capitalize_price(price):
     # Capitalize first word
@@ -25,10 +25,14 @@ def get_properties(properties_json, coordinates):
     object_id = properties_json['OBJECTID']
     dict[object_id] = {}
 
+    # Coordinates
+    dict[object_id]['coordinates'] = coordinates
+
     # Price
     try:
         price = properties_json['CENA'].encode('utf-8')
         capitalized_price = capitalize_price(price)
+        dict[object_id]['price'] = capitalized_price
     # Price is null
     except AttributeError:
         pass
@@ -52,6 +56,7 @@ def get_properties(properties_json, coordinates):
 file = open('verejnawc.json', 'r')
 js = json.load(file)
 data = js['features']
+
 for toilet_json in data:
     properties = toilet_json['properties']
     coordinates = toilet_json['geometry']['coordinates']
@@ -59,7 +64,8 @@ for toilet_json in data:
     get_properties(properties, coordinates)
 
 
-js = json.dumps(dict)
-file = open('wc.json', 'w+')
+js = json.dumps(dict, indent=4 * ' ', ensure_ascii=False)
+file = io.open('wc.json', 'w+', encoding='utf-8')
 file.write(js)
 file.close()
+
