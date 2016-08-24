@@ -19,8 +19,8 @@ class Toilet: NSObject, MKAnnotation {
     let price: String
     let coordinate: CLLocationCoordinate2D
     
-    init(adress: String, subAddress: String, openTimes: [String], price: String, coordinate: CLLocationCoordinate2D) {
-        self.title = adress
+    init(mainAdress: String, subAddress: String, openTimes: [String], price: String, coordinate: CLLocationCoordinate2D) {
+        self.title = mainAdress
         self.subtitle = subAddress
         self.openTimes = openTimes
         self.price = price
@@ -39,16 +39,12 @@ class DataController {
             .responseJSON { response in
                 
                 var toilets = [Toilet]()
-                
+
                 guard let data = response.data else {return}
                 let json = JSON(data: data)
-                
-                print(json)
-                
-                for (objectId, toiletJson) in json {
-                    
-                    guard let coordinate = self.getCoordinate(toiletJson[objectId]) else {return}
-                    let toilet = self.getToilet(toiletJson[objectId], coordinate: coordinate)
+                for (_, toiletJson) in json {
+                    guard let coordinate = self.getCoordinate(toiletJson["coordinates"]) else {continue}
+                    let toilet = self.getToilet(toiletJson, coordinate: coordinate)
                     toilets.append(toilet)
                 }
                 
@@ -59,28 +55,26 @@ class DataController {
 
     private func getToilet(propertiesJson: JSON, coordinate: CLLocationCoordinate2D) -> Toilet {
         guard
-            //orice
+            //Price
             let price = propertiesJson["price"].string,
             //Open times
             //let openTimes = propertiesJson["open_times"].array,
             //Addresses
             let address = propertiesJson["address"].dictionary,
-            let mainAddressJson = address["main_adress"],
-            let mainAddress = mainAddressJson.string,
-            let subAddressJson = address["sub_adress"],
-            let subAddress = subAddressJson.string
-        else {return Toilet(adress: "", subAddress: "", openTimes: [String](), price: "", coordinate: coordinate)}
+            let mainAddress = address["main_address"]?.string,
+            let subAddress = address["sub_address"]?.string
+            else {return Toilet(mainAdress: "", subAddress: "", openTimes: [String](), price: "", coordinate: coordinate)}
         
-        //let openTimes = openTime.componentsSeparatedByString(";")
         
-        return Toilet(adress: mainAddress, subAddress: subAddress, openTimes: [String](), price: price, coordinate: coordinate)
+        
+        return Toilet(mainAdress: mainAddress, subAddress: subAddress, openTimes: [String](), price: price, coordinate: coordinate)
     }
     
     private func getCoordinate(coordinateJson: JSON) -> CLLocationCoordinate2D? {
         guard
-            let coordinates = coordinateJson["coordinates"].array,
-            let latitude = coordinates[0].double,
-            let longitude = coordinates[1].double
+            let coordinates = coordinateJson.array,
+            let latitude = coordinates[1].double,
+            let longitude = coordinates[0].double
         else {return nil}
         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }

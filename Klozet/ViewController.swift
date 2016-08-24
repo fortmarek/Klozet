@@ -121,16 +121,21 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
         guard let toiletAnnotation = annotation as? Toilet else {return nil}
-        
+        if toiletAnnotation.coordinate.latitude == 50.1000413310001 {
+            print(toiletAnnotation.title)
+        }
         var annotationView = MKAnnotationView()
         if let reusableAnnotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("toiletAnnotation") {
             annotationView = reusableAnnotationView
-            annotationView.canShowCallout = true
         }
         
         else {
             annotationView = MKAnnotationView(annotation: toiletAnnotation, reuseIdentifier: "toiletAnnotation")
+            annotationView.canShowCallout = true
+            
         }
+        
+        
         
         annotationView.annotation = toiletAnnotation
         annotationView.image = UIImage(named: "Pin")
