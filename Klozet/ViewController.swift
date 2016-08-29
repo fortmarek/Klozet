@@ -36,6 +36,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var currentLocationHeadingSelected = false
     var isFilterSelected = false
     var dragRecognizer = UIPanGestureRecognizer()
+    
+    var toiletsNotOpened = [Toilet]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -193,20 +195,94 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     func priceButtonTapped(sender: UIButton) {
         priceButton.selected = !(priceButton.selected)
         
-        let toiletsForFree = toilets.filter({$0.price != "Zdarma"})
+        let toiletsNotForFree = toilets.filter({$0.price != "Zdarma"})
         
         if priceButton.selected {
-            mapView.removeAnnotations(toiletsForFree)
+            mapView.removeAnnotations(toiletsNotForFree)
         }
         else {
-            mapView.addAnnotations(toiletsForFree)
+            mapView.addAnnotations(toiletsNotForFree)
+        }
+    }
+    
+    
+    func timeButtonTapped(sender: UIButton) {
+        
+        //Change timeButton image
+        timeButton.selected = !(timeButton.selected)
+        
+        if timeButton.selected {
+            //Filter toilets for opened
+            let toiletsNotOpened = toilets.filter({
+                filterOpenedToilet($0) == false
+            })
+            
+            //Saving closed toilets so they can be added later
+            self.toiletsNotOpened = toiletsNotOpened
+            
+            mapView.removeAnnotations(toiletsNotOpened)
+        }
+        //Add back closed toilets (filter not applied)
+        else {
+            mapView.addAnnotations(self.toiletsNotOpened)
         }
         
         
     }
     
-    func timeButtonTapped(sender: UIButton) {
-        timeButton.selected = !(timeButton.selected)
+    func filterOpenedToilet(toilet: Toilet) -> Bool {
+        let toiletTimes = toilet.openTimes
+        
+        //Int of today's weekday
+        let todayWeekday = NSDate().getTodayWeekday()
+        
+        //Getting dictionary of toilet opening times
+        for toiletTimeDict in toiletTimes {
+            
+            //If the toilet is opened nonstop, I can right away return true
+            if toiletTimeDict["nonstop"].bool == true {
+                return true
+            }
+            
+            //Getting array of ints of opened weekdays
+            guard let toiletDays = toiletTimeDict["days"].arrayObject as? Array<Int> else {continue}
+            
+            //If the toilet is opened on today's weekday, check additionaly time, otherwise continue iteration
+            if toiletDays.indexOf(todayWeekday) != nil {
+                guard let hours = toiletTimeDict["hours"].arrayObject as? Array<String> else {continue}
+                if isOpenedInHours(hours) {
+                    return true
+                }
+            }
+            
+            else {
+                continue
+            }
+        }
+        
+        return false
+    }
+    
+    func isOpenedInHours(hours: Array<String>) -> Bool {
+        //If the hours interval is not set, we assume the toilet is opened
+        guard hours.count == 2 else {return true}
+        
+        let startHour = hours[0].getHours()
+        let closeHour = hours[1].getHours()
+        
+        let today = NSDate()
+        
+        //Is the current time in the interval? If yes, then the toilet is opened as of right now
+        if today.compare(startHour) == .OrderedDescending && today.compare(closeHour) == .OrderedAscending {
+            return true
+        }
+        
+        else {
+            return false
+        }
+        
+        
+
     }
     
     func getDirectionsFromAnnotation(sender: UIButton) {

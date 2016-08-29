@@ -37,14 +37,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wc.json" pinned="false" current-in-tab="false">
+      <file leaf-file-name="wc.json" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wc.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="61119">
-              <caret line="4172" column="24" selection-start-line="4172" selection-start-column="24" selection-end-line="4172" selection-end-column="24" />
-              <folding>
-                <marker date="1472464941000" expanded="true" signature="171283:171300" ph="{&quot;price&quot;: &quot;Jednotná cena 5 Kč&quot;...}" />
-              </folding>
+            <state relative-caret-position="909">
+              <caret line="88" column="35" selection-start-line="88" selection-start-column="29" selection-end-line="88" selection-end-column="35" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -52,7 +50,7 @@
       <file leaf-file-name="adress.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/adress.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
+            <state relative-caret-position="315">
               <caret line="21" column="59" selection-start-line="21" selection-start-column="59" selection-end-line="21" selection-end-column="59" />
               <folding>
                 <element signature="e#25#61#0" expanded="true" />
@@ -64,14 +62,14 @@
       <file leaf-file-name="open_times.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/open_times.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
+            <state relative-caret-position="138">
               <caret line="93" column="23" selection-start-line="93" selection-start-column="16" selection-end-line="93" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="verejnawc.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="verejnawc.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/verejnawc.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
@@ -543,9 +541,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="1" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
-          <folding>
-            <marker date="1472464941000" expanded="true" signature="171283:171300" ph="{&quot;price&quot;: &quot;Jednotná cena 5 Kč&quot;...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -600,34 +596,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/open_times.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="93" column="23" selection-start-line="93" selection-start-column="16" selection-end-line="93" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wc.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="61119">
-          <caret line="4172" column="24" selection-start-line="4172" selection-start-column="24" selection-end-line="4172" selection-end-column="24" />
-          <folding>
-            <marker date="1472464941000" expanded="true" signature="171283:171300" ph="{&quot;price&quot;: &quot;Jednotná cena 5 Kč&quot;...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/adress.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="21" column="59" selection-start-line="21" selection-start-column="59" selection-end-line="21" selection-end-column="59" />
-          <folding>
-            <element signature="e#25#61#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/parse.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -642,6 +610,32 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="158" selection-start-line="10" selection-start-column="153" selection-end-line="10" selection-end-column="158" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/adress.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="59" selection-start-line="21" selection-start-column="59" selection-end-line="21" selection-end-column="59" />
+          <folding>
+            <element signature="e#25#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/open_times.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="93" column="23" selection-start-line="93" selection-start-column="16" selection-end-line="93" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wc.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="909">
+          <caret line="88" column="35" selection-start-line="88" selection-start-column="29" selection-end-line="88" selection-end-column="35" />
           <folding />
         </state>
       </provider>

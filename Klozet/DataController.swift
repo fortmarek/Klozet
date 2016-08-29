@@ -15,16 +15,17 @@ import MapKit
 class Toilet: NSObject, MKAnnotation {
     let title: String?
     let subtitle: String?
-    let openTimes: [String]
+    let openTimes: [JSON]
     let price: String
     let coordinate: CLLocationCoordinate2D
     
-    init(mainAdress: String, subAddress: String, openTimes: [String], price: String, coordinate: CLLocationCoordinate2D) {
+    init(mainAdress: String, subAddress: String, openTimes: [JSON], price: String, coordinate: CLLocationCoordinate2D) {
         self.title = mainAdress
         self.subtitle = subAddress
         self.openTimes = openTimes
         self.price = price
         self.coordinate = coordinate
+        
     }
     
 
@@ -58,16 +59,15 @@ class DataController {
             //Price
             let price = propertiesJson["price"].string,
             //Open times
-            //let openTimes = propertiesJson["open_times"].array,
+            let openTimes = propertiesJson["open_times"].array,
             //Addresses
             let address = propertiesJson["address"].dictionary,
             let mainAddress = address["main_address"]?.string,
             let subAddress = address["sub_address"]?.string
-            else {return Toilet(mainAdress: "", subAddress: "", openTimes: [String](), price: "", coordinate: coordinate)}
+            else {return Toilet(mainAdress: "", subAddress: "", openTimes: [], price: "", coordinate: coordinate)}
+
         
-        
-        
-        return Toilet(mainAdress: mainAddress, subAddress: subAddress, openTimes: [String](), price: price, coordinate: coordinate)
+        return Toilet(mainAdress: mainAddress, subAddress: subAddress, openTimes: openTimes, price: price, coordinate: coordinate)
     }
     
     private func getCoordinate(coordinateJson: JSON) -> CLLocationCoordinate2D? {
