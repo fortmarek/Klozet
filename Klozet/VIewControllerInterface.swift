@@ -102,7 +102,6 @@ extension ViewController {
     private func setCurrentLocationButton() {
         setButtonProperties(currentLocationButton, image: "CurrentLocation", selectedImage: "CurrentLocationSelected", action: #selector(currentLocationButtonTapped(_:)), attribute: .Leading)
         currentLocationButton.selected = true
-        currentLocationButton.adjustsImageWhenHighlighted = false
         currentLocationButton.setImage(UIImage(named:"CurrentLocationSelected"), forState: [.Selected, .Highlighted])
     }
     
@@ -113,6 +112,7 @@ extension ViewController {
         for button in buttons {
             addShadow(button)
             button.translatesAutoresizingMaskIntoConstraints = false
+            button.adjustsImageWhenHighlighted = false
             
             //Width and height
             view.addConstraint(NSLayoutConstraint(item: button, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: sizeConstant))
