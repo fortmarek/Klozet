@@ -15,6 +15,10 @@ def capitalize_price(price):
         capitalized_price = first_word
         return capitalized_price
 
+def simplify_price(price):
+    simplified_price = price.replace('Jednotná cena ', '')
+    return simplified_price
+
 dict = {
 
 }
@@ -31,8 +35,12 @@ def get_properties(properties_json, coordinates):
     # Price
     try:
         price = properties_json['CENA'].encode('utf-8')
+        # Capitalize price
         capitalized_price = capitalize_price(price)
-        dict[object_id]['price'] = capitalized_price
+
+        # Getting rid of 'jednotná cena' to make the string simpler (that part is unnecessary)
+        simplified_price = simplify_price(capitalized_price)
+        dict[object_id]['price'] = simplified_price
     # Price is null
     except AttributeError:
         pass

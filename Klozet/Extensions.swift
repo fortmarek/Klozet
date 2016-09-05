@@ -38,4 +38,8 @@ extension String {
         guard let date = calendar.dateFromComponents(components) else {return NSDate()}
         return date
     }
+    
+    var localized: String {
+        return NSLocalizedString(self, tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: "")
+    }
 }
