@@ -144,6 +144,9 @@
 		F82FB1B81D7F5E1F001FE39D /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				F8EAE7FB1D5FA6A900D60DAB /* ViewController.swift */,
+				F8EAE83B1D630E0500D60DAB /* VIewControllerInterface.swift */,
+				F8EAE83D1D63238000D60DAB /* ViewControllerAnimations.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -174,10 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				F8EAE7F91D5FA6A900D60DAB /* AppDelegate.swift */,
-				F8EAE7FB1D5FA6A900D60DAB /* ViewController.swift */,
 				F82FB1B81D7F5E1F001FE39D /* ViewController */,
-				F8EAE83B1D630E0500D60DAB /* VIewControllerInterface.swift */,
-				F8EAE83D1D63238000D60DAB /* ViewControllerAnimations.swift */,
 				F8EAE8341D5FC81300D60DAB /* DataController.swift */,
 				F8E541531D744CA600BA4BE7 /* Extensions.swift */,
 				F82247E11D6784F000C0FB3E /* KlozetPlayground.playground */,

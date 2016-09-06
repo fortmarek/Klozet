@@ -14,6 +14,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 
     //UI elements
     @IBOutlet weak var mapView: MKMapView!
+    
+    //Buttons
     let currentLocationButton = UIButton()
     let filterButton = UIButton()
     let priceButton = UIButton()
@@ -21,6 +23,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     let filterImage = UIImageView()
     let cancelImage = UIImageView()
     
+    //Option buttons' constraints, used later for animation
     var priceButtonConstraint = NSLayoutConstraint()
     var timeButtonConstraint = NSLayoutConstraint()
 
@@ -31,18 +34,23 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     let sizeConstant = CGFloat(55)
     
     var toilets = [Toilet]()
-    let locationManager = CLLocationManager()
+    var toiletsNotOpen = [Toilet]()
     
+    //button state for showing also the direction iPhone is facing (it's the third state => needed special var, can't do with just UIButton selected state)
     var currentLocationHeadingSelected = false
     var isFilterSelected = false
+    
+    //Used for recognizing if the map was moved by user, if it was then current location button should be no more selected
     var dragRecognizer = UIPanGestureRecognizer()
     
-    var toiletsNotOpen = [Toilet]()
+    let locationManager = CLLocationManager()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-
+        
+        //Tracking user's location init
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
@@ -51,12 +59,15 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         mapView.delegate = self
         mapView.showsUserLocation = true
         
+        //DataController for fethcing toilets
         let dataController = DataController()
         
         dataController.getToilets({
             toilets in
             self.toilets = toilets
+            //UI changes, main queue
             dispatch_async(dispatch_get_main_queue(), {
+                //Placing toilets on the map
                 self.mapView.addAnnotations(toilets)
             })
 
@@ -64,6 +75,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         createButtons()
         
+        //Start recognizing user interaction with map
         dragRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didDragMap))
         dragRecognizer.delegate = self
         mapView.addGestureRecognizer(dragRecognizer)
@@ -71,14 +83,22 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     override func viewDidAppear(animated: Bool) {
+        //TODO: Show custom view to first nicely ask the user, not just with default alert
         locationManager.requestWhenInUseAuthorization()
     }
     
+    
+    
+    //MARK: DragRecognizer
+    
+    //Allow use of dragRecognizer
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
     
+    //If map was dragged, map is not following user's current location - current location should not be selected
     func didDragMap() {
+        //Recognizing start of the drag, it's also called only once per interaction
         if dragRecognizer.state == .Began {
             currentLocationButton.selected = false
             
@@ -92,15 +112,17 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     // MARK: Location manager methods
     
     func locationManager(manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        //Ensure heading's value is positive
         let heading = newHeading.trueHeading > 0 ? newHeading.trueHeading : newHeading.magneticHeading
-    
+        
+        //Orientate map according to where iPhone's facing
         let mapCamera = mapView.camera
         mapCamera.heading = heading
-        
         mapView.setCamera(mapCamera, animated: false)
         
     }
     
+    //The initial positon and region of the map
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else {return}
         
@@ -122,15 +144,20 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
+        //Checking that annotation is really a Toilet class
         guard let toiletAnnotation = annotation as? Toilet else {return nil}
         
         var annotationView = MKAnnotationView()
+        
+        //User reusableAnnotationView
         if let reusableAnnotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("toiletAnnotation") {
             annotationView = reusableAnnotationView
         }
         
+        //Init of reusableAnnotationView
         else {
             annotationView = MKAnnotationView(annotation: toiletAnnotation, reuseIdentifier: "toiletAnnotation")
+            //Can show accessoryView (with address etc.)
             annotationView.canShowCallout = true
             
         }
