@@ -163,25 +163,33 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
         
         annotationView.annotation = toiletAnnotation
+        
+        //Custom pin
         annotationView.image = UIImage(named: "Pin")
         
+        //Detailed toilet info button
         let rightButton = UIButton.init(type: .DetailDisclosure)
         annotationView.rightCalloutAccessoryView = rightButton
         
+        //Left button with ETA
         let leftButton = setLeftCalloutView()
         annotationView.leftCalloutAccessoryView = leftButton
         
-        //Add target
+        //Add target to get directions
         leftButton.addTarget(self, action: #selector(getDirectionsFromAnnotation), forControlEvents: .TouchUpInside)
         
         return annotationView
     }
     
+    //MARK: ETA
+    
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         guard let toiletAnnotation = view.annotation as? Toilet else {return}
         
+        //Identify toilet for directions in getDirectionsFromAnnotation function
         view.tag = 1
         
+        //LeftCalloutAccessoryView with ETA title
         getEta(toiletAnnotation.coordinate, annotationView: view)
     }
     

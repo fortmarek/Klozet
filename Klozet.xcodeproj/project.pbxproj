@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F82FB1BA1D809F27001FE39D /* Directions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB1B91D809F27001FE39D /* Directions.swift */; };
 		F8E541541D744CA600BA4BE7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E541531D744CA600BA4BE7 /* Extensions.swift */; };
 		F8EAE7FA1D5FA6A900D60DAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE7F91D5FA6A900D60DAB /* AppDelegate.swift */; };
 		F8EAE7FC1D5FA6A900D60DAB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE7FB1D5FA6A900D60DAB /* ViewController.swift */; };
@@ -65,6 +66,7 @@
 		67D98F14D4389FC6AA72E2F3 /* Pods-KlozetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KlozetTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KlozetTests/Pods-KlozetTests.debug.xcconfig"; sourceTree = "<group>"; };
 		68349D920E93E823BFCB4670 /* Pods-Klozet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Klozet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Klozet/Pods-Klozet.debug.xcconfig"; sourceTree = "<group>"; };
 		F82247E11D6784F000C0FB3E /* KlozetPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = KlozetPlayground.playground; sourceTree = "<group>"; };
+		F82FB1B91D809F27001FE39D /* Directions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Directions.swift; sourceTree = "<group>"; };
 		F8E541531D744CA600BA4BE7 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F8EAE7F61D5FA6A900D60DAB /* Klozet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Klozet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8EAE7F91D5FA6A900D60DAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				F8EAE7FB1D5FA6A900D60DAB /* ViewController.swift */,
 				F8EAE83B1D630E0500D60DAB /* VIewControllerInterface.swift */,
 				F8EAE83D1D63238000D60DAB /* ViewControllerAnimations.swift */,
+				F82FB1B91D809F27001FE39D /* Directions.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8EAE83C1D630E0500D60DAB /* VIewControllerInterface.swift in Sources */,
+				F82FB1BA1D809F27001FE39D /* Directions.swift in Sources */,
 				F8E541541D744CA600BA4BE7 /* Extensions.swift in Sources */,
 				F8EAE83E1D63238000D60DAB /* ViewControllerAnimations.swift in Sources */,
 				F8EAE7FC1D5FA6A900D60DAB /* ViewController.swift in Sources */,
