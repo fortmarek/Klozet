@@ -51,6 +51,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         // Do any additional setup after loading the view, typically from a nib.
         
         startTrackingLocation()
+        locationManager.delegate = self
+        mapView.delegate = self
         
         getToilets()
         
@@ -80,16 +82,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         })
     }
     
-    private func startTrackingLocation() {
-        //Tracking user's location init
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        
-        mapView.delegate = self
-        mapView.showsUserLocation = true
-    }    
+    
     
     //MARK: DragRecognizer
     
@@ -116,38 +109,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
         
     }
-    
-    
-    // MARK: Location manager methods
-    
-    func locationManager(manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        //Ensure heading's value is positive
-        let heading = newHeading.trueHeading > 0 ? newHeading.trueHeading : newHeading.magneticHeading
-        
-        //Orientate map according to where iPhone's facing
-        let mapCamera = mapView.camera
-        mapCamera.heading = heading
-        mapView.setCamera(mapCamera, animated: false)
-        
-    }
-    
-    //The initial positon and region of the map
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else {return}
-        
-        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-        
-        mapView.setRegion(region, animated: true)
-        locationManager.stopUpdatingLocation()
-    }
 
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        print("Errors: \(error)")
-    }
-    
-    
     // MARK: Dropping toilet pins
     
     
