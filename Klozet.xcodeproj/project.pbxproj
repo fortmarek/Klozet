@@ -11,6 +11,7 @@
 		F82FB1BC1D80AA02001FE39D /* ToiletAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB1BB1D80AA02001FE39D /* ToiletAnnotationView.swift */; };
 		F82FB1BE1D81BA41001FE39D /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB1BD1D81BA41001FE39D /* UserLocation.swift */; };
 		F82FB1C01D81C7B6001FE39D /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB1BF1D81C7B6001FE39D /* ListViewController.swift */; };
+		F82FB1C41D81D060001FE39D /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB1C31D81D060001FE39D /* ListCell.swift */; };
 		F8E541541D744CA600BA4BE7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E541531D744CA600BA4BE7 /* Extensions.swift */; };
 		F8EAE7FA1D5FA6A900D60DAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE7F91D5FA6A900D60DAB /* AppDelegate.swift */; };
 		F8EAE7FC1D5FA6A900D60DAB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE7FB1D5FA6A900D60DAB /* ViewController.swift */; };
@@ -73,6 +74,7 @@
 		F82FB1BB1D80AA02001FE39D /* ToiletAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToiletAnnotationView.swift; sourceTree = "<group>"; };
 		F82FB1BD1D81BA41001FE39D /* UserLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
 		F82FB1BF1D81C7B6001FE39D /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		F82FB1C31D81D060001FE39D /* ListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		F8E541531D744CA600BA4BE7 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F8EAE7F61D5FA6A900D60DAB /* Klozet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Klozet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8EAE7F91D5FA6A900D60DAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				F82FB1B81D7F5E1F001FE39D /* ViewController */,
 				F8EAE8341D5FC81300D60DAB /* DataController.swift */,
 				F82FB1BF1D81C7B6001FE39D /* ListViewController.swift */,
+				F82FB1C31D81D060001FE39D /* ListCell.swift */,
 				F82FB1BB1D80AA02001FE39D /* ToiletAnnotationView.swift */,
 				F82FB1B91D809F27001FE39D /* Directions.swift */,
 				F8E541531D744CA600BA4BE7 /* Extensions.swift */,
@@ -357,6 +360,7 @@
 				F82FB1BE1D81BA41001FE39D /* UserLocation.swift in Sources */,
 				F8EAE83E1D63238000D60DAB /* ViewControllerAnimations.swift in Sources */,
 				F82FB1BC1D80AA02001FE39D /* ToiletAnnotationView.swift in Sources */,
+				F82FB1C41D81D060001FE39D /* ListCell.swift in Sources */,
 				F8EAE7FC1D5FA6A900D60DAB /* ViewController.swift in Sources */,
 				F8EAE8351D5FC81300D60DAB /* DataController.swift in Sources */,
 				F82FB1C01D81C7B6001FE39D /* ListViewController.swift in Sources */,
