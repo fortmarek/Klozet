@@ -28,6 +28,7 @@ extension UserLocation {
         
         mapView.showsUserLocation = true
     }
+    
 }
 
 extension ViewController: CLLocationManagerDelegate {
