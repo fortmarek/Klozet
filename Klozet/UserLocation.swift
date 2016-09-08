@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 
-protocol UserLocation {
+protocol UserLocation: CLLocationManagerDelegate, MKMapViewDelegate {
     var locationManager: CLLocationManager { get }
     var mapView: MKMapView! { get }
 }
@@ -28,7 +28,10 @@ extension UserLocation {
         
         mapView.showsUserLocation = true
     }
-    
+}
+
+extension ViewController: CLLocationManagerDelegate {
+    //Heading
     func locationManager(manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
         //Ensure heading's value is positive
         let heading = newHeading.trueHeading > 0 ? newHeading.trueHeading : newHeading.magneticHeading

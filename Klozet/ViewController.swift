@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 //import CoreLocation
 
-class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UserLocation {
+class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocation {
 
     //UI elements
     @IBOutlet weak var mapView: MKMapView!
@@ -115,7 +115,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
-        //Checking that annotation is really a Toilet class
+        //Checking that annotation really is a Toilet class
         guard let toiletAnnotation = annotation as? Toilet else {return nil}
         
         var annotationView = MKAnnotationView()
@@ -281,7 +281,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         
 
-    }
-    
+    }    
 }
 
