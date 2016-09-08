@@ -126,40 +126,6 @@ extension ViewController {
         self.priceButton.layer.shadowOpacity = toShadowAlpha
         
     }
-    
-    //MARK: MKAnnotationView ETA title
-    
-    func animateETA(leftButton: UIButton) {
-    
-        //Start with label rotated upside down to then rotate it to the right angle
-        leftButton.titleLabel?.layer.transform = CATransform3DMakeRotation(CGFloat(M_PI / 2), 1, 0, 0)
-        leftButton.titleLabel?.sizeToFit()
-        
-        //layoutIfNeeded after sizeToFit() so I don't animate the position of title only rotation
-        view.layoutIfNeeded()
-        
-        //Image position after adding title
-        //Center image in view, 22 is for image width
-        let leftImageInset = (leftButton.frame.size.width - 22) / 2
-        leftButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: leftImageInset, bottom: 10, right: leftImageInset)
-        
-        UIView.animateWithDuration(0.4, delay: 0, options: .CurveEaseInOut, animations: {
-            //Rotation - 3D animation
-            var perspective = CATransform3DIdentity
-            perspective.m34 = -1.0 / 500
-            //0, 0, 0, 0 because we want default value (we start this animation with already rotated title)
-            leftButton.titleLabel?.layer.transform = CATransform3DConcat(perspective, CATransform3DMakeRotation(0, 0, 0, 0))
-            
-            //Opacity
-            leftButton.titleLabel?.alpha = 1
-            
-            //Needed to animate imageEdgeInset
-            self.view.layoutIfNeeded()
-            
-        }, completion: nil)
-        
-    }
-    
 }
 
 //Extension to simplify setting options for UIViewKeyFrameAnimation

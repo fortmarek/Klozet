@@ -10,7 +10,11 @@ import UIKit
 import MapKit
 //import CoreLocation
 
-class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate {
+protocol UserLocation {
+    func getUserLocation() -> CLLocation?
+}
+
+class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UserLocation {
 
     //UI elements
     @IBOutlet weak var mapView: MKMapView!
@@ -50,16 +54,23 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        //Tracking user's location init
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        startTrackingLocation()
+        
+        getToilets()
+        
+        createButtons()
+        
+        addDragRecognizer()
+        print(locationManager.location)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        //TODO: Show custom view to first nicely ask the user, not just with default alert
         locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        
-        mapView.delegate = self
-        mapView.showsUserLocation = true
-        
-        //DataController for fethcing toilets
+    }
+    
+    private func getToilets() {
+        //DataController for fetching toilets
         let dataController = DataController()
         
         dataController.getToilets({
@@ -70,26 +81,36 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 //Placing toilets on the map
                 self.mapView.addAnnotations(toilets)
             })
-
+            
         })
+    }
+    
+    private func startTrackingLocation() {
+        //Tracking user's location init
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
         
-        createButtons()
-        
+        mapView.delegate = self
+        mapView.showsUserLocation = true
+    }
+    
+    func getUserLocation() -> CLLocation? {
+        print("KK")
+        guard let location = locationManager.location else {return nil}
+        return location
+    }
+    
+    
+    //MARK: DragRecognizer
+    
+    private func addDragRecognizer() {
         //Start recognizing user interaction with map
         dragRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didDragMap))
         dragRecognizer.delegate = self
         mapView.addGestureRecognizer(dragRecognizer)
-        
     }
-    
-    override func viewDidAppear(animated: Bool) {
-        //TODO: Show custom view to first nicely ask the user, not just with default alert
-        locationManager.requestWhenInUseAuthorization()
-    }
-    
-    
-    
-    //MARK: DragRecognizer
     
     //Allow use of dragRecognizer
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -156,41 +177,35 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         //Init of reusableAnnotationView
         else {
-            annotationView = MKAnnotationView(annotation: toiletAnnotation, reuseIdentifier: "toiletAnnotation")
-            //Can show accessoryView (with address etc.)
-            annotationView.canShowCallout = true
+            let toiletAnnotationView = ToiltetAnnotationView(annotation: toiletAnnotation, reuseIdentifier: "toiletAnnotation")
             
+            //DirectionButton delegate = self => getting user location
+            guard let directionButton = toiletAnnotationView.leftCalloutAccessoryView as? DirectionButton else {return toiletAnnotationView}
+            directionButton.locationDelegate = self
+            
+            annotationView = toiletAnnotationView
         }
-        
-        annotationView.annotation = toiletAnnotation
-        
-        //Custom pin
-        annotationView.image = UIImage(named: "Pin")
-        
-        //Detailed toilet info button
-        let rightButton = UIButton.init(type: .DetailDisclosure)
-        annotationView.rightCalloutAccessoryView = rightButton
-        
-        //Left button with ETA
-        let leftButton = setLeftCalloutView()
-        annotationView.leftCalloutAccessoryView = leftButton
-        
-        //Add target to get directions
-        leftButton.addTarget(self, action: #selector(getDirectionsFromAnnotation), forControlEvents: .TouchUpInside)
-        
+
         return annotationView
     }
     
-    //MARK: ETA
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        
         guard let toiletAnnotation = view.annotation as? Toilet else {return}
         
         //Identify toilet for directions in getDirectionsFromAnnotation function
         view.tag = 1
         
         //LeftCalloutAccessoryView with ETA title
-        getEta(toiletAnnotation.coordinate, annotationView: view)
+        //getEta(toiletAnnotation.coordinate, annotationView: view)
+        
+        guard
+            let toiletAnnotationView = view as? ToiltetAnnotationView,
+            let directionButton = toiletAnnotationView.leftCalloutAccessoryView as? DirectionButton
+        else {return}
+        
+        directionButton.setEtaTitle()
     }
     
     func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
@@ -326,41 +341,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
 
     }
-    
-    func getDirectionsFromAnnotation(sender: UIButton) {
-    
-        guard
-            let toiletView = view.viewWithTag(1) as? MKAnnotationView,
-            let toiletAnnotation = toiletView.annotation as? Toilet
-        else {return}
-        
-        getDirections(toiletAnnotation.coordinate)
-    }
-    
-    
-    func requestDirections(destination: CLLocationCoordinate2D) -> MKDirections {
-        
-        let request = MKDirectionsRequest()
-        
-        guard let userLocation = locationManager.location else {return MKDirections()}
-        request.source = MKMapItem(placemark: MKPlacemark(coordinate: userLocation.coordinate, addressDictionary: nil))
-        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: destination, addressDictionary: nil))
-        request.transportType = .Walking
-        
-        let directions = MKDirections(request: request)
-        
-        return directions
-    }
-    
-    func getDirections(destination: CLLocationCoordinate2D) {
-        // TODO: Pass maps the adress
-        let destinationMapItem = MKMapItem(placemark: MKPlacemark(coordinate: destination, addressDictionary: nil))
-        destinationMapItem.openInMapsWithLaunchOptions([MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking])
-        
-    }
-    
-    
-    
     
 }
 
