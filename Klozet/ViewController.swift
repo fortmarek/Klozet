@@ -10,10 +10,6 @@ import UIKit
 import MapKit
 //import CoreLocation
 
-protocol UserLocation {
-    func getUserLocation() -> CLLocation?
-}
-
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UserLocation {
 
     //UI elements
@@ -47,7 +43,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     //Used for recognizing if the map was moved by user, if it was then current location button should be no more selected
     var dragRecognizer = UIPanGestureRecognizer()
     
-    let locationManager = CLLocationManager()
+    var locationManager = CLLocationManager()
     
 
     override func viewDidLoad() {
@@ -61,7 +57,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         createButtons()
         
         addDragRecognizer()
-        print(locationManager.location)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -94,14 +89,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         mapView.delegate = self
         mapView.showsUserLocation = true
-    }
-    
-    func getUserLocation() -> CLLocation? {
-        print("KK")
-        guard let location = locationManager.location else {return nil}
-        return location
-    }
-    
+    }    
     
     //MARK: DragRecognizer
     
@@ -191,15 +179,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-        
-        guard let toiletAnnotation = view.annotation as? Toilet else {return}
-        
-        //Identify toilet for directions in getDirectionsFromAnnotation function
-        view.tag = 1
-        
-        //LeftCalloutAccessoryView with ETA title
-        //getEta(toiletAnnotation.coordinate, annotationView: view)
-        
         guard
             let toiletAnnotationView = view as? ToiltetAnnotationView,
             let directionButton = toiletAnnotationView.leftCalloutAccessoryView as? DirectionButton

@@ -10,9 +10,7 @@ import Foundation
 import UIKit
 import MapKit
 
-class ToiltetAnnotationView: MKAnnotationView, DirectionsDelegate {
-    
-    var locationDelegate: UserLocation?
+class ToiltetAnnotationView: MKAnnotationView {
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
@@ -93,15 +91,7 @@ class DirectionButton: UIButton, DirectionsDelegate {
         })
     }
     
-    //Opening Apple maps with directions to the toilet
-    func getDirections(sender: DirectionButton) {
-        let destination = sender.annotation.coordinate
-        
-        // TODO: Pass maps the adress
-        let destinationMapItem = MKMapItem(placemark: MKPlacemark(coordinate: destination, addressDictionary: nil))
-        destinationMapItem.openInMapsWithLaunchOptions([MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking])
-    }
-    
+    //Animating appearance of ETA title
     private func animateETA() {
         
         //Start with label rotated upside down to then rotate it to the right angle
@@ -130,7 +120,15 @@ class DirectionButton: UIButton, DirectionsDelegate {
             self.superview!.layoutIfNeeded()
             
             }, completion: nil)
+    }
+    
+    //Opening Apple maps with directions to the toilet
+    func getDirections(sender: DirectionButton) {
+        let destination = sender.annotation.coordinate
         
+        // TODO: Pass maps the adress
+        let destinationMapItem = MKMapItem(placemark: MKPlacemark(coordinate: destination, addressDictionary: nil))
+        destinationMapItem.openInMapsWithLaunchOptions([MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking])
     }
 
     

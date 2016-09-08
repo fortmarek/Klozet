@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 import MapKit
 
+
 protocol DirectionsDelegate {
-    //func getEta(destination: CLLocationCoordinate2D) -> String
     var locationDelegate: UserLocation? { get }
 }
 
@@ -30,17 +30,14 @@ extension DirectionsDelegate {
             let eta = self.convertEtaIntervalToString(etaInterval)
             
             completion(eta: eta)
-            
-            //Function to properly display ETA
-            //self.setTitle(expectedTravelTime, annotationView: annotationView)
-            
         })
     }
     
+    //Converting ETA in NSTimeInterval to minutes or hours
     private func convertEtaIntervalToString(etaInterval: NSTimeInterval) -> String {
-        //Converting ETA in NSTimeInterval to minutes or hours
         let etaInt = NSInteger(etaInterval)
         
+        //Number of seconds in hour
         let oneHour = 3600
         let minutes = (etaInt / 60) % 60
         if etaInt > oneHour {
@@ -55,7 +52,6 @@ extension DirectionsDelegate {
     
     
     //ETA estimate
-    
     private func requestDirections(destination: CLLocationCoordinate2D) -> MKDirections {
         
         let request = MKDirectionsRequest()
