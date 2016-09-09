@@ -13,6 +13,8 @@ class ListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    var toilet = [Toilet]()
+    
     override func viewDidLoad() {
         tableView.delegate = self
         tableView.dataSource = self

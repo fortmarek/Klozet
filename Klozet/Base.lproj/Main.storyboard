@@ -177,9 +177,14 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="distanceLabel" destination="KCW-PP-68l" id="hkY-YO-iwZ"/>
                                             <outlet property="imageBackground" destination="Yb8-3q-DbG" id="aao-IW-SWW"/>
+                                            <outlet property="mainAddressLabel" destination="fw7-f8-XiQ" id="nVC-hI-mEH"/>
                                             <outlet property="openBubble" destination="AHs-j8-nqe" id="1TB-QJ-6Sj"/>
+                                            <outlet property="openLabel" destination="sxw-bR-04X" id="P6D-Si-gC0"/>
                                             <outlet property="priceBubble" destination="fCd-Nm-tra" id="ViY-10-oMh"/>
+                                            <outlet property="priceLabel" destination="4Eg-r5-zve" id="odI-Ra-87C"/>
+                                            <outlet property="subaddressLabel" destination="wT5-Ln-dMi" id="yCf-F4-Snq"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

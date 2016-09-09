@@ -13,8 +13,14 @@ class ListCell: UITableViewCell {
     //Background for toilet image
     @IBOutlet weak var imageBackground: UIView!
     @IBOutlet weak var priceBubble: UIView!
+    @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var openBubble: UIView!
+    @IBOutlet weak var openLabel: UILabel!
+    @IBOutlet weak var mainAddressLabel: UILabel!
+    @IBOutlet weak var subaddressLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
 
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

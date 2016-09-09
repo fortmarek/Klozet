@@ -156,12 +156,15 @@ extension ViewController {
     
     private func setOptionButtons() {
         
+        timeButton.annotationDelegate = self
+        
         //We start with O shadow opacity, otherwise it could be seen from behind the filter button (the shadow is animated when buttons appear)
         timeButton.layer.shadowOpacity = 0.0
         priceButton.layer.shadowOpacity = 0.0
         
+        
         //Button targets
-        timeButton.addTarget(self, action: #selector(timeButtonTapped(_:)), forControlEvents: .TouchUpInside)
+        //timeButton.addTarget(self, action: #selector(timeButtonTapped(_:)), forControlEvents: .TouchUpInside)
         priceButton.addTarget(self, action: #selector(priceButtonTapped(_:)), forControlEvents: .TouchUpInside)
         
         //Images

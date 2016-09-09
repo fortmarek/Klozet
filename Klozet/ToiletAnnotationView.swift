@@ -45,7 +45,7 @@ class ToiltetAnnotationView: MKAnnotationView {
     }
 }
 
-
+//DirectionButton
 class DirectionButton: UIButton, DirectionsDelegate {
     
     var annotation: Toilet
@@ -98,8 +98,10 @@ class DirectionButton: UIButton, DirectionsDelegate {
         titleLabel?.layer.transform = CATransform3DMakeRotation(CGFloat(M_PI / 2), 1, 0, 0)
         titleLabel?.sizeToFit()
         
+        guard let superview = self.superview else {return}
+        
         //layoutIfNeeded after sizeToFit() so I don't animate the position of title only rotation
-        self.superview!.layoutIfNeeded()
+        superview.layoutIfNeeded()
         
         //Image position after adding title
         //Center image in view, 22 is for image width
@@ -117,7 +119,7 @@ class DirectionButton: UIButton, DirectionsDelegate {
             self.titleLabel?.alpha = 1
             
             //Needed to animate imageEdgeInset
-            self.superview!.layoutIfNeeded()
+            superview.layoutIfNeeded()
             
             }, completion: nil)
     }
