@@ -161,10 +161,9 @@ extension ViewController {
         
         priceButton.filterDelegate = self
         
-        //We start with O shadow opacity, otherwise it could be seen from behind the filter button (the shadow is animated when buttons appear)
-        timeButton.layer.shadowOpacity = 0.0
-        priceButton.layer.shadowOpacity = 0.0
+        priceButton.setInterface()
         
+        timeButton.setInterface()
         
         //Button targets
         priceButton.addTarget(self, action: #selector(priceButtonTapped(_:)), forControlEvents: .TouchUpInside)
@@ -172,26 +171,21 @@ extension ViewController {
         //Images
         timeButton.setImage(UIImage(named: "Clock"), forState: .Normal)
         timeButton.setImage(UIImage(named: "ClockSelected"), forState: .Selected)
-        priceButton.setImage(UIImage(named: "Price"), forState: .Normal)
-        priceButton.setImage(UIImage(named: "PriceSelected"), forState: .Selected)
+        
         
         //Bottom priceButton layout, trailing timeButton layout
-        let bottomLayout = NSLayoutConstraint(item: priceButton, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: -cornerConstant)
         let trailingLayout = NSLayoutConstraint(item: timeButton, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: -cornerConstant)
         
         //Setting constraint as variables, needed for option buttons animations
-        priceButton.constraint = bottomLayout
+        
         timeButton.constraint = trailingLayout
         
         guard
-            let priceButtonConstraint = priceButton.constraint,
             let timeButtonConstraint = timeButton.constraint
         else {return}
         //Adding var constraint plus other two constraints, not needed as vars because they are not used in the animations
-        view.addConstraint(priceButtonConstraint)
         view.addConstraint(timeButtonConstraint)
-        
-        view.addConstraint(NSLayoutConstraint(item: priceButton, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: -cornerConstant))
+    
         view.addConstraint(NSLayoutConstraint(item: timeButton, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: -cornerConstant))
     
     }

@@ -25,6 +25,10 @@ class FilterOpenButton: UIButton, FilterOpen, FilterAnimation {
         self.addTarget(self, action: #selector(filterOpenButtonTapped), forControlEvents: .TouchUpInside)
     }
     
+    func setInterface() {
+        setBasicInterface()
+    }
+    
     func filterOpenButtonTapped(sender: FilterOpenButton) {
         filterOpenToilet()
     }

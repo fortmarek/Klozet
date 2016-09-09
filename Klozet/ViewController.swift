@@ -19,6 +19,8 @@ protocol AnnotationController {
 
 protocol FilterController {
     var isFilterSelected: Bool { get }
+    var cornerConstant: CGFloat { get }
+    func addConstraint(view: UIView, attribute: NSLayoutAttribute, constant: CGFloat) ->  NSLayoutConstraint
 }
 
 
@@ -208,6 +210,13 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         NSOperationQueue.mainQueue().addOperationWithBlock({
             self.priceButton.selected = !(self.priceButton.selected)
         })
+    }
+    
+    func addConstraint(view: UIView, attribute: NSLayoutAttribute, constant: CGFloat) -> NSLayoutConstraint {
+        let constraint = NSLayoutConstraint(item: view, attribute: attribute, relatedBy: .Equal, toItem: self.view, attribute: attribute, multiplier: 1.0, constant: constant)
+        self.view.addConstraint(constraint)
+        
+        return constraint
     }
     
 }

@@ -16,6 +16,14 @@ protocol FilterAnimation {
 
 
 extension FilterAnimation where Self: UIButton {
+    
+    
+    //Interface values that are universal
+    func setBasicInterface() {
+        //We start with O shadow opacity, otherwise it could be seen from behind the filter button (the shadow is animated when buttons appear)
+        self.layer.shadowOpacity = 0.0
+    }
+    
     func appear() {
         animateShadows()
         bounceUp()
