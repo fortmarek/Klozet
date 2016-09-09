@@ -157,6 +157,9 @@ extension ViewController {
     private func setOptionButtons() {
         
         timeButton.annotationDelegate = self
+        timeButton.filterDelegate = self
+        
+        priceButton.filterDelegate = self
         
         //We start with O shadow opacity, otherwise it could be seen from behind the filter button (the shadow is animated when buttons appear)
         timeButton.layer.shadowOpacity = 0.0
@@ -164,7 +167,6 @@ extension ViewController {
         
         
         //Button targets
-        //timeButton.addTarget(self, action: #selector(timeButtonTapped(_:)), forControlEvents: .TouchUpInside)
         priceButton.addTarget(self, action: #selector(priceButtonTapped(_:)), forControlEvents: .TouchUpInside)
         
         //Images
@@ -178,12 +180,17 @@ extension ViewController {
         let trailingLayout = NSLayoutConstraint(item: timeButton, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: -cornerConstant)
         
         //Setting constraint as variables, needed for option buttons animations
-        priceButtonConstraint = bottomLayout
-        timeButtonConstraint = trailingLayout
+        priceButton.constraint = bottomLayout
+        timeButton.constraint = trailingLayout
         
+        guard
+            let priceButtonConstraint = priceButton.constraint,
+            let timeButtonConstraint = timeButton.constraint
+        else {return}
         //Adding var constraint plus other two constraints, not needed as vars because they are not used in the animations
         view.addConstraint(priceButtonConstraint)
         view.addConstraint(timeButtonConstraint)
+        
         view.addConstraint(NSLayoutConstraint(item: priceButton, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: -cornerConstant))
         view.addConstraint(NSLayoutConstraint(item: timeButton, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: -cornerConstant))
     

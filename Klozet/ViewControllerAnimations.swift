@@ -14,7 +14,8 @@ extension ViewController {
         
         animateSwitch()
         
-        animateOptionButtons()
+        timeButton.appear()
+        priceButton.appear()
         
     }
     
@@ -76,55 +77,6 @@ extension ViewController {
             self.filterImage.alpha = filterImageAlpha
             self.cancelImage.alpha = cancelImageAlpha
             })
-    }
-    
-    
-    //MARK: Option buttons animation
-    
-    private func animateOptionButtons() {
-        animateShadows()
-        bounceOptionButtons()
-    }
-    
-    private func bounceOptionButtons() {
-        
-        //if isFilterSelected == false, buttons appear
-        let offset: CGFloat = isFilterSelected ? -75 : 75
-        let springDamping: CGFloat = isFilterSelected ? 0.4 : 1.0
-        let duration: Double = isFilterSelected ? 0.6 : 0.3
-        
-        //Using constraints to change buttons' locations
-        priceButtonConstraint.constant += offset
-        timeButtonConstraint.constant += offset
-        
-        //Animate (dis)appearance of option buttons with spring (bounce)
-        UIView.animateWithDuration(duration, delay: 0, usingSpringWithDamping: springDamping, initialSpringVelocity: 1, options: [], animations: {
-            self.view.layoutIfNeeded()
-            }, completion: nil)
-    }
-    
-    
-    private func animateShadows() {
-        
-        let toShadowAlpha: Float = isFilterSelected ? 0.5 : 0.0
-        let fromShadowAlpha: Float = isFilterSelected ? 0.0 : 0.5
-        
-        //Can't use UIViewAnimation with shadows, they only work with CABasicAnimation
-        let shadowAnimation = CABasicAnimation(keyPath: "shadowOpacity")
-        
-        //Duration and shadow values
-        shadowAnimation.fromValue = NSNumber(float: fromShadowAlpha)
-        shadowAnimation.toValue = NSNumber(float: toShadowAlpha)
-        shadowAnimation.duration = 0.1
-        
-        //Animation init
-        self.timeButton.layer.addAnimation(shadowAnimation, forKey: "shadowOpacity")
-        self.priceButton.layer.addAnimation(shadowAnimation, forKey: "shadowOpacity")
-        
-        //Preserving final value after animation is ended
-        self.timeButton.layer.shadowOpacity = toShadowAlpha
-        self.priceButton.layer.shadowOpacity = toShadowAlpha
-        
     }
 }
 

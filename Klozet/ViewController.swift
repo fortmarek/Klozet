@@ -10,7 +10,19 @@ import UIKit
 import MapKit
 //import CoreLocation
 
-class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocation, AnnotationController {
+
+protocol AnnotationController {
+    var toilets: Array<Toilet> { get set }
+    var toiletsNotOpen: Array<Toilet> { get set }
+    var mapView: MKMapView! { get }
+}
+
+protocol FilterController {
+    var isFilterSelected: Bool { get }
+}
+
+
+class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocation, AnnotationController, FilterController {
 
     //UI elements
     @IBOutlet weak var mapView: MKMapView!
@@ -18,7 +30,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
     //Buttons
     let currentLocationButton = UIButton()
     let filterButton = UIButton()
-    let priceButton = UIButton()
+    let priceButton = FilterPriceButton()
     let timeButton = FilterOpenButton()
     let filterImage = UIImageView()
     let cancelImage = UIImageView()

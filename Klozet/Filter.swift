@@ -9,117 +9,66 @@
 import Foundation
 import UIKit
 
-
-protocol FilterOpen {
-    var annotationDelegate: AnnotationController? { get }
+protocol FilterAnimation {
+    var constraint: NSLayoutConstraint? { get set }
+    var filterDelegate: FilterController? { get }
 }
 
-class FilterOpenButton: UIButton, FilterOpen {
-    var annotationDelegate: AnnotationController?
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        self.addTarget(self, action: #selector(filterOpenButtonTapped), forControlEvents: .TouchUpInside)
-    }
-    
-    func filterOpenButtonTapped(sender: FilterOpenButton) {
-        filterOpenToilet()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
 
-extension FilterOpen where Self: UIButton {
-    
-    func filterOpenToilet() {
-        
-        //After function ends, change button state
-        defer {
-           changeButtonState()
-        }
-        
-        //Unwrap annotationDelegate
-        guard var annotationDelegate = self.annotationDelegate else {return}
-        
-        // == false because state is changed after this function
-        if self.selected == false {
-            //Filter toilets to open ones only
-            let toiletsNotOpen = annotationDelegate.toilets.filter({
-                isToiletOpen($0) == false
-            })
-            
-            //Saving closed toilets so they can be added later
-            annotationDelegate.toiletsNotOpen = toiletsNotOpen
-            
-            annotationDelegate.mapView.removeAnnotations(toiletsNotOpen)
-        }
-            //Add back closed toilets (filter not applied)
-        else {
-            annotationDelegate.mapView.addAnnotations(annotationDelegate.toiletsNotOpen)
-        }
+extension FilterAnimation where Self: UIButton {
+    func appear() {
+        animateShadows()
+        bounceUp()
     }
     
-    private func changeButtonState() {
-        //UI change on main queue
-        NSOperationQueue.mainQueue().addOperationWithBlock({
-            //Change timeButton image
-            self.selected = !(self.selected)
-        })
-    }
-}
-
-extension FilterOpen {
+    private func bounceUp() {
         
-    func isToiletOpen(toilet: Toilet) -> Bool {
-        let toiletTimes = toilet.openTimes
+        //Unwrap filterDelegate
+        guard let filterDelegate = self.filterDelegate else {return}
         
-        //Int of today's weekday
-        let todayWeekday = NSDate().getTodayWeekday()
+        //Getting filter state from filterDelegate
+        let isFilterSelected = filterDelegate.isFilterSelected
         
-        //Getting dictionary of toilet opening times
-        for toiletTimeDict in toiletTimes {
-            
-            //If the toilet is open nonstop, I can right away return true
-            if toiletTimeDict["nonstop"].bool == true {
-                return true
-            }
-            
-            //Getting array of ints of open weekdays
-            guard
-                let toiletDays = toiletTimeDict["days"].arrayObject as? Array<Int> where toiletDays.indexOf(todayWeekday) != nil,
-                let hours = toiletTimeDict["hours"].arrayObject as? Array<String>
-            else {continue}
-            
-            //If the toilet is open on today's weekday, check additionaly time
-            if isOpenInHours(hours) {
-                return true
-            }
-        }
+        //if isFilterSelected == false, buttons appear
+        let offset: CGFloat = isFilterSelected ? -75 : 75
+        let springDamping: CGFloat = isFilterSelected ? 0.4 : 1.0
+        let duration: Double = isFilterSelected ? 0.6 : 0.3
         
-        return false
+        //Using constraints to change buttons' locations
+        constraint?.constant += offset
+        
+        //Animate (dis)appearance of option buttons with spring (bounce)
+        UIView.animateWithDuration(duration, delay: 0, usingSpringWithDamping: springDamping, initialSpringVelocity: 1, options: [], animations: {
+            guard let superview = self.superview else {return}
+            superview.layoutIfNeeded()
+            }, completion: nil)
     }
     
     
-    func isOpenInHours(hours: Array<String>) -> Bool {
-        //If the hours interval is not set, we assume the toilet is open
-        guard hours.count == 2 else {return true}
+    private func animateShadows() {
         
-        //Opening and closing hour
-        let startHour = hours[0].getHours()
-        let closeHour = hours[1].getHours()
+        //Unwrap filterDelegate
+        guard let filterDelegate = self.filterDelegate else {return}
         
-        let today = NSDate()
+        //Getting filter state from filterDelegate
+        let isFilterSelected = filterDelegate.isFilterSelected
         
-        //Is the current time in the interval? If yes, then the toilet is open as of right now
-        if today.compare(startHour) == .OrderedDescending && today.compare(closeHour) == .OrderedAscending {
-            return true
-        }
-            
-        else {
-            return false
-        }
+        let toShadowAlpha: Float = isFilterSelected ? 0.5 : 0.0
+        let fromShadowAlpha: Float = isFilterSelected ? 0.0 : 0.5
+        
+        //Can't use UIViewAnimation with shadows, they only work with CABasicAnimation
+        let shadowAnimation = CABasicAnimation(keyPath: "shadowOpacity")
+        
+        //Duration and shadow values
+        shadowAnimation.fromValue = NSNumber(float: fromShadowAlpha)
+        shadowAnimation.toValue = NSNumber(float: toShadowAlpha)
+        shadowAnimation.duration = 0.1
+        
+        //Animation init
+        self.layer.addAnimation(shadowAnimation, forKey: "shadowOpacity")
+        
+        //Preserving final value after animation is ended
+        self.layer.shadowOpacity = toShadowAlpha
+        
     }
 }
