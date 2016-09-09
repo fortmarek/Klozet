@@ -26,6 +26,23 @@ class FilterOpenButton: UIButton, FilterOpen, FilterAnimation {
     }
     
     func setInterface() {
+        
+        //Images
+        self.setImage(UIImage(named: "Clock"), forState: .Normal)
+        self.setImage(UIImage(named: "ClockSelected"), forState: .Selected)
+        
+        //Unwarp filteDelegate
+        guard let filterDelegate = self.filterDelegate else {return}
+        
+        let cornerConstant = filterDelegate.cornerConstant
+        
+        //Trailing layout
+        let trailingLayout = filterDelegate.addConstraint(self, attribute: .Trailing, constant: -cornerConstant)
+        constraint = trailingLayout
+        
+        //Bottom layout
+        filterDelegate.addConstraint(self, attribute: .Bottom, constant: -cornerConstant)
+        
         setBasicInterface()
     }
     

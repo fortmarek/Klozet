@@ -168,25 +168,7 @@ extension ViewController {
         //Button targets
         priceButton.addTarget(self, action: #selector(priceButtonTapped(_:)), forControlEvents: .TouchUpInside)
         
-        //Images
-        timeButton.setImage(UIImage(named: "Clock"), forState: .Normal)
-        timeButton.setImage(UIImage(named: "ClockSelected"), forState: .Selected)
         
-        
-        //Bottom priceButton layout, trailing timeButton layout
-        let trailingLayout = NSLayoutConstraint(item: timeButton, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: -cornerConstant)
-        
-        //Setting constraint as variables, needed for option buttons animations
-        
-        timeButton.constraint = trailingLayout
-        
-        guard
-            let timeButtonConstraint = timeButton.constraint
-        else {return}
-        //Adding var constraint plus other two constraints, not needed as vars because they are not used in the animations
-        view.addConstraint(timeButtonConstraint)
-    
-        view.addConstraint(NSLayoutConstraint(item: timeButton, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: -cornerConstant))
     
     }
 }
