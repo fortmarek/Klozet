@@ -12,20 +12,25 @@ class ListCell: UITableViewCell {
     
     //Background for toilet image
     @IBOutlet weak var imageBackground: UIView!
+    @IBOutlet weak var priceBubble: UIView!
+    @IBOutlet weak var openBubble: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
-        setImageBackground()
+        setCornerRadius(imageBackground, cornerRadius: 10)
+        setCornerRadius(priceBubble, cornerRadius: 7)
+        setCornerRadius(openBubble, cornerRadius: 7)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
-    func setImageBackground() {
-        imageBackground.layer.cornerRadius = 10
+    func setCornerRadius(view: UIView, cornerRadius: CGFloat) {
+        view.layer.cornerRadius = cornerRadius
     }
-
 }
+
+
