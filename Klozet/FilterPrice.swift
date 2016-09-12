@@ -9,9 +9,11 @@
 import Foundation
 import UIKit
 
-class FilterPriceButton: UIButton, FilterButton {
+class FilterPriceButton: UIButton, FilterOptionButton {
+    
     var annotationDelegate: AnnotationController?
-    var filterDelegate: FilterController?
+    var filterDelegate: FilterInterfaceDelegate?
+    var filterButtonDelegate: FilterButtonDelegate?
     var constraint: NSLayoutConstraint?
     
     override init(frame: CGRect) {

@@ -17,6 +17,8 @@ extension ViewController {
     
     func createButtons() {
         
+        
+        
         //Adding all buttons to the ViewController
         addSubviews()
         
@@ -26,8 +28,8 @@ extension ViewController {
         //CurrentLocationButton
         setCurrentLocationButton()
         
-        //FilterButton
-        setFilterButton()
+        filterButton.filterDelegate = self
+        filterButton.setInterface()
         
         //OptionButtons
         setOptionButtons()
@@ -37,7 +39,7 @@ extension ViewController {
     private func addSubviews() {
         
         //Order of the views is important, change with caution (concerning filterButton and its images)
-        let subViews = [timeButton, priceButton, currentLocationButton, filterButton, filterImage, cancelImage]
+        let subViews = [timeButton, priceButton, currentLocationButton, filterButton]
         
         //Adding subview to mapView
         for subView in subViews {
@@ -100,74 +102,19 @@ extension ViewController {
         currentLocationButton.setImage(UIImage(named:"CurrentLocationSelected"), forState: [.Selected, .Highlighted])
     }
     
-    //MARK: Individual button properties
-    
-    private func setFilterButton() {
-        
-        //Constraints
-        view.addConstraint(NSLayoutConstraint(item: filterButton, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: -cornerConstant))
-        view.addConstraint(NSLayoutConstraint(item: filterButton, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: -cornerConstant))
-        
-        filterButton.backgroundColor = UIColor.whiteColor()
-        filterButton.layer.cornerRadius = 27.5
-        
-        filterButton.addTarget(UIButton(), action: #selector(filterButtonTapped(_:)), forControlEvents: .TouchUpInside)
-        
-        //Button has two images for two states
-        addFilterImages()
-    }
-    
-    
-    private func addFilterImages() {
-        
-        //Not selected filter button
-        filterImage.image = UIImage(named:"Filter")
-        
-        //Selected filter button
-        cancelImage.image = UIImage(named:"Cancel")
-        cancelImage.alpha = 0.0
-        
-        // cornerConstant for filterButton constraint, 27.5 for center of filterButton, 31 / 2 is center of filterImage
-        let constant = (cornerConstant + 27.5) - 31 / 2
-        
-        //Bottom constraint of filterImage is with + 3 because shape makes it look not centered, even though it is centered
-        view.addConstraint(NSLayoutConstraint(item: filterImage, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(-constant + 3)))
-        
-        //Bottom constraint for cancelImage
-        view.addConstraint(NSLayoutConstraint(item: cancelImage, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(-constant)))
-        
-        let filterImages = [filterImage, cancelImage]
-        
-        for image in filterImages {
-            
-            image.translatesAutoresizingMaskIntoConstraints = false
-            
-            //Width and height
-            view.addConstraint(NSLayoutConstraint(item: image, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 31))
-            view.addConstraint(NSLayoutConstraint(item: image, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 31))
-            
-            //Trailing constraint
-            view.addConstraint(NSLayoutConstraint(item: image, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-constant)))
-            
-        }
-        
-    }
-    
-    
     private func setOptionButtons() {
         
         timeButton.annotationDelegate = self
         timeButton.filterDelegate = self
+        timeButton.filterButtonDelegate = filterButton
         
         priceButton.filterDelegate = self
         priceButton.annotationDelegate = self
+        priceButton.filterButtonDelegate = filterButton
         
         priceButton.setInterface()
-        
         timeButton.setInterface()
         
-        //Button targets
-        priceButton.addTarget(self, action: #selector(priceButtonTapped(_:)), forControlEvents: .TouchUpInside)
         
         
     

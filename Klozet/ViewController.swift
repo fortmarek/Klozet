@@ -17,25 +17,25 @@ protocol AnnotationController {
     var mapView: MKMapView! { get }
 }
 
-protocol FilterController {
-    var isFilterSelected: Bool { get }
+protocol FilterInterfaceDelegate {
+    var priceButton: FilterPriceButton { get }
+    var timeButton: FilterOpenButton { get }
     var cornerConstant: CGFloat { get }
     func addConstraint(view: UIView, attribute: NSLayoutAttribute, constant: CGFloat) ->  NSLayoutConstraint
+    func addSubview(view: UIView)
 }
 
 
-class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocation, AnnotationController, FilterController {
+class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocation, AnnotationController, FilterInterfaceDelegate {
 
     //UI elements
     @IBOutlet weak var mapView: MKMapView!
     
     //Buttons
     let currentLocationButton = UIButton()
-    let filterButton = UIButton()
+    let filterButton = FilterButton()
     let priceButton = FilterPriceButton()
     let timeButton = FilterOpenButton()
-    let filterImage = UIImageView()
-    let cancelImage = UIImageView()
     
     //Option buttons' constraints, used later for animation
     var priceButtonConstraint = NSLayoutConstraint()
@@ -203,5 +203,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         return constraint
     }
     
+    func addSubview(view: UIView) {
+        self.view.addSubview(view)
+    }
 }
 

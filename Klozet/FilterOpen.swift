@@ -14,9 +14,10 @@ protocol FilterOpen {
     var annotationDelegate: AnnotationController? { get }
 }
 
-class FilterOpenButton: UIButton, FilterOpen, FilterButton {
+class FilterOpenButton: UIButton, FilterOpen, FilterOptionButton {
     var annotationDelegate: AnnotationController?
-    var filterDelegate: FilterController?
+    var filterDelegate: FilterInterfaceDelegate?
+    var filterButtonDelegate: FilterButtonDelegate?
     var constraint: NSLayoutConstraint?
     
     override init(frame: CGRect) {
