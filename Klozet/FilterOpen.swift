@@ -14,7 +14,7 @@ protocol FilterOpen {
     var annotationDelegate: AnnotationController? { get }
 }
 
-class FilterOpenButton: UIButton, FilterOpen, FilterAnimation {
+class FilterOpenButton: UIButton, FilterOpen, FilterButton {
     var annotationDelegate: AnnotationController?
     var filterDelegate: FilterController?
     var constraint: NSLayoutConstraint?
@@ -50,18 +50,11 @@ class FilterOpenButton: UIButton, FilterOpen, FilterAnimation {
         filterOpenToilet()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-extension FilterOpen where Self: UIButton {
-    
     func filterOpenToilet() {
         
         //After function ends, change button state
         defer {
-           changeButtonState()
+            changeButtonState()
         }
         
         //Unwrap annotationDelegate
@@ -85,12 +78,8 @@ extension FilterOpen where Self: UIButton {
         }
     }
     
-    private func changeButtonState() {
-        //UI change on main queue
-        NSOperationQueue.mainQueue().addOperationWithBlock({
-            //Change timeButton image
-            self.selected = !(self.selected)
-        })
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 

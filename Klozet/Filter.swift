@@ -9,14 +9,21 @@
 import Foundation
 import UIKit
 
-protocol FilterAnimation {
+protocol FilterButton {
     var constraint: NSLayoutConstraint? { get set }
     var filterDelegate: FilterController? { get }
 }
 
 
-extension FilterAnimation where Self: UIButton {
+extension FilterButton where Self: UIButton {
     
+    func changeButtonState() {
+        //UI change on main queue
+        NSOperationQueue.mainQueue().addOperationWithBlock({
+            //Change timeButton image
+            self.selected = !(self.selected)
+        })
+    }
     
     //Interface values that are universal
     func setBasicInterface() {

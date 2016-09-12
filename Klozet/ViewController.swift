@@ -195,22 +195,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         button.setImage(UIImage(named: image), forState: [.Selected, .Highlighted])
     }
     
-    func priceButtonTapped(sender: UIButton) {
-        
-        //Filter all toilets that are not for free
-        let toiletsNotForFree = toilets.filter({$0.price != "Zdarma"})
-        
-        if priceButton.selected == false {
-            mapView.removeAnnotations(toiletsNotForFree)
-        }
-        else {
-            mapView.addAnnotations(toiletsNotForFree)
-        }
-        
-        NSOperationQueue.mainQueue().addOperationWithBlock({
-            self.priceButton.selected = !(self.priceButton.selected)
-        })
-    }
     
     func addConstraint(view: UIView, attribute: NSLayoutAttribute, constant: CGFloat) -> NSLayoutConstraint {
         let constraint = NSLayoutConstraint(item: view, attribute: attribute, relatedBy: .Equal, toItem: self.view, attribute: attribute, multiplier: 1.0, constant: constant)

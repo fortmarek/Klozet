@@ -160,6 +160,7 @@ extension ViewController {
         timeButton.filterDelegate = self
         
         priceButton.filterDelegate = self
+        priceButton.annotationDelegate = self
         
         priceButton.setInterface()
         
