@@ -82,7 +82,7 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate {
     }
     
     private func setDistanceLabel(coordinate: CLLocationCoordinate2D) {
-        distanceLabel.text = getDistance(coordinate)
+        distanceLabel.text = getDistanceString(coordinate)
     }
     
 }

@@ -70,20 +70,9 @@ extension DirectionsDelegate {
     }
     
     
-    //Get distance
-    func getDistance(destination: CLLocationCoordinate2D) -> String {
-        guard
-            let locationDelegate = self.locationDelegate,
-            let userLocation = locationDelegate.getUserLocation()
-        else {return ""}
+    func getDistanceString(destination: CLLocationCoordinate2D) -> String {
         
-        //Current user location
-        
-        
-        //Convert CLLocationCoordinate2D to CLLocation for distance
-        let destinationLocation = CLLocation(latitude: destination.latitude, longitude: destination.longitude)
-        
-        let distance = userLocation.distanceFromLocation(destinationLocation)
+        let distance = getDistance(destination)
         
         //Metres to kilometres
         let kilometres = distance / 1000
@@ -95,6 +84,21 @@ extension DirectionsDelegate {
         let fullKilometresString = convertDecimalSeparator(roundedKilometres) + " km"
         
         return fullKilometresString
+    }
+    
+    //Get distance
+    func getDistance(destination: CLLocationCoordinate2D) -> Double {
+        guard
+            let locationDelegate = self.locationDelegate,
+            let userLocation = locationDelegate.getUserLocation()
+        else {return Double()}
+        
+        //Convert CLLocationCoordinate2D to CLLocation for distance
+        let destinationLocation = CLLocation(latitude: destination.latitude, longitude: destination.longitude)
+        
+        let distance = userLocation.distanceFromLocation(destinationLocation)
+        
+        return distance
         
     }
     

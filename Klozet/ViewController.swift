@@ -26,7 +26,7 @@ protocol FilterInterfaceDelegate {
 }
 
 
-class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocation, AnnotationController, FilterInterfaceDelegate {
+class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocation, AnnotationController, FilterInterfaceDelegate, DirectionsDelegate {
 
     //UI elements
     @IBOutlet weak var mapView: MKMapView!
@@ -49,6 +49,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
     
     var toilets = [Toilet]()
     var toiletsNotOpen = [Toilet]()
+    
+    var locationDelegate: UserLocation?
     
     //button state for showing also the direction iPhone is facing (it's the third state => needed special var, can't do with just UIButton selected state)
     var currentLocationHeadingSelected = false
@@ -93,6 +95,10 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
                 self.mapView.addAnnotations(toilets)
             })
             
+            //Asynchronouly order toilets by distance, make them ready for list
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),{
+                self.orderToilets()
+            })
         })
     }
     
@@ -190,14 +196,27 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         }
     }
     
+    //Order toilets depending on distance from user
+    private func orderToilets() {
+        
+        locationDelegate = self
+        
+        toilets = toilets.sort({
+            getDistance($0.coordinate) < getDistance($1.coordinate)
+        })
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        //Check segue identifir
+        //Check segue identifier
         if segue.identifier == "listSegue" {
             //Check viewController type
             guard let listViewController = segue.destinationViewController as? ListViewController else {return}
             
             listViewController.locationDelegate = self
+            
+            //Passing toilets
+            listViewController.toilets = self.toilets
         }
     }
     

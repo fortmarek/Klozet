@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ListViewController: UIViewController {
+class ListViewController: UIViewController, DirectionsDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -21,22 +21,8 @@ class ListViewController: UIViewController {
         tableView.dataSource = self
         
         navigationController?.navigationBar.tintColor = UIColor(red: 1.00, green: 0.42, blue: 0.20, alpha: 1.0)
-        
-        let dataController = DataController()
-        
-        dataController.getToilets({
-            toilets in
-            self.toilets = toilets
-            //UI changes, main queue
-            dispatch_async(dispatch_get_main_queue(), {
-                //Placing toilets on the map
-                self.tableView.reloadData()
-            })
-            
-        })
+    
     }
-    
-    
 }
 
 extension ListViewController: UITableViewDataSource {
