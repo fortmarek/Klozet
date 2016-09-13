@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F818D4481D88482E009B153C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F818D4471D88482E009B153C /* Constants.swift */; };
 		F82FB1BA1D809F27001FE39D /* Directions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB1B91D809F27001FE39D /* Directions.swift */; };
 		F82FB1BC1D80AA02001FE39D /* ToiletAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB1BB1D80AA02001FE39D /* ToiletAnnotationView.swift */; };
 		F82FB1BE1D81BA41001FE39D /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB1BD1D81BA41001FE39D /* UserLocation.swift */; };
@@ -72,6 +73,7 @@
 		64FAEE6D86EBB51AC1E892EC /* Pods-KlozetTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KlozetTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KlozetTests/Pods-KlozetTests.release.xcconfig"; sourceTree = "<group>"; };
 		67D98F14D4389FC6AA72E2F3 /* Pods-KlozetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KlozetTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KlozetTests/Pods-KlozetTests.debug.xcconfig"; sourceTree = "<group>"; };
 		68349D920E93E823BFCB4670 /* Pods-Klozet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Klozet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Klozet/Pods-Klozet.debug.xcconfig"; sourceTree = "<group>"; };
+		F818D4471D88482E009B153C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F82247E11D6784F000C0FB3E /* KlozetPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = KlozetPlayground.playground; sourceTree = "<group>"; };
 		F82FB1B91D809F27001FE39D /* Directions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Directions.swift; sourceTree = "<group>"; };
 		F82FB1BB1D80AA02001FE39D /* ToiletAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToiletAnnotationView.swift; sourceTree = "<group>"; };
@@ -204,14 +206,15 @@
 			isa = PBXGroup;
 			children = (
 				F8EAE7F91D5FA6A900D60DAB /* AppDelegate.swift */,
-				F82FB1B81D7F5E1F001FE39D /* ViewController */,
 				F8EAE8341D5FC81300D60DAB /* DataController.swift */,
+				F82FB1B81D7F5E1F001FE39D /* ViewController */,
 				F82FB1CD1D82C836001FE39D /* Filter */,
 				F82FB1BF1D81C7B6001FE39D /* ListViewController.swift */,
 				F82FB1C31D81D060001FE39D /* ListCell.swift */,
 				F82FB1BB1D80AA02001FE39D /* ToiletAnnotationView.swift */,
 				F82FB1B91D809F27001FE39D /* Directions.swift */,
 				F8E541531D744CA600BA4BE7 /* Extensions.swift */,
+				F818D4471D88482E009B153C /* Constants.swift */,
 				F82247E11D6784F000C0FB3E /* KlozetPlayground.playground */,
 				F8EAE7FD1D5FA6A900D60DAB /* Main.storyboard */,
 				F8EAE8001D5FA6A900D60DAB /* Assets.xcassets */,
@@ -376,6 +379,7 @@
 				F82FB1C81D82B7C3001FE39D /* FilterOpen.swift in Sources */,
 				F82FB1BA1D809F27001FE39D /* Directions.swift in Sources */,
 				F8E541541D744CA600BA4BE7 /* Extensions.swift in Sources */,
+				F818D4481D88482E009B153C /* Constants.swift in Sources */,
 				F82FB1BE1D81BA41001FE39D /* UserLocation.swift in Sources */,
 				F82FB1BC1D80AA02001FE39D /* ToiletAnnotationView.swift in Sources */,
 				F82FB1C41D81D060001FE39D /* ListCell.swift in Sources */,

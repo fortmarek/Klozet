@@ -10,14 +10,9 @@ import Foundation
 import UIKit
 import MapKit
 
-
-let pumpkinColor = UIColor(red: 1.00, green: 0.42, blue: 0.20, alpha: 1.0)
-
 extension ViewController {
     
     func createButtons() {
-        
-        
         
         //Adding all buttons to the ViewController
         addSubviews()
@@ -103,7 +98,6 @@ extension ViewController {
     }
     
     private func setOptionButtons() {
-        
         timeButton.annotationDelegate = self
         timeButton.filterDelegate = self
         timeButton.filterButtonDelegate = filterButton
@@ -114,9 +108,5 @@ extension ViewController {
         
         priceButton.setInterface()
         timeButton.setInterface()
-        
-        
-        
-    
     }
 }

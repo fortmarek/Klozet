@@ -132,7 +132,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.0" green="0.74901960784313726" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="1" green="0.42352941179999998" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="sxw-bR-04X" firstAttribute="centerX" secondItem="fCd-Nm-tra" secondAttribute="centerX" id="AYe-1I-gBX"/>
                                                         <constraint firstAttribute="width" constant="85" id="JkQ-UH-tfd"/>
@@ -180,9 +180,9 @@
                                             <outlet property="distanceLabel" destination="KCW-PP-68l" id="hkY-YO-iwZ"/>
                                             <outlet property="imageBackground" destination="Yb8-3q-DbG" id="aao-IW-SWW"/>
                                             <outlet property="mainAddressLabel" destination="fw7-f8-XiQ" id="nVC-hI-mEH"/>
-                                            <outlet property="openBubble" destination="AHs-j8-nqe" id="1TB-QJ-6Sj"/>
+                                            <outlet property="openBubble" destination="fCd-Nm-tra" id="PHn-nA-03q"/>
                                             <outlet property="openLabel" destination="sxw-bR-04X" id="P6D-Si-gC0"/>
-                                            <outlet property="priceBubble" destination="fCd-Nm-tra" id="ViY-10-oMh"/>
+                                            <outlet property="priceBubble" destination="AHs-j8-nqe" id="8Mi-na-pMT"/>
                                             <outlet property="priceLabel" destination="4Eg-r5-zve" id="odI-Ra-87C"/>
                                             <outlet property="subaddressLabel" destination="wT5-Ln-dMi" id="yCf-F4-Snq"/>
                                         </connections>

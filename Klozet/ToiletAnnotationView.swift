@@ -62,7 +62,7 @@ class DirectionButton: UIButton, DirectionsDelegate {
         self.addTarget(self, action: #selector(getDirections), forControlEvents: .TouchUpInside)
         
         //BackgroundColor
-        backgroundColor = pumpkinColor
+        backgroundColor = Colors.pumpkinColor
         
         //Image
         setImage(UIImage(named: "Walking"), forState: .Normal)

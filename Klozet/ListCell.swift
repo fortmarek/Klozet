@@ -19,6 +19,8 @@ class ListCell: UITableViewCell {
     @IBOutlet weak var mainAddressLabel: UILabel!
     @IBOutlet weak var subaddressLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
+    
+    let greenColor = UIColor(red: 0.00, green: 0.75, blue: 0.00, alpha: 1.0)
 
     
     override func awakeFromNib() {
@@ -34,8 +36,24 @@ class ListCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func setCornerRadius(view: UIView, cornerRadius: CGFloat) {
+    private func setCornerRadius(view: UIView, cornerRadius: CGFloat) {
         view.layer.cornerRadius = cornerRadius
+    }
+    
+    func fillCellData(toilet: Toilet) {
+        setPriceLabel(toilet.price)
+    }
+    
+    private func setPriceLabel(price: String) {
+        priceLabel.text = price.uppercaseString
+        
+        //If toilet is for free => green color, otherwise set color to orange
+        if price == "Zdarma" {
+            priceBubble.backgroundColor = greenColor
+        }
+        else {
+            priceBubble.backgroundColor = Colors.pumpkinColor
+        }
     }
 }
 
