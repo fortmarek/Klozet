@@ -71,20 +71,43 @@ extension DirectionsDelegate {
     
     
     //Get distance
-    func getDistance(destination: CLLocationCoordinate2D) {
-        guard let locationDelegate = self.locationDelegate else {return}
+    func getDistance(destination: CLLocationCoordinate2D) -> String {
+        guard
+            let locationDelegate = self.locationDelegate,
+            let userLocation = locationDelegate.getUserLocation()
+        else {return ""}
         
         //Current user location
-        let userLocation = locationDelegate.getUserLocation()
+        
         
         //Convert CLLocationCoordinate2D to CLLocation for distance
         let destinationLocation = CLLocation(latitude: destination.latitude, longitude: destination.longitude)
         
-        let distance = userLocation?.distanceFromLocation(destinationLocation)
+        let distance = userLocation.distanceFromLocation(destinationLocation)
         
-        print(distance)
+        //Metres to kilometres
+        let kilometres = distance / 1000
         
+        //Round number of kilometres to 1 decimal
+        let roundedKilometres = round(kilometres * 10) / 10
         
+        //Adding to kilometres number km
+        let fullKilometresString = convertDecimalSeparator(roundedKilometres) + " km"
+        
+        return fullKilometresString
+        
+    }
+    
+    private func convertDecimalSeparator(kilometres: Double) -> String {
+        let numberFormatter = NSNumberFormatter()
+        numberFormatter.locale = NSLocale.currentLocale()
+        numberFormatter.numberStyle = .DecimalStyle
+        numberFormatter.usesGroupingSeparator = true
+        
+        //Converting decimal separator, returning string
+        guard let kilometresString = numberFormatter.stringFromNumber(kilometres) else {return ""}
+        
+        return kilometresString
         
     }
     

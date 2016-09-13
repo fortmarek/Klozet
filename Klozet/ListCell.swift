@@ -53,35 +53,36 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate {
     private func setPriceLabel(price: String) {
         priceLabel.text = price
         
-        /*
+        
         //If toilet is for free => green color, otherwise set color to orange
         if price == "Zdarma" {
-            priceBubble.backgroundColor = greenColor
+            priceLabel.textColor = greenColor
         }
         else {
-            priceBubble.backgroundColor = Colors.pumpkinColor
+            priceLabel.textColor = Colors.pumpkinColor
         }
- */
+ 
     }
     
     private func setOpenLabel(toilet: Toilet) {
-    /*
         //Is toilet open
         if isToiletOpen(toilet) {
-            openLabel.text = "OTEVŘENO"
-            openBubble.backgroundColor = greenColor
+            openLabel.text = "Otevřeno"
+            openLabel.sizeToFit()
+            openLabel.textColor = greenColor
         }
         
         //Toilet is not open
         else {
-            openLabel.text = "ZAVŘENO"
-            openBubble.backgroundColor = Colors.pumpkinColor
+            openLabel.text = "Zavřeno"
+            openLabel.sizeToFit()
+            openLabel.textColor = Colors.pumpkinColor
         }
- */
+ 
     }
     
     private func setDistanceLabel(coordinate: CLLocationCoordinate2D) {
-        getDistance(coordinate)
+        distanceLabel.text = getDistance(coordinate)
     }
     
 }
