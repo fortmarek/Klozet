@@ -11,10 +11,11 @@ import UIKit
 
 
 protocol FilterOpen {
-    var annotationDelegate: AnnotationController? { get }
+    
 }
 
 class FilterOpenButton: UIButton, FilterOpen, FilterOptionButton {
+    
     var annotationDelegate: AnnotationController?
     var filterDelegate: FilterInterfaceDelegate?
     var filterButtonDelegate: FilterButtonDelegate?

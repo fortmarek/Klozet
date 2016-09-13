@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import Alamofire
+import MapKit
 
-class ListCell: UITableViewCell {
+class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate {
     
     //Background for toilet image
     @IBOutlet weak var imageBackground: UIView!
@@ -19,6 +21,8 @@ class ListCell: UITableViewCell {
     @IBOutlet weak var mainAddressLabel: UILabel!
     @IBOutlet weak var subaddressLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
+    
+    var locationDelegate: UserLocation?
     
     let greenColor = UIColor(red: 0.00, green: 0.75, blue: 0.00, alpha: 1.0)
 
@@ -42,6 +46,12 @@ class ListCell: UITableViewCell {
     
     func fillCellData(toilet: Toilet) {
         setPriceLabel(toilet.price)
+        setOpenLabel(toilet)
+        setDistanceLabel(toilet.coordinate)
+        
+        mainAddressLabel.text = toilet.title
+        subaddressLabel.text = toilet.subtitle
+        
     }
     
     private func setPriceLabel(price: String) {
@@ -55,6 +65,26 @@ class ListCell: UITableViewCell {
             priceBubble.backgroundColor = Colors.pumpkinColor
         }
     }
+    
+    private func setOpenLabel(toilet: Toilet) {
+        
+        //Is toilet open
+        if isToiletOpen(toilet) {
+            openLabel.text = "OTEVŘENO"
+            openBubble.backgroundColor = greenColor
+        }
+        
+        //Toilet is not open
+        else {
+            openLabel.text = "ZAVŘENO"
+            openBubble.backgroundColor = Colors.pumpkinColor
+        }
+    }
+    
+    private func setDistanceLabel(coordinate: CLLocationCoordinate2D) {
+        getDistance(coordinate)
+    }
+    
 }
 
 

@@ -68,4 +68,26 @@ extension DirectionsDelegate {
         
         return directions
     }
+    
+    
+    //Get distance
+    func getDistance(destination: CLLocationCoordinate2D) {
+        guard let locationDelegate = self.locationDelegate else {return}
+        
+        //Current user location
+        let userLocation = locationDelegate.getUserLocation()
+        
+        //Convert CLLocationCoordinate2D to CLLocation for distance
+        let destinationLocation = CLLocation(latitude: destination.latitude, longitude: destination.longitude)
+        
+        let distance = userLocation?.distanceFromLocation(destinationLocation)
+        
+        print(distance)
+        
+        
+        
+    }
+    
+    
+    
 }

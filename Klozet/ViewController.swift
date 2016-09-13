@@ -190,6 +190,17 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        //Check segue identifir
+        if segue.identifier == "listSegue" {
+            //Check viewController type
+            guard let listViewController = segue.destinationViewController as? ListViewController else {return}
+            
+            listViewController.locationDelegate = self
+        }
+    }
+    
     private func setImageForSelectedHighlighted(button: UIButton, image: String) {
         button.setImage(UIImage(named: image), forState: .Selected)
         button.setImage(UIImage(named: image), forState: [.Selected, .Highlighted])

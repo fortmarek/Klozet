@@ -14,6 +14,7 @@ class ListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var toilets = [Toilet]()
+    var locationDelegate: UserLocation?
     
     override func viewDidLoad() {
         tableView.delegate = self
@@ -47,6 +48,8 @@ extension ListViewController: UITableViewDataSource {
         
         //Getting toilet for cell
         let toilet = toilets[indexPath.row]
+        
+        cell.locationDelegate = self.locationDelegate
         cell.fillCellData(toilet)
         
         
