@@ -14,9 +14,7 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate {
     
     //Background for toilet image
     @IBOutlet weak var imageBackground: UIView!
-    @IBOutlet weak var priceBubble: UIView!
     @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var openBubble: UIView!
     @IBOutlet weak var openLabel: UILabel!
     @IBOutlet weak var mainAddressLabel: UILabel!
     @IBOutlet weak var subaddressLabel: UILabel!
@@ -32,8 +30,6 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate {
         // Initialization code
         
         setCornerRadius(imageBackground, cornerRadius: 10)
-        setCornerRadius(priceBubble, cornerRadius: 7)
-        setCornerRadius(openBubble, cornerRadius: 7)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -55,8 +51,9 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate {
     }
     
     private func setPriceLabel(price: String) {
-        priceLabel.text = price.uppercaseString
+        priceLabel.text = price
         
+        /*
         //If toilet is for free => green color, otherwise set color to orange
         if price == "Zdarma" {
             priceBubble.backgroundColor = greenColor
@@ -64,10 +61,11 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate {
         else {
             priceBubble.backgroundColor = Colors.pumpkinColor
         }
+ */
     }
     
     private func setOpenLabel(toilet: Toilet) {
-        
+    /*
         //Is toilet open
         if isToiletOpen(toilet) {
             openLabel.text = "OTEVŘENO"
@@ -79,6 +77,7 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate {
             openLabel.text = "ZAVŘENO"
             openBubble.backgroundColor = Colors.pumpkinColor
         }
+ */
     }
     
     private func setDistanceLabel(coordinate: CLLocationCoordinate2D) {
