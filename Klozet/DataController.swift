@@ -8,7 +8,7 @@
 
 import Foundation
 import Alamofire
-import SwiftyJSON
+import Freddy
 import MapKit
 
 
@@ -49,12 +49,11 @@ class DataController {
                 
                 var toilets = [Toilet]()
                 
-                guard let data = response.data else {return}
+                let data = response.data
                 
-                //Converting data to JSON
-                let json = JSON(data: data)
-                
-                DispatchQueue.global().async {
+                do {
+                    //Converting data to JSON
+                    let json = try JSON(data: data)
                     for (_, toiletJson) in json {
                         
                         //Coordinates
@@ -65,11 +64,16 @@ class DataController {
                         
                         toilets.append(toilet)
                     }
+                    
+                    //Returning toilets array, when GET request done, app can start adding annotationViews to the map
+                    completion(toilets)
+                }
+                    
+                catch {
+                    
                 }
                 
                 
-                //Returning toilets array, when GET request done, app can start adding annotationViews to the map
-                completion(toilets)
         }
 
     }

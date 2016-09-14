@@ -19,18 +19,16 @@ def simplify_price(price):
     simplified_price = price.replace('Jednotná cena ', '')
     return simplified_price
 
-dict = {
-
-}
-
 def get_properties(properties_json, coordinates):
-
+    dict = {}
+    
     # Object_id
-    object_id = properties_json['OBJECTID']
-    dict[object_id] = {}
+    toilet_id = properties_json['OBJECTID']
+    dict['toilet_id'] = toilet_id
+    
 
     # Coordinates
-    dict[object_id]['coordinates'] = coordinates
+    dict['coordinates'] = coordinates
 
     # Price
     try:
@@ -40,7 +38,7 @@ def get_properties(properties_json, coordinates):
 
         # Getting rid of 'jednotná cena' to make the string simpler (that part is unnecessary)
         simplified_price = simplify_price(capitalized_price)
-        dict[object_id]['price'] = simplified_price
+        dict['price'] = simplified_price
     # Price is null
     except AttributeError:
         pass
@@ -49,29 +47,34 @@ def get_properties(properties_json, coordinates):
     try:
         open_times = properties_json['OTEVRENO'].encode('utf-8')
         open_times = get_open_times(open_times)
-        dict[object_id]['open_times'] = open_times
+        dict['open_times'] = open_times
     # Open_time is null
     except AttributeError:
         pass
 
     try:
         adress = properties['ADRESA'].encode('utf-8')
-        dict[object_id]['address'] = get_adresses(adress, coordinates)
+        dict['address'] = get_adresses(adress, coordinates)
     #Adress is null
     except AttributeError:
         pass
+    return dict
 
 file = open('verejnawc.json', 'r')
 js = json.load(file)
 data = js['features']
 
+toilets = []
+
 for toilet_json in data:
     properties = toilet_json['properties']
     coordinates = toilet_json['geometry']['coordinates']
 
-    get_properties(properties, coordinates)
+    toilets.append(get_properties(properties, coordinates))
 
-
+dict = {
+    'toilets': toilets
+    }
 js = json.dumps(dict, indent=4 * ' ', ensure_ascii=False)
 file = io.open('wc.json', 'w+', encoding='utf-8')
 file.write(js)
