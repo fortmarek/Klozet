@@ -32,15 +32,15 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate {
         setCornerRadius(imageBackground, cornerRadius: 10)
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
-    private func setCornerRadius(view: UIView, cornerRadius: CGFloat) {
+    fileprivate func setCornerRadius(_ view: UIView, cornerRadius: CGFloat) {
         view.layer.cornerRadius = cornerRadius
     }
     
-    func fillCellData(toilet: Toilet) {
+    func fillCellData(_ toilet: Toilet) {
         setPriceLabel(toilet.price)
         setOpenLabel(toilet)
         setDistanceLabel(toilet.coordinate)
@@ -50,7 +50,7 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate {
         
     }
     
-    private func setPriceLabel(price: String) {
+    fileprivate func setPriceLabel(_ price: String) {
         priceLabel.text = price
         
         
@@ -64,7 +64,7 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate {
  
     }
     
-    private func setOpenLabel(toilet: Toilet) {
+    fileprivate func setOpenLabel(_ toilet: Toilet) {
         //Is toilet open
         if isToiletOpen(toilet) {
             openLabel.text = "Otevřeno"
@@ -81,7 +81,7 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate {
  
     }
     
-    private func setDistanceLabel(coordinate: CLLocationCoordinate2D) {
+    fileprivate func setDistanceLabel(_ coordinate: CLLocationCoordinate2D) {
         distanceLabel.text = getDistanceString(coordinate)
     }
     

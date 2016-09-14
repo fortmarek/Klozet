@@ -17,24 +17,24 @@ protocol DirectionsDelegate {
 
 extension DirectionsDelegate {
     //ETA for annotation view
-    func getEta(destination: CLLocationCoordinate2D, completion: (eta: String) -> ())  {
+    func getEta(_ destination: CLLocationCoordinate2D, completion: @escaping (_ eta: String) -> ())  {
         
         //Set path
         let directions = requestDirections(destination)
         
         //Calculate ETA
-        directions.calculateETAWithCompletionHandler({
+        directions.calculateETA(completionHandler: {
             etaResponse, error in
             guard let etaInterval = etaResponse?.expectedTravelTime else {return}
             
             let eta = self.convertEtaIntervalToString(etaInterval)
             
-            completion(eta: eta)
+            completion(eta)
         })
     }
     
     //Converting ETA in NSTimeInterval to minutes or hours
-    private func convertEtaIntervalToString(etaInterval: NSTimeInterval) -> String {
+    fileprivate func convertEtaIntervalToString(_ etaInterval: TimeInterval) -> String {
         let etaInt = NSInteger(etaInterval)
         
         //Number of seconds in hour
@@ -52,7 +52,7 @@ extension DirectionsDelegate {
     
     
     //ETA estimate
-    private func requestDirections(destination: CLLocationCoordinate2D) -> MKDirections {
+    fileprivate func requestDirections(_ destination: CLLocationCoordinate2D) -> MKDirections {
         
         let request = MKDirectionsRequest()
         
@@ -62,7 +62,7 @@ extension DirectionsDelegate {
         
         request.source = MKMapItem(placemark: MKPlacemark(coordinate: userLocation.coordinate, addressDictionary: nil))
         request.destination = MKMapItem(placemark: MKPlacemark(coordinate: destination, addressDictionary: nil))
-        request.transportType = .Walking
+        request.transportType = .walking
         
         let directions = MKDirections(request: request)
         
@@ -70,7 +70,7 @@ extension DirectionsDelegate {
     }
     
     
-    func getDistanceString(destination: CLLocationCoordinate2D) -> String {
+    func getDistanceString(_ destination: CLLocationCoordinate2D) -> String {
         
         let distance = getDistance(destination)
         
@@ -87,7 +87,7 @@ extension DirectionsDelegate {
     }
     
     //Get distance
-    func getDistance(destination: CLLocationCoordinate2D) -> Double {
+    func getDistance(_ destination: CLLocationCoordinate2D) -> Double {
         guard
             let locationDelegate = self.locationDelegate,
             let userLocation = locationDelegate.getUserLocation()
@@ -96,20 +96,23 @@ extension DirectionsDelegate {
         //Convert CLLocationCoordinate2D to CLLocation for distance
         let destinationLocation = CLLocation(latitude: destination.latitude, longitude: destination.longitude)
         
-        let distance = userLocation.distanceFromLocation(destinationLocation)
+        let distance = userLocation.distance(from: destinationLocation)
         
         return distance
         
     }
     
-    private func convertDecimalSeparator(kilometres: Double) -> String {
-        let numberFormatter = NSNumberFormatter()
-        numberFormatter.locale = NSLocale.currentLocale()
-        numberFormatter.numberStyle = .DecimalStyle
+    fileprivate func convertDecimalSeparator(_ kilometres: Double) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.locale = Locale.current
+        numberFormatter.numberStyle = .decimal
         numberFormatter.usesGroupingSeparator = true
         
+        //Double to NSNumber
+        let kilometresNumber = NSNumber(value: kilometres)
         //Converting decimal separator, returning string
-        guard let kilometresString = numberFormatter.stringFromNumber(kilometres) else {return ""}
+        guard let kilometresString = numberFormatter.string(from: kilometresNumber) else {return ""}
+
         
         return kilometresString
         

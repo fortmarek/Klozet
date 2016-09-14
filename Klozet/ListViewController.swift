@@ -27,13 +27,13 @@ class ListViewController: UIViewController, DirectionsDelegate {
 
 extension ListViewController: UITableViewDataSource {
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         //Cell as ListCell
-        guard let cell = tableView.dequeueReusableCellWithIdentifier("listCell") as? ListCell else {return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "listCell") as? ListCell else {return UITableViewCell()}
         
         //Getting toilet for cell
-        let toilet = toilets[indexPath.row]
+        let toilet = toilets[(indexPath as NSIndexPath).row]
         
         cell.locationDelegate = self.locationDelegate
         cell.fillCellData(toilet)
@@ -42,7 +42,7 @@ extension ListViewController: UITableViewDataSource {
         return cell
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return toilets.count
     }
 }

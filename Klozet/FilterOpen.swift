@@ -24,14 +24,14 @@ class FilterOpenButton: UIButton, FilterOpen, FilterOptionButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.addTarget(self, action: #selector(filterOpenButtonTapped), forControlEvents: .TouchUpInside)
+        self.addTarget(self, action: #selector(filterOpenButtonTapped), for: .touchUpInside)
     }
     
     func setInterface() {
         
         //Images
-        self.setImage(UIImage(named: "Clock"), forState: .Normal)
-        self.setImage(UIImage(named: "ClockSelected"), forState: .Selected)
+        self.setImage(UIImage(named: "Clock"), for: UIControlState())
+        self.setImage(UIImage(named: "ClockSelected"), for: .selected)
         
         //Unwarp filteDelegate
         guard let filterDelegate = self.filterDelegate else {return}
@@ -39,16 +39,16 @@ class FilterOpenButton: UIButton, FilterOpen, FilterOptionButton {
         let cornerConstant = filterDelegate.cornerConstant
         
         //Trailing layout
-        let trailingLayout = filterDelegate.addConstraint(self, attribute: .Trailing, constant: -cornerConstant)
+        let trailingLayout = filterDelegate.addConstraint(self, attribute: .trailing, constant: -cornerConstant)
         constraint = trailingLayout
         
         //Bottom layout
-        filterDelegate.addConstraint(self, attribute: .Bottom, constant: -cornerConstant)
+        _ = filterDelegate.addConstraint(self, attribute: .bottom, constant: -cornerConstant)
         
         setBasicInterface()
     }
     
-    func filterOpenButtonTapped(sender: FilterOpenButton) {
+    func filterOpenButtonTapped(_ sender: FilterOpenButton) {
         filterOpenToilet()
     }
     
@@ -63,7 +63,7 @@ class FilterOpenButton: UIButton, FilterOpen, FilterOptionButton {
         guard var annotationDelegate = self.annotationDelegate else {return}
         
         // == false because state is changed after this function
-        if self.selected == false {
+        if self.isSelected == false {
             //Filter toilets to open ones only
             let toiletsNotOpen = annotationDelegate.toilets.filter({
                 isToiletOpen($0) == false
@@ -87,11 +87,11 @@ class FilterOpenButton: UIButton, FilterOpen, FilterOptionButton {
 
 extension FilterOpen {
         
-    func isToiletOpen(toilet: Toilet) -> Bool {
+    func isToiletOpen(_ toilet: Toilet) -> Bool {
         let toiletTimes = toilet.openTimes
         
         //Int of today's weekday
-        let todayWeekday = NSDate().getTodayWeekday()
+        let todayWeekday = Date().getTodayWeekday()
         
         //Getting dictionary of toilet opening times
         for toiletTimeDict in toiletTimes {
@@ -103,7 +103,7 @@ extension FilterOpen {
             
             //Getting array of ints of open weekdays
             guard
-                let toiletDays = toiletTimeDict["days"].arrayObject as? Array<Int> where toiletDays.indexOf(todayWeekday) != nil,
+                let toiletDays = toiletTimeDict["days"].arrayObject as? Array<Int> , toiletDays.index(of: todayWeekday) != nil,
                 let hours = toiletTimeDict["hours"].arrayObject as? Array<String>
             else {continue}
             
@@ -117,7 +117,7 @@ extension FilterOpen {
     }
     
     
-    func isOpenInHours(hours: Array<String>) -> Bool {
+    func isOpenInHours(_ hours: Array<String>) -> Bool {
         //If the hours interval is not set, we assume the toilet is open
         guard hours.count == 2 else {return true}
         
@@ -125,10 +125,10 @@ extension FilterOpen {
         let startHour = hours[0].getHours()
         let closeHour = hours[1].getHours()
         
-        let today = NSDate()
+        let today = Date()
         
         //Is the current time in the interval? If yes, then the toilet is open as of right now
-        if today.compare(startHour) == .OrderedDescending && today.compare(closeHour) == .OrderedAscending {
+        if today.compare(startHour as Date) == .orderedDescending && today.compare(closeHour as Date) == .orderedAscending {
             return true
         }
             

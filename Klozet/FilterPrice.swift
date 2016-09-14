@@ -19,7 +19,7 @@ class FilterPriceButton: UIButton, FilterOptionButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.addTarget(self, action: #selector(priceButtonTapped(_:)), forControlEvents: .TouchUpInside)
+        self.addTarget(self, action: #selector(priceButtonTapped(_:)), for: .touchUpInside)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -31,20 +31,20 @@ class FilterPriceButton: UIButton, FilterOptionButton {
         
         guard let filterDelegate = self.filterDelegate else {return}
         
-        self.setImage(UIImage(named: "Price"), forState: .Normal)
-        self.setImage(UIImage(named: "PriceSelected"), forState: .Selected)
+        self.setImage(UIImage(named: "Price"), for: UIControlState())
+        self.setImage(UIImage(named: "PriceSelected"), for: .selected)
         
         let cornerConstant = filterDelegate.cornerConstant
         
-        let bottomLayout = filterDelegate.addConstraint(self, attribute: .Bottom, constant: -cornerConstant)
+        let bottomLayout = filterDelegate.addConstraint(self, attribute: .bottom, constant: -cornerConstant)
         self.constraint = bottomLayout
         
         
-        filterDelegate.addConstraint(self, attribute: .Trailing, constant: -cornerConstant)
+        _ = filterDelegate.addConstraint(self, attribute: .trailing, constant: -cornerConstant)
 
     }
     
-    func priceButtonTapped(sender: UIButton) {
+    func priceButtonTapped(_ sender: UIButton) {
         
         defer {
             changeButtonState()
@@ -55,7 +55,7 @@ class FilterPriceButton: UIButton, FilterOptionButton {
         //Filter all toilets that are not for free
         let toiletsNotForFree = annotationDelegate.toilets.filter({$0.price != "Zdarma"})
         
-        if self.selected == false {
+        if self.isSelected == false {
             annotationDelegate.mapView.removeAnnotations(toiletsNotForFree)
         }
         else {

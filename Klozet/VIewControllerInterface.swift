@@ -31,7 +31,7 @@ extension ViewController {
     }
     
     
-    private func addSubviews() {
+    fileprivate func addSubviews() {
         
         //Order of the views is important, change with caution (concerning filterButton and its images)
         let subViews = [timeButton, priceButton, currentLocationButton, filterButton]
@@ -41,12 +41,12 @@ extension ViewController {
             view.addSubview(subView)
             
             //To front otherwise it's under mapView
-            view.bringSubviewToFront(subView)
+            view.bringSubview(toFront: subView)
         }
     }
     
     //These properties are same for every button in array
-    private func setForEveryButton() {
+    fileprivate func setForEveryButton() {
         let buttons = [currentLocationButton, filterButton, timeButton, priceButton]
         
         for button in buttons {
@@ -56,48 +56,48 @@ extension ViewController {
             button.adjustsImageWhenHighlighted = false
             
             //Width and height
-            view.addConstraint(NSLayoutConstraint(item: button, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: sizeConstant))
-            view.addConstraint(NSLayoutConstraint(item: button, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: sizeConstant))
+            view.addConstraint(NSLayoutConstraint(item: button, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: sizeConstant))
+            view.addConstraint(NSLayoutConstraint(item: button, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: sizeConstant))
         }
     }
     
     //Button properties
-    private func setButtonProperties(button: UIButton, image: String, selectedImage: String, action: Selector, attribute: NSLayoutAttribute) {
+    fileprivate func setButtonProperties(_ button: UIButton, image: String, selectedImage: String, action: Selector, attribute: NSLayoutAttribute) {
         
         //image
-        button.setImage(UIImage(named: image), forState: .Normal)
-        button.setImage(UIImage(named: selectedImage), forState: .Selected)
-        button.setImage(UIImage(named: selectedImage), forState: .Highlighted)
+        button.setImage(UIImage(named: image), for: UIControlState())
+        button.setImage(UIImage(named: selectedImage), for: .selected)
+        button.setImage(UIImage(named: selectedImage), for: .highlighted)
         
         //Target function
-        button.addTarget(UIButton(), action: action, forControlEvents: .TouchUpInside)
+        button.addTarget(UIButton(), action: action, for: .touchUpInside)
         
         //Constraint
         //If constraint leading (ie on the left of the screen) constraint positive, if trailing negative
-        let constant = attribute == .Leading ? CGFloat(cornerConstant) : CGFloat(-cornerConstant)
+        let constant = attribute == .leading ? CGFloat(cornerConstant) : CGFloat(-cornerConstant)
         
         //Constraints for button to be in the bottom left/right corner
-        view.addConstraint(NSLayoutConstraint(item: button, attribute: attribute, relatedBy: .Equal, toItem: view, attribute: attribute, multiplier: 1.0, constant: constant))
-        view.addConstraint(NSLayoutConstraint(item: button, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: -cornerConstant))
+        view.addConstraint(NSLayoutConstraint(item: button, attribute: attribute, relatedBy: .equal, toItem: view, attribute: attribute, multiplier: 1.0, constant: constant))
+        view.addConstraint(NSLayoutConstraint(item: button, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: -cornerConstant))
     }
     
     //Shadow for buttons
-    private func addShadow(button: UIButton) {
-        button.layer.shadowColor = UIColor.blackColor().CGColor
+    fileprivate func addShadow(_ button: UIButton) {
+        button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.5
         button.layer.shadowOffset = CGSize(width: 3, height: 5)
         button.layer.shadowRadius = 6
     }
     
-    private func setCurrentLocationButton() {
-        setButtonProperties(currentLocationButton, image: "CurrentLocation", selectedImage: "CurrentLocationSelected", action: #selector(currentLocationButtonTapped(_:)), attribute: .Leading)
+    fileprivate func setCurrentLocationButton() {
+        setButtonProperties(currentLocationButton, image: "CurrentLocation", selectedImage: "CurrentLocationSelected", action: #selector(currentLocationButtonTapped(_:)), attribute: .leading)
         
         //View first appears at user's location (therefore current location button should be set as selected)
-        currentLocationButton.selected = true
-        currentLocationButton.setImage(UIImage(named:"CurrentLocationSelected"), forState: [.Selected, .Highlighted])
+        currentLocationButton.isSelected = true
+        currentLocationButton.setImage(UIImage(named:"CurrentLocationSelected"), for: [.selected, .highlighted])
     }
     
-    private func setOptionButtons() {
+    fileprivate func setOptionButtons() {
         timeButton.annotationDelegate = self
         timeButton.filterDelegate = self
         timeButton.filterButtonDelegate = filterButton

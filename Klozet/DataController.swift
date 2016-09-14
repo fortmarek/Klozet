@@ -41,37 +41,41 @@ class Toilet: NSObject, MKAnnotation {
 class DataController {
     
     //Fetching toilet data
-    func getToilets(completion: (toilets: [Toilet]) -> () ){
+    func getToilets(_ completion: @escaping (_ toilets: [Toilet]) -> () ){
         
         //GET request for toilet data
-        Alamofire.request(.GET, "http://139.59.144.155/klozet")
+        Alamofire.request("http://139.59.144.155/klozet")
             .responseJSON { response in
                 
                 var toilets = [Toilet]()
-
+                
                 guard let data = response.data else {return}
                 
                 //Converting data to JSON
                 let json = JSON(data: data)
-                for (_, toiletJson) in json {
-                    
-                    //Coordinates
-                    guard let coordinate = self.getCoordinate(toiletJson["coordinates"]) else {continue}
-                    
-                    //Getting other JSON toilet values then init of Toilet
-                    let toilet = self.getToilet(toiletJson, coordinate: coordinate)
-                    
-                    toilets.append(toilet)
+                
+                DispatchQueue.global().async {
+                    for (_, toiletJson) in json {
+                        
+                        //Coordinates
+                        guard let coordinate = self.getCoordinate(toiletJson["coordinates"]) else {continue}
+                        
+                        //Getting other JSON toilet values then init of Toilet
+                        let toilet = self.getToilet(toiletJson, coordinate: coordinate)
+                        
+                        toilets.append(toilet)
+                    }
                 }
                 
+                
                 //Returning toilets array, when GET request done, app can start adding annotationViews to the map
-                completion(toilets: toilets)
+                completion(toilets)
         }
 
     }
     
     //Parsing other toilet values from tolietJson
-    private func getToilet(propertiesJson: JSON, coordinate: CLLocationCoordinate2D) -> Toilet {
+    fileprivate func getToilet(_ propertiesJson: JSON, coordinate: CLLocationCoordinate2D) -> Toilet {
         guard
             //Price
             let price = propertiesJson["price"].string,
@@ -91,7 +95,7 @@ class DataController {
         return Toilet(mainAdress: mainAddress, subAddress: subAddress, openTimes: openTimes, price: price, coordinate: coordinate)
     }
     
-    private func getCoordinate(coordinateJson: JSON) -> CLLocationCoordinate2D? {
+    fileprivate func getCoordinate(_ coordinateJson: JSON) -> CLLocationCoordinate2D? {
         guard
             let coordinates = coordinateJson.array,
             let latitude = coordinates[1].double,

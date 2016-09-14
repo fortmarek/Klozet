@@ -21,8 +21,8 @@ protocol FilterInterfaceDelegate {
     var priceButton: FilterPriceButton { get }
     var timeButton: FilterOpenButton { get }
     var cornerConstant: CGFloat { get }
-    func addConstraint(view: UIView, attribute: NSLayoutAttribute, constant: CGFloat) ->  NSLayoutConstraint
-    func addSubview(view: UIView)
+    func addConstraint(_ view: UIView, attribute: NSLayoutAttribute, constant: CGFloat) ->  NSLayoutConstraint
+    func addSubview(_ view: UIView)
 }
 
 
@@ -77,12 +77,12 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         addDragRecognizer()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         //TODO: Show custom view to first nicely ask the user, not just with default alert
         locationManager.requestWhenInUseAuthorization()
     }
     
-    private func getToilets() {
+    func getToilets() {
         //DataController for fetching toilets
         let dataController = DataController()
         
@@ -90,15 +90,15 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
             toilets in
             self.toilets = toilets
             //UI changes, main queue
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 //Placing toilets on the map
-                self.mapView.addAnnotations(toilets)
+                //self.mapView.addAnnotations(toilets)
             })
             
             //Asynchronouly order toilets by distance, make them ready for list
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),{
-                self.orderToilets()
-            })
+            DispatchQueue.global().async {
+                //self.orderToilets()
+            }
         })
     }
     
@@ -106,7 +106,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
     
     //MARK: DragRecognizer
     
-    private func addDragRecognizer() {
+    fileprivate func addDragRecognizer() {
         //Start recognizing user interaction with map
         dragRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didDragMap))
         dragRecognizer.delegate = self
@@ -114,15 +114,15 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
     }
     
     //Allow use of dragRecognizer
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
     
     //If map was dragged, map is not following user's current location - current location should not be selected
     func didDragMap() {
         //Recognizing start of the drag, it's also called only once per interaction
-        if dragRecognizer.state == .Began {
-            currentLocationButton.selected = false
+        if dragRecognizer.state == .began {
+            currentLocationButton.isSelected = false
             
             currentLocationHeadingSelected = false
             locationManager.stopUpdatingHeading()
@@ -133,7 +133,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
     // MARK: Dropping toilet pins
     
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         //Checking that annotation really is a Toilet class
         guard let toiletAnnotation = annotation as? Toilet else {return nil}
@@ -141,7 +141,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         var annotationView = MKAnnotationView()
         
         //User reusableAnnotationView
-        if let reusableAnnotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("toiletAnnotation") {
+        if let reusableAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "toiletAnnotation") {
             annotationView = reusableAnnotationView
         }
         
@@ -160,7 +160,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
     }
     
     
-    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         guard
             let toiletAnnotationView = view as? ToiltetAnnotationView,
             let directionButton = toiletAnnotationView.leftCalloutAccessoryView as? DirectionButton
@@ -169,49 +169,49 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         directionButton.setEtaTitle()
     }
     
-    func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         view.tag = 0
     }
     
-    func currentLocationButtonTapped(sender: UIButton) {
+    func currentLocationButtonTapped(_ sender: UIButton) {
         locationManager.startUpdatingLocation()
         determineCurrentLocationButtonImage()
     }
     
-    private func determineCurrentLocationButtonImage() {
+    fileprivate func determineCurrentLocationButtonImage() {
         if currentLocationHeadingSelected {
             currentLocationHeadingSelected = false
-            currentLocationButton.selected = false
+            currentLocationButton.isSelected = false
             locationManager.stopUpdatingHeading()
             setImageForSelectedHighlighted(currentLocationButton, image: "CurrentLocationSelected")
         }
-        else if currentLocationButton.selected {
+        else if currentLocationButton.isSelected {
             currentLocationHeadingSelected = true
             setImageForSelectedHighlighted(currentLocationButton, image: "CurrentLocationHeading")
             locationManager.startUpdatingHeading()
         }
         else {
             setImageForSelectedHighlighted(currentLocationButton, image: "CurrentLocationSelected")
-            currentLocationButton.selected = true
+            currentLocationButton.isSelected = true
         }
     }
     
     //Order toilets depending on distance from user
-    private func orderToilets() {
+    fileprivate func orderToilets() {
         
         locationDelegate = self
         
-        toilets = toilets.sort({
+        toilets = toilets.sorted(by: {
             getDistance($0.coordinate) < getDistance($1.coordinate)
         })
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         //Check segue identifier
         if segue.identifier == "listSegue" {
             //Check viewController type
-            guard let listViewController = segue.destinationViewController as? ListViewController else {return}
+            guard let listViewController = segue.destination as? ListViewController else {return}
             
             listViewController.locationDelegate = self
             
@@ -220,20 +220,20 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         }
     }
     
-    private func setImageForSelectedHighlighted(button: UIButton, image: String) {
-        button.setImage(UIImage(named: image), forState: .Selected)
-        button.setImage(UIImage(named: image), forState: [.Selected, .Highlighted])
+    fileprivate func setImageForSelectedHighlighted(_ button: UIButton, image: String) {
+        button.setImage(UIImage(named: image), for: .selected)
+        button.setImage(UIImage(named: image), for: [.selected, .highlighted])
     }
     
     
-    func addConstraint(view: UIView, attribute: NSLayoutAttribute, constant: CGFloat) -> NSLayoutConstraint {
-        let constraint = NSLayoutConstraint(item: view, attribute: attribute, relatedBy: .Equal, toItem: self.view, attribute: attribute, multiplier: 1.0, constant: constant)
+    func addConstraint(_ view: UIView, attribute: NSLayoutAttribute, constant: CGFloat) -> NSLayoutConstraint {
+        let constraint = NSLayoutConstraint(item: view, attribute: attribute, relatedBy: .equal, toItem: self.view, attribute: attribute, multiplier: 1.0, constant: constant)
         self.view.addConstraint(constraint)
         
         return constraint
     }
     
-    func addSubview(view: UIView) {
+    func addSubview(_ view: UIView) {
         self.view.addSubview(view)
     }
 }

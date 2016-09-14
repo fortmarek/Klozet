@@ -33,7 +33,7 @@ extension UserLocation {
 
 extension ViewController: CLLocationManagerDelegate {
     //Heading
-    func locationManager(manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
         //Ensure heading's value is positive
         let heading = newHeading.trueHeading > 0 ? newHeading.trueHeading : newHeading.magneticHeading
         
@@ -44,7 +44,7 @@ extension ViewController: CLLocationManagerDelegate {
     }
     
     //The initial positon and region of the map
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //Locations.last = current location
         guard let location = locations.last else {return}
         
@@ -57,10 +57,11 @@ extension ViewController: CLLocationManagerDelegate {
         //Show region in mapView
         mapView.setRegion(region, animated: true)
         locationManager.stopUpdatingLocation()
+        
     }
     
     //Location manager fail
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Errors: \(error)")
     }
 }

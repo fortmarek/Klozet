@@ -20,9 +20,9 @@ extension FilterOptionButton where Self: UIButton {
     
     func changeButtonState() {
         //UI change on main queue
-        NSOperationQueue.mainQueue().addOperationWithBlock({
+        OperationQueue.main.addOperation({
             //Change timeButton image
-            self.selected = !(self.selected)
+            self.isSelected = !(self.isSelected)
         })
     }
     
@@ -37,7 +37,7 @@ extension FilterOptionButton where Self: UIButton {
         bounceUp()
     }
     
-    private func bounceUp() {
+    fileprivate func bounceUp() {
         
         //Unwrap filterDelegate
         guard let filterButtonDelegate = self.filterButtonDelegate else {return}
@@ -54,14 +54,14 @@ extension FilterOptionButton where Self: UIButton {
         constraint?.constant += offset
         
         //Animate (dis)appearance of option buttons with spring (bounce)
-        UIView.animateWithDuration(duration, delay: 0, usingSpringWithDamping: springDamping, initialSpringVelocity: 1, options: [], animations: {
+        UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: springDamping, initialSpringVelocity: 1, options: [], animations: {
             guard let superview = self.superview else {return}
             superview.layoutIfNeeded()
             }, completion: nil)
     }
     
     
-    private func animateShadows() {
+    fileprivate func animateShadows() {
         
         //Unwrap filterButtonDelegate
         guard let filterButtonDelegate = self.filterButtonDelegate else {return}
@@ -76,12 +76,12 @@ extension FilterOptionButton where Self: UIButton {
         let shadowAnimation = CABasicAnimation(keyPath: "shadowOpacity")
         
         //Duration and shadow values
-        shadowAnimation.fromValue = NSNumber(float: fromShadowAlpha)
-        shadowAnimation.toValue = NSNumber(float: toShadowAlpha)
+        shadowAnimation.fromValue = NSNumber(value: fromShadowAlpha as Float)
+        shadowAnimation.toValue = NSNumber(value: toShadowAlpha as Float)
         shadowAnimation.duration = 0.1
         
         //Animation init
-        self.layer.addAnimation(shadowAnimation, forKey: "shadowOpacity")
+        self.layer.add(shadowAnimation, forKey: "shadowOpacity")
         
         //Preserving final value after animation is ended
         self.layer.shadowOpacity = toShadowAlpha

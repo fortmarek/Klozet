@@ -31,20 +31,20 @@ class FilterButton: UIButton, FilterButtonDelegate {
         //Constraints
         
         let constant = filterDelegate.cornerConstant
-        filterDelegate.addConstraint(self, attribute: .Trailing, constant: -constant)
-        filterDelegate.addConstraint(self, attribute: .Bottom, constant: -constant)
+        _ = filterDelegate.addConstraint(self, attribute: .trailing, constant: -constant)
+        _ = filterDelegate.addConstraint(self, attribute: .bottom, constant: -constant)
         
         //Button design
-        backgroundColor = UIColor.whiteColor()
+        backgroundColor = UIColor.white
         layer.cornerRadius = 27.5
         
-        addTarget(UIButton(), action: #selector(filterButtonTapped(_:)), forControlEvents: .TouchUpInside)
+        addTarget(UIButton(), action: #selector(filterButtonTapped(_:)), for: .touchUpInside)
         
         //Button has two images for two states
         addFilterImages()
     }
     
-    private func addFilterImages() {
+    fileprivate func addFilterImages() {
         
         //Not selected filter button
         filterImage.image = UIImage(named:"Filter")
@@ -65,10 +65,10 @@ class FilterButton: UIButton, FilterButtonDelegate {
         let constant = (cornerConstant + 27.5) - 31 / 2
         
         //Bottom constraint of filterImage is with + 3 because shape makes it look not centered, even though it is centered
-        filterDelegate.addConstraint(filterImage, attribute: .Bottom, constant: -constant + 3)
+        _ = filterDelegate.addConstraint(filterImage, attribute: .bottom, constant: -constant + 3)
         
         //Bottom constraint for cancelImage
-        filterDelegate.addConstraint(cancelImage, attribute: .Bottom, constant: -constant)
+        _ = filterDelegate.addConstraint(cancelImage, attribute: .bottom, constant: -constant)
         
         let filterImages = [filterImage, cancelImage]
         
@@ -77,11 +77,11 @@ class FilterButton: UIButton, FilterButtonDelegate {
             image.translatesAutoresizingMaskIntoConstraints = false
             
             //Width and height
-            image.addConstraint(NSLayoutConstraint(item: image, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 31))
-            image.addConstraint(NSLayoutConstraint(item: image, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 31))
+            image.addConstraint(NSLayoutConstraint(item: image, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 31))
+            image.addConstraint(NSLayoutConstraint(item: image, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 31))
             
             //Trailing constraint
-            filterDelegate.addConstraint(image, attribute: .Trailing, constant: -constant)
+            _ = filterDelegate.addConstraint(image, attribute: .trailing, constant: -constant)
             
             
         }
@@ -92,7 +92,7 @@ class FilterButton: UIButton, FilterButtonDelegate {
 //MARK: Animations
 
 extension FilterButton {
-    func filterButtonTapped(sender: UIButton) {
+    func filterButtonTapped(_ sender: UIButton) {
         
         animateSwitch()
         
@@ -108,7 +108,7 @@ extension FilterButton {
     
     
     //Animate switching from filter to cancel and vice versa
-    private func animateSwitch() {
+    fileprivate func animateSwitch() {
         //Change the state of filter button
         isFilterSelected = !(isFilterSelected)
         
@@ -124,42 +124,42 @@ extension FilterButton {
     }
     
     //Color change
-    private func colorTransition() {
+    fileprivate func colorTransition() {
         //Determine what color based on if filter is selected or not
-        let color = isFilterSelected ? UIColor(red:1.00, green:0.42, blue:0.20, alpha: 1.0) : UIColor.whiteColor()
+        let color = isFilterSelected ? UIColor(red:1.00, green:0.42, blue:0.20, alpha: 1.0) : UIColor.white
         
         //Animate color with duration
-        UIView.animateWithDuration(0.6, animations: {
+        UIView.animate(withDuration: 0.6, animations: {
             self.backgroundColor = color
         })
     }
     
     
-    private func rotate(image: UIImageView) {
+    fileprivate func rotate(_ image: UIImageView) {
         
         //360° rotation (key frame is needed because 360° might as well equal to 0° rotation)
-        UIView.animateKeyframesWithDuration(0.6, delay: 0, options: [.CalculationModePaced, UIViewKeyframeAnimationOptions(animationOptions: .CurveEaseOut)], animations: {
+        UIView.animateKeyframes(withDuration: 0.6, delay: 0, options: [.calculationModePaced, UIViewKeyframeAnimationOptions(animationOptions: .curveEaseOut)], animations: {
             
             //360°
             let fullRotation = CGFloat(M_PI * 2)
             
             //At least three key frames (not only 360° is not unequivocal, neither is 180°)
             for i in 1...3 {
-                UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: Double(i) / 3, animations: {
-                    image.transform = CGAffineTransformMakeRotation(CGFloat(i) / 3 * fullRotation)
+                UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: Double(i) / 3, animations: {
+                    image.transform = CGAffineTransform(rotationAngle: CGFloat(i) / 3 * fullRotation)
                 })
             }
             }, completion: nil)
     }
     
-    private func fadeOut() {
+    fileprivate func fadeOut() {
         
         //if isFilterSelected == true, filterImageAlpha is 0 (when selected, cancel button should appear)
         let filterImageAlpha: CGFloat = isFilterSelected ? 0.0 : 1.0
         let cancelImageAlpha: CGFloat = isFilterSelected ? 1.0 : 0.0
         
         //Animate alpha - fade out / in
-        UIView.animateWithDuration(0.3, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             self.filterImage.alpha = filterImageAlpha
             self.cancelImage.alpha = cancelImageAlpha
         })
