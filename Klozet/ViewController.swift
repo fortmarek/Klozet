@@ -92,12 +92,12 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
             //UI changes, main queue
             DispatchQueue.main.async(execute: {
                 //Placing toilets on the map
-                //self.mapView.addAnnotations(toilets)
+                self.mapView.addAnnotations(toilets)
             })
             
             //Asynchronouly order toilets by distance, make them ready for list
             DispatchQueue.global().async {
-                //self.orderToilets()
+                self.orderToilets()
             }
         })
     }

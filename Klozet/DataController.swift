@@ -8,7 +8,7 @@
 
 import Foundation
 import Alamofire
-import Freddy
+import SwiftyJSON
 import MapKit
 
 
@@ -49,31 +49,27 @@ class DataController {
                 
                 var toilets = [Toilet]()
                 
-                let data = response.data
+                guard let data = response.data else {return}
                 
-                do {
-                    //Converting data to JSON
-                    let json = try JSON(data: data)
-                    for (_, toiletJson) in json {
-                        
-                        //Coordinates
-                        guard let coordinate = self.getCoordinate(toiletJson["coordinates"]) else {continue}
-                        
-                        //Getting other JSON toilet values then init of Toilet
-                        let toilet = self.getToilet(toiletJson, coordinate: coordinate)
-                        
-                        toilets.append(toilet)
-                    }
+                //Converting data to JSON
+                let json = JSON(data: data)
+                
+                let allToiletsDict = json["toilets"]
+
+                
+                for (_, toiletsDict) in allToiletsDict {
                     
-                    //Returning toilets array, when GET request done, app can start adding annotationViews to the map
-                    completion(toilets)
-                }
+                    //Coordinates
+                    guard let coordinate = self.getCoordinate(toiletsDict["coordinates"]) else {continue}
                     
-                catch {
+                    //Getting other JSON toilet values then init of Toilet
+                    let toilet = self.getToilet(toiletsDict, coordinate: coordinate)
                     
+                    toilets.append(toilet)
                 }
                 
-                
+                //Returning toilets array, when GET request done, app can start adding annotationViews to the map
+                completion(toilets)
         }
 
     }
