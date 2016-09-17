@@ -23,27 +23,7 @@ class ListViewController: UIViewController, DirectionsDelegate {
         navigationController?.navigationBar.tintColor = UIColor(red: 1.00, green: 0.42, blue: 0.20, alpha: 1.0)
         
         
-        
-        let blurEffect = UIBlurEffect(style: .extraLight)
-        let blurredEffectView = UIVisualEffectView(effect: blurEffect)
-        blurredEffectView.frame = CGRect(x: 0, y: view.frame.size.height - 60, width: view.frame.size.width, height: 60)
-        view.addSubview(blurredEffectView)
-        
-    
-        let listController = ListController(items: ["first", "second"])
-        listController.tintColor = UIColor.orange
-        listController.translatesAutoresizingMaskIntoConstraints = false
-        
-        blurredEffectView.contentView.addSubview(listController)
-        
-        blurredEffectView.contentView.addConstraint(NSLayoutConstraint(item: listController, attribute: .leading, relatedBy: .equal, toItem: blurredEffectView.contentView, attribute: .leading, multiplier: 1.0, constant: 40))
-        blurredEffectView.contentView.addConstraint(NSLayoutConstraint(item: listController, attribute: .trailing, relatedBy: .equal, toItem: blurredEffectView.contentView, attribute: .trailing, multiplier: 1.0, constant: -40))
-        blurredEffectView.contentView.addConstraint(NSLayoutConstraint(item: listController, attribute: .centerY, relatedBy: .equal, toItem: blurredEffectView.contentView, attribute: .centerY, multiplier: 1.0, constant: 0))
-        blurredEffectView.contentView.addConstraint(NSLayoutConstraint(item: listController, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1.0, constant: 30))
-        
-        blurredEffectView.contentView.layoutIfNeeded()
-        
-        view.bringSubview(toFront: blurredEffectView)
+        let _ = ListControllerContainer(view: view)
     }
 
 }
@@ -74,7 +54,3 @@ extension ListViewController: UITableViewDelegate {
     
 }
 
-
-class ListController: UISegmentedControl {
-    
-}
