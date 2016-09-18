@@ -48,16 +48,18 @@ class ListViewController: UIViewController, DirectionsDelegate {
         
         let _ = ListControllerContainer(view: view, toiletsDelegate: self)
         
-        setIndicatorView()
+        //setIndicatorView()
     }
     
+    
+    //For fututure implementation when loading gets too long
     fileprivate func setIndicatorView() {
         
         view.layoutIfNeeded()
         
         activityContainerView.isHidden = true
         //- 50 for listController at the bottom
-        activityContainerView.frame.size = CGSize(width: tableView.frame.width, height: tableView.frame.height - 50)
+        activityContainerView.frame.size = CGSize(width: tableView.frame.width, height: tableView.frame.height - 200)
         activityContainerView.backgroundColor = UIColor.white
         view.addSubview(activityContainerView)
         view.bringSubview(toFront: activityContainerView)
@@ -80,14 +82,14 @@ extension ListViewController: ListToiletsDelegate {
     func reloadTable() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
-            self.activityContainerView.isHidden = true
-            self.activityIndicator.stopAnimating()
+            //self.activityContainerView.isHidden = true
+            //self.activityIndicator.stopAnimating()
         }
     }
     
     func startUpdating() {
-        activityContainerView.isHidden = false
-        activityIndicator.startAnimating()
+        //activityContainerView.isHidden = false
+        //activityIndicator.startAnimating()
     }
 }
 

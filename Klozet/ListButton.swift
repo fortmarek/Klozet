@@ -23,7 +23,7 @@ class ListOpenButton: UIButton, FilterOpen, ListButtonDelegate, DirectionsDelega
     func filterOpenButtonTapped(sender: ListOpenButton) {
         guard var toiletsDelegate = self.toiletsDelegate else {return}
         
-        toiletsDelegate.startUpdating()
+        //toiletsDelegate.startUpdating()
         
         //Change value to opposite
         toiletsDelegate.isFilterOpenSelected = !(toiletsDelegate.isFilterOpenSelected)
@@ -32,24 +32,8 @@ class ListOpenButton: UIButton, FilterOpen, ListButtonDelegate, DirectionsDelega
             self.isSelected = !(self.isSelected)
             self.changeInterface(isSelected: toiletsDelegate.isFilterOpenSelected)
         }
+        self.filterToilets()
         
-        
-        DispatchQueue.global().async {
-            self.filterToilets()
-        }
-        
-        
-    }
-    
-    func changeInterface(isSelected: Bool){
-        if isSelected {
-            backgroundColor = Colors.pumpkinColor
-            titleLabel?.textColor = UIColor.white
-        }
-        else {
-            backgroundColor = UIColor.clear
-            titleLabel?.textColor = Colors.pumpkinColor
-        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -66,10 +50,6 @@ class ListPriceButton: UIButton, FilterOpen, ListButtonDelegate, DirectionsDeleg
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
-        //Save all toilets so they can be readded later
-        guard let toiletsDelegate = self.toiletsDelegate else {return}
-        allToilets = toiletsDelegate.toilets
         
         addTarget(self, action: #selector(filterPriceButtonTapped), for: .touchUpInside)
     }
@@ -82,20 +62,16 @@ class ListPriceButton: UIButton, FilterOpen, ListButtonDelegate, DirectionsDeleg
     func filterPriceButtonTapped(sender: ListPriceButton) {
         guard var toiletsDelegate = self.toiletsDelegate else {return}
         
+        //toiletsDelegate.startUpdating()
         
+        //Change value to opposite
+        toiletsDelegate.isFilterPriceSelected = !(toiletsDelegate.isFilterPriceSelected)
         
-        //Only free toilets
-        if isSelected {
-            let toiletsForFree = toiletsDelegate.toilets.filter({$0.price == "Zdarma"})
-            toiletsDelegate.toilets = toiletsForFree
+        DispatchQueue.main.async {
+            self.isSelected = !(self.isSelected)
+            self.changeInterface(isSelected: toiletsDelegate.isFilterPriceSelected)
         }
-        
-        //All toilets
-        else {
-            toiletsDelegate.toilets = allToilets
-        }
-        
-        toiletsDelegate.reloadTable()
+        self.filterToilets()
     
     }
     
@@ -172,10 +148,8 @@ extension ListButtonDelegate where Self: UIButton, Self: FilterOpen, Self: Direc
             toilets = toiletsDelegate.allToilets
         }
         
-        //Order filtered toilets by distance
-        toiletsDelegate.toilets = toilets.sorted(by: {
-            getDistance($0.coordinate) < getDistance($1.coordinate)
-        })
+        toiletsDelegate.toilets = toilets
+        
         
         
         //Update table
@@ -186,6 +160,17 @@ extension ListButtonDelegate where Self: UIButton, Self: FilterOpen, Self: Direc
     
     
     //MARK: Interface
+    
+    func changeInterface(isSelected: Bool){
+        if isSelected {
+            backgroundColor = Colors.pumpkinColor
+            titleLabel?.textColor = UIColor.white
+        }
+        else {
+            backgroundColor = UIColor.clear
+            titleLabel?.textColor = Colors.pumpkinColor
+        }
+    }
     
     fileprivate func addButtonConstraints(contentView: UIView, side: ListButtonSide) {
         translatesAutoresizingMaskIntoConstraints = false
