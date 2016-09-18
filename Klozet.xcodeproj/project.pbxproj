@@ -182,6 +182,16 @@
 			name = Filter;
 			sourceTree = "<group>";
 		};
+		F86F356A1D8DE772001A8F6C /* ListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F82FB1BF1D81C7B6001FE39D /* ListViewController.swift */,
+				F86F35671D8DDCB5001A8F6C /* ListController.swift */,
+				F82FB1C31D81D060001FE39D /* ListCell.swift */,
+			);
+			name = ListViewController;
+			sourceTree = "<group>";
+		};
 		F8EAE7ED1D5FA6A900D60DAB = {
 			isa = PBXGroup;
 			children = (
@@ -210,10 +220,8 @@
 				F8EAE7F91D5FA6A900D60DAB /* AppDelegate.swift */,
 				F8EAE8341D5FC81300D60DAB /* DataController.swift */,
 				F82FB1B81D7F5E1F001FE39D /* ViewController */,
+				F86F356A1D8DE772001A8F6C /* ListViewController */,
 				F82FB1CD1D82C836001FE39D /* Filter */,
-				F82FB1BF1D81C7B6001FE39D /* ListViewController.swift */,
-				F86F35671D8DDCB5001A8F6C /* ListController.swift */,
-				F82FB1C31D81D060001FE39D /* ListCell.swift */,
 				F82FB1BB1D80AA02001FE39D /* ToiletAnnotationView.swift */,
 				F82FB1B91D809F27001FE39D /* Directions.swift */,
 				F8E541531D744CA600BA4BE7 /* Extensions.swift */,
