@@ -28,9 +28,10 @@ class ListOpenButton: UIButton, FilterOpen, ListButtonDelegate, DirectionsDelega
         //Change value to opposite
         toiletsDelegate.isFilterOpenSelected = !(toiletsDelegate.isFilterOpenSelected)
         
+        self.changeInterface(isSelected: toiletsDelegate.isFilterOpenSelected)
         DispatchQueue.main.async {
-            self.isSelected = !(self.isSelected)
-            self.changeInterface(isSelected: toiletsDelegate.isFilterOpenSelected)
+            //self.isSelected = !(self.isSelected)
+            
         }
         self.filterToilets()
         
@@ -67,13 +68,12 @@ class ListPriceButton: UIButton, FilterOpen, ListButtonDelegate, DirectionsDeleg
         //Change value to opposite
         toiletsDelegate.isFilterPriceSelected = !(toiletsDelegate.isFilterPriceSelected)
         
-        DispatchQueue.main.async {
-            self.isSelected = !(self.isSelected)
-            self.changeInterface(isSelected: toiletsDelegate.isFilterPriceSelected)
-        }
+        self.changeInterface(isSelected: toiletsDelegate.isFilterPriceSelected)
+
         self.filterToilets()
     
     }
+    
     
 }
 
@@ -158,18 +158,19 @@ extension ListButtonDelegate where Self: UIButton, Self: FilterOpen, Self: Direc
         
     }
     
-    
     //MARK: Interface
     
     func changeInterface(isSelected: Bool){
         if isSelected {
             backgroundColor = Colors.pumpkinColor
-            titleLabel?.textColor = UIColor.white
+            //titleLabel?.textColor = UIColor.white
+            //setTitleColor(UIColor.white, for: .highlighted)
         }
         else {
             backgroundColor = UIColor.clear
-            titleLabel?.textColor = Colors.pumpkinColor
+            //setTitleColor(Colors.pumpkinColor, for: .highlighted)
         }
+        self.isSelected = !(self.isSelected)
     }
     
     fileprivate func addButtonConstraints(contentView: UIView, side: ListButtonSide) {
@@ -182,12 +183,14 @@ extension ListButtonDelegate where Self: UIButton, Self: FilterOpen, Self: Direc
         contentView.addConstraint(NSLayoutConstraint(item: self, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1.0, constant: 0))
         
         //Distance between listButtons
-        let constant = contentView.frame.size.width / 2
+        let constant = contentView.frame.size.width / 2 + 0.5
         
-        //Horizontal possition
+        //Horizontal position
         if side == .left {
             contentView.addConstraint(NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: contentView, attribute: .trailing, multiplier: 1.0, constant: -constant))
             contentView.addConstraint(NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: contentView, attribute: .leading, multiplier: 1.0, constant: 40))
+            
+            
             
         }
             
@@ -205,9 +208,11 @@ extension ListButtonDelegate where Self: UIButton, Self: FilterOpen, Self: Direc
         setTitle(title, for: .normal)
         setTitle(title, for: .selected)
         
-        setTitleColor(UIColor.orange, for: .normal)
+        setTitleColor(Colors.pumpkinColor, for: .normal)
         setTitleColor(UIColor.white, for: .selected)
-        
+        setTitleColor(Colors.pumpkinColor, for: .highlighted)
+        setTitleColor(UIColor.white, for: [.highlighted, .selected])
+
         titleLabel?.font = titleLabel?.font.withSize(15)
     }
     
@@ -223,14 +228,13 @@ extension ListButtonDelegate where Self: UIButton, Self: FilterOpen, Self: Direc
             cornersToRound = [.topRight, .bottomRight]
         }
         
+        
         let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: cornersToRound, cornerRadii: CGSize(width: 5, height: 5))
         let borderLayer = CAShapeLayer()
         borderLayer.path = path.cgPath
-        borderLayer.lineWidth = 1
-        borderLayer.fillColor = UIColor.clear.cgColor
-        borderLayer.strokeColor = Colors.pumpkinColor.cgColor
         
-        layer.addSublayer(borderLayer)
+        layer.mask = borderLayer
+        
         
     }
     
