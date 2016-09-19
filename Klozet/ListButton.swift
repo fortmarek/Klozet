@@ -13,6 +13,7 @@ class ListOpenButton: UIButton, FilterOpen, ListButtonDelegate, DirectionsDelega
     
     var toiletsDelegate: ListToiletsDelegate?
     var locationDelegate: UserLocation?
+    var listControllerDelegate: ListControllerDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,10 +30,7 @@ class ListOpenButton: UIButton, FilterOpen, ListButtonDelegate, DirectionsDelega
         toiletsDelegate.isFilterOpenSelected = !(toiletsDelegate.isFilterOpenSelected)
         
         self.changeInterface(isSelected: toiletsDelegate.isFilterOpenSelected)
-        DispatchQueue.main.async {
-            //self.isSelected = !(self.isSelected)
-            
-        }
+        
         self.filterToilets()
         
     }
@@ -46,6 +44,7 @@ class ListOpenButton: UIButton, FilterOpen, ListButtonDelegate, DirectionsDelega
 class ListPriceButton: UIButton, FilterOpen, ListButtonDelegate, DirectionsDelegate {
     var toiletsDelegate: ListToiletsDelegate?
     var locationDelegate: UserLocation?
+    var listControllerDelegate: ListControllerDelegate?
     
     var allToilets = [Toilet]()
     

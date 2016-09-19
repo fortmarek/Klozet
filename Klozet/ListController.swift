@@ -9,9 +9,14 @@
 import Foundation
 import UIKit
 
+protocol ListControllerDelegate {
+    func changeMiddleBorderColor()
+}
 
-
-class ListControllerContainer: UIView {
+class ListControllerContainer: UIView, ListControllerDelegate {
+    
+    var middleBorder = UIView()
+    var toiletsDelegate: ListToiletsDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -20,6 +25,8 @@ class ListControllerContainer: UIView {
     convenience init(view: UIView, toiletsDelegate: ListToiletsDelegate) {
         self.init(frame: CGRect())
         
+        self.toiletsDelegate = toiletsDelegate
+        
         //BlurEffect
         let blurEffect = UIBlurEffect(style: .extraLight)
         let blurredEffectView = UIVisualEffectView(effect: blurEffect)
@@ -27,15 +34,15 @@ class ListControllerContainer: UIView {
         view.addSubview(blurredEffectView)
         
         
-        
-        
         //ListController
         let contentView = blurredEffectView.contentView
-        let listOpenButton = ListOpenButton(title: "Otevřeno".localized, contentView: contentView, side: .left, toiletsDelegate: toiletsDelegate)
-        let listPriceButton = ListPriceButton(title: "Zdarma".localized, contentView: contentView, side: .right, toiletsDelegate: toiletsDelegate)
+        let listOpenButton = ListOpenButton(title: "Otevřeno".localized, contentView: contentView, side: .left, toiletsDelegate: toiletsDelegate, listControllerDelegate: self)
+        let listPriceButton = ListPriceButton(title: "Zdarma".localized, contentView: contentView, side: .right, toiletsDelegate: toiletsDelegate, listControllerDelegate: self)
         
         let border = setListControllerBorder(listOpenButton: listOpenButton, listPriceButton: listPriceButton)
         blurredEffectView.contentView.addSubview(border)
+        
+        setMiddleBorder(listPriceButton: listPriceButton, contentView: blurredEffectView.contentView)
         
         blurredEffectView.contentView.bringSubview(toFront: listOpenButton)
         blurredEffectView.contentView.bringSubview(toFront: listPriceButton)
@@ -62,19 +69,25 @@ class ListControllerContainer: UIView {
         border.layer.borderWidth = 1
         
         return border
+    }
+    
+    fileprivate func setMiddleBorder(listPriceButton: ListPriceButton, contentView: UIView) {
+        middleBorder.frame = CGRect(x: listPriceButton.frame.origin.x - 1 , y: listPriceButton.frame.origin.y, width: 1, height: 30)
         
+        //Default backgroundColor
+        middleBorder.backgroundColor = Colors.pumpkinColor
         
-        /*
-        let path = UIBezierPath(roundedRect: rounderRect, byRoundingCorners: cornersToRound, cornerRadii: CGSize(width: 5, height: 5))
-        let borderLayer = CAShapeLayer()
-        borderLayer.path = path.cgPath
-        borderLayer.lineWidth = 1
-        borderLayer.fillColor = UIColor.clear.cgColor
-        borderLayer.strokeColor = Colors.pumpkinColor.cgColor
-        
-        layer.addSublayer(borderLayer)
- 
- */
+        contentView.addSubview(middleBorder)
+    }
+    
+    func changeMiddleBorderColor() {
+        guard let toiletsDelegate = self.toiletsDelegate else {return}
+        if toiletsDelegate.isFilterOpenSelected && toiletsDelegate.isFilterPriceSelected {
+            middleBorder.backgroundColor = UIColor.clear
+        }
+        else {
+            middleBorder.backgroundColor = Colors.pumpkinColor
+        }
     }
     
 }

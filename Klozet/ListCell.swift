@@ -30,10 +30,16 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate {
         // Initialization code
         
         setCornerRadius(imageBackground, cornerRadius: 10)
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        imageBackground.backgroundColor = Colors.pumpkinColor
+    }
+    
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        imageBackground.backgroundColor = Colors.pumpkinColor
     }
     
     fileprivate func setCornerRadius(_ view: UIView, cornerRadius: CGFloat) {

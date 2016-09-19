@@ -9,9 +9,11 @@
 import Foundation
 import UIKit
 
+
 protocol ListButtonDelegate {
     var toiletsDelegate: ListToiletsDelegate? { get set }
     var locationDelegate: UserLocation? { get set }
+    var listControllerDelegate: ListControllerDelegate? { get set }
 }
 
 enum ListButtonSide {
@@ -26,11 +28,13 @@ extension ListButtonDelegate where Self: UIButton, Self: FilterOpen, Self: Direc
         self.init(frame: frame)
     }
     
-    init(title: String, contentView: UIView, side: ListButtonSide, toiletsDelegate: ListToiletsDelegate) {
+    init(title: String, contentView: UIView, side: ListButtonSide, toiletsDelegate: ListToiletsDelegate, listControllerDelegate: ListControllerDelegate) {
         self.init()
         
+        //Delegates
         self.toiletsDelegate = toiletsDelegate
         self.locationDelegate = toiletsDelegate.locationDelegate
+        self.listControllerDelegate = listControllerDelegate
         
         
         //Title
@@ -98,6 +102,10 @@ extension ListButtonDelegate where Self: UIButton, Self: FilterOpen, Self: Direc
             backgroundColor = UIColor.clear
         }
         self.isSelected = !(self.isSelected)
+        
+        guard let listControllerDelegate = self.listControllerDelegate else {return}
+        
+        listControllerDelegate.changeMiddleBorderColor()
     }
     
     fileprivate func addButtonConstraints(contentView: UIView, side: ListButtonSide) {
