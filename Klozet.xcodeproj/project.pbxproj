@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F818D4481D88482E009B153C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F818D4471D88482E009B153C /* Constants.swift */; };
+		F82655481D930A190007A089 /* ListActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82655471D930A190007A089 /* ListActivity.swift */; };
 		F82FB1BA1D809F27001FE39D /* Directions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB1B91D809F27001FE39D /* Directions.swift */; };
 		F82FB1BC1D80AA02001FE39D /* ToiletAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB1BB1D80AA02001FE39D /* ToiletAnnotationView.swift */; };
 		F82FB1BE1D81BA41001FE39D /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB1BD1D81BA41001FE39D /* UserLocation.swift */; };
@@ -79,6 +80,7 @@
 		68349D920E93E823BFCB4670 /* Pods-Klozet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Klozet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Klozet/Pods-Klozet.debug.xcconfig"; sourceTree = "<group>"; };
 		F818D4471D88482E009B153C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F82247E11D6784F000C0FB3E /* KlozetPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = KlozetPlayground.playground; sourceTree = "<group>"; };
+		F82655471D930A190007A089 /* ListActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListActivity.swift; sourceTree = "<group>"; };
 		F82FB1B91D809F27001FE39D /* Directions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Directions.swift; sourceTree = "<group>"; };
 		F82FB1BB1D80AA02001FE39D /* ToiletAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToiletAnnotationView.swift; sourceTree = "<group>"; };
 		F82FB1BD1D81BA41001FE39D /* UserLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				F82FB1BF1D81C7B6001FE39D /* ListViewController.swift */,
+				F82655471D930A190007A089 /* ListActivity.swift */,
 				F86F35671D8DDCB5001A8F6C /* ListController.swift */,
 				F8775B081D8EBAAF003B9F4D /* ListButton.swift */,
 				F8775B0A1D908104003B9F4D /* ListButtonDelegate.swift */,
@@ -412,6 +415,7 @@
 				F82FB1BE1D81BA41001FE39D /* UserLocation.swift in Sources */,
 				F8775B091D8EBAAF003B9F4D /* ListButton.swift in Sources */,
 				F82FB1BC1D80AA02001FE39D /* ToiletAnnotationView.swift in Sources */,
+				F82655481D930A190007A089 /* ListActivity.swift in Sources */,
 				F8775B0D1D919255003B9F4D /* DetailViewController.swift in Sources */,
 				F82FB1C41D81D060001FE39D /* ListCell.swift in Sources */,
 				F8EAE7FC1D5FA6A900D60DAB /* ViewController.swift in Sources */,

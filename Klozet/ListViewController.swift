@@ -16,7 +16,7 @@ protocol ListToiletsDelegate {
     var isFilterPriceSelected: Bool { get set }
     var locationDelegate: UserLocation? { get }
     func reloadTable()
-    func startUpdating()
+    //func startUpdating()
     func updateToilets(toilets: Array<Toilet>)
 }
 
@@ -36,8 +36,8 @@ class ListViewController: UIViewController, DirectionsDelegate, ListTableDelegat
     
     var locationDelegate: UserLocation?
     
-    var activityContainerView = UIView()
-    let activityIndicator = UIActivityIndicatorView()
+    var activityView = ActivityView()
+    var activityIndicator = UIActivityIndicatorView()
     
     var didOrderToilets = false
     
@@ -52,11 +52,15 @@ class ListViewController: UIViewController, DirectionsDelegate, ListTableDelegat
         
         navigationController?.navigationBar.tintColor = UIColor(red: 1.00, green: 0.42, blue: 0.20, alpha: 1.0)
         
+        //Have not ordered toilets yet, show activityIndicator
+        if didOrderToilets == false {
+            activityView = ActivityView(view: view)
+            activityIndicator = activityView.activityIndicator
+        }
+        
         let _ = ListControllerContainer(view: view, toiletsDelegate: self)
         
-        if didOrderToilets == false || didOrderToilets {
-            setIndicatorView()
-        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,49 +68,6 @@ class ListViewController: UIViewController, DirectionsDelegate, ListTableDelegat
         //Deselect selected row
         guard let indexPath = tableView.indexPathForSelectedRow else {return}
         tableView.deselectRow(at: indexPath, animated: false)
-    }
-    
-    
-    //For fututure implementation when loading gets too long
-    fileprivate func setIndicatorView() {
-        
-        view.layoutIfNeeded()
-        
-        activityContainerView.isHidden = true
-        //- 50 for listController at the bottom
-        activityContainerView.frame.size = CGSize(width: tableView.frame.width, height: tableView.frame.height - 50)
-        activityContainerView.backgroundColor = UIColor.white
-        view.addSubview(activityContainerView)
-        view.bringSubview(toFront: activityContainerView)
-        
-        let activityStack = UIStackView()
-        activityStack.frame = activityContainerView.frame
-        activityStack.backgroundColor = UIColor.orange
-        view.addSubview(activityStack)
-        view.bringSubview(toFront: activityStack)
-        
-        activityStack.axis = .vertical
-        activityStack.spacing = 13
-        activityStack.alignment = .center
-
-        activityIndicator.sizeToFit()
-        activityIndicator.activityIndicatorViewStyle = .gray
-        activityIndicator.hidesWhenStopped = true
-        
-        let activityLabel = UILabel()
-        activityLabel.text = "...načítání".localized
-        activityLabel.textColor = UIColor.gray
-        
-        activityStack.addArrangedSubview(activityIndicator)
-        activityStack.addArrangedSubview(activityLabel)
-        activityStack.translatesAutoresizingMaskIntoConstraints = false
-        
-        activityStack.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        activityStack.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-    
-        
-        startUpdating()
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -129,15 +90,17 @@ extension ListViewController: ListToiletsDelegate {
     func reloadTable() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
-            self.activityContainerView.isHidden = true
+            self.activityView.isHidden = true
             self.activityIndicator.stopAnimating()
         }
     }
     
+    /*
     func startUpdating() {
-        activityContainerView.isHidden = false
+        activityView.isHidden = false
         activityIndicator.startAnimating()
     }
+ */
 }
 
 extension ListViewController: UITableViewDataSource {
