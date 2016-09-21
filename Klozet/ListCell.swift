@@ -35,7 +35,10 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        
+        //Same background color for image when selected / highlighted
         imageBackground.backgroundColor = Colors.pumpkinColor
+        
     }
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {

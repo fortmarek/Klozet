@@ -175,7 +175,7 @@
                                             <outlet property="openLabel" destination="sxw-bR-04X" id="P6D-Si-gC0"/>
                                             <outlet property="priceLabel" destination="4Eg-r5-zve" id="odI-Ra-87C"/>
                                             <outlet property="subaddressLabel" destination="wT5-Ln-dMi" id="yCf-F4-Snq"/>
-                                            <segue destination="d2y-rP-cyU" kind="show" id="uzg-Lb-1yb"/>
+                                            <segue destination="d2y-rP-cyU" kind="show" identifier="detailSegue" id="uzg-Lb-1yb"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -195,7 +195,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BXe-Xi-ZKL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="959.20000000000005" y="274.81259370314842"/>
+            <point key="canvasLocation" x="998" y="275"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="WxZ-l5-ZOu">

@@ -17,9 +17,14 @@ protocol ListToiletsDelegate {
     var locationDelegate: UserLocation? { get }
     func reloadTable()
     func startUpdating()
+    func updateToilets(toilets: Array<Toilet>)
 }
 
-class ListViewController: UIViewController, DirectionsDelegate {
+protocol ListTableDelegate {
+    func reloadTable()
+}
+
+class ListViewController: UIViewController, DirectionsDelegate, ListTableDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -34,6 +39,7 @@ class ListViewController: UIViewController, DirectionsDelegate {
     var activityContainerView = UIView()
     let activityIndicator = UIActivityIndicatorView()
     
+    var didOrderToilets = false
     
     
     override func viewDidLoad() {
@@ -48,7 +54,16 @@ class ListViewController: UIViewController, DirectionsDelegate {
         
         let _ = ListControllerContainer(view: view, toiletsDelegate: self)
         
-        //setIndicatorView()
+        if didOrderToilets == false || didOrderToilets {
+            setIndicatorView()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        //Deselect selected row
+        guard let indexPath = tableView.indexPathForSelectedRow else {return}
+        tableView.deselectRow(at: indexPath, animated: false)
     }
     
     
@@ -59,19 +74,45 @@ class ListViewController: UIViewController, DirectionsDelegate {
         
         activityContainerView.isHidden = true
         //- 50 for listController at the bottom
-        activityContainerView.frame.size = CGSize(width: tableView.frame.width, height: tableView.frame.height - 200)
+        activityContainerView.frame.size = CGSize(width: tableView.frame.width, height: tableView.frame.height - 50)
         activityContainerView.backgroundColor = UIColor.white
         view.addSubview(activityContainerView)
         view.bringSubview(toFront: activityContainerView)
         
-        activityIndicator.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        let activityStack = UIStackView()
+        activityStack.frame = activityContainerView.frame
+        activityStack.backgroundColor = UIColor.orange
+        view.addSubview(activityStack)
+        view.bringSubview(toFront: activityStack)
+        
+        activityStack.axis = .vertical
+        activityStack.spacing = 13
+        activityStack.alignment = .center
+
+        activityIndicator.sizeToFit()
         activityIndicator.activityIndicatorViewStyle = .gray
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.center = CGPoint(x: tableView.bounds.width * 0.5, y: tableView.bounds.height * 0.3)
-        activityContainerView.addSubview(activityIndicator)
         
-        activityIndicator.startAnimating()
+        let activityLabel = UILabel()
+        activityLabel.text = "...načítání".localized
+        activityLabel.textColor = UIColor.gray
         
+        activityStack.addArrangedSubview(activityIndicator)
+        activityStack.addArrangedSubview(activityLabel)
+        activityStack.translatesAutoresizingMaskIntoConstraints = false
+        
+        activityStack.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        activityStack.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    
+        
+        startUpdating()
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "detailSegue" {
+            
+        }
     }
     
     
@@ -79,17 +120,23 @@ class ListViewController: UIViewController, DirectionsDelegate {
 }
 
 extension ListViewController: ListToiletsDelegate {
+    
+    func updateToilets(toilets: Array<Toilet>) {
+        self.toilets = toilets
+        reloadTable()
+    }
+    
     func reloadTable() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
-            //self.activityContainerView.isHidden = true
-            //self.activityIndicator.stopAnimating()
+            self.activityContainerView.isHidden = true
+            self.activityIndicator.stopAnimating()
         }
     }
     
     func startUpdating() {
-        //activityContainerView.isHidden = false
-        //activityIndicator.startAnimating()
+        activityContainerView.isHidden = false
+        activityIndicator.startAnimating()
     }
 }
 

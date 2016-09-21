@@ -61,7 +61,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
     
     var locationManager = CLLocationManager()
     
-    let group = DispatchGroup()
+    var didOrderToilets = false
+    var toiletsDelegate: ListToiletsDelegate?
     
 
     override func viewDidLoad() {
@@ -98,7 +99,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
             })
             
             self.orderToilets()
-            
         })
     }
     
@@ -199,8 +199,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
     //Order toilets depending on distance from user
     fileprivate func orderToilets() {
         
-        group.enter()
-        
         //Asynchronouly order toilets by distance, make them ready for list
         DispatchQueue.global().async {
             self.locationDelegate = self
@@ -210,7 +208,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
             })
             
             //Done ordering toilets
-            self.group.leave()
+            self.didOrderToilets = true
+            self.toiletsDelegate?.updateToilets(toilets: self.toilets)
         }
         
         
@@ -222,15 +221,17 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         if segue.identifier == "listSegue" {
             
             //Wait for toilets to be ordered by distance
-            group.wait()
-
+            
             //Check viewController type
             guard let listViewController = segue.destination as? ListViewController else {return}
             
             listViewController.locationDelegate = self
             
+            toiletsDelegate = listViewController
+            
             //Passing toilets
             listViewController.toilets = self.toilets
+            listViewController.didOrderToilets = self.didOrderToilets
         }
     }
     
