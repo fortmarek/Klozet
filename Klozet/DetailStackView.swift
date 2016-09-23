@@ -22,40 +22,32 @@ class DetailStackView: UIStackView {
         view.addSubview(self)
         translatesAutoresizingMaskIntoConstraints = false
         
-        guard let navigationController = navigationController else {return}
-        
         //TopAnchor to bottom of navigationBar (by adding its x origin and height)
+        guard let navigationController = navigationController else {return}
         let topMainAnchor = navigationController.navigationBar.frame.height + navigationController.navigationBar.frame.origin.x
-        
         topAnchor.constraint(equalTo: view.topAnchor, constant: topMainAnchor).isActive = true
-        widthAnchor.constraint(equalTo: view.widthAnchor)
+        
+        //WidthAnchor
+        widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        
+        //Axis
         axis = .vertical
         
         
-        setImageStack()
-        
-        
+        setImageView()
         
     }
     
-    fileprivate func setImageStack() {
+    fileprivate func setTableView() {
         
-        let imageStack = UIStackView()
-        
-        addArrangedSubview(imageStack)
-        
-        imageStack.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        imageStack.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        imageStack.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        imageStack.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        imageStack.translatesAutoresizingMaskIntoConstraints = false
-        
-        imageStack.axis = .horizontal
-        imageStack.alignment = .fill
+    }
+    
+    fileprivate func setImageView() {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "ToiletPic")
+        imageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
         
-        imageStack.addArrangedSubview(imageView)
+        addArrangedSubview(imageView)
     }
     
     required init(coder: NSCoder) {
