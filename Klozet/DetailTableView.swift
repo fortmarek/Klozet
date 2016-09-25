@@ -45,7 +45,7 @@ extension TableViewController: TableViewData {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 {
-            return OpenTimeCell(style: .default, reuseIdentifier: "openTimeCell")
+            return OpenTimeCell(style: .default, reuseIdentifier: "openTimeCell", openTimes: ["K"])
         }
         
         else {
@@ -65,27 +65,42 @@ extension TableViewController: TableViewData {
 }
 
 class OpenTimeCell: UITableViewCell, LeftLabelInterface {
+    
+    var openTimes = [String]()
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        //translatesAutoresizingMaskIntoConstraints = false
-        
         let cellStackView = UIStackView()
         cellStackView.axis = .horizontal
-        cellStackView.distribution = .fill
         cellStackView.alignment = .center
         cellStackView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(cellStackView)
+        
+        
         cellStackView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         cellStackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        cellStackView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
-        cellStackView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
         
         setLeftLabel(stackView: cellStackView, text: "Otevírací doba".localized)
-        
-        print(cellStackView.frame)
     }
-
+    
+    convenience init(style: UITableViewCellStyle, reuseIdentifier: String?, openTimes: Array<String>) {
+        self.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+    }
+    
+    
+    fileprivate func setOpenTimeStack(stackView: UIStackView) {
+        let openTimeStack = UIStackView()
+        stackView.addArrangedSubview(openTimeStack)
+        
+        openTimeStack.axis = .vertical
+        openTimeStack.alignment = .leading
+        
+        openTimeStack.rightAnchor.constraint(equalTo: stackView.rightAnchor, constant: 5).isActive = true
+    }
+    
+    
     
     
     
@@ -104,11 +119,10 @@ extension LeftLabelInterface {
         let label = UILabel()
         label.text = text
         label.textColor = Colors.pumpkinColor
-        label.font = UIFont.systemFont(ofSize: 15)
+        label.font = UIFont.systemFont(ofSize: 18)
         
         stackView.addArrangedSubview(label)
-        label.leftAnchor.constraint(equalTo: stackView.leftAnchor, constant: 10).isActive = true
-        print(label.frame)
+        label.leftAnchor.constraint(equalTo: stackView.leftAnchor, constant: 15).isActive = true
     }
 }
 

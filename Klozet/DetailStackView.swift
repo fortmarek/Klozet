@@ -37,26 +37,6 @@ class DetailStackView: UIStackView {
         axis = .vertical
         
         distribution = .fill
-        
-        
-        setImageView()
-        
-        setTableView()
-        
-    }
-    
-    fileprivate func setTableView() {
-        let tableView = DetailTableView()
-        //tableView.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        addArrangedSubview(tableView)
-    }
-    
-    fileprivate func setImageView() {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "ToiletPic")
-        imageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        
-        addArrangedSubview(imageView)
     }
     
     required init(coder: NSCoder) {
