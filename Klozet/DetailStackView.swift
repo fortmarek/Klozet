@@ -27,19 +27,28 @@ class DetailStackView: UIStackView {
         let topMainAnchor = navigationController.navigationBar.frame.height + navigationController.navigationBar.frame.origin.x
         topAnchor.constraint(equalTo: view.topAnchor, constant: topMainAnchor).isActive = true
         
+        //BottomAnchor
+        bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
         //WidthAnchor
         widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         
         //Axis
         axis = .vertical
         
+        distribution = .fill
+        
         
         setImageView()
+        
+        setTableView()
         
     }
     
     fileprivate func setTableView() {
-        
+        let tableView = DetailTableView()
+        //tableView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        addArrangedSubview(tableView)
     }
     
     fileprivate func setImageView() {

@@ -13,12 +13,10 @@ class DetailTableView: UITableView {
     
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
-    }
-    
-    convenience init(viewController: DetailViewController) {
-        self.init()
-        self.delegate = viewController
-        self.dataSource = viewController
+        
+        let controller = TableViewController()
+        delegate = controller
+        dataSource = controller
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -27,12 +25,15 @@ class DetailTableView: UITableView {
     
 }
 
-
-protocol DetailTableViewData: UITableViewDataSource, UITableViewDelegate {
+class TableViewController: NSObject {
     
 }
 
-extension DetailViewController: DetailTableViewData {
+protocol TableViewData: UITableViewDataSource, UITableViewDelegate {
+    
+}
+
+extension TableViewController: TableViewData {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return UITableViewCell()
