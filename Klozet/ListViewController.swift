@@ -72,7 +72,12 @@ class ListViewController: UIViewController, DirectionsDelegate, ListTableDelegat
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "detailSegue" {
+            guard
+                let detailViewController = segue.destination as? DetailViewController,
+                let indexPath = tableView.indexPathForSelectedRow
+            else {return}
             
+            detailViewController.toilet = toilets[indexPath.row]
         }
     }
     

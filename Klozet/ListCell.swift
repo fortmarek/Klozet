@@ -22,7 +22,7 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate {
     
     var locationDelegate: UserLocation?
     
-    let greenColor = UIColor(red: 0.00, green: 0.75, blue: 0.00, alpha: 1.0)
+    
 
     
     override func awakeFromNib() {
@@ -65,7 +65,7 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate {
         
         //If toilet is for free => green color, otherwise set color to orange
         if price == "Zdarma" {
-            priceLabel.textColor = greenColor
+            priceLabel.textColor = Colors.greenColor
         }
         else {
             priceLabel.textColor = Colors.pumpkinColor
@@ -78,7 +78,7 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate {
         if isToiletOpen(toilet) {
             openLabel.text = "Otevřeno"
             openLabel.sizeToFit()
-            openLabel.textColor = greenColor
+            openLabel.textColor = Colors.greenColor
         }
         
         //Toilet is not open

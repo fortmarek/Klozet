@@ -10,7 +10,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    var toilet = Toilet()
+    var toilet: Toilet?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,16 +26,10 @@ class DetailViewController: UIViewController {
         detailStackView.addArrangedSubview(imageView)
         
         //TableView
-        let tableViewController = TableViewController()
-        
         let tableView = DetailTableView()
-        tableView.delegate = tableViewController
-        tableView.dataSource = tableViewController
+        tableView.delegate = self
+        tableView.dataSource = self
         detailStackView.addArrangedSubview(tableView)
-        
-        
-        
-        
         
     }
 
