@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SwiftyJSON
 
 
 protocol FilterOpen {
@@ -90,27 +91,43 @@ extension FilterOpen {
     func isToiletOpen(_ toilet: Toilet) -> Bool {
         let toiletTimes = toilet.openTimes
         
-        //Int of today's weekday
-        let todayWeekday = Date().getTodayWeekday()
-        
         //Getting dictionary of toilet opening times
         for toiletTimeDict in toiletTimes {
             
-            //If the toilet is open nonstop, I can right away return true
-            if toiletTimeDict["nonstop"].bool == true {
+            //If isToiletOpen, iteration could end, otherwise continue
+            let isToiletOpen = isToiletOpenInInterval(toiletTimeDict: toiletTimeDict)
+            
+            if isToiletOpen {
                 return true
             }
             
-            //Getting array of ints of open weekdays
-            guard
-                let toiletDays = toiletTimeDict["days"].arrayObject as? Array<Int> , toiletDays.index(of: todayWeekday) != nil,
-                let hours = toiletTimeDict["hours"].arrayObject as? Array<String>
-            else {continue}
-            
-            //If the toilet is open on today's weekday, check additionaly time
-            if isOpenInHours(hours) {
-                return true
+            else {
+                continue
             }
+        }
+        
+        //No dict return isToiletOpen as true => toilet is closed
+        return false
+    }
+    
+    func isToiletOpenInInterval(toiletTimeDict: JSON) -> Bool {
+        //Int of today's weekday
+        let todayWeekday = Date().getTodayWeekday()
+        
+        //If the toilet is open nonstop, I can right away return true
+        if toiletTimeDict["nonstop"].bool == true {
+            return true
+        }
+        
+        //Getting array of ints of open weekdays
+        guard
+            let toiletDays = toiletTimeDict["days"].arrayObject as? Array<Int> , toiletDays.index(of: todayWeekday) != nil,
+            let hours = toiletTimeDict["hours"].arrayObject as? Array<String>
+            else {return false}
+        
+        //If the toilet is open on today's weekday, check additionaly time
+        if isOpenInHours(hours) {
+            return true
         }
         
         return false
