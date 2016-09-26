@@ -24,16 +24,18 @@ class OpenTimeCell: UITableViewCell, LeftLabelInterface, FilterOpen {
         let cellStackView = UIStackView()
         cellStackView.axis = .horizontal
         cellStackView.alignment = .center
+        
+        
         cellStackView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(cellStackView)
         
-        
         cellStackView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         cellStackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        cellStackView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        cellStackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -10).isActive = true
         
         setLeftLabel(stackView: cellStackView, text: "Otevírací doba".localized)
-        
-        
+
         setOpenTimeStack(stackView: cellStackView, openTimes: openTimes)
     }
     
@@ -43,9 +45,9 @@ class OpenTimeCell: UITableViewCell, LeftLabelInterface, FilterOpen {
         stackView.addArrangedSubview(openTimeStack)
         
         openTimeStack.axis = .vertical
-        openTimeStack.alignment = .leading
+        //openTimeStack.alignment = .leading
         
-        openTimeStack.rightAnchor.constraint(equalTo: stackView.rightAnchor, constant: 5).isActive = true
+        openTimeStack.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 300).isActive = true
         
         let openTimesAsStrings = openTimesToStrings(openTimes: openTimes)
         
@@ -54,6 +56,8 @@ class OpenTimeCell: UITableViewCell, LeftLabelInterface, FilterOpen {
             openLabel.attributedText = openTime
             openTimeStack.addArrangedSubview(openLabel)
         }
+        
+        print(openTimeStack.frame)
     }
     
     
@@ -158,7 +162,7 @@ class OpenTimeCell: UITableViewCell, LeftLabelInterface, FilterOpen {
         let firstDay = dayIndexToString(index: edgeDays.0)
         let endDay = dayIndexToString(index: edgeDays.1)
         
-        return "\(firstDay)-\(endDay): "
+        return "\(firstDay) - \(endDay): "
     }
     
     fileprivate func dayIndexToString(index: Int?) -> String {

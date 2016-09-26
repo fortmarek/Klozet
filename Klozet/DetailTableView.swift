@@ -67,7 +67,7 @@ extension LeftLabelInterface {
         label.text = text
         label.textColor = Colors.pumpkinColor
         label.font = UIFont.systemFont(ofSize: 18)
-        
+
         stackView.addArrangedSubview(label)
         label.leftAnchor.constraint(equalTo: stackView.leftAnchor, constant: 15).isActive = true
     }
