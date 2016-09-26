@@ -76,6 +76,7 @@ class OpenTimeCell: UITableViewCell, LeftLabelInterface, FilterOpen {
             else {
                 //Days interval
                 openTimesString += getDayInterval(openTimesDays: openTimesData["days"])
+                openTimesString += getHoursInterval(openTimesHours: openTimesData["hours"])
             }
             
             //Add attributedString to array
@@ -96,6 +97,28 @@ class OpenTimeCell: UITableViewCell, LeftLabelInterface, FilterOpen {
         //Toilet is closed, make label orange
         else {
             return Colors.pumpkinColor
+        }
+    }
+    
+    fileprivate func getHoursInterval(openTimesHours: JSON) -> String {
+        guard let hoursArray = openTimesHours.array else {return String()}
+        
+        
+        let firstHour = getHourString(hour: hoursArray[0].string)
+        let secondHour = getHourString(hour: hoursArray[1].string)
+        
+        return "\(firstHour) - \(secondHour)"
+    }
+    
+    fileprivate func getHourString(hour: String?) -> String {
+        
+        guard let hour = hour else {return "Neznámo"}
+        
+        if hour == "null" {
+            return "Neznámo"
+        }
+        else {
+            return hour
         }
     }
     
