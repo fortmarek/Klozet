@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import SwiftyJSON
 
-class OpenTimeCell: UITableViewCell, LeftLabelInterface, FilterOpen {
+class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -32,7 +32,7 @@ class OpenTimeCell: UITableViewCell, LeftLabelInterface, FilterOpen {
         cellStackView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         cellStackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         cellStackView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        cellStackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -10).isActive = true
+        cellStackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -15).isActive = true
         
         setLeftLabel(stackView: cellStackView, text: "Otevírací doba".localized)
 
@@ -56,8 +56,6 @@ class OpenTimeCell: UITableViewCell, LeftLabelInterface, FilterOpen {
             openLabel.attributedText = openTime
             openTimeStack.addArrangedSubview(openLabel)
         }
-        
-        print(openTimeStack.frame)
     }
     
     

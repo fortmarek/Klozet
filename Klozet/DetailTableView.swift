@@ -57,11 +57,11 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
 
 
 
-protocol LeftLabelInterface {
+protocol DetailCell {
     
 }
 
-extension LeftLabelInterface {
+extension DetailCell {
     func setLeftLabel(stackView: UIStackView, text: String) {
         let label = UILabel()
         label.text = text
