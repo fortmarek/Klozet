@@ -21,18 +21,7 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
     convenience init(style: UITableViewCellStyle, reuseIdentifier: String?, openTimes: Array<JSON>) {
         self.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        let cellStackView = UIStackView()
-        cellStackView.axis = .horizontal
-        cellStackView.alignment = .center
-        
-        
-        cellStackView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(cellStackView)
-        
-        cellStackView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        cellStackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        cellStackView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        cellStackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -15).isActive = true
+        let cellStackView = setCellStack(view: self)
         
         setLeftLabel(stackView: cellStackView, text: "Otevírací doba".localized)
 
@@ -45,19 +34,38 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
         stackView.addArrangedSubview(openTimeStack)
         
         openTimeStack.axis = .vertical
+        openTimeStack.distribution = .fillEqually
+        openTimeStack.spacing = 3
         //openTimeStack.alignment = .leading
         
         openTimeStack.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 300).isActive = true
         
+        
         let openTimesAsStrings = openTimesToStrings(openTimes: openTimes)
+        
+        //Get fontsize depending on number of elements
+        let fontSize = getFontSize(count: openTimesAsStrings.count)
         
         for openTime in openTimesAsStrings {
             let openLabel = UILabel()
             openLabel.attributedText = openTime
+            openLabel.font = UIFont.systemFont(ofSize: fontSize)
             openTimeStack.addArrangedSubview(openLabel)
         }
     }
     
+    fileprivate func getFontSize(count: Int) -> CGFloat {
+        
+        if count == 1 {
+            return 18
+        }
+        else if count == 2 {
+            return 17
+        }
+        else {
+            return 15
+        }
+    }
     
     typealias AttributedArray = Array<NSAttributedString>
     

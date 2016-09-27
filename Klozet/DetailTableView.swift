@@ -16,7 +16,7 @@ class DetailTableView: UITableView {
         super.init(frame: frame, style: style)
                 
         //RowHeight
-        rowHeight = 60
+        rowHeight = 70
         
         //Disable scrolling
         isScrollEnabled = false
@@ -62,7 +62,7 @@ protocol DetailCell {
 }
 
 extension DetailCell {
-    func setLeftLabel(stackView: UIStackView, text: String) {
+    func setLeftLabel(stackView: UIStackView, text: String){
         let label = UILabel()
         label.text = text
         label.textColor = Colors.pumpkinColor
@@ -70,6 +70,23 @@ extension DetailCell {
 
         stackView.addArrangedSubview(label)
         label.leftAnchor.constraint(equalTo: stackView.leftAnchor, constant: 15).isActive = true
+    }
+    
+    func setCellStack(view: UIView) -> UIStackView {
+        let cellStackView = UIStackView()
+        cellStackView.axis = .horizontal
+        cellStackView.alignment = .center
+        
+        
+        cellStackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(cellStackView)
+        
+        cellStackView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        cellStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        cellStackView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        cellStackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15).isActive = true
+        
+        return cellStackView
     }
 }
 
