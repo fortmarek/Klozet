@@ -17,10 +17,21 @@ class PriceCell: UITableViewCell, DetailCell {
     convenience init(style: UITableViewCellStyle, reuseIdentifier: String?, price: String) {
         self.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        let cellStackView = UIStackView()
-        
+        let cellStackView = setCellStack(view: self)
         
         setLeftLabel(stackView: cellStackView, text: "Cena".localized)
+        
+        setPriceLabel(stackView: cellStackView, price: price)
+    }
+    
+    fileprivate func setPriceLabel(stackView: UIStackView, price: String) {
+        let label = UILabel()
+        label.textColor = Colors.greenColor
+        label.text = price
+        
+        stackView.addArrangedSubview(label)
+        
+        label.rightAnchor.constraint(equalTo: stackView.rightAnchor, constant: 15)
     }
     
     

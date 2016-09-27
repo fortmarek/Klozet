@@ -31,15 +31,15 @@ class DetailTableView: UITableView {
 extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let toilet = toilet else {return UITableViewCell()}
+        
         
         if indexPath.row == 0 {
-            guard let toilet = toilet else {return UITableViewCell()}
-
             return OpenTimeCell(style: .default, reuseIdentifier: "openTimeCell", openTimes: toilet.openTimes)
         }
         
         else {
-            return UITableViewCell()
+            return PriceCell(style: .default, reuseIdentifier: "priceCell", price: toilet.price)
         }
     }
 

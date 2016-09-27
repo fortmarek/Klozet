@@ -10,7 +10,13 @@ import Foundation
 import UIKit
 import SwiftyJSON
 
-class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
+protocol OpenTimeLabel {
+    var rightLabelAnchor: NSLayoutAnchor<AnyObject> { get set }
+}
+
+class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen, OpenTimeLabel {
+    
+    var rightLabelAnchor = NSLayoutAnchor()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -36,7 +42,6 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
         openTimeStack.axis = .vertical
         openTimeStack.distribution = .fillEqually
         openTimeStack.spacing = 3
-        //openTimeStack.alignment = .leading
         
         openTimeStack.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 300).isActive = true
         
