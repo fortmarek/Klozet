@@ -12,6 +12,8 @@ class DetailViewController: UIViewController {
     
     var toilet: Toilet?
     
+    var widthDimension = CGFloat()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

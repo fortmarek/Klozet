@@ -35,11 +35,15 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
         
         
         if indexPath.row == 0 {
-            return OpenTimeCell(style: .default, reuseIdentifier: "openTimeCell", openTimes: toilet.openTimes)
+            let openTimeCell = OpenTimeCell(style: .default, reuseIdentifier: "openTimeCell", openTimes: toilet.openTimes)
+            widthDimension = openTimeCell.widthDimension
+            return openTimeCell
         }
         
         else {
-            return PriceCell(style: .default, reuseIdentifier: "priceCell", price: toilet.price)
+            print(widthDimension)
+            let priceCell = PriceCell(style: .default, reuseIdentifier: "priceCell", price: toilet.price, width: widthDimension)
+            return priceCell
         }
     }
 

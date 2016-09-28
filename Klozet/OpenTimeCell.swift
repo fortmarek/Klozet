@@ -10,13 +10,10 @@ import Foundation
 import UIKit
 import SwiftyJSON
 
-protocol OpenTimeLabel {
-    var rightLabelAnchor: NSLayoutAnchor<AnyObject> { get set }
-}
 
-class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen, OpenTimeLabel {
+class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
     
-    var rightLabelAnchor = NSLayoutAnchor()
+    var widthDimension = CGFloat()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -45,7 +42,6 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen, OpenTimeLabel {
         
         openTimeStack.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 300).isActive = true
         
-        
         let openTimesAsStrings = openTimesToStrings(openTimes: openTimes)
         
         //Get fontsize depending on number of elements
@@ -57,6 +53,9 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen, OpenTimeLabel {
             openLabel.font = UIFont.systemFont(ofSize: fontSize)
             openTimeStack.addArrangedSubview(openLabel)
         }
+        openTimeStack.layoutIfNeeded()
+        
+        widthDimension = openTimeStack.frame.size.width
     }
     
     fileprivate func getFontSize(count: Int) -> CGFloat {
