@@ -41,7 +41,6 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         else {
-            print(widthDimension)
             let priceCell = PriceCell(style: .default, reuseIdentifier: "priceCell", price: toilet.price, width: widthDimension)
             return priceCell
         }
@@ -80,6 +79,7 @@ extension DetailCell {
         let cellStackView = UIStackView()
         cellStackView.axis = .horizontal
         cellStackView.alignment = .center
+        
         
         
         cellStackView.translatesAutoresizingMaskIntoConstraints = false

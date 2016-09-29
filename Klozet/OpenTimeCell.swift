@@ -40,7 +40,7 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
         openTimeStack.distribution = .fillEqually
         openTimeStack.spacing = 3
         
-        openTimeStack.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 300).isActive = true
+        openTimeStack.rightAnchor.constraint(equalTo: stackView.rightAnchor, constant: 15).isActive = true
         
         let openTimesAsStrings = openTimesToStrings(openTimes: openTimes)
         
@@ -52,9 +52,9 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
             openLabel.attributedText = openTime
             openLabel.font = UIFont.systemFont(ofSize: fontSize)
             openTimeStack.addArrangedSubview(openLabel)
+            
         }
-        openTimeStack.layoutIfNeeded()
-        
+
         widthDimension = openTimeStack.frame.size.width
     }
     
