@@ -25,6 +25,7 @@
 		F8775B0D1D919255003B9F4D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8775B0C1D919255003B9F4D /* DetailViewController.swift */; };
 		F8778B5C1D999DDE005ACA43 /* OpenTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8778B5B1D999DDE005ACA43 /* OpenTimeCell.swift */; };
 		F8778B5E1D9ABFE8005ACA43 /* PriceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8778B5D1D9ABFE8005ACA43 /* PriceCell.swift */; };
+		F8778B601D9D7D13005ACA43 /* MapInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8778B5F1D9D7D13005ACA43 /* MapInfo.swift */; };
 		F87C8C5E1D873F4F00B9C6EF /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87C8C5D1D873F4F00B9C6EF /* Filter.swift */; };
 		F8E541541D744CA600BA4BE7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E541531D744CA600BA4BE7 /* Extensions.swift */; };
 		F8EAE7FA1D5FA6A900D60DAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE7F91D5FA6A900D60DAB /* AppDelegate.swift */; };
@@ -83,7 +84,6 @@
 		67D98F14D4389FC6AA72E2F3 /* Pods-KlozetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KlozetTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KlozetTests/Pods-KlozetTests.debug.xcconfig"; sourceTree = "<group>"; };
 		68349D920E93E823BFCB4670 /* Pods-Klozet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Klozet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Klozet/Pods-Klozet.debug.xcconfig"; sourceTree = "<group>"; };
 		F818D4471D88482E009B153C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		F82247E11D6784F000C0FB3E /* KlozetPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = KlozetPlayground.playground; sourceTree = "<group>"; };
 		F82655471D930A190007A089 /* ListActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListActivity.swift; sourceTree = "<group>"; };
 		F82884BD1D947A4300F1A737 /* DetailStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailStackView.swift; sourceTree = "<group>"; };
 		F82884C01D957E7600F1A737 /* DetailTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTableView.swift; sourceTree = "<group>"; };
@@ -101,6 +101,7 @@
 		F8775B0C1D919255003B9F4D /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		F8778B5B1D999DDE005ACA43 /* OpenTimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenTimeCell.swift; sourceTree = "<group>"; };
 		F8778B5D1D9ABFE8005ACA43 /* PriceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceCell.swift; sourceTree = "<group>"; };
+		F8778B5F1D9D7D13005ACA43 /* MapInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapInfo.swift; sourceTree = "<group>"; };
 		F87C8C5D1D873F4F00B9C6EF /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		F8E541531D744CA600BA4BE7 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F8EAE7F61D5FA6A900D60DAB /* Klozet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Klozet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,6 +184,7 @@
 				F8775B0C1D919255003B9F4D /* DetailViewController.swift */,
 				F82884BD1D947A4300F1A737 /* DetailStackView.swift */,
 				F82884C01D957E7600F1A737 /* DetailTableView.swift */,
+				F8778B5F1D9D7D13005ACA43 /* MapInfo.swift */,
 				F8778B5B1D999DDE005ACA43 /* OpenTimeCell.swift */,
 				F8778B5D1D9ABFE8005ACA43 /* PriceCell.swift */,
 			);
@@ -258,7 +260,6 @@
 				F82FB1B91D809F27001FE39D /* Directions.swift */,
 				F8E541531D744CA600BA4BE7 /* Extensions.swift */,
 				F818D4471D88482E009B153C /* Constants.swift */,
-				F82247E11D6784F000C0FB3E /* KlozetPlayground.playground */,
 				F8EAE7FD1D5FA6A900D60DAB /* Main.storyboard */,
 				F8EAE8001D5FA6A900D60DAB /* Assets.xcassets */,
 				F8EAE8021D5FA6A900D60DAB /* LaunchScreen.storyboard */,
@@ -439,6 +440,7 @@
 				F82FB1BC1D80AA02001FE39D /* ToiletAnnotationView.swift in Sources */,
 				F82655481D930A190007A089 /* ListActivity.swift in Sources */,
 				F8778B5E1D9ABFE8005ACA43 /* PriceCell.swift in Sources */,
+				F8778B601D9D7D13005ACA43 /* MapInfo.swift in Sources */,
 				F8775B0D1D919255003B9F4D /* DetailViewController.swift in Sources */,
 				F82FB1C41D81D060001FE39D /* ListCell.swift in Sources */,
 				F8EAE7FC1D5FA6A900D60DAB /* ViewController.swift in Sources */,

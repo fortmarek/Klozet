@@ -33,6 +33,7 @@ class DetailViewController: UIViewController {
         tableView.dataSource = self
         detailStackView.addArrangedSubview(tableView)
         
+        _ = MapInfoView(detailStackView: detailStackView)
     }
 
     override func didReceiveMemoryWarning() {

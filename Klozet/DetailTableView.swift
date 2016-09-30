@@ -20,6 +20,11 @@ class DetailTableView: UITableView {
         
         //Disable scrolling
         isScrollEnabled = false
+        
+        allowsSelection = false
+        
+        //Set height to rowHeight * 2
+        heightAnchor.constraint(equalToConstant: 140).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -55,6 +60,8 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     
+    
+    
 }
 
 
@@ -72,7 +79,7 @@ extension DetailCell {
         label.font = UIFont.systemFont(ofSize: 18)
 
         stackView.addArrangedSubview(label)
-        label.leftAnchor.constraint(equalTo: stackView.leftAnchor, constant: 15).isActive = true
+        label.leftAnchor.constraint(equalTo: stackView.leftAnchor).isActive = true
     }
     
     func setCellStack(view: UIView) -> UIStackView {
@@ -87,7 +94,7 @@ extension DetailCell {
         
         cellStackView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         cellStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        cellStackView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        cellStackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15).isActive = true
         cellStackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15).isActive = true
         
         return cellStackView

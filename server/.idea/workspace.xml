@@ -40,8 +40,8 @@
       <file leaf-file-name="wc.json" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wc.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="3779" column="51" selection-start-line="3779" selection-start-column="45" selection-end-line="3779" selection-end-column="51" />
+            <state relative-caret-position="1410">
+              <caret line="94" column="47" selection-start-line="94" selection-start-column="33" selection-end-line="94" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -944,8 +944,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wc.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="3779" column="51" selection-start-line="3779" selection-start-column="45" selection-end-line="3779" selection-end-column="51" />
+        <state relative-caret-position="1410">
+          <caret line="94" column="47" selection-start-line="94" selection-start-column="33" selection-end-line="94" selection-end-column="47" />
           <folding />
         </state>
       </provider>

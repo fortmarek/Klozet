@@ -29,6 +29,7 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
         setLeftLabel(stackView: cellStackView, text: "Otevírací doba".localized)
 
         setOpenTimeStack(stackView: cellStackView, openTimes: openTimes)
+        
     }
     
     
@@ -40,7 +41,7 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
         openTimeStack.distribution = .fillEqually
         openTimeStack.spacing = 3
         
-        openTimeStack.rightAnchor.constraint(equalTo: stackView.rightAnchor, constant: 15).isActive = true
+        openTimeStack.rightAnchor.constraint(equalTo: stackView.rightAnchor).isActive = true
         
         let openTimesAsStrings = openTimesToStrings(openTimes: openTimes)
         

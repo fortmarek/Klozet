@@ -31,12 +31,13 @@ class PriceCell: UITableViewCell, DetailCell {
         let label = UILabel()
         label.textColor = Colors.greenColor
         label.text = price
-        label.textAlignment = .center
+        label.textAlignment = .right
         
         stackView.addArrangedSubview(label)
         
-        label.widthAnchor.constraint(equalToConstant: width).isActive = true
-        label.rightAnchor.constraint(equalTo: stackView.rightAnchor, constant: 15).isActive = true
+        label.rightAnchor.constraint(equalTo: stackView.rightAnchor, constant: -15).isActive = true
+        
+        stackView.layoutIfNeeded()
         
     }
     
