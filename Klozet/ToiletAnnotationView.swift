@@ -111,10 +111,10 @@ class DirectionButton: UIButton, DirectionsDelegate {
             var perspective = CATransform3DIdentity
             perspective.m34 = -1.0 / 500
             //0, 0, 0, 0 because we want default value (we start this animation with already rotated title)
-            self.titleLabel?.layer.transform = CATransform3DConcat(perspective, CATransform3DMakeRotation(0, 0, 0, 0))
+            self.layer.transform = CATransform3DConcat(perspective, CATransform3DMakeRotation(0, 0, 0, 0))
             
             //Opacity
-            self.titleLabel?.alpha = 1
+            self.alpha = 1
             
             //Needed to animate imageEdgeInset
             superview.layoutIfNeeded()

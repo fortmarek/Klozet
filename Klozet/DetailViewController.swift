@@ -33,7 +33,9 @@ class DetailViewController: UIViewController {
         tableView.dataSource = self
         detailStackView.addArrangedSubview(tableView)
         
-        _ = MapInfoView(detailStackView: detailStackView)
+        
+        guard let toilet = toilet else {return}
+        _ = MapInfoView(detailStackView: detailStackView, toilet: toilet)
     }
 
     override func didReceiveMemoryWarning() {
