@@ -73,6 +73,9 @@ class MapInfoText: UIStackView, DirectionsDelegate, UserLocation {
         setEtaImage()
         
         setEtaLabel(toiletCoordinate: toilet.coordinate)
+        
+        let proxyView = UIView()
+        addArrangedSubview(proxyView)
     }
     
     fileprivate func setEtaLabel(toiletCoordinate: CLLocationCoordinate2D) {
@@ -85,13 +88,16 @@ class MapInfoText: UIStackView, DirectionsDelegate, UserLocation {
             eta in
             etaLabel.text = eta
             
+            etaLabel.sizeToFit()
+            let height = etaLabel.frame.size.height - 10
+            print(height)
             //Start with label rotated upside down to then rotate it to the right angle
             etaLabel.layer.transform = CATransform3DMakeRotation(CGFloat(M_PI / 2), 1, 0, 0)
-            etaLabel.sizeToFit()
+            
             
             self.layoutIfNeeded()
             
-            self.etaAppear(etaLabel: etaLabel)
+            self.etaAppear(etaLabel: etaLabel, height: height)
         })
         
     }
@@ -108,15 +114,17 @@ class MapInfoText: UIStackView, DirectionsDelegate, UserLocation {
         
     }
     
-    fileprivate func etaAppear(etaLabel: UILabel) {
+    fileprivate func etaAppear(etaLabel: UILabel, height: CGFloat) {
         
         etaLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 58 - (etaLabel.frame.size.width / 2)).isActive = true
         print(etaLabel.frame)
 
         UIView.animate(withDuration: 0.4, delay: 0, options: UIViewAnimationOptions(), animations: {
             
-            self.etaImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
-            print(etaLabel.frame.size.height)
+            self.etaImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 30 - height).isActive = true
+        
+            etaLabel.heightAnchor.constraint(equalToConstant: height + 20).isActive = true
+            
             //Rotation - 3D animation
             var perspective = CATransform3DIdentity
             perspective.m34 = -1.0 / 500
@@ -128,6 +136,7 @@ class MapInfoText: UIStackView, DirectionsDelegate, UserLocation {
             
             //Needed to animate imageEdgeInset
             self.layoutIfNeeded()
+            
             
             }, completion: nil)
     }
