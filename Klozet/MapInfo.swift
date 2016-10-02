@@ -57,44 +57,63 @@ class MapInfoText: UIStackView, DirectionsDelegate, UserLocation {
     convenience init(mapStack: UIStackView, toilet: Toilet) {
         self.init()
         
-        locationManager.startUpdatingLocation()
+        setStack(mapStack: mapStack)
         
+        setEtaStack(toilet: toilet)
+        
+        setAddressInfo(mainAddress: toilet.title, subAddress: toilet.subtitle)
+    }
+    
+    fileprivate func setStack(mapStack: UIStackView) {
+        //Location
+        locationManager.startUpdatingLocation()
         locationDelegate = self
         
+        //Add self to mapStack
         mapStack.addArrangedSubview(self)
         
+        //MapInfoText stack properties
         axis = .horizontal
         alignment = .center
         distribution = .fill
         
+        //Anchors
         heightAnchor.constraint(equalToConstant: 80).isActive = true
         rightAnchor.constraint(equalTo: mapStack.rightAnchor).isActive = true
         leftAnchor.constraint(equalTo: mapStack.leftAnchor).isActive = true
+    }
+    
+    fileprivate func setEtaStack(toilet: Toilet) {
         
+        //EtaStack init
         let etaStack = UIStackView()
         etaStack.axis = .vertical
         etaStack.alignment = .center
         etaStack.spacing = 3
         addArrangedSubview(etaStack)
-    
+        
+        //Add walking image
         setEtaImage(etaStack: etaStack)
         
+        //Add eta under walking image
         setEtaLabel(etaStack: etaStack, toiletCoordinate: toilet.coordinate)
-        
-        setAddressInfo(mainAddress: toilet.title, subAddress: toilet.subtitle)
     }
     
     fileprivate func setEtaLabel(etaStack: UIStackView, toiletCoordinate: CLLocationCoordinate2D) {
-        let etaLabel = UILabel()
         
+        //etaLabel init
+        let etaLabel = UILabel()
         etaLabel.alpha = 0
         etaLabel.textColor = Colors.pumpkinColor
         
+        //Get eta string for etaLabel
         getEta(toiletCoordinate, completion: {
             eta in
             etaLabel.text = eta
             
+            //Prepare eta for animation
             self.etaPrepare(etaStack: etaStack, etaLabel: etaLabel)
+            //Animate eta label appearance
             self.etaAppear(etaStack: etaStack, etaLabel: etaLabel)
         })
         
@@ -109,17 +128,16 @@ class MapInfoText: UIStackView, DirectionsDelegate, UserLocation {
     }
     
     fileprivate func etaPrepare(etaStack: UIStackView, etaLabel: UILabel) {
+        etaStack.addArrangedSubview(etaLabel)
         etaLabel.sizeToFit()
-        
+
+        //Have to set position for the CATransform to properly work
         etaLabel.frame.origin.y = self.etaImage.frame.size.height
         etaLabel.frame.origin.x = self.etaImage.frame.origin.x - (etaLabel.frame.size.width - self.etaImage.frame.size.width) / 2
         
-        self.layoutIfNeeded()
         
         //Start with label rotated upside down to then rotate it to the right angle
         etaLabel.layer.transform = CATransform3DMakeRotation(CGFloat(M_PI / 2), 1, 0, 0)
-        
-        etaStack.addArrangedSubview(etaLabel)
 
     }
     
@@ -135,7 +153,7 @@ class MapInfoText: UIStackView, DirectionsDelegate, UserLocation {
             //Opacity
             etaLabel.alpha = 1
             
-            //Needed to animate imageEdgeInset
+            //Animate layout changes
             etaStack.layoutIfNeeded()
             
             }, completion: nil)
@@ -161,6 +179,11 @@ class MapInfoText: UIStackView, DirectionsDelegate, UserLocation {
         
         let subAddressLabel = UILabel()
         subAddressLabel.text = subAddress
+        
+        if subAddress == "" {
+            subAddressLabel.text = "K"
+            subAddressLabel.alpha = 0
+        }
         addressStack.addArrangedSubview(subAddressLabel)
         
         
