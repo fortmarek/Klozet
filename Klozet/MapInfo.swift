@@ -63,68 +63,69 @@ class MapInfoText: UIStackView, DirectionsDelegate, UserLocation {
         
         mapStack.addArrangedSubview(self)
         
-        axis = .vertical
-        alignment = .leading
+        axis = .horizontal
+        alignment = .center
+        distribution = .fill
         
         heightAnchor.constraint(equalToConstant: 80).isActive = true
         rightAnchor.constraint(equalTo: mapStack.rightAnchor).isActive = true
         leftAnchor.constraint(equalTo: mapStack.leftAnchor).isActive = true
         
-        setEtaImage()
+        let etaStack = UIStackView()
+        etaStack.axis = .vertical
+        etaStack.alignment = .center
+        etaStack.spacing = 3
+        addArrangedSubview(etaStack)
+    
+        setEtaImage(etaStack: etaStack)
         
-        setEtaLabel(toiletCoordinate: toilet.coordinate)
+        setEtaLabel(etaStack: etaStack, toiletCoordinate: toilet.coordinate)
         
-        let proxyView = UIView()
-        addArrangedSubview(proxyView)
+        setAddressInfo(mainAddress: toilet.title, subAddress: toilet.subtitle)
     }
     
-    fileprivate func setEtaLabel(toiletCoordinate: CLLocationCoordinate2D) {
+    fileprivate func setEtaLabel(etaStack: UIStackView, toiletCoordinate: CLLocationCoordinate2D) {
         let etaLabel = UILabel()
-        addArrangedSubview(etaLabel)
         
         etaLabel.alpha = 0
+        etaLabel.textColor = Colors.pumpkinColor
         
         getEta(toiletCoordinate, completion: {
             eta in
             etaLabel.text = eta
             
-            etaLabel.sizeToFit()
-            let height = etaLabel.frame.size.height - 10
-            print(height)
-            //Start with label rotated upside down to then rotate it to the right angle
-            etaLabel.layer.transform = CATransform3DMakeRotation(CGFloat(M_PI / 2), 1, 0, 0)
-            
-            
-            self.layoutIfNeeded()
-            
-            self.etaAppear(etaLabel: etaLabel, height: height)
+            self.etaPrepare(etaStack: etaStack, etaLabel: etaLabel)
+            self.etaAppear(etaStack: etaStack, etaLabel: etaLabel)
         })
         
     }
     
-    fileprivate func setEtaImage() {
+    fileprivate func setEtaImage(etaStack: UIStackView) {
         etaImage = UIImageView(image: UIImage(named: "WalkingDetail"))
-        addArrangedSubview(etaImage)
-        etaImage.topAnchor.constraint(equalTo: topAnchor, constant: 30).isActive = true
+        etaStack.addArrangedSubview(etaImage)
         etaImage.heightAnchor.constraint(equalToConstant: 36).isActive = true
         etaImage.widthAnchor.constraint(equalToConstant: 36).isActive = true
-        etaImage.leftAnchor.constraint(equalTo: leftAnchor, constant: 40).isActive = true
-        
-        
-        
+        etaImage.leftAnchor.constraint(equalTo: etaStack.leftAnchor, constant: 40).isActive = true
     }
     
-    fileprivate func etaAppear(etaLabel: UILabel, height: CGFloat) {
+    fileprivate func etaPrepare(etaStack: UIStackView, etaLabel: UILabel) {
+        etaLabel.sizeToFit()
         
-        etaLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 58 - (etaLabel.frame.size.width / 2)).isActive = true
-        print(etaLabel.frame)
+        etaLabel.frame.origin.y = self.etaImage.frame.size.height
+        etaLabel.frame.origin.x = self.etaImage.frame.origin.x - (etaLabel.frame.size.width - self.etaImage.frame.size.width) / 2
+        
+        self.layoutIfNeeded()
+        
+        //Start with label rotated upside down to then rotate it to the right angle
+        etaLabel.layer.transform = CATransform3DMakeRotation(CGFloat(M_PI / 2), 1, 0, 0)
+        
+        etaStack.addArrangedSubview(etaLabel)
 
-        UIView.animate(withDuration: 0.4, delay: 0, options: UIViewAnimationOptions(), animations: {
-            
-            self.etaImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 30 - height).isActive = true
+    }
+    
+    fileprivate func etaAppear(etaStack: UIStackView, etaLabel: UILabel) {
         
-            etaLabel.heightAnchor.constraint(equalToConstant: height + 20).isActive = true
-            
+        UIView.animate(withDuration: 0.4, delay: 0, options: UIViewAnimationOptions(), animations: {
             //Rotation - 3D animation
             var perspective = CATransform3DIdentity
             perspective.m34 = -1.0 / 500
@@ -135,10 +136,34 @@ class MapInfoText: UIStackView, DirectionsDelegate, UserLocation {
             etaLabel.alpha = 1
             
             //Needed to animate imageEdgeInset
-            self.layoutIfNeeded()
-            
+            etaStack.layoutIfNeeded()
             
             }, completion: nil)
+    }
+    
+    
+    fileprivate func setAddressInfo(mainAddress: String?, subAddress: String?) {
+        
+        guard
+            let mainAddress = mainAddress,
+            let subAddress = subAddress
+        else {return}
+        
+        let addressStack = UIStackView()
+        addressStack.axis = .vertical
+        addressStack.alignment = .leading
+        addArrangedSubview(addressStack)
+        addressStack.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        
+        let mainAddressLabel = UILabel()
+        mainAddressLabel.text = mainAddress
+        addressStack.addArrangedSubview(mainAddressLabel)
+        
+        let subAddressLabel = UILabel()
+        subAddressLabel.text = subAddress
+        addressStack.addArrangedSubview(subAddressLabel)
+        
+        
     }
     
     
