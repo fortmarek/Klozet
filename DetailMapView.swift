@@ -19,9 +19,10 @@ class DetailMapStack: UIStackView, MKMapViewDelegate {
         
         detailStackView.addArrangedSubview(self)
         
+        
         let mapView = DetailMapView(mapDelegate: self, toilet: toilet)
         
-        layoutIfNeeded()
+        detailStackView.layoutIfNeeded()
         
         let overlayButton = MapOverlayButton(frame: mapView.frame)
         addSubview(overlayButton)
@@ -53,11 +54,16 @@ class DetailMapView: MKMapView {
         
         //delegate = mapDelegate
         
-        //Position
-        let center = CLLocationCoordinate2D(latitude: toilet.coordinate.latitude, longitude: toilet.coordinate.longitude)
+        //Map position and span
         
         //Region
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        
+        //Move map so the pin appears a little bit under the center
+        let latitude = toilet.coordinate.latitude + span.latitudeDelta * 0.3
+        
+        let center = CLLocationCoordinate2DMake(latitude, toilet.coordinate.longitude)
+        let region = MKCoordinateRegion(center: center, span: span)
         
         //Show region in mapView
         setRegion(region, animated: true)
@@ -66,7 +72,6 @@ class DetailMapView: MKMapView {
         
         DispatchQueue.main.async(execute: {
             self.addAnnotation(toilet)
-            self.showAnnotations(self.annotations, animated: true)
         })
         
     }
@@ -76,15 +81,21 @@ class MapOverlayButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         createGradientLayer()
+        
+        addTarget(self, action: #selector(showMapView), for: .touchUpInside)
     }
     
     private func createGradientLayer() {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = bounds
-        gradientLayer.colors = [UIColor.white.cgColor, UIColor.init(white: 1, alpha: 0).cgColor]
-        gradientLayer.locations = [0.0, 0.7]
+        gradientLayer.colors = [UIColor.white.cgColor, UIColor.init(white: 1, alpha: 0.9).cgColor, UIColor.init(white: 1, alpha: 0).cgColor]
+        gradientLayer.locations = [0.0, 0.2, 0.4]
         
         layer.addSublayer(gradientLayer)
+    }
+    
+    func showMapView(sender: UIButton) {
+        print("KKKK")
     }
     
     
