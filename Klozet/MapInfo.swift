@@ -39,7 +39,6 @@ class MapInfoView: UIStackView, UserLocation {
         leftAnchor.constraint(equalTo: detailStackView.leftAnchor).isActive = true
         
         _ = MapInfoText(mapStack: self, toilet: toilet)
-        
     }
     
     

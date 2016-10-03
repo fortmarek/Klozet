@@ -85,7 +85,7 @@
 		67D98F14D4389FC6AA72E2F3 /* Pods-KlozetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KlozetTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KlozetTests/Pods-KlozetTests.debug.xcconfig"; sourceTree = "<group>"; };
 		68349D920E93E823BFCB4670 /* Pods-Klozet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Klozet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Klozet/Pods-Klozet.debug.xcconfig"; sourceTree = "<group>"; };
 		F818D4471D88482E009B153C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		F8243BE81DA2927400BE5D13 /* DetailMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMapView.swift; sourceTree = "<group>"; };
+		F8243BE81DA2927400BE5D13 /* DetailMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailMapView.swift; path = ../DetailMapView.swift; sourceTree = "<group>"; };
 		F82655471D930A190007A089 /* ListActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListActivity.swift; sourceTree = "<group>"; };
 		F82884BD1D947A4300F1A737 /* DetailStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailStackView.swift; sourceTree = "<group>"; };
 		F82884C01D957E7600F1A737 /* DetailTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTableView.swift; sourceTree = "<group>"; };
@@ -186,6 +186,7 @@
 				F8775B0C1D919255003B9F4D /* DetailViewController.swift */,
 				F82884BD1D947A4300F1A737 /* DetailStackView.swift */,
 				F82884C01D957E7600F1A737 /* DetailTableView.swift */,
+				F8243BE81DA2927400BE5D13 /* DetailMapView.swift */,
 				F8778B5F1D9D7D13005ACA43 /* MapInfo.swift */,
 				F8778B5B1D999DDE005ACA43 /* OpenTimeCell.swift */,
 				F8778B5D1D9ABFE8005ACA43 /* PriceCell.swift */,
@@ -230,7 +231,6 @@
 		F8EAE7ED1D5FA6A900D60DAB = {
 			isa = PBXGroup;
 			children = (
-				F8243BE81DA2927400BE5D13 /* DetailMapView.swift */,
 				F8EAE7F81D5FA6A900D60DAB /* Klozet */,
 				F8EAE80D1D5FA6A900D60DAB /* KlozetTests */,
 				F8EAE8181D5FA6A900D60DAB /* KlozetUITests */,

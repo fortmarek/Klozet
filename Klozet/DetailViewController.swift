@@ -36,6 +36,8 @@ class DetailViewController: UIViewController {
         
         guard let toilet = toilet else {return}
         _ = MapInfoView(detailStackView: detailStackView, toilet: toilet)
+        
+        _ = DetailMapStack(detailStackView: detailStackView, toilet: toilet)
     }
 
     override func didReceiveMemoryWarning() {

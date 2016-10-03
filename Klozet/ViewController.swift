@@ -149,6 +149,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         else {
             let toiletAnnotationView = ToiltetAnnotationView(annotation: toiletAnnotation, reuseIdentifier: "toiletAnnotation")
             
+            toiletAnnotationView.centerOffset = CGPoint(x: 0, y: -toiletAnnotationView.frame.height/2)
+            
             //DirectionButton delegate = self => getting user location
             guard let directionButton = toiletAnnotationView.leftCalloutAccessoryView as? DirectionButton else {return toiletAnnotationView}
             directionButton.locationDelegate = self
