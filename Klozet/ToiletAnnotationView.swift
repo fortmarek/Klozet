@@ -11,6 +11,7 @@ import UIKit
 import MapKit
 
 class ToiltetAnnotationView: MKAnnotationView {
+    var presentDelegate: PresentDelegate?
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
@@ -26,7 +27,9 @@ class ToiltetAnnotationView: MKAnnotationView {
         
         //Detailed toilet info button
         let rightButton = UIButton.init(type: .detailDisclosure)
+        rightButton.addTarget(self, action: #selector(detailButtonTapped), for: .touchUpInside)
         rightCalloutAccessoryView = rightButton
+
         
         guard let toiletAnnotation = annotation as? Toilet else {return}
         
@@ -35,6 +38,21 @@ class ToiltetAnnotationView: MKAnnotationView {
         
         //Add target to get directions
         //leftButton.addTarget(self, action: #selector(getDirectionsFromAnnotation), forControlEvents: .TouchUpInside)
+    }
+    
+    
+    
+    func detailButtonTapped() {
+        guard
+            let toilet = annotation as? Toilet,
+            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "detailVC") as? DetailViewController,
+            let presentDelegate = self.presentDelegate
+        else {return}
+        
+        viewController.toilet = toilet
+
+        presentDelegate.presentDetailVC(viewController: viewController)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

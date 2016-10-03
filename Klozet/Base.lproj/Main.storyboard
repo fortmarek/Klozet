@@ -200,7 +200,7 @@
         <!--Detail View Controller-->
         <scene sceneID="WxZ-l5-ZOu">
             <objects>
-                <viewController id="d2y-rP-cyU" customClass="DetailViewController" customModule="Klozet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detailVC" id="d2y-rP-cyU" customClass="DetailViewController" customModule="Klozet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Gwr-ve-x5j"/>
                         <viewControllerLayoutGuide type="bottom" id="gIg-rv-Nlg"/>

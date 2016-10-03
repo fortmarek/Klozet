@@ -10,6 +10,9 @@ import UIKit
 import MapKit
 //import CoreLocation
 
+protocol PresentDelegate {
+    func presentDetailVC(viewController: UIViewController)
+}
 
 protocol AnnotationController {
     var toilets: Array<Toilet> { get set }
@@ -26,7 +29,7 @@ protocol FilterInterfaceDelegate {
 }
 
 
-class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocation, AnnotationController, FilterInterfaceDelegate, DirectionsDelegate {
+class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocation, AnnotationController, FilterInterfaceDelegate, DirectionsDelegate, PresentDelegate {
 
     //UI elements
     @IBOutlet weak var mapView: MKMapView!
@@ -151,6 +154,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
             
             toiletAnnotationView.centerOffset = CGPoint(x: 0, y: -toiletAnnotationView.frame.height/2)
             
+            toiletAnnotationView.presentDelegate = self
+            
             //DirectionButton delegate = self => getting user location
             guard let directionButton = toiletAnnotationView.leftCalloutAccessoryView as? DirectionButton else {return toiletAnnotationView}
             directionButton.locationDelegate = self
@@ -169,6 +174,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         else {return}
         
         directionButton.setEtaTitle()
+        
+        
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
@@ -252,6 +259,12 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
     
     func addSubview(_ view: UIView) {
         self.view.addSubview(view)
+    }
+    
+    
+    func presentDetailVC(viewController: UIViewController) {
+        //self.presentViewContoller(viewController: viewController)
+        self.show(viewController, sender: nil)
     }
 }
 
