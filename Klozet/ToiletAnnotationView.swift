@@ -27,6 +27,7 @@ class ToiltetAnnotationView: MKAnnotationView {
         
         //Detailed toilet info button
         let rightButton = UIButton.init(type: .detailDisclosure)
+        rightButton.tintColor = Colors.pumpkinColor
         rightButton.addTarget(self, action: #selector(detailButtonTapped), for: .touchUpInside)
         rightCalloutAccessoryView = rightButton
 
@@ -50,8 +51,10 @@ class ToiltetAnnotationView: MKAnnotationView {
         else {return}
         
         viewController.toilet = toilet
-
-        presentDelegate.presentDetailVC(viewController: viewController)
+        viewController.navigationController?.navigationItem.leftBarButtonItem?.tintColor = Colors.pumpkinColor
+        
+        
+        presentDelegate.showViewController(viewController: viewController)
         
     }
     
@@ -101,7 +104,7 @@ class DirectionButton: UIButton, DirectionsDelegate {
             let attributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 10), NSForegroundColorAttributeName: UIColor.white]
             self.setAttributedTitle(NSAttributedString(string: eta, attributes: attributes), for: UIControlState())
             self.setAttributedTitle(NSAttributedString(string: eta, attributes: attributes), for: .highlighted)
-            
+
             //Animating ETA title appearance
             self.animateETA()
         })
@@ -129,10 +132,10 @@ class DirectionButton: UIButton, DirectionsDelegate {
             var perspective = CATransform3DIdentity
             perspective.m34 = -1.0 / 500
             //0, 0, 0, 0 because we want default value (we start this animation with already rotated title)
-            self.layer.transform = CATransform3DConcat(perspective, CATransform3DMakeRotation(0, 0, 0, 0))
+            self.titleLabel?.layer.transform = CATransform3DConcat(perspective, CATransform3DMakeRotation(0, 0, 0, 0))
             
             //Opacity
-            self.alpha = 1
+            self.titleLabel?.alpha = 1
             
             //Needed to animate imageEdgeInset
             superview.layoutIfNeeded()

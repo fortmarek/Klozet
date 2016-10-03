@@ -10,10 +10,6 @@ import UIKit
 import MapKit
 //import CoreLocation
 
-protocol PresentDelegate {
-    func presentDetailVC(viewController: UIViewController)
-}
-
 protocol AnnotationController {
     var toilets: Array<Toilet> { get set }
     var toiletsNotOpen: Array<Toilet> { get set }
@@ -260,10 +256,14 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
     func addSubview(_ view: UIView) {
         self.view.addSubview(view)
     }
-    
-    
-    func presentDetailVC(viewController: UIViewController) {
-        //self.presentViewContoller(viewController: viewController)
+}
+
+protocol PresentDelegate {
+    func showViewController(viewController: UIViewController)
+}
+
+extension PresentDelegate where Self: UIViewController {
+    func showViewController(viewController: UIViewController) {
         self.show(viewController, sender: nil)
     }
 }

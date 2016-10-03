@@ -10,9 +10,11 @@ import Foundation
 import MapKit
 
 
+
+
 class DetailMapStack: UIStackView, MKMapViewDelegate {
     
-    convenience init(detailStackView: UIStackView, toilet: Toilet) {
+    convenience init(detailStackView: UIStackView, toilet: Toilet, presentDelegate: PresentDelegate) {
         self.init()
         
         axis = .vertical
@@ -24,14 +26,14 @@ class DetailMapStack: UIStackView, MKMapViewDelegate {
         
         detailStackView.layoutIfNeeded()
         
-        let overlayButton = MapOverlayButton(frame: mapView.frame)
+        let overlayButton = MapOverlayButton(frame: mapView.frame, toilet: toilet)
+        overlayButton.presentDelegate = presentDelegate
         addSubview(overlayButton)
         bringSubview(toFront: overlayButton)
     
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
         
         //Checking that annotation really is a Toilet class
         guard let toiletAnnotation = annotation as? Toilet else {return nil}
@@ -43,6 +45,8 @@ class DetailMapStack: UIStackView, MKMapViewDelegate {
         
         return toiletAnnotationView
     }
+    
+    
 }
 
 class DetailMapView: MKMapView {
@@ -75,11 +79,27 @@ class DetailMapView: MKMapView {
         })
         
     }
+    
+    
 }
 
 class MapOverlayButton: UIButton {
+    
+    var toilet: Toilet?
+    
+    var presentDelegate: PresentDelegate?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        
+    }
+    
+    convenience init(frame: CGRect, toilet: Toilet) {
+        self.init(frame: frame)
+
+        self.toilet = toilet
+        
         createGradientLayer()
         
         addTarget(self, action: #selector(showMapView), for: .touchUpInside)
@@ -95,7 +115,15 @@ class MapOverlayButton: UIButton {
     }
     
     func showMapView(sender: UIButton) {
-        print("KKKK")
+        guard
+            let toilet = self.toilet,
+            let singleToiletVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "singleToiletVC") as? SingleToiletViewController
+        else {return}
+        
+        singleToiletVC.toilet = toilet
+        
+        presentDelegate?.showViewController(viewController: singleToiletVC)
+        
     }
     
     

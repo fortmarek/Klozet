@@ -215,6 +215,24 @@
             </objects>
             <point key="canvasLocation" x="1711" y="275"/>
         </scene>
+        <!--Single Toilet View Controller-->
+        <scene sceneID="j4G-Yl-y1z">
+            <objects>
+                <viewController storyboardIdentifier="singleToiletVC" id="VBR-04-AnA" customClass="SingleToiletViewController" customModule="Klozet" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hXg-eX-jB8"/>
+                        <viewControllerLayoutGuide type="bottom" id="yTK-TB-CmY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0Ji-Dg-XOt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jXN-Yg-Iuv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2452" y="282"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Settings" width="22" height="22"/>

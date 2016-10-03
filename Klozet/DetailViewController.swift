@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, PresentDelegate {
     
     var toilet: Toilet?
     
@@ -37,7 +37,7 @@ class DetailViewController: UIViewController {
         guard let toilet = toilet else {return}
         _ = MapInfoView(detailStackView: detailStackView, toilet: toilet)
         
-        _ = DetailMapStack(detailStackView: detailStackView, toilet: toilet)
+        _ = DetailMapStack(detailStackView: detailStackView, toilet: toilet, presentDelegate: self)
     }
 
     override func didReceiveMemoryWarning() {
