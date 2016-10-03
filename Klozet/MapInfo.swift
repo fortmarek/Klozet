@@ -10,7 +10,13 @@ import Foundation
 import UIKit
 import MapKit
 
-class MapInfoView: UIStackView {
+class MapInfoView: UIStackView, UserLocation {
+    
+    let locationManager = CLLocationManager()
+    
+    //UserLocation
+    var mapView: MKMapView!
+    
     
     
     override init(frame: CGRect) {
@@ -19,6 +25,10 @@ class MapInfoView: UIStackView {
     
     convenience init(detailStackView: UIStackView, toilet: Toilet) {
         self.init()
+        
+        //Location
+        locationManager.startUpdatingLocation()
+        
         
         detailStackView.addArrangedSubview(self)
         
@@ -39,23 +49,21 @@ class MapInfoView: UIStackView {
 }
 
 
-class MapInfoText: UIStackView, DirectionsDelegate, UserLocation {
+class MapInfoText: UIStackView, DirectionsDelegate {
     
     var etaImage = UIImageView()
     
     var locationDelegate: UserLocation?
     
-    var locationManager = CLLocationManager()
-    
-    //UserLocation
-    var mapView: MKMapView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
-    convenience init(mapStack: UIStackView, toilet: Toilet) {
+    convenience init(mapStack: MapInfoView, toilet: Toilet) {
         self.init()
+        
+        locationDelegate = mapStack
         
         setStack(mapStack: mapStack)
         
@@ -65,9 +73,7 @@ class MapInfoText: UIStackView, DirectionsDelegate, UserLocation {
     }
     
     fileprivate func setStack(mapStack: UIStackView) {
-        //Location
-        locationManager.startUpdatingLocation()
-        locationDelegate = self
+        
         
         //Add self to mapStack
         mapStack.addArrangedSubview(self)
@@ -170,7 +176,9 @@ class MapInfoText: UIStackView, DirectionsDelegate, UserLocation {
         let addressStack = UIStackView()
         addressStack.axis = .vertical
         addressStack.alignment = .leading
+        addressStack.spacing = 3
         addArrangedSubview(addressStack)
+        addressStack.topAnchor.constraint(equalTo: topAnchor, constant: 30).isActive = true
         addressStack.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         
         let mainAddressLabel = UILabel()
@@ -179,12 +187,16 @@ class MapInfoText: UIStackView, DirectionsDelegate, UserLocation {
         
         let subAddressLabel = UILabel()
         subAddressLabel.text = subAddress
-        
+        subAddressLabel.font = UIFont.systemFont(ofSize: 14)
+        subAddressLabel.textColor = UIColor.gray
+        subAddressLabel.textAlignment = .left
         if subAddress == "" {
             subAddressLabel.text = "K"
             subAddressLabel.alpha = 0
         }
         addressStack.addArrangedSubview(subAddressLabel)
+        
+        
         
         
     }
