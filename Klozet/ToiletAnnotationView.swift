@@ -99,14 +99,19 @@ class DirectionButton: UIButton, DirectionsDelegate {
     func setEtaTitle() {
 
         getEta(annotation.coordinate, completion: {eta in
+            
             //Title with attributes
             self.titleLabel?.alpha = 0
             let attributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 10), NSForegroundColorAttributeName: UIColor.white]
             self.setAttributedTitle(NSAttributedString(string: eta, attributes: attributes), for: UIControlState())
             self.setAttributedTitle(NSAttributedString(string: eta, attributes: attributes), for: .highlighted)
-
+            
+            //If titleLabel != nil => title is already set, no need for animation
+            guard self.titleLabel?.text == nil else {return}
+            
             //Animating ETA title appearance
             self.animateETA()
+            
         })
     }
     
