@@ -11,7 +11,6 @@
 		F8243BE91DA2927400BE5D13 /* DetailMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8243BE81DA2927400BE5D13 /* DetailMapView.swift */; };
 		F8243BEB1DA2F3C700BE5D13 /* SingleToiletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8243BEA1DA2F3C700BE5D13 /* SingleToiletViewController.swift */; };
 		F82655481D930A190007A089 /* ListActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82655471D930A190007A089 /* ListActivity.swift */; };
-		F82884BE1D947A4300F1A737 /* DetailStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82884BD1D947A4300F1A737 /* DetailStackView.swift */; };
 		F82884C11D957E7600F1A737 /* DetailTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82884C01D957E7600F1A737 /* DetailTableView.swift */; };
 		F82FB1BA1D809F27001FE39D /* Directions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB1B91D809F27001FE39D /* Directions.swift */; };
 		F82FB1BC1D80AA02001FE39D /* ToiletAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB1BB1D80AA02001FE39D /* ToiletAnnotationView.swift */; };
@@ -89,7 +88,6 @@
 		F8243BE81DA2927400BE5D13 /* DetailMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailMapView.swift; path = ../DetailMapView.swift; sourceTree = "<group>"; };
 		F8243BEA1DA2F3C700BE5D13 /* SingleToiletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleToiletViewController.swift; sourceTree = "<group>"; };
 		F82655471D930A190007A089 /* ListActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListActivity.swift; sourceTree = "<group>"; };
-		F82884BD1D947A4300F1A737 /* DetailStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailStackView.swift; sourceTree = "<group>"; };
 		F82884C01D957E7600F1A737 /* DetailTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTableView.swift; sourceTree = "<group>"; };
 		F82FB1B91D809F27001FE39D /* Directions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Directions.swift; sourceTree = "<group>"; };
 		F82FB1BB1D80AA02001FE39D /* ToiletAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToiletAnnotationView.swift; sourceTree = "<group>"; };
@@ -186,7 +184,6 @@
 			isa = PBXGroup;
 			children = (
 				F8775B0C1D919255003B9F4D /* DetailViewController.swift */,
-				F82884BD1D947A4300F1A737 /* DetailStackView.swift */,
 				F82884C01D957E7600F1A737 /* DetailTableView.swift */,
 				F8243BE81DA2927400BE5D13 /* DetailMapView.swift */,
 				F8778B5F1D9D7D13005ACA43 /* MapInfo.swift */,
@@ -454,7 +451,6 @@
 				F8EAE7FC1D5FA6A900D60DAB /* ViewController.swift in Sources */,
 				F8EAE8351D5FC81300D60DAB /* DataController.swift in Sources */,
 				F82FB1CC1D82C82A001FE39D /* FilterOption.swift in Sources */,
-				F82884BE1D947A4300F1A737 /* DetailStackView.swift in Sources */,
 				F82FB1CF1D82C8AE001FE39D /* FilterPrice.swift in Sources */,
 				F82FB1C01D81C7B6001FE39D /* ListViewController.swift in Sources */,
 				F8EAE7FA1D5FA6A900D60DAB /* AppDelegate.swift in Sources */,
