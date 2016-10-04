@@ -58,14 +58,7 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
-    
-    
-    
 }
-
-
-
 
 protocol DetailCell {
     

@@ -50,9 +50,8 @@ class ToiltetAnnotationView: MKAnnotationView {
             let presentDelegate = self.presentDelegate
         else {return}
         
+        viewController.navigationController?.navigationBar.tintColor = Colors.pumpkinColor
         viewController.toilet = toilet
-        viewController.navigationController?.navigationItem.leftBarButtonItem?.tintColor = Colors.pumpkinColor
-        
         
         presentDelegate.showViewController(viewController: viewController)
         
@@ -65,7 +64,7 @@ class ToiltetAnnotationView: MKAnnotationView {
 }
 
 //DirectionButton
-class DirectionButton: UIButton, DirectionsDelegate {
+class DirectionButton: UIButton, DirectionsDelegate, MapsDirections {
     
     var annotation: Toilet
     
@@ -78,7 +77,7 @@ class DirectionButton: UIButton, DirectionsDelegate {
         
         super.init(frame: CGRect(x: 0, y: 0, width: 55, height: 50))
         
-        self.addTarget(self, action: #selector(getDirections), for: .touchUpInside)
+        self.addTarget(self, action: #selector(callGetDirectionsFunc), for: .touchUpInside)
         
         //BackgroundColor
         backgroundColor = Colors.pumpkinColor
@@ -100,17 +99,21 @@ class DirectionButton: UIButton, DirectionsDelegate {
 
         getEta(annotation.coordinate, completion: {eta in
             
+            //If titleLabel != nil => title is already set, no need for animation
+            let shouldAnimate = self.titleLabel?.text == nil
+            
             //Title with attributes
             self.titleLabel?.alpha = 0
             let attributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 10), NSForegroundColorAttributeName: UIColor.white]
             self.setAttributedTitle(NSAttributedString(string: eta, attributes: attributes), for: UIControlState())
             self.setAttributedTitle(NSAttributedString(string: eta, attributes: attributes), for: .highlighted)
             
-            //If titleLabel != nil => title is already set, no need for animation
-            guard self.titleLabel?.text == nil else {return}
             
-            //Animating ETA title appearance
-            self.animateETA()
+            if shouldAnimate {
+                //Animating ETA title appearance
+                self.animateETA()
+            }
+            
             
         })
     }
@@ -148,14 +151,11 @@ class DirectionButton: UIButton, DirectionsDelegate {
             }, completion: nil)
     }
     
-    //Opening Apple maps with directions to the toilet
-    func getDirections(_ sender: DirectionButton) {
-        let destination = sender.annotation.coordinate
-        
-        // TODO: Pass maps the adress
-        let destinationMapItem = MKMapItem(placemark: MKPlacemark(coordinate: destination, addressDictionary: nil))
-        destinationMapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking])
+    
+    func callGetDirectionsFunc(sender: UIButton) {
+        getDirections()
     }
+    
 
     
     required init?(coder aDecoder: NSCoder) {
@@ -163,3 +163,18 @@ class DirectionButton: UIButton, DirectionsDelegate {
     }
 }
 
+
+@objc protocol MapsDirections {
+    var annotation: Toilet { get }
+}
+
+extension MapsDirections {
+    //Opening Apple maps with directions to the toilet
+    func getDirections() {
+        let destination = annotation.coordinate
+        
+        // TODO: Pass maps the adress
+        let destinationMapItem = MKMapItem(placemark: MKPlacemark(coordinate: destination, addressDictionary: nil))
+        destinationMapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking])
+    }
+}

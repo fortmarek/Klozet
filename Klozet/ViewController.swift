@@ -62,7 +62,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
     
     var didOrderToilets = false
     var toiletsDelegate: ListToiletsDelegate?
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -266,5 +265,6 @@ extension PresentDelegate where Self: UIViewController {
     func showViewController(viewController: UIViewController) {
         self.show(viewController, sender: nil)
     }
+
 }
 

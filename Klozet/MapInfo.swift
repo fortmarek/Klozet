@@ -17,13 +17,11 @@ class MapInfoView: UIStackView, UserLocation {
     //UserLocation
     var mapView: MKMapView!
     
-    
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
-    convenience init(detailStackView: UIStackView, toilet: Toilet) {
+    convenience init(detailStackView: UIStackView, toilet: Toilet, presentDelegate: PresentDelegate) {
         self.init()
         
         //Location
@@ -38,7 +36,14 @@ class MapInfoView: UIStackView, UserLocation {
         rightAnchor.constraint(equalTo: detailStackView.rightAnchor).isActive = true
         leftAnchor.constraint(equalTo: detailStackView.leftAnchor).isActive = true
         
-        _ = MapInfoText(mapStack: self, toilet: toilet)
+        let mapInfo = MapInfoText(mapStack: self, toilet: toilet)
+        
+        detailStackView.layoutIfNeeded()
+        
+        let showMapButton = ShowMapButton(frame: mapInfo.frame, toilet: toilet)
+        showMapButton.presentDelegate = presentDelegate
+        addSubview(showMapButton)
+        bringSubview(toFront: showMapButton)
     }
     
     
@@ -195,13 +200,37 @@ class MapInfoText: UIStackView, DirectionsDelegate {
         }
         addressStack.addArrangedSubview(subAddressLabel)
         
-        
-        
-        
     }
     
     
     required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+class ShowMapButton: UIButton, ShowMap {
+    
+    var toilet: Toilet?
+    var presentDelegate: PresentDelegate?
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    
+    convenience init(frame: CGRect, toilet: Toilet) {
+        self.init(frame: frame)
+        
+        self.toilet = toilet
+        
+        addTarget(self, action: #selector(showMapAction), for: .touchUpInside)
+    }
+    
+    func showMapAction(sender: UIButton) {
+        showMapView()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }

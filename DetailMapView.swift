@@ -25,6 +25,7 @@ class DetailMapStack: UIStackView, MKMapViewDelegate {
         let mapView = DetailMapView(mapDelegate: self, toilet: toilet)
         
         detailStackView.layoutIfNeeded()
+
         
         let overlayButton = MapOverlayButton(frame: mapView.frame, toilet: toilet)
         overlayButton.presentDelegate = presentDelegate
@@ -83,7 +84,7 @@ class DetailMapView: MKMapView {
     
 }
 
-class MapOverlayButton: UIButton {
+class MapOverlayButton: UIButton, ShowMap {
     
     var toilet: Toilet?
     
@@ -102,7 +103,7 @@ class MapOverlayButton: UIButton {
         
         createGradientLayer()
         
-        addTarget(self, action: #selector(showMapView), for: .touchUpInside)
+        addTarget(self, action: #selector(showMapAction), for: .touchUpInside)
     }
     
     private func createGradientLayer() {
@@ -114,16 +115,8 @@ class MapOverlayButton: UIButton {
         layer.addSublayer(gradientLayer)
     }
     
-    func showMapView(sender: UIButton) {
-        guard
-            let toilet = self.toilet,
-            let singleToiletVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "singleToiletVC") as? SingleToiletViewController
-        else {return}
-        
-        singleToiletVC.toilet = toilet
-        
-        presentDelegate?.showViewController(viewController: singleToiletVC)
-        
+    func showMapAction(sender: UIButton) {
+        showMapView()
     }
     
     
@@ -133,6 +126,24 @@ class MapOverlayButton: UIButton {
     }
 }
 
+
+protocol ShowMap {
+    var toilet: Toilet? { get }
+    var presentDelegate: PresentDelegate? { get }
+}
+
+extension ShowMap where Self: UIButton {
+    func showMapView() {
+        guard
+            let toilet = self.toilet,
+            let singleToiletVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "singleToiletVC") as? SingleToiletViewController
+            else {return}
+        
+        singleToiletVC.toilet = toilet
+        
+        presentDelegate?.showViewController(viewController: singleToiletVC)
+    }
+}
 
 
 

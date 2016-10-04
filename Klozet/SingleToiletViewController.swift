@@ -19,20 +19,26 @@ class SingleToiletViewController: UIViewController, MKMapViewDelegate, UserLocat
     var toilet: Toilet?
     
     override func viewDidLoad() {
+        //Mapview 
         mapView = MKMapView()
         mapView.frame = view.frame
         mapView.delegate = self
         
         view.addSubview(mapView)
         
+        guard let toilet = self.toilet else {return}
         DispatchQueue.main.async(execute: {
-            guard let toilet = self.toilet else {return}
             self.mapView.addAnnotation(toilet)
         })
         
         centerMap()
         
         startTrackingLocation()
+        
+        let rightBarButtonItem = SingleDirectionsButton(annotation: toilet)
+        navigationItem.rightBarButtonItem = rightBarButtonItem
+        
+        navigationController?.navigationBar.tintColor = Colors.pumpkinColor
     }
     
     private func centerMap() {
@@ -67,9 +73,35 @@ class SingleToiletViewController: UIViewController, MKMapViewDelegate, UserLocat
         
         return toiletAnnotationView
     }
+}
+
+
+class SingleDirectionsButton: UIBarButtonItem, MapsDirections {
     
+    var annotation: Toilet
+    
+    init(annotation: Toilet) {
+        self.annotation = annotation
+        super.init()
+        
+        style = .plain
+        title = "Navigovat".localized
+        action = #selector(callDirectionsMapsFunc)
+        target = self
+        
+    }
+    
+    func callDirectionsMapsFunc() {
+        getDirections()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     
     
     
 }
+
+

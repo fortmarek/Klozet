@@ -35,7 +35,7 @@ class DetailViewController: UIViewController, PresentDelegate {
         
         
         guard let toilet = toilet else {return}
-        _ = MapInfoView(detailStackView: detailStackView, toilet: toilet)
+        _ = MapInfoView(detailStackView: detailStackView, toilet: toilet, presentDelegate: self)
         
         _ = DetailMapStack(detailStackView: detailStackView, toilet: toilet, presentDelegate: self)
     }
