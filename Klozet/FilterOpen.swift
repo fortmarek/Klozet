@@ -55,32 +55,33 @@ class FilterOpenButton: UIButton, FilterOpen, FilterOptionButton {
     
     func filterOpenToilet() {
         
-        //After function ends, change button state
-        defer {
-            changeButtonState()
-        }
-        
-        
-        //Unwrap annotationDelegate
-        guard var annotationDelegate = self.annotationDelegate else {return}
-        
-
-        // == false because state is changed after this function
-        if self.isSelected == false {
-            //Filter toilets to open ones only
-            let toiletsNotOpen = annotationDelegate.toilets.filter({
-                isToiletOpen($0) == false
-            })
+        OperationQueue.main.addOperation({
+            //Change timeButton image
+            self.isSelected = !(self.isSelected)
             
-            //Saving closed toilets so they can be added later
-            annotationDelegate.toiletsNotOpen = toiletsNotOpen
             
-            annotationDelegate.mapView.removeAnnotations(toiletsNotOpen)
-        }
-            //Add back closed toilets (filter not applied)
-        else {
-            annotationDelegate.mapView.addAnnotations(annotationDelegate.toiletsNotOpen)
-        }
+            //Unwrap annotationDelegate
+            guard var annotationDelegate = self.annotationDelegate else {return}
+            
+            
+            // == false because state is changed after this function
+            if self.isSelected  {
+                //Filter toilets to open ones only
+                let toiletsNotOpen = annotationDelegate.toilets.filter({
+                    self.isToiletOpen($0) == false
+                })
+                
+                //Saving closed toilets so they can be added later
+                annotationDelegate.toiletsNotOpen = toiletsNotOpen
+                
+                annotationDelegate.mapView.removeAnnotations(toiletsNotOpen)
+            }
+                //Add back closed toilets (filter not applied)
+            else {
+                annotationDelegate.mapView.addAnnotations(annotationDelegate.toiletsNotOpen)
+            }
+        })
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
