@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ImageSlideshow
 
 class DetailViewController: UIViewController, PresentDelegate {
     
@@ -25,7 +26,17 @@ class DetailViewController: UIViewController, PresentDelegate {
         imageView.image = UIImage(named: "ToiletPic")
         imageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
         
-        detailStackView.addArrangedSubview(imageView)
+        let imagesSlides = ImageSlideshow()
+        imagesSlides.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        
+        guard let image = UIImage(named: "ToiletPic") else {return}
+        
+        imagesSlides.setImageInputs([
+            ImageSource(image: image),
+            ImageSource(image: image)
+            ])
+        
+        detailStackView.addArrangedSubview(imagesSlides)
         
         //TableView
         let tableView = DetailTableView()

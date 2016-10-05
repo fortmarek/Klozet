@@ -28,6 +28,8 @@
 		F8778B5E1D9ABFE8005ACA43 /* PriceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8778B5D1D9ABFE8005ACA43 /* PriceCell.swift */; };
 		F8778B601D9D7D13005ACA43 /* MapInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8778B5F1D9D7D13005ACA43 /* MapInfo.swift */; };
 		F87C8C5E1D873F4F00B9C6EF /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87C8C5D1D873F4F00B9C6EF /* Filter.swift */; };
+		F8C8CAFC1DA53E65003764BE /* ImageSlideshow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8C8CAFB1DA53E65003764BE /* ImageSlideshow.framework */; };
+		F8C8CAFD1DA53E6C003764BE /* ImageSlideshow.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8C8CAFB1DA53E65003764BE /* ImageSlideshow.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F8E541541D744CA600BA4BE7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E541531D744CA600BA4BE7 /* Extensions.swift */; };
 		F8EAE7FA1D5FA6A900D60DAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE7F91D5FA6A900D60DAB /* AppDelegate.swift */; };
 		F8EAE7FC1D5FA6A900D60DAB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE7FB1D5FA6A900D60DAB /* ViewController.swift */; };
@@ -70,6 +72,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				F8C8CAFD1DA53E6C003764BE /* ImageSlideshow.framework in CopyFiles */,
 				F8EAE8381D5FCF0400D60DAB /* SwiftyJSON.framework in CopyFiles */,
 				F8EAE8321D5FB54100D60DAB /* Alamofire.framework in CopyFiles */,
 			);
@@ -105,6 +108,7 @@
 		F8778B5D1D9ABFE8005ACA43 /* PriceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceCell.swift; sourceTree = "<group>"; };
 		F8778B5F1D9D7D13005ACA43 /* MapInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapInfo.swift; sourceTree = "<group>"; };
 		F87C8C5D1D873F4F00B9C6EF /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		F8C8CAFB1DA53E65003764BE /* ImageSlideshow.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageSlideshow.framework; path = Carthage/Build/iOS/ImageSlideshow.framework; sourceTree = "<group>"; };
 		F8E541531D744CA600BA4BE7 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F8EAE7F61D5FA6A900D60DAB /* Klozet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Klozet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8EAE7F91D5FA6A900D60DAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -132,6 +136,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8C8CAFC1DA53E65003764BE /* ImageSlideshow.framework in Frameworks */,
 				F8EAE83A1D6072EF00D60DAB /* CoreLocation.framework in Frameworks */,
 				F8EAE82A1D5FAAF300D60DAB /* MapKit.framework in Frameworks */,
 				F8EAE8301D5FB4DD00D60DAB /* Alamofire.framework in Frameworks */,
@@ -172,6 +177,7 @@
 		C2831FEAD92CB08690D3ADE7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F8C8CAFB1DA53E65003764BE /* ImageSlideshow.framework */,
 				F8EAE8391D6072EF00D60DAB /* CoreLocation.framework */,
 				F8EAE8361D5FCDA700D60DAB /* SwiftyJSON.framework */,
 				F8EAE82F1D5FB4DD00D60DAB /* Alamofire.framework */,

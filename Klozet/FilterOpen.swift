@@ -60,9 +60,11 @@ class FilterOpenButton: UIButton, FilterOpen, FilterOptionButton {
             changeButtonState()
         }
         
+        
         //Unwrap annotationDelegate
         guard var annotationDelegate = self.annotationDelegate else {return}
         
+
         // == false because state is changed after this function
         if self.isSelected == false {
             //Filter toilets to open ones only
