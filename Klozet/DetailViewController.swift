@@ -24,20 +24,26 @@ class DetailViewController: UIViewController, PresentDelegate {
         let detailStackView = setDetailStackView()
         automaticallyAdjustsScrollViewInsets = false
         
+        
         let imagesSlides = ImageSlideshow()
         detailStackView.addArrangedSubview(imagesSlides)
         imagesSlides.heightAnchor.constraint(equalToConstant: 200).isActive = true
     
         guard let image = UIImage(named: "ToiletPic") else {return}
+        guard let secondImage = UIImage(named: "Pin") else {return}
         
+
         imagesSlides.setImageInputs([
             ImageSource(image: image),
-            ImageSource(image: image)
+            ImageSource(image: secondImage)
             ])
+        
+        
         
         //imagesSlides.draggingEnabled = false
         imagesSlides.circular = false
         imagesSlides.pageControlPosition = .hidden
+        imagesSlides.contentScaleMode = .scaleToFill
         
 
         

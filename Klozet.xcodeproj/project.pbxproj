@@ -20,6 +20,7 @@
 		F82FB1C81D82B7C3001FE39D /* FilterOpen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB1C71D82B7C3001FE39D /* FilterOpen.swift */; };
 		F82FB1CC1D82C82A001FE39D /* FilterOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB1CB1D82C82A001FE39D /* FilterOption.swift */; };
 		F82FB1CF1D82C8AE001FE39D /* FilterPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB1CE1D82C8AE001FE39D /* FilterPrice.swift */; };
+		F86EF5C41DA6EBA40095CCEB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86EF5C31DA6EBA40095CCEB /* SettingsViewController.swift */; };
 		F86F35681D8DDCB6001A8F6C /* ListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86F35671D8DDCB5001A8F6C /* ListController.swift */; };
 		F8775B091D8EBAAF003B9F4D /* ListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8775B081D8EBAAF003B9F4D /* ListButton.swift */; };
 		F8775B0B1D908104003B9F4D /* ListButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8775B0A1D908104003B9F4D /* ListButtonDelegate.swift */; };
@@ -100,6 +101,7 @@
 		F82FB1C71D82B7C3001FE39D /* FilterOpen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterOpen.swift; sourceTree = "<group>"; };
 		F82FB1CB1D82C82A001FE39D /* FilterOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterOption.swift; sourceTree = "<group>"; };
 		F82FB1CE1D82C8AE001FE39D /* FilterPrice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterPrice.swift; sourceTree = "<group>"; };
+		F86EF5C31DA6EBA40095CCEB /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F86F35671D8DDCB5001A8F6C /* ListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListController.swift; sourceTree = "<group>"; };
 		F8775B081D8EBAAF003B9F4D /* ListButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListButton.swift; sourceTree = "<group>"; };
 		F8775B0A1D908104003B9F4D /* ListButtonDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListButtonDelegate.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				F82884BF1D957E4A00F1A737 /* DetailViewController */,
 				F82FB1BB1D80AA02001FE39D /* ToiletAnnotationView.swift */,
 				F8243BEA1DA2F3C700BE5D13 /* SingleToiletViewController.swift */,
+				F86EF5C31DA6EBA40095CCEB /* SettingsViewController.swift */,
 				F82FB1B91D809F27001FE39D /* Directions.swift */,
 				F8E541531D744CA600BA4BE7 /* Extensions.swift */,
 				F818D4471D88482E009B153C /* Constants.swift */,
@@ -461,6 +464,7 @@
 				F82FB1C01D81C7B6001FE39D /* ListViewController.swift in Sources */,
 				F8EAE7FA1D5FA6A900D60DAB /* AppDelegate.swift in Sources */,
 				F86F35681D8DDCB6001A8F6C /* ListController.swift in Sources */,
+				F86EF5C41DA6EBA40095CCEB /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
