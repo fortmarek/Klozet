@@ -18,17 +18,16 @@ class DetailViewController: UIViewController, PresentDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.tintColor = Colors.pumpkinColor
+        
         //Main Stack View
         let detailStackView = setDetailStackView()
-        
-        //ImageView
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "ToiletPic")
-        imageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        automaticallyAdjustsScrollViewInsets = false
         
         let imagesSlides = ImageSlideshow()
+        detailStackView.addArrangedSubview(imagesSlides)
         imagesSlides.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        
+    
         guard let image = UIImage(named: "ToiletPic") else {return}
         
         imagesSlides.setImageInputs([
@@ -36,7 +35,11 @@ class DetailViewController: UIViewController, PresentDelegate {
             ImageSource(image: image)
             ])
         
-        detailStackView.addArrangedSubview(imagesSlides)
+        //imagesSlides.draggingEnabled = false
+        imagesSlides.circular = false
+        imagesSlides.pageControlPosition = .hidden
+        
+
         
         //TableView
         let tableView = DetailTableView()
@@ -47,7 +50,6 @@ class DetailViewController: UIViewController, PresentDelegate {
         
         guard let toilet = toilet else {return}
         _ = MapInfoView(detailStackView: detailStackView, toilet: toilet, presentDelegate: self)
-        
         _ = DetailMapStack(detailStackView: detailStackView, toilet: toilet, presentDelegate: self)
     }
 
