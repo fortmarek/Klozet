@@ -13,21 +13,35 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Nastavení".localized
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Zavřít".localized, style: .plain, target: self, action: #selector(dismissToMap))
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : Colors.pumpkinColor]
-        navigationController?.navigationBar.tintColor = Colors.pumpkinColor
+        setNavigation()
         
-        let settingsStack = UIStackView()
-        view.addSubview(settingsStack)
-        settingsStack.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        settingsStack.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        let settingsStack = setSettingsStack()
         
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    private func setSettingsStack() -> UIStackView {
+        let settingsStack = UIStackView()
+        view.addSubview(settingsStack)
+        settingsStack.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        settingsStack.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        
+        return settingsStack
+    }
+    
+    private func setNavigation() {
+        //Navigation title
+        navigationItem.title = "Nastavení".localized
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : Colors.pumpkinColor]
+        
+        //Left navigation item (action to return to MainViewController)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Zavřít".localized, style: .plain, target: self, action: #selector(dismissToMap))
+        
+        navigationController?.navigationBar.tintColor = Colors.pumpkinColor
     }
     
     func dismissToMap() {

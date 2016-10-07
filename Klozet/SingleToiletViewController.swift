@@ -19,39 +19,46 @@ class SingleToiletViewController: UIViewController, MKMapViewDelegate, UserLocat
     var toilet: Toilet?
     
     override func viewDidLoad() {
-        //Mapview 
+        
+        guard let toilet = self.toilet else {return}
+        
+        setMapView(toilet: toilet)
+
+        startTrackingLocation()
+        
+        
+        let rightBarButtonItem = SingleDirectionsButton(annotation: toilet)
+        navigationItem.rightBarButtonItem = rightBarButtonItem
+        navigationController?.navigationBar.tintColor = Colors.pumpkinColor
+    }
+    
+    private func setMapView(toilet: Toilet) {
         mapView = MKMapView()
         mapView.frame = view.frame
         mapView.delegate = self
-        
         view.addSubview(mapView)
         
-        guard let toilet = self.toilet else {return}
         DispatchQueue.main.async(execute: {
             self.mapView.addAnnotation(toilet)
         })
         
+        //Center map to see both toilet and current location
         centerMap()
-        
-        startTrackingLocation()
-        
-        let rightBarButtonItem = SingleDirectionsButton(annotation: toilet)
-        navigationItem.rightBarButtonItem = rightBarButtonItem
-        
-        navigationController?.navigationBar.tintColor = Colors.pumpkinColor
     }
     
     private func centerMap() {
+        
         guard
             let toilet = self.toilet,
             let userLocation = getUserLocation()
         else {return}
         
-        
+        //Center map between user location and toilet
         let latitude = (toilet.coordinate.latitude + userLocation.coordinate.latitude) / 2
         let longitude = (toilet.coordinate.longitude + userLocation.coordinate.longitude) / 2
         let center = CLLocationCoordinate2DMake(latitude, longitude)
         
+        //Span = distance between locations multiplied by 1.4 so  there is some space on the edges of annotations
         let latitudeDelta = abs(toilet.coordinate.latitude - userLocation.coordinate.latitude) * 1.4
         let longitudeDelta = abs(toilet.coordinate.longitude - userLocation.coordinate.longitude) * 1.4
         let span = MKCoordinateSpan(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
@@ -92,6 +99,7 @@ class SingleDirectionsButton: UIBarButtonItem, MapsDirections {
     }
     
     func callDirectionsMapsFunc() {
+        //Open Apple Maps
         getDirections()
     }
     
