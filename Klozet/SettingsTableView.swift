@@ -16,19 +16,19 @@ class SettingsTableView: UITableView {
         super.init(frame: frame, style: style)
         
         //RowHeight
-        rowHeight = 70
+        rowHeight = 60
         
         //Disable scrolling
         isScrollEnabled = false
         
         //Set height to rowHeight * 2
-        heightAnchor.constraint(equalToConstant: 140).isActive = true
-        
+        heightAnchor.constraint(equalToConstant: 120).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
 }
 
@@ -62,9 +62,11 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
             supportCellDelegate?.mailCellTapped()
+            settingsTableView.deselectRow(at: indexPath, animated: true)
         }
         else {
             shareCellDelegate?.shareCellTapped()
+            settingsTableView.deselectRow(at: indexPath, animated: true)
         }
     }
 }

@@ -12,26 +12,33 @@ class SettingsViewController: UIViewController {
     
     var supportCellDelegate: SupportCellDelegate?
     var shareCellDelegate: ShareCellDelegate?
+    
+    var settingsTableView = SettingsTableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = UIColor(red: 0.92, green: 0.92, blue: 0.95, alpha: 1.0)
         
         setNavigation()
         
         let settingsStack = setSettingsStack()
         
-        let iconView = UIImageView(image: UIImage(named: "icon"))
-        settingsStack.addArrangedSubview(iconView)
-        iconView.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        iconView.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        iconView.backgroundColor = UIColor.black
+        setIconView(settingsStack: settingsStack)
         
-        let settingsTableView = SettingsTableView()
+
         settingsTableView.dataSource = self
         settingsTableView.delegate = self
         settingsStack.addArrangedSubview(settingsTableView)
         settingsTableView.leftAnchor.constraint(equalTo: settingsStack.leftAnchor).isActive = true
         settingsTableView.rightAnchor.constraint(equalTo: settingsStack.rightAnchor).isActive = true
+        
+        
+        let creditsLabel = UILabel()
+        creditsLabel.text = "Verze 1.0.0\nVytvořil Marek Fořt"
+        creditsLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightLight)
+        settingsStack.addArrangedSubview(creditsLabel)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,7 +47,18 @@ class SettingsViewController: UIViewController {
     }
     
     
-    
+    private func setIconView(settingsStack: UIStackView) {
+        
+        let iconStackView = UIStackView()
+        settingsStack.addArrangedSubview(iconStackView)
+        iconStackView.distribution = .equalSpacing
+        
+        let iconView = UIImageView(image: UIImage(named: "icon"))
+        iconStackView.addArrangedSubview(iconView)
+        iconView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        iconView.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        iconView.backgroundColor = UIColor.black
+    }
     
     private func setSettingsStack() -> UIStackView {
         let settingsStack = UIStackView()
@@ -55,6 +73,7 @@ class SettingsViewController: UIViewController {
         
         settingsStack.axis = .vertical
         settingsStack.alignment = .center
+        settingsStack.distribution = .equalCentering
         
         return settingsStack
     }
