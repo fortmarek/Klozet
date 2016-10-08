@@ -11,6 +11,7 @@ import UIKit
 class SettingsViewController: UIViewController {
     
     var supportCellDelegate: SupportCellDelegate?
+    var shareCellDelegate: ShareCellDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,3 +75,12 @@ class SettingsViewController: UIViewController {
     }
 
 }
+
+
+extension SettingsViewController: PresentDelegate {
+    func showViewController(viewController: UIViewController) {
+        present(viewController, animated: true, completion: nil)
+    }
+}
+
+

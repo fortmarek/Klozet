@@ -44,8 +44,10 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         }
             
         else {
-            let mailCell = SupportCell(style: .default, reuseIdentifier: "supportCell")
-            return mailCell
+            let shareCell = ShareCell(style: .default, reuseIdentifier: "shareCell")
+            shareCell.presentDelegate = self
+            shareCellDelegate = shareCell
+            return shareCell
         }
     }
     
@@ -59,25 +61,15 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            supportCellDelegate?.mailButtonTapped()
+            supportCellDelegate?.mailCellTapped()
         }
         else {
-            
+            shareCellDelegate?.shareCellTapped()
         }
     }
 }
 
-protocol PresentMailDelegate {
-    func present(viewController: UIViewController)
-}
-
-extension SettingsViewController: PresentDelegate {
-    func showViewController(viewController: UIViewController) {
-        present(viewController, animated: true, completion: nil)
-    }
-}
-
-class SupportCell: UITableViewCell, MFMailComposeViewControllerDelegate, SupportCellDelegate {
+class ShareCell: UITableViewCell, ShareCellDelegate {
     
     var presentDelegate: PresentDelegate?
     
@@ -85,61 +77,30 @@ class SupportCell: UITableViewCell, MFMailComposeViewControllerDelegate, Support
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         accessoryType = .disclosureIndicator
+        
+        textLabel?.text = "Sdílet".localized
+    }
+    
+    func shareCellTapped() {
+        
+        guard let appStoreLink = URL(string: "https://appsto.re/cz/fuvb-.i") else {return}
+
+        let myText = "Nejjednodušší způsob jak najít veřejné záchody!".localized
+        let myObjects = [myText, appStoreLink] as [Any]
+        let activityVC = UIActivityViewController(activityItems: myObjects, applicationActivities: nil)
+        activityVC.excludedActivityTypes = [UIActivityType.addToReadingList]
+        presentDelegate?.showViewController(viewController: activityVC)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func mailButtonTapped() {
-        if MFMailComposeViewController.canSendMail() {
-            let mail = MFMailComposeViewController()
-            mail.mailComposeDelegate = self
-            mail.setToRecipients(["marekfort@me.com"])
-            mail.setSubject("Klozet")
-            
-            presentDelegate?.showViewController(viewController: mail)
-        }
-            //TODO - handle the possibility that the user doesn't use the native mail client
-        else {
-            // show failure alert - open settings to enable email account
-            presentMailAlert()
-        }
-    }
-    
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true, completion: nil)
-    }
-    
-    func presentMailAlert() {
-        
-        // Push notifications are disabled in setting by user.
-        let alertController = UIAlertController(title: "Mail".localized, message: "V nastavení účtů si zapněte 'Pošta'".localized, preferredStyle: .alert)
-        
-        let settingsAction = UIAlertAction(title: "Nastavení".localized, style: .default) { (_) -> Void in
-            let settingsUrl = URL(string: "prefs:root=ACCOUNT_SETTINGS")
-            if let url = settingsUrl {
-                UIApplication.shared.openURL(url)
-            }
-        }
-        
-        alertController.addAction(settingsAction)
-        
-        let cancelAction = UIAlertAction(title: "Zrušit".localized, style: .default, handler: nil)
-        alertController.addAction(cancelAction)
-        
-        
-        presentDelegate?.showViewController(viewController: alertController)
-    }
-    
-    
 }
 
-protocol SupportCellDelegate {
-    func mailButtonTapped()
+protocol ShareCellDelegate {
+    func shareCellTapped()
 }
-
-
 
 
 
