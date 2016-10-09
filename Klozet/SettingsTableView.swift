@@ -78,9 +78,9 @@ class ShareCell: UITableViewCell, ShareCellDelegate {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        accessoryType = .disclosureIndicator
-        
         textLabel?.text = "Sdílet".localized
+        textLabel?.textAlignment = .center
+        textLabel?.textColor = Colors.pumpkinColor
     }
     
     func shareCellTapped() {

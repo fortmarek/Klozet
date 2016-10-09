@@ -26,10 +26,16 @@ class SettingsViewController: UIViewController {
         
         setIconView(settingsStack: settingsStack)
         
-
+        let settingsTableStack = UIStackView()
+        settingsStack.addArrangedSubview(settingsTableStack)
+        settingsTableStack.axis = .vertical
+        settingsTableStack.alignment = .center
+        settingsTableStack.spacing = 15
+        
+        
         settingsTableView.dataSource = self
         settingsTableView.delegate = self
-        settingsStack.addArrangedSubview(settingsTableView)
+        settingsTableStack.addArrangedSubview(settingsTableView)
         settingsTableView.leftAnchor.constraint(equalTo: settingsStack.leftAnchor).isActive = true
         settingsTableView.rightAnchor.constraint(equalTo: settingsStack.rightAnchor).isActive = true
         
@@ -37,7 +43,9 @@ class SettingsViewController: UIViewController {
         let creditsLabel = UILabel()
         creditsLabel.text = "Verze 1.0.0\nVytvořil Marek Fořt"
         creditsLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightLight)
-        settingsStack.addArrangedSubview(creditsLabel)
+        creditsLabel.textAlignment = .center
+        creditsLabel.numberOfLines = 2
+        settingsTableStack.addArrangedSubview(creditsLabel)
         
     }
 
@@ -52,12 +60,20 @@ class SettingsViewController: UIViewController {
         let iconStackView = UIStackView()
         settingsStack.addArrangedSubview(iconStackView)
         iconStackView.distribution = .equalSpacing
+        iconStackView.axis = .vertical
+        iconStackView.alignment = .center
+        iconStackView.spacing = 20
         
         let iconView = UIImageView(image: UIImage(named: "icon"))
         iconStackView.addArrangedSubview(iconView)
-        iconView.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        iconView.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        iconView.backgroundColor = UIColor.black
+        iconView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        iconView.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        
+        let nameLabel = UILabel()
+        nameLabel.text = "Klozet"
+        nameLabel.font = UIFont.systemFont(ofSize: 19)
+        iconStackView.addArrangedSubview(nameLabel)
+        
     }
     
     private func setSettingsStack() -> UIStackView {
@@ -65,15 +81,15 @@ class SettingsViewController: UIViewController {
         settingsStack.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(settingsStack)
         
-        guard let navigationHeight = navigationController?.navigationBar.frame.size.height else {return UIStackView()}
-        settingsStack.topAnchor.constraint(equalTo: view.topAnchor, constant: navigationHeight).isActive = true
-        settingsStack.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        settingsStack.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         settingsStack.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         settingsStack.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         
         settingsStack.axis = .vertical
         settingsStack.alignment = .center
         settingsStack.distribution = .equalCentering
+        settingsStack.spacing = 50
         
         return settingsStack
     }

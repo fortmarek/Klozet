@@ -21,6 +21,7 @@ class SupportCell: UITableViewCell, MFMailComposeViewControllerDelegate, Support
         
         accessoryType = .disclosureIndicator
         
+        textLabel?.textColor = Colors.pumpkinColor
         textLabel?.text = "Podpora".localized
     }
     
