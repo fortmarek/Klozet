@@ -73,7 +73,7 @@ class SingleToiletViewController: UIViewController, MKMapViewDelegate, UserLocat
         //Checking that annotation really is a Toilet class
         guard let toiletAnnotation = annotation as? Toilet else {return nil}
         
-        let toiletAnnotationView = ToiltetAnnotationView(annotation: toiletAnnotation, reuseIdentifier: "singleToiletAnnotation")
+        let toiletAnnotationView = ToiletAnnotationView(annotation: toiletAnnotation, reuseIdentifier: "singleToiletAnnotation")
         
         //Center pin image
         toiletAnnotationView.centerOffset = CGPoint(x: 0, y: -toiletAnnotationView.frame.height/2)
@@ -100,7 +100,7 @@ class SingleDirectionsButton: UIBarButtonItem, MapsDirections {
     
     func callDirectionsMapsFunc() {
         //Open Apple Maps
-        getDirections()
+        getDirections(coordinate: annotation.coordinate)
     }
     
     required init?(coder aDecoder: NSCoder) {

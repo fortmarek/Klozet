@@ -39,7 +39,7 @@ class DetailMapStack: UIStackView, MKMapViewDelegate {
         //Checking that annotation really is a Toilet class
         guard let toiletAnnotation = annotation as? Toilet else {return nil}
         
-        let toiletAnnotationView = ToiltetAnnotationView(annotation: toiletAnnotation, reuseIdentifier: "toiletDetailAnnotation")
+        let toiletAnnotationView = ToiletAnnotationView(annotation: toiletAnnotation, reuseIdentifier: "toiletDetailAnnotation")
         
         //Center pin image
         toiletAnnotationView.centerOffset = CGPoint(x: 0, y: -toiletAnnotationView.frame.height/2)

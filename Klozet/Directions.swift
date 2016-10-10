@@ -21,7 +21,7 @@ extension DirectionsDelegate {
         
         //Set path
         let directions = requestDirections(destination)
-        
+        print(destination)
         //Calculate ETA
         directions.calculateETA(completionHandler: {
             etaResponse, error in
@@ -36,7 +36,7 @@ extension DirectionsDelegate {
     //Converting ETA in NSTimeInterval to minutes or hours
     fileprivate func convertEtaIntervalToString(_ etaInterval: TimeInterval) -> String {
         let etaInt = NSInteger(etaInterval)
-        
+        print(etaInt)
         //Number of seconds in hour
         let oneHour = 3600
         let minutes = (etaInt / 60) % 60

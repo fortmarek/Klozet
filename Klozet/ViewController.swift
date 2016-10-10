@@ -145,7 +145,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         
         //Init of reusableAnnotationView
         else {
-            let toiletAnnotationView = ToiltetAnnotationView(annotation: toiletAnnotation, reuseIdentifier: "toiletAnnotation")
+            let toiletAnnotationView = ToiletAnnotationView(annotation: toiletAnnotation, reuseIdentifier: "toiletAnnotation")
             
             toiletAnnotationView.centerOffset = CGPoint(x: 0, y: -toiletAnnotationView.frame.height/2)
             
@@ -164,12 +164,14 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         guard
-            let toiletAnnotationView = view as? ToiltetAnnotationView,
+            let toiletAnnotationView = view as? ToiletAnnotationView,
+            let toilet = toiletAnnotationView.annotation as? Toilet,
+            //let toiletCoordinate = toilet.coordinate,
             let directionButton = toiletAnnotationView.leftCalloutAccessoryView as? DirectionButton
         else {return}
         
-        directionButton.setEtaTitle()
-        
+        directionButton.toilet = toilet
+        directionButton.setEtaTitle(coordinate: toilet.coordinate)
         
     }
     

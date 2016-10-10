@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import MapKit
 
-class ToiltetAnnotationView: MKAnnotationView {
+class ToiletAnnotationView: MKAnnotationView {
     var presentDelegate: PresentDelegate?
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
@@ -23,7 +23,7 @@ class ToiltetAnnotationView: MKAnnotationView {
         setCalloutAccessoryView()
     }
     
-    fileprivate func setCalloutAccessoryView() {
+    func setCalloutAccessoryView() {
         
         //Detailed toilet info button
         let rightButton = UIButton.init(type: .detailDisclosure)
@@ -31,11 +31,8 @@ class ToiltetAnnotationView: MKAnnotationView {
         rightButton.addTarget(self, action: #selector(detailButtonTapped), for: .touchUpInside)
         rightCalloutAccessoryView = rightButton
 
-        
-        guard let toiletAnnotation = annotation as? Toilet else {return}
-        
         //Left button with ETA
-        leftCalloutAccessoryView = DirectionButton(annotation: toiletAnnotation)
+        leftCalloutAccessoryView = DirectionButton()
         
         //Add target to get directions
         //leftButton.addTarget(self, action: #selector(getDirectionsFromAnnotation), forControlEvents: .TouchUpInside)
@@ -66,15 +63,11 @@ class ToiltetAnnotationView: MKAnnotationView {
 //DirectionButton
 class DirectionButton: UIButton, DirectionsDelegate, MapsDirections {
     
-    var annotation: Toilet
-    
+    var toilet: Toilet?
+
     var locationDelegate: UserLocation?
     
-    init(annotation: Toilet) {
-        
-        //Annotation for directions
-        self.annotation = annotation
-        
+    init() {
         super.init(frame: CGRect(x: 0, y: 0, width: 55, height: 50))
         
         self.addTarget(self, action: #selector(callGetDirectionsFunc), for: .touchUpInside)
@@ -95,12 +88,12 @@ class DirectionButton: UIButton, DirectionsDelegate, MapsDirections {
         titleLabel?.textAlignment = .center
     }
     
-    func setEtaTitle() {
+    func setEtaTitle(coordinate: CLLocationCoordinate2D) {
 
-        getEta(annotation.coordinate, completion: {eta in
+        getEta(coordinate, completion: {eta in
             
             //If titleLabel != nil => title is already set, no need for animation
-            let shouldAnimate = self.titleLabel?.text == nil
+            guard self.titleLabel?.text == nil else {return}
             
             //Title with attributes
             self.titleLabel?.alpha = 0
@@ -108,13 +101,7 @@ class DirectionButton: UIButton, DirectionsDelegate, MapsDirections {
             self.setAttributedTitle(NSAttributedString(string: eta, attributes: attributes), for: UIControlState())
             self.setAttributedTitle(NSAttributedString(string: eta, attributes: attributes), for: .highlighted)
             
-            
-            if shouldAnimate {
-                //Animating ETA title appearance
-                self.animateETA()
-            }
-            
-            
+            self.animateETA()
         })
     }
     
@@ -153,7 +140,8 @@ class DirectionButton: UIButton, DirectionsDelegate, MapsDirections {
     
     
     func callGetDirectionsFunc(sender: UIButton) {
-        getDirections()
+        guard let toilet = self.toilet else {return}
+        getDirections(coordinate: toilet.coordinate)
     }
     
 
@@ -165,13 +153,12 @@ class DirectionButton: UIButton, DirectionsDelegate, MapsDirections {
 
 
 @objc protocol MapsDirections {
-    var annotation: Toilet { get }
 }
 
 extension MapsDirections {
     //Opening Apple maps with directions to the toilet
-    func getDirections() {
-        let destination = annotation.coordinate
+    func getDirections(coordinate: CLLocationCoordinate2D) {
+        let destination = coordinate
         
         // TODO: Pass maps the adress
         let destinationMapItem = MKMapItem(placemark: MKPlacemark(coordinate: destination, addressDictionary: nil))
