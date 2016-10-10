@@ -166,7 +166,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         guard
             let toiletAnnotationView = view as? ToiletAnnotationView,
             let toilet = toiletAnnotationView.annotation as? Toilet,
-            //let toiletCoordinate = toilet.coordinate,
             let directionButton = toiletAnnotationView.leftCalloutAccessoryView as? DirectionButton
         else {return}
         

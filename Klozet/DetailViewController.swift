@@ -11,8 +11,11 @@ import ImageSlideshow
 
 class DetailViewController: UIViewController, PresentDelegate {
     
-    var toilet: Toilet?
+    let imagesSlides = ImageSlideshow()
+    var slideshowTransitioningDelegate: ZoomAnimatedTransitioningDelegate?
     
+    var toilet: Toilet?
+
     var widthDimension = CGFloat()
     
     override func viewDidLoad() {
@@ -25,7 +28,6 @@ class DetailViewController: UIViewController, PresentDelegate {
         automaticallyAdjustsScrollViewInsets = false
         
         
-        let imagesSlides = ImageSlideshow()
         detailStackView.addArrangedSubview(imagesSlides)
         imagesSlides.heightAnchor.constraint(equalToConstant: 200).isActive = true
     
@@ -45,6 +47,8 @@ class DetailViewController: UIViewController, PresentDelegate {
         imagesSlides.pageControlPosition = .hidden
         imagesSlides.contentScaleMode = .scaleToFill
         
+        let imageGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageFullScreen))
+        imagesSlides.addGestureRecognizer(imageGestureRecognizer)
 
         
         //TableView
@@ -57,6 +61,29 @@ class DetailViewController: UIViewController, PresentDelegate {
         guard let toilet = toilet else {return}
         _ = MapInfoView(detailStackView: detailStackView, toilet: toilet, presentDelegate: self)
         _ = DetailMapStack(detailStackView: detailStackView, toilet: toilet, presentDelegate: self)
+    }
+    
+    func imageFullScreen() {
+        let fullScreen = FullScreenSlideshowViewController()
+        // called when full-screen VC dismissed and used to set the page to our original slideshow
+        fullScreen.pageSelected = { page in
+            self.imagesSlides.setScrollViewPage(page, animated: false)
+        }
+        
+        // set the initial page
+        fullScreen.initialImageIndex = imagesSlides.scrollViewPage
+        // set the inputs
+        fullScreen.inputs = imagesSlides.images
+        self.slideshowTransitioningDelegate = ZoomAnimatedTransitioningDelegate(slideshowView: imagesSlides, slideshowController: fullScreen)
+        fullScreen.transitioningDelegate = self.slideshowTransitioningDelegate
+        self.present(fullScreen, animated: true, completion: nil)
+        
+        fullScreen.closeButton.setImage(UIImage(named: "WhiteCross"), for: .normal)
+        fullScreen.view.bringSubview(toFront: fullScreen.closeButton)
+        
+
+
+
     }
 
     override func didReceiveMemoryWarning() {
