@@ -21,7 +21,7 @@ class MapInfoView: UIStackView, UserLocation {
         super.init(frame: frame)
     }
     
-    convenience init(detailStackView: UIStackView, toilet: Toilet, presentDelegate: PresentDelegate) {
+    convenience init(detailStackView: UIStackView, toilet: Toilet, showDelegate: ShowDelegate) {
         self.init()
         
         //Location
@@ -41,7 +41,7 @@ class MapInfoView: UIStackView, UserLocation {
         detailStackView.layoutIfNeeded()
         
         let showMapButton = ShowMapButton(frame: mapInfo.frame, toilet: toilet)
-        showMapButton.presentDelegate = presentDelegate
+        showMapButton.showDelegate = showDelegate
         addSubview(showMapButton)
         bringSubview(toFront: showMapButton)
     }
@@ -211,7 +211,7 @@ class MapInfoText: UIStackView, DirectionsDelegate {
 class ShowMapButton: UIButton, ShowMap {
     
     var toilet: Toilet?
-    var presentDelegate: PresentDelegate?
+    var showDelegate: ShowDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)

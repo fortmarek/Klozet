@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F80FC7D41DA99B5200D4FC05 /* SupportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80FC7D31DA99B5200D4FC05 /* SupportCell.swift */; };
+		F80FC7D61DAC298300D4FC05 /* ImageSlides.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80FC7D51DAC298200D4FC05 /* ImageSlides.swift */; };
 		F818D4481D88482E009B153C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F818D4471D88482E009B153C /* Constants.swift */; };
 		F8243BE91DA2927400BE5D13 /* DetailMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8243BE81DA2927400BE5D13 /* DetailMapView.swift */; };
 		F8243BEB1DA2F3C700BE5D13 /* SingleToiletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8243BEA1DA2F3C700BE5D13 /* SingleToiletViewController.swift */; };
@@ -91,6 +92,7 @@
 		67D98F14D4389FC6AA72E2F3 /* Pods-KlozetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KlozetTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KlozetTests/Pods-KlozetTests.debug.xcconfig"; sourceTree = "<group>"; };
 		68349D920E93E823BFCB4670 /* Pods-Klozet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Klozet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Klozet/Pods-Klozet.debug.xcconfig"; sourceTree = "<group>"; };
 		F80FC7D31DA99B5200D4FC05 /* SupportCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportCell.swift; sourceTree = "<group>"; };
+		F80FC7D51DAC298200D4FC05 /* ImageSlides.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSlides.swift; sourceTree = "<group>"; };
 		F818D4471D88482E009B153C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F8243BE81DA2927400BE5D13 /* DetailMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailMapView.swift; path = ../DetailMapView.swift; sourceTree = "<group>"; };
 		F8243BEA1DA2F3C700BE5D13 /* SingleToiletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleToiletViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				F8775B0C1D919255003B9F4D /* DetailViewController.swift */,
+				F80FC7D51DAC298200D4FC05 /* ImageSlides.swift */,
 				F82884C01D957E7600F1A737 /* DetailTableView.swift */,
 				F8243BE81DA2927400BE5D13 /* DetailMapView.swift */,
 				F8778B5F1D9D7D13005ACA43 /* MapInfo.swift */,
@@ -463,6 +466,7 @@
 				F82884C11D957E7600F1A737 /* DetailTableView.swift in Sources */,
 				F8775B0B1D908104003B9F4D /* ListButtonDelegate.swift in Sources */,
 				F82FB1BE1D81BA41001FE39D /* UserLocation.swift in Sources */,
+				F80FC7D61DAC298300D4FC05 /* ImageSlides.swift in Sources */,
 				F8775B091D8EBAAF003B9F4D /* ListButton.swift in Sources */,
 				F8243BEB1DA2F3C700BE5D13 /* SingleToiletViewController.swift in Sources */,
 				F8778B5C1D999DDE005ACA43 /* OpenTimeCell.swift in Sources */,

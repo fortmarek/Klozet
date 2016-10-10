@@ -14,7 +14,7 @@ import MapKit
 
 class DetailMapStack: UIStackView, MKMapViewDelegate {
     
-    convenience init(detailStackView: UIStackView, toilet: Toilet, presentDelegate: PresentDelegate) {
+    convenience init(detailStackView: UIStackView, toilet: Toilet, showDelegate: ShowDelegate) {
         self.init()
         
         axis = .vertical
@@ -28,7 +28,7 @@ class DetailMapStack: UIStackView, MKMapViewDelegate {
 
         
         let overlayButton = MapOverlayButton(frame: mapView.frame, toilet: toilet)
-        overlayButton.presentDelegate = presentDelegate
+        overlayButton.showDelegate = showDelegate
         addSubview(overlayButton)
         bringSubview(toFront: overlayButton)
     
@@ -88,7 +88,7 @@ class MapOverlayButton: UIButton, ShowMap {
     
     var toilet: Toilet?
     
-    var presentDelegate: PresentDelegate?
+    var showDelegate: ShowDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -129,7 +129,7 @@ class MapOverlayButton: UIButton, ShowMap {
 
 protocol ShowMap {
     var toilet: Toilet? { get }
-    var presentDelegate: PresentDelegate? { get }
+    var showDelegate: ShowDelegate? { get }
 }
 
 extension ShowMap where Self: UIButton {
@@ -141,7 +141,7 @@ extension ShowMap where Self: UIButton {
         
         singleToiletVC.toilet = toilet
         
-        presentDelegate?.showViewController(viewController: singleToiletVC)
+        showDelegate?.showViewController(viewController: singleToiletVC)
     }
 }
 

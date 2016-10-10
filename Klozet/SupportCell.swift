@@ -14,7 +14,7 @@ import MessageUI
 
 class SupportCell: UITableViewCell, MFMailComposeViewControllerDelegate, SupportCellDelegate {
     
-    var presentDelegate: PresentDelegate?
+    var ShowDelegate: ShowDelegate?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -36,7 +36,7 @@ class SupportCell: UITableViewCell, MFMailComposeViewControllerDelegate, Support
             mail.setToRecipients(["marekfort@me.com"])
             mail.setSubject("Klozet")
             
-            presentDelegate?.showViewController(viewController: mail)
+            ShowDelegate?.showViewController(viewController: mail)
         }
             //TODO - handle the possibility that the user doesn't use the native mail client
         else {
@@ -67,7 +67,7 @@ class SupportCell: UITableViewCell, MFMailComposeViewControllerDelegate, Support
         alertController.addAction(cancelAction)
         
         
-        presentDelegate?.showViewController(viewController: alertController)
+        ShowDelegate?.showViewController(viewController: alertController)
     }
     
     

@@ -11,7 +11,7 @@ import UIKit
 import MapKit
 
 class ToiletAnnotationView: MKAnnotationView {
-    var presentDelegate: PresentDelegate?
+    var ShowDelegate: ShowDelegate?
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
@@ -44,13 +44,13 @@ class ToiletAnnotationView: MKAnnotationView {
         guard
             let toilet = annotation as? Toilet,
             let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "detailVC") as? DetailViewController,
-            let presentDelegate = self.presentDelegate
+            let ShowDelegate = self.ShowDelegate
         else {return}
         
         viewController.navigationController?.navigationBar.tintColor = Colors.pumpkinColor
         viewController.toilet = toilet
         
-        presentDelegate.showViewController(viewController: viewController)
+        ShowDelegate.showViewController(viewController: viewController)
         
     }
     

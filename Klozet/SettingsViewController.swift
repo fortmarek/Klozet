@@ -112,7 +112,7 @@ class SettingsViewController: UIViewController {
 }
 
 
-extension SettingsViewController: PresentDelegate {
+extension SettingsViewController: ShowDelegate {
     func showViewController(viewController: UIViewController) {
         present(viewController, animated: true, completion: nil)
     }

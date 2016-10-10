@@ -38,14 +38,14 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         
         if indexPath.row == 0 {
             let mailCell = SupportCell(style: .default, reuseIdentifier: "supportCell")
-            mailCell.presentDelegate = self
+            mailCell.ShowDelegate = self
             supportCellDelegate = mailCell
             return mailCell
         }
             
         else {
             let shareCell = ShareCell(style: .default, reuseIdentifier: "shareCell")
-            shareCell.presentDelegate = self
+            shareCell.showDelegate = self
             shareCellDelegate = shareCell
             return shareCell
         }
@@ -73,7 +73,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
 
 class ShareCell: UITableViewCell, ShareCellDelegate {
     
-    var presentDelegate: PresentDelegate?
+    var showDelegate: ShowDelegate?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -91,7 +91,7 @@ class ShareCell: UITableViewCell, ShareCellDelegate {
         let myObjects = [myText, appStoreLink] as [Any]
         let activityVC = UIActivityViewController(activityItems: myObjects, applicationActivities: nil)
         activityVC.excludedActivityTypes = [UIActivityType.addToReadingList]
-        presentDelegate?.showViewController(viewController: activityVC)
+        showDelegate?.showViewController(viewController: activityVC)
     }
     
     required init?(coder aDecoder: NSCoder) {

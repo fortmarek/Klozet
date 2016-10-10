@@ -25,7 +25,7 @@ protocol FilterInterfaceDelegate {
 }
 
 
-class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocation, AnnotationController, FilterInterfaceDelegate, DirectionsDelegate, PresentDelegate {
+class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocation, AnnotationController, FilterInterfaceDelegate, DirectionsDelegate, ShowDelegate {
 
     //UI elements
     @IBOutlet weak var mapView: MKMapView!
@@ -149,7 +149,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
             
             toiletAnnotationView.centerOffset = CGPoint(x: 0, y: -toiletAnnotationView.frame.height/2)
             
-            toiletAnnotationView.presentDelegate = self
+            toiletAnnotationView.ShowDelegate = self
             
             //DirectionButton delegate = self => getting user location
             guard let directionButton = toiletAnnotationView.leftCalloutAccessoryView as? DirectionButton else {return toiletAnnotationView}
@@ -258,11 +258,11 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
     }
 }
 
-protocol PresentDelegate {
+protocol ShowDelegate {
     func showViewController(viewController: UIViewController)
 }
 
-extension PresentDelegate where Self: UIViewController {
+extension ShowDelegate where Self: UIViewController {
     func showViewController(viewController: UIViewController) {
         self.show(viewController, sender: nil)
     }
