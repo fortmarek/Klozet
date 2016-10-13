@@ -12,7 +12,7 @@ import ImageSlideshow
 import Alamofire
 import SwiftyJSON
 
-class ImageSlides: ImageSlideshow {
+class ImageSlides: ImageSlideshow, ImageController {
     
     var presentDelegate: PresentDelegate?
     var slideshowTransitioningDelegate: ZoomAnimatedTransitioningDelegate?
@@ -29,34 +29,11 @@ class ImageSlides: ImageSlideshow {
         detailStackView.addArrangedSubview(self)
         heightAnchor.constraint(equalToConstant: 200).isActive = true
         
-        var image = UIImage()
         
-        Alamofire.request("http://139.59.144.155/klozet/toilet/5").responseJSON {
-            response in
-            guard
-                let data = response.data,
-                let imageArray = JSON(data: data)["toilet_images"].array
-                else {return}
-            guard let imageString = imageArray[0]["image_data"].string else {return}
-            print(imageString)
-            guard let imageData = NSData(base64Encoded: imageString, options: .ignoreUnknownCharacters) as? Data else {print("fafffil");return}
-            image = UIImage(data: imageData)!
-            print(imageData)
-            
-            //guard let image = UIImage(named: "ToiletPic") else {return}
-            guard let secondImage = UIImage(named: "Pin") else {return}
-            
-            print("MATE")
-            self.setImageInputs([
-                ImageSource(image: image),
-                ImageSource(image: secondImage)
-                ])
-        }
-        
-        
-        
-        
-        
+        getImages(toiletId: "5", completion: {
+            imageSources in
+            self.setImageInputs(imageSources)
+        })
         
         //imagesSlides.draggingEnabled = false
         circular = false
@@ -108,4 +85,42 @@ extension PresentDelegate where Self: DetailViewController {
     }
 }
 
+
+protocol ImageController {
+    
+}
+
+extension ImageController {
+    func getImages(toiletId: String, completion: @escaping (_ images: [ImageSource]) -> () ) {
+        Alamofire.request("http://139.59.144.155/klozet/toilet/5").responseJSON {
+            response in
+            
+            guard
+                let data = response.data,
+                let imageArray = JSON(data: data)["toilet_images"].array
+            else {return}
+            
+            var decodedImages = [ImageSource]()
+            for imageDict in imageArray {
+                
+                guard
+                    let encodedImageString = imageDict["image_data"].string,
+                    let decodedImage = self.encodedStringToImage(encodedString: encodedImageString)
+                else {return}
+                decodedImages.append(decodedImage)
+            }
+            
+            completion(decodedImages)
+            
+        }
+    }
+    
+    private func encodedStringToImage(encodedString: String) -> ImageSource? {
+        guard
+            let imageData = NSData(base64Encoded: encodedString, options: .ignoreUnknownCharacters) as? Data,
+            let image = UIImage(data: imageData)
+            else {return nil}
+        return ImageSource(image: image)
+    }
+}
 
