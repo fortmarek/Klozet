@@ -17,6 +17,8 @@ class ImageSlides: ImageSlideshow, ImageController {
     var presentDelegate: PresentDelegate?
     var slideshowTransitioningDelegate: ZoomAnimatedTransitioningDelegate?
     
+    let activityIndicator = UIActivityIndicatorView()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -28,14 +30,24 @@ class ImageSlides: ImageSlideshow, ImageController {
         
         detailStackView.addArrangedSubview(self)
         heightAnchor.constraint(equalToConstant: 200).isActive = true
+
+        detailStackView.layoutIfNeeded()
+        guard let detailSuperview = detailStackView.superview else {return}
+        activityIndicator.color = Colors.pumpkinColor
+        detailStackView.superview?.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        activityIndicator.sizeToFit()
+        activityIndicator.frame.origin.x = frame.size.width / 2 - 10
+        activityIndicator.frame.origin.y = detailSuperview.frame.size.height - detailStackView.frame.size.height + 90
+
         
         
         getImages(toiletId: toiletId, completion: {
             imageSources in
             self.setImageInputs(imageSources)
+            self.activityIndicator.stopAnimating()
         })
         
-        //imagesSlides.draggingEnabled = false
         circular = false
         pageControlPosition = .hidden
         contentScaleMode = .scaleToFill
@@ -91,18 +103,20 @@ protocol ImageController {
 }
 
 extension ImageController {
+    
     func getImages(toiletId: Int, completion: @escaping (_ images: [ImageSource]) -> () ) {
         Alamofire.request("http://139.59.144.155/klozet/toilet/5").responseJSON {
             response in
             
+            //Array of encoded images in base64
             guard
                 let data = response.data,
                 let imageArray = JSON(data: data)["toilet_images"].array
             else {return}
             
             var decodedImages = [ImageSource]()
+            
             for imageDict in imageArray {
-                
                 guard
                     let encodedImageString = imageDict["image_data"].string,
                     let decodedImage = self.encodedStringToImage(encodedString: encodedImageString)
