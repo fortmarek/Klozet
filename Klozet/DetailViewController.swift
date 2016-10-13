@@ -45,7 +45,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
         let actionSheet = UIAlertController(title: "S fotkou je to vždycky lepší".localized, message: nil, preferredStyle: .actionSheet)
         actionSheet.view.tintColor = Colors.pumpkinColor
         
-        let pickPhotoOption = UIAlertAction(title: "Vybrat z fotogalerie".localized, style: .default, handler: {_ in print("TAKE")})
+        let pickPhotoOption = UIAlertAction(title: "Vybrat z fotogalerie".localized, style: .default, handler: {_ in self.selectPhoto()})
         let takePhotoOption = UIAlertAction(title: "Pořídit fotku".localized, style: .default, handler: {_ in self.takePhoto()})
         let cancelOption = UIAlertAction(title: "Zrušit".localized, style: .cancel, handler: {_ in actionSheet.dismiss(animated: true, completion: nil)})
         
@@ -55,17 +55,18 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
             
             
         present(actionSheet, animated: true, completion: nil)
-        
-        
-        
-        
+    }
+    
+    func selectPhoto() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = false
+        present(imagePicker, animated: true, completion: nil)
     }
     
     func takePhoto() {
-        guard
-            UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera),
-            UIImagePickerController.availableCaptureModes(for: .rear) != nil
-            else {return}
+        guard UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) else {return}
 
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
