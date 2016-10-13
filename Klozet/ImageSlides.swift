@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import ImageSlideshow
+import Alamofire
+import SwiftyJSON
 
 class ImageSlides: ImageSlideshow {
     
@@ -27,14 +29,32 @@ class ImageSlides: ImageSlideshow {
         detailStackView.addArrangedSubview(self)
         heightAnchor.constraint(equalToConstant: 200).isActive = true
         
-        guard let image = UIImage(named: "ToiletPic") else {return}
-        guard let secondImage = UIImage(named: "Pin") else {return}
+        var image = UIImage()
+        
+        Alamofire.request("http://139.59.144.155/klozet/toilet/5").responseJSON {
+            response in
+            guard
+                let data = response.data,
+                let imageArray = JSON(data: data)["toilet_images"].array
+                else {return}
+            guard let imageString = imageArray[0]["image_data"].string else {return}
+            print(imageString)
+            guard let imageData = NSData(base64Encoded: imageString, options: .ignoreUnknownCharacters) as? Data else {print("fafffil");return}
+            image = UIImage(data: imageData)!
+            print(imageData)
+            
+            //guard let image = UIImage(named: "ToiletPic") else {return}
+            guard let secondImage = UIImage(named: "Pin") else {return}
+            
+            print("MATE")
+            self.setImageInputs([
+                ImageSource(image: image),
+                ImageSource(image: secondImage)
+                ])
+        }
         
         
-        setImageInputs([
-            ImageSource(image: image),
-            ImageSource(image: secondImage)
-            ])
+        
         
         
         
