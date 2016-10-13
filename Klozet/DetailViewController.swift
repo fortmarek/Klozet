@@ -9,7 +9,7 @@
 import UIKit
 
 
-class DetailViewController: UIViewController, ShowDelegate, PresentDelegate {
+class DetailViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, ShowDelegate, PresentDelegate {
     
     var toilet: Toilet?
 
@@ -20,25 +20,66 @@ class DetailViewController: UIViewController, ShowDelegate, PresentDelegate {
         
         navigationController?.navigationBar.tintColor = Colors.pumpkinColor
         
+        let imageBarButtonItem = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(uploadImage))
+        navigationItem.rightBarButtonItem = imageBarButtonItem
+        
         //Main Stack View
         let detailStackView = setDetailStackView()
         automaticallyAdjustsScrollViewInsets = false
         
-        _ = ImageSlides(detailStackView: detailStackView, presentDelegate: self)
-
+        guard let toilet = toilet else {return}
+        
+        _ = ImageSlides(toiletId: toilet.toiletId, detailStackView: detailStackView, presentDelegate: self)
+        
         //TableView
         let tableView = DetailTableView()
         tableView.delegate = self
         tableView.dataSource = self
         detailStackView.addArrangedSubview(tableView)
         
-        
-        guard let toilet = toilet else {return}
         _ = MapInfoView(detailStackView: detailStackView, toilet: toilet, showDelegate: self)
         _ = DetailMapStack(detailStackView: detailStackView, toilet: toilet, showDelegate: self)
     }
     
+    func uploadImage(sender: UIBarButtonItem) {
+        let actionSheet = UIAlertController(title: "S fotkou je to vždycky lepší".localized, message: nil, preferredStyle: .actionSheet)
+        actionSheet.view.tintColor = Colors.pumpkinColor
+        
+        let pickPhotoOption = UIAlertAction(title: "Vybrat z fotogalerie".localized, style: .default, handler: {_ in print("TAKE")})
+        let takePhotoOption = UIAlertAction(title: "Pořídit fotku".localized, style: .default, handler: {_ in self.takePhoto()})
+        let cancelOption = UIAlertAction(title: "Zrušit".localized, style: .cancel, handler: {_ in actionSheet.dismiss(animated: true, completion: nil)})
+        
+        actionSheet.addAction(pickPhotoOption)
+        actionSheet.addAction(takePhotoOption)
+        actionSheet.addAction(cancelOption)
+            
+            
+        present(actionSheet, animated: true, completion: nil)
+        
+        
+        
+        
+    }
     
+    func takePhoto() {
+        guard
+            UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera),
+            UIImagePickerController.availableCaptureModes(for: .rear) != nil
+            else {return}
+
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .camera
+        imagePicker.modalPresentationStyle = .overFullScreen
+        imagePicker.allowsEditing = false
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        // Show image
+        //imageView.image = image
+        self.dismiss(animated: true, completion: nil)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -71,5 +112,7 @@ class DetailViewController: UIViewController, ShowDelegate, PresentDelegate {
     }
 
 }
+
+
 
 

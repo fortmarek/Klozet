@@ -24,14 +24,15 @@ class Toilet: NSObject, MKAnnotation {
     let openTimes: [JSON]
     let price: String
     let coordinate: CLLocationCoordinate2D
+    let toiletId: Int
     
-    init(mainAdress: String, subAddress: String, openTimes: [JSON], price: String, coordinate: CLLocationCoordinate2D) {
+    init(mainAdress: String, subAddress: String, openTimes: [JSON], price: String, coordinate: CLLocationCoordinate2D, toiletId: Int) {
         self.title = mainAdress
         self.subtitle = subAddress
         self.openTimes = openTimes
         self.price = price
         self.coordinate = coordinate
-        
+        self.toiletId = toiletId
     }
     
 
@@ -86,13 +87,16 @@ class DataController {
             //Addresses
             let address = propertiesJson["address"].dictionary,
             let mainAddress = address["main_address"]?.string,
-            let subAddress = address["sub_address"]?.string
+            let subAddress = address["sub_address"]?.string,
+            
+            //toiletId
+            let toiletId = propertiesJson["toilet_id"].int
             
             //At least one of the values is nil
-            else {return Toilet(mainAdress: "", subAddress: "", openTimes: [], price: "", coordinate: coordinate)}
+            else {return Toilet(mainAdress: "", subAddress: "", openTimes: [], price: "", coordinate: coordinate, toiletId: 0)}
 
         
-        return Toilet(mainAdress: mainAddress, subAddress: subAddress, openTimes: openTimes, price: price, coordinate: coordinate)
+        return Toilet(mainAdress: mainAddress, subAddress: subAddress, openTimes: openTimes, price: price, coordinate: coordinate, toiletId: toiletId)
     }
     
     fileprivate func getCoordinate(_ coordinateJson: JSON) -> CLLocationCoordinate2D? {

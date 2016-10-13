@@ -21,7 +21,7 @@ class ImageSlides: ImageSlideshow, ImageController {
         super.init(frame: frame)
     }
     
-    init(detailStackView: UIStackView, presentDelegate: PresentDelegate) {
+    init(toiletId: Int, detailStackView: UIStackView, presentDelegate: PresentDelegate) {
         self.init()
         
         self.presentDelegate = presentDelegate
@@ -30,7 +30,7 @@ class ImageSlides: ImageSlideshow, ImageController {
         heightAnchor.constraint(equalToConstant: 200).isActive = true
         
         
-        getImages(toiletId: "5", completion: {
+        getImages(toiletId: toiletId, completion: {
             imageSources in
             self.setImageInputs(imageSources)
         })
@@ -91,7 +91,7 @@ protocol ImageController {
 }
 
 extension ImageController {
-    func getImages(toiletId: String, completion: @escaping (_ images: [ImageSource]) -> () ) {
+    func getImages(toiletId: Int, completion: @escaping (_ images: [ImageSource]) -> () ) {
         Alamofire.request("http://139.59.144.155/klozet/toilet/5").responseJSON {
             response in
             
