@@ -41,6 +41,8 @@ class ListViewController: UIViewController, DirectionsDelegate, ListTableDelegat
     
     var didOrderToilets = false
     
+    var shownCells = 20
+    
     
     override func viewDidLoad() {
         
@@ -51,6 +53,8 @@ class ListViewController: UIViewController, DirectionsDelegate, ListTableDelegat
         tableView.dataSource = self
         
         navigationController?.navigationBar.tintColor = UIColor(red: 1.00, green: 0.42, blue: 0.20, alpha: 1.0)
+        
+        setTableFooter()
         
         //Have not ordered toilets yet, show activityIndicator
         if didOrderToilets == false {
@@ -81,6 +85,10 @@ class ListViewController: UIViewController, DirectionsDelegate, ListTableDelegat
         }
     }
     
+    private func setTableFooter() {
+        tableView.tableFooterView = ListFooter(toiletsCount: toilets.count, viewWidth: view.frame.size.width)
+        tableView.contentInset.bottom = 100
+    }
     
 
 }
@@ -97,6 +105,15 @@ extension ListViewController: ListToiletsDelegate {
             self.tableView.reloadData()
             self.activityView.isHidden = true
             self.activityIndicator.stopAnimating()
+        }
+    }
+    
+    @objc(tableView:willDisplayCell:forRowAtIndexPath:) func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastElement = shownCells - 1
+        
+        if indexPath.row == lastElement {
+            shownCells += 20
+            reloadTable()
         }
     }
     
@@ -126,11 +143,33 @@ extension ListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return toilets.count
+        guard shownCells < (toilets.count - 20) else {
+            return toilets.count
+        }
+        return shownCells
     }
 }
 
 extension ListViewController: UITableViewDelegate {
     
+}
+
+class ListFooter: UITableViewHeaderFooterView {
+    convenience init(toiletsCount: Int, viewWidth: CGFloat) {
+        self.init()
+        
+        let footerContentView = UIView()
+        footerContentView.frame = CGRect(x: 0, y: 0, width: viewWidth, height: 400)
+        footerContentView.backgroundColor = UIColor(red: 0.92, green: 0.92, blue: 0.95, alpha: 1.0)
+        contentView.addSubview(footerContentView)
+        
+        let infoLabel = UILabel()
+        infoLabel.text = "Záchodů celkem: \(toiletsCount)".localized
+        infoLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightLight)
+        infoLabel.sizeToFit()
+        infoLabel.frame.origin.x = viewWidth / 2 - infoLabel.frame.size.width / 2
+        infoLabel.frame.origin.y = 16.5
+        footerContentView.addSubview(infoLabel)
+    }
 }
 

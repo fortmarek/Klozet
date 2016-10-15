@@ -31,15 +31,8 @@ class ImageSlides: ImageSlideshow, ImageController {
         detailStackView.addArrangedSubview(self)
         heightAnchor.constraint(equalToConstant: 200).isActive = true
 
-        detailStackView.layoutIfNeeded()
-        guard let detailSuperview = detailStackView.superview else {return}
-        activityIndicator.color = Colors.pumpkinColor
-        detailStackView.superview?.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-        activityIndicator.sizeToFit()
-        activityIndicator.frame.origin.x = frame.size.width / 2 - 10
-        activityIndicator.frame.origin.y = detailSuperview.frame.size.height - detailStackView.frame.size.height + 90
-
+        
+        setIndicatorView(detailStackView: detailStackView)
         
         
         getImages(toiletId: toiletId, completion: {
@@ -76,6 +69,19 @@ class ImageSlides: ImageSlideshow, ImageController {
         
         fullScreen.closeButton.setImage(UIImage(named: "WhiteCross"), for: .normal)
         fullScreen.view.bringSubview(toFront: fullScreen.closeButton)
+    }
+    
+    private func setIndicatorView(detailStackView: UIStackView) {
+        activityIndicator.color = Colors.pumpkinColor
+        
+        guard let detailSuperview = detailStackView.superview else {return}
+        detailSuperview.addSubview(activityIndicator)
+        detailStackView.layoutIfNeeded()
+        activityIndicator.frame.origin.x = frame.size.width / 2 - 10
+        activityIndicator.frame.origin.y = detailSuperview.frame.size.height - detailStackView.frame.size.height + 90
+        activityIndicator.sizeToFit()
+        
+        activityIndicator.startAnimating()
     }
     
     

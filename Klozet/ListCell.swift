@@ -96,4 +96,3 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate {
     
 }
 
-
