@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 
 class DetailViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, ShowDelegate, PresentDelegate, CameraDelegate {
@@ -77,6 +78,13 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
     func imageButtonTapped() {
         uploadImage()
     }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {return}
+        dismiss(animated: true, completion: nil)
+        postImage(image: image)
+        
+    }
 
 }
 
@@ -123,11 +131,15 @@ extension CameraDelegate where Self: UIViewController, Self: UINavigationControl
         present(imagePicker, animated: true, completion: nil)
     }
     
-    private func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        // Show image
-        //imageView.image = image
-        self.dismiss(animated: true, completion: nil)
+    fileprivate func postImage(image: UIImage) {
+        let encodedImage = UIImagePNGRepresentation(image)?.base64EncodedString()
+        Alamofire.po
     }
+    
+    
+    
+    
+    
 }
 
 
