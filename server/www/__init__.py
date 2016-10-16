@@ -34,9 +34,20 @@ class ToiletImages(Resource):
         return images
     def post(self, klozet_id):
         directory = '/var/www/Klozet/Klozet/static/toilets_img/{0}/'.format(klozet_id)
+
+        image_index = "0.jpg"
+        try:
+            last_image = os.listdir(directory)[-1]
+            image_index = os.path.splitext(directory + last_image)[0] + ".jpg"
+        except IndexError:
+            pass
+
         encoded_image = parser.parse_args()['encoded_image']
         decoded_image = Image.open(BytesIO(base64.b64decode(encoded_image)))
-        decoded_image.save(directory, 'JPEG')
+        decoded_image.save(image_index, 'JPEG')
+        file = open('/var/www/Klozet/Klozet/static/toilets_img/log-file.txt', 'a')
+        #file.write("%s\n" % encoded_image)
+        file.close()
 
 
 api.add_resource(ToiletImages, '/toilet/<string:klozet_id>')
