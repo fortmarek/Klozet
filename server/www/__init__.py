@@ -26,27 +26,44 @@ class ToiletImages(Resource):
         images = {'toilet_images':[]}
         image_count = 0
         for file in os.listdir(directory):
-            image_count += 1
-            image_file = open(directory + file, 'rb')
-            image_data = image_file.read()
-            encoded_image_data = image_data.encode('base64')
-            images['toilet_images'].append({'image_id': image_count, 'image_data': encoded_image_data})
+            if file.find('.jpg') != -1:
+                image_count += 1
+                image_file = open(directory + file, 'rb')
+                image_data = image_file.read()
+                encoded_image_data = image_data.encode('base64')
+                images['toilet_images'].append({'image_id': image_count, 'image_data': encoded_image_data})
         return images
     def post(self, klozet_id):
         directory = '/var/www/Klozet/Klozet/static/toilets_img/{0}/'.format(klozet_id)
 
-        image_index = "0.jpg"
-        try:
-            last_image = os.listdir(directory)[-1]
-            image_index = os.path.splitext(directory + last_image)[0] + ".jpg"
-        except IndexError:
-            pass
+        image_filename = "0.jpg"
+
+        file = open(directory + 'log-file.txt', 'wr')
+        text = file.read()
+        if text != '0':
+            try:
+                image_index = int(text) + 1
+                image_filename = "{0}.jpg".format(image_index)
+                file.write(image_index)
+                file.close()
+            except IndexError:
+                file = open('/var/www/Klozet/Klozet/static/toilets_img/log-file.txt', 'a')
+                file.write("%s\n" % 'index_error')
+                file.close()
+                pass
+        else:
+            file.write('0')
+            file.close()
+
+
+
+
 
         encoded_image = parser.parse_args()['encoded_image']
         decoded_image = Image.open(BytesIO(base64.b64decode(encoded_image)))
-        decoded_image.save(image_index, 'JPEG')
+        decoded_image.save(directory + image_filename, 'JPEG')
         file = open('/var/www/Klozet/Klozet/static/toilets_img/log-file.txt', 'a')
-        #file.write("%s\n" % encoded_image)
+        file.write("Posted image: {0} for toilet {1}\n".format(image_filename, klozet_id))
         file.close()
 
 

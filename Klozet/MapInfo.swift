@@ -183,7 +183,7 @@ class MapInfoText: UIStackView, DirectionsDelegate {
         addressStack.spacing = 3
         addArrangedSubview(addressStack)
         addressStack.topAnchor.constraint(equalTo: topAnchor, constant: 30).isActive = true
-        addressStack.rightAnchor.constraint(equalTo: rightAnchor, constant: 20).isActive = true
+        addressStack.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         
         let mainAddressLabel = UILabel()
         mainAddressLabel.text = mainAddress

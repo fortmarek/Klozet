@@ -138,7 +138,7 @@ extension CameraDelegate where Self: UIViewController, Self: UINavigationControl
     }
     
     fileprivate func postImage(image: UIImage) {
-        guard let encodedImage = UIImagePNGRepresentation(image)?.base64EncodedString() else {return}
+        guard let encodedImage = UIImageJPEGRepresentation(image, 0.9)?.base64EncodedString() else {return}
         _ = Alamofire.request("http://139.59.144.155/klozet/toilet/5", method: .post, parameters: ["encoded_image" : encodedImage])
     }
     

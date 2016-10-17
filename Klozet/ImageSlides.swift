@@ -34,22 +34,37 @@ class ImageSlides: ImageSlideshow, ImageController {
         
         setIndicatorView(detailStackView: detailStackView)
         
+        circular = false
+        pageControlPosition = .hidden
+        contentScaleMode = .scaleAspectFill
         
         getImages(toiletId: toiletId, completion: {
             imageSources in
             self.setImageInputs(imageSources)
             self.activityIndicator.stopAnimating()
+            guard imageSources.count > 0 else {
+                self.setNoImageView()
+                return}
+            let imageGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageFullScreen))
+            self.addGestureRecognizer(imageGestureRecognizer)
         })
         
-        circular = false
-        pageControlPosition = .hidden
-        contentScaleMode = .scaleAspectFill
         
-        let imageGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageFullScreen))
-        addGestureRecognizer(imageGestureRecognizer)
+        
+        
         
     }
     
+    private func setNoImageView() {
+        let noImageView = UIView()
+        noImageView.backgroundColor = UIColor(red: 0.92, green: 0.92, blue: 0.92, alpha: 1.0)
+        noImageView.frame = frame
+        addSubview(noImageView)
+        
+        let noCameraImageView = UIImageView(image: UIImage(named: "NoCamera"))
+        noCameraImageView.center = noImageView.center
+        addSubview(noCameraImageView)
+    }
     
     @objc private func imageFullScreen() {
         
