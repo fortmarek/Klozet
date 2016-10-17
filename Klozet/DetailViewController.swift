@@ -81,10 +81,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {return}
         dismiss(animated: true, completion: {
             DispatchQueue.global().async(execute: {
-                print(image.imageOrientation.rawValue)
-                guard let imageInCg = image.cgImage else {return}
-                let orientedImage = UIImage(cgImage: imageInCg, scale: 1, orientation: .up)
-                print(orientedImage.imageOrientation.rawValue)
+                guard let orientedImage = image.correctlyOrientedImage() else {return}
                 self.postImage(image: orientedImage)
             })
         })
@@ -142,10 +139,21 @@ extension CameraDelegate where Self: UIViewController, Self: UINavigationControl
         _ = Alamofire.request("http://139.59.144.155/klozet/toilet/5", method: .post, parameters: ["encoded_image" : encodedImage])
     }
     
-    
-    
-    
-    
+
 }
 
+extension UIImage {
+    func correctlyOrientedImage() -> UIImage? {
+        if self.imageOrientation == UIImageOrientation.up {
+            return self
+        }
+        
+        UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
+        self.draw(in: CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height))
+        let normalizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return normalizedImage
+    }
+}
 

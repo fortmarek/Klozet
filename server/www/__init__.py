@@ -38,22 +38,23 @@ class ToiletImages(Resource):
 
         image_filename = "0.jpg"
 
-        file = open(directory + 'log-file.txt', 'wr')
-        text = file.read()
-        if text != '0':
-            try:
-                image_index = int(text) + 1
-                image_filename = "{0}.jpg".format(image_index)
-                file.write(image_index)
-                file.close()
-            except IndexError:
-                file = open('/var/www/Klozet/Klozet/static/toilets_img/log-file.txt', 'a')
-                file.write("%s\n" % 'index_error')
-                file.close()
-                pass
-        else:
+        try:
+            file = open(directory + 'log-file.txt', 'r+')
+            text = file.read()
+            image_index = int(text) + 1
+            image_filename = "{0}.jpg".format(image_index)
+            file.write("{0}".format(image_index))
+            file.close()
+            
+        except IOError:
+            file = open(directory + 'log-file.txt', 'w')
             file.write('0')
             file.close()
+
+
+
+
+
 
 
 
