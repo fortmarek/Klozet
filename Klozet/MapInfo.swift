@@ -32,7 +32,7 @@ class MapInfoView: UIStackView, UserLocation {
         
         axis = .vertical
         
-        heightAnchor.constraint(equalToConstant: 100).isActive = true
+        //heightAnchor.constraint(equalToConstant: 160).isActive = true
         rightAnchor.constraint(equalTo: detailStackView.rightAnchor).isActive = true
         leftAnchor.constraint(equalTo: detailStackView.leftAnchor).isActive = true
         
@@ -88,7 +88,7 @@ class MapInfoText: UIStackView, DirectionsDelegate {
         distribution = .fill
         
         //Anchors
-        heightAnchor.constraint(equalToConstant: 80).isActive = true
+        //heightAnchor.constraint(equalToConstant: 90).isActive = true
         rightAnchor.constraint(equalTo: mapStack.rightAnchor).isActive = true
         leftAnchor.constraint(equalTo: mapStack.leftAnchor).isActive = true
     }
@@ -183,10 +183,12 @@ class MapInfoText: UIStackView, DirectionsDelegate {
         addressStack.spacing = 3
         addArrangedSubview(addressStack)
         addressStack.topAnchor.constraint(equalTo: topAnchor, constant: 30).isActive = true
-        addressStack.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        addressStack.rightAnchor.constraint(equalTo: rightAnchor, constant: 20).isActive = true
         
         let mainAddressLabel = UILabel()
         mainAddressLabel.text = mainAddress
+        mainAddressLabel.lineBreakMode = .byWordWrapping
+        mainAddressLabel.numberOfLines = 0
         addressStack.addArrangedSubview(mainAddressLabel)
         
         let subAddressLabel = UILabel()
@@ -194,12 +196,14 @@ class MapInfoText: UIStackView, DirectionsDelegate {
         subAddressLabel.font = UIFont.systemFont(ofSize: 14)
         subAddressLabel.textColor = UIColor.gray
         subAddressLabel.textAlignment = .left
+        subAddressLabel.lineBreakMode = .byWordWrapping
+        subAddressLabel.numberOfLines = 0
+        subAddressLabel.sizeToFit()
         if subAddress == "" {
             subAddressLabel.text = "K"
             subAddressLabel.alpha = 0
         }
         addressStack.addArrangedSubview(subAddressLabel)
-        
     }
     
     

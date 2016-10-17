@@ -43,7 +43,7 @@ class ImageSlides: ImageSlideshow, ImageController {
         
         circular = false
         pageControlPosition = .hidden
-        contentScaleMode = .scaleToFill
+        contentScaleMode = .scaleAspectFill
         
         let imageGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageFullScreen))
         addGestureRecognizer(imageGestureRecognizer)
@@ -54,6 +54,10 @@ class ImageSlides: ImageSlideshow, ImageController {
     @objc private func imageFullScreen() {
         
         let fullScreen = FullScreenSlideshowViewController()
+        
+        //Fix for showing wrong image (wrong index), more: https://github.com/zvonicek/ImageSlideshow/issues/67
+        fullScreen.slideshow.circular = false
+        
         // called when full-screen VC dismissed and used to set the page to our original slideshow
         fullScreen.pageSelected = { page in
             self.setScrollViewPage(page, animated: false)

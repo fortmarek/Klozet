@@ -61,11 +61,9 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
         let topMainAnchor = navigationController.navigationBar.frame.height + navigationController.navigationBar.frame.origin.x
         detailStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: topMainAnchor).isActive = true
         
-        //BottomAnchor
         detailStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        
-        //WidthAnchor
-        detailStackView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        detailStackView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        detailStackView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         
         //Axis
         detailStackView.axis = .vertical
@@ -83,7 +81,11 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {return}
         dismiss(animated: true, completion: {
             DispatchQueue.global().async(execute: {
-                self.postImage(image: image)
+                print(image.imageOrientation.rawValue)
+                guard let imageInCg = image.cgImage else {return}
+                let orientedImage = UIImage(cgImage: imageInCg, scale: 1, orientation: .up)
+                print(orientedImage.imageOrientation.rawValue)
+                self.postImage(image: orientedImage)
             })
         })
         
