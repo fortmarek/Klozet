@@ -11,6 +11,7 @@ import UIKit
 import ImageSlideshow
 import Alamofire
 import SwiftyJSON
+import AlamofireImage
 
 class ImageSlides: ImageSlideshow, ImageController {
     
@@ -41,6 +42,13 @@ class ImageSlides: ImageSlideshow, ImageController {
         getImages(toiletId: toiletId, completion: {
             imageSources in
             self.setImageInputs(imageSources)
+            
+            Alamofire.request("http://139.59.144.155/klozet/toilets_img/5/1.jpg").responseImage(completionHandler: {
+                response in
+                print(response.result.value)
+            })
+            
+            
             self.activityIndicator.stopAnimating()
             guard imageSources.count > 0 else {
                 self.setNoImageView()
@@ -147,7 +155,6 @@ extension ImageController {
                     let decodedImage = self.encodedStringToImage(encodedString: encodedImageString)
                 else {return}
                 decodedImages.append(decodedImage)
-                print("K")
             }
             
             completion(decodedImages)

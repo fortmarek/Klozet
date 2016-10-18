@@ -1,3 +1,4 @@
 github "Alamofire/Alamofire"
 github "SwiftyJSON/SwiftyJSON" ~> 3.1.0
 github "zvonicek/ImageSlideshow" "swift-3"
+github "Alamofire/AlamofireImage" ~> 3.1

@@ -50,6 +50,7 @@
 		F8EAE8381D5FCF0400D60DAB /* SwiftyJSON.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8EAE8361D5FCDA700D60DAB /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F8EAE83A1D6072EF00D60DAB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8EAE8391D6072EF00D60DAB /* CoreLocation.framework */; };
 		F8EAE83C1D630E0500D60DAB /* VIewControllerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE83B1D630E0500D60DAB /* VIewControllerInterface.swift */; };
+		F8F8FBDE1DB6C902001CC28F /* AlamofireImage.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8F8FBDD1DB6C902001CC28F /* AlamofireImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 				F8C8CAFD1DA53E6C003764BE /* ImageSlideshow.framework in CopyFiles */,
 				F8EAE8381D5FCF0400D60DAB /* SwiftyJSON.framework in CopyFiles */,
 				F8EAE8321D5FB54100D60DAB /* Alamofire.framework in CopyFiles */,
+				F8F8FBDE1DB6C902001CC28F /* AlamofireImage.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +139,7 @@
 		F8EAE8361D5FCDA700D60DAB /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		F8EAE8391D6072EF00D60DAB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F8EAE83B1D630E0500D60DAB /* VIewControllerInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VIewControllerInterface.swift; sourceTree = "<group>"; };
+		F8F8FBDD1DB6C902001CC28F /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +258,7 @@
 		F8EAE7ED1D5FA6A900D60DAB = {
 			isa = PBXGroup;
 			children = (
+				F8F8FBDD1DB6C902001CC28F /* AlamofireImage.framework */,
 				F8EAE7F81D5FA6A900D60DAB /* Klozet */,
 				F8EAE80D1D5FA6A900D60DAB /* KlozetTests */,
 				F8EAE8181D5FA6A900D60DAB /* KlozetUITests */,

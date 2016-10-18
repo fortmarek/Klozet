@@ -1,12 +1,17 @@
-from flask import Flask, jsonify, json, url_for, send_from_directory, send_file
+from flask import Flask, render_template, json
 from flask_restful import Resource, Api, abort, reqparse
 from PIL import Image
 from io import BytesIO
 import base64
 import os
 
-app = Flask(__name__, static_url_path="")
+app = Flask(__name__, static_url_path="", static_folder="static")
 api = Api(app)
+
+@app.route('/toilet/<string:klozet_id>/<string:image_id>/image/jpeg')
+def toilet_img(klozet_id, image_id):
+    filename = 'toilets_img/{0}/{1}.jpg'.format(klozet_id, image_id)
+    return render_template('toilet_img.html', filename= filename)
 
 class Toilets(Resource):
     def get(self):
@@ -53,15 +58,6 @@ class ToiletImages(Resource):
             file.write('0')
             file.close()
 
-
-
-
-
-
-
-
-
-
         encoded_image = parser.parse_args()['encoded_image']
         decoded_image = Image.open(BytesIO(base64.b64decode(encoded_image)))
         decoded_image.save(directory + image_filename, 'JPEG')
@@ -71,3 +67,5 @@ class ToiletImages(Resource):
 
 
 api.add_resource(ToiletImages, '/toilet/<string:klozet_id>')
+
+
