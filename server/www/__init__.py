@@ -43,9 +43,11 @@ class ToiletImages(Resource):
             text = file.read()
             image_index = int(text) + 1
             image_filename = "{0}.jpg".format(image_index)
+            file.seek(0)
+            file.truncate()
             file.write("{0}".format(image_index))
             file.close()
-            
+
         except IOError:
             file = open(directory + 'log-file.txt', 'w')
             file.write('0')

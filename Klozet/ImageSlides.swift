@@ -147,6 +147,7 @@ extension ImageController {
                     let decodedImage = self.encodedStringToImage(encodedString: encodedImageString)
                 else {return}
                 decodedImages.append(decodedImage)
+                print("K")
             }
             
             completion(decodedImages)
