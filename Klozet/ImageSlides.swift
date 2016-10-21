@@ -13,7 +13,11 @@ import Alamofire
 import SwiftyJSON
 import AlamofireImage
 
-class ImageSlides: ImageSlideshow, ImageController {
+protocol ImageSlidesDelegate {
+    func setNoImageView()
+}
+
+class ImageSlides: ImageSlideshow, ImageController, ImageSlidesDelegate {
     
     var presentDelegate: PresentDelegate?
     var slideshowTransitioningDelegate: ZoomAnimatedTransitioningDelegate?
@@ -39,27 +43,29 @@ class ImageSlides: ImageSlideshow, ImageController {
         pageControlPosition = .hidden
         contentScaleMode = .scaleAspectFill
         
+        
         getImages(toiletId: toiletId, completion: {
             imageSources in
             self.setImageInputs(imageSources)
             
-            Alamofire.request("http://139.59.144.155/klozet/toilets_img/5/1.jpg").responseImage(completionHandler: {
-                response in
-                print(response.result.value)
-            })
             
             
-            self.activityIndicator.stopAnimating()
-            guard imageSources.count > 0 else {
-                self.setNoImageView()
-                return}
-            let imageGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageFullScreen))
-            self.addGestureRecognizer(imageGestureRecognizer)
-        })
+            
+                    })
         
         
         
         
+        
+    }
+    
+    fileprivate func loadViewToImage(imagesCount: Int) {
+        self.activityIndicator.stopAnimating()
+        guard imagesCount > 0 else {
+            self.setNoImageView()
+            return}
+        let imageGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageFullScreen))
+        self.addGestureRecognizer(imageGestureRecognizer)
         
     }
     
@@ -72,6 +78,8 @@ class ImageSlides: ImageSlideshow, ImageController {
         let noCameraImageView = UIImageView(image: UIImage(named: "NoCamera"))
         noCameraImageView.center = noImageView.center
         addSubview(noCameraImageView)
+        
+        self.activityIndicator.stopAnimating()
     }
     
     @objc private func imageFullScreen() {
@@ -137,29 +145,48 @@ protocol ImageController {
 
 extension ImageController {
     
-    func getImages(toiletId: Int, completion: @escaping (_ images: [ImageSource]) -> () ) {
+    
+    private func getImageCount(toiletId: Int, completion: @escaping(_ imageCount: Int) -> () ) {
         Alamofire.request("http://139.59.144.155/klozet/toilet/5").responseJSON {
             response in
-            
-            //Array of encoded images in base64
             guard
                 let data = response.data,
-                let imageArray = JSON(data: data)["toilet_images"].array
-            else {return}
-            
-            var decodedImages = [ImageSource]()
-            
-            for imageDict in imageArray {
-                guard
-                    let encodedImageString = imageDict["image_data"].string,
-                    let decodedImage = self.encodedStringToImage(encodedString: encodedImageString)
+                let imageCount = JSON(data: data)["image_count"].int
                 else {return}
-                decodedImages.append(decodedImage)
+            
+            if imageCount == 0 {
+                //set no image view
             }
             
-            completion(decodedImages)
-            
+            completion(imageCount)
         }
+    }
+    
+    private func donwloadImage(imageIndex: Int, completion: @escaping (_ image: UIImage) -> ()){
+        Alamofire.request("http://139.59.144.155/klozet/toilets_img/5/1.jpg").responseImage(completionHandler: {
+            response in
+            guard let image = response.result.value else {return}
+            completion(image)
+        })
+    }
+    
+    fileprivate func getImages(toiletId: Int, completion: @escaping (_ images: [ImageSource]) -> () ) {
+        
+        getImageCount(toiletId: toiletId, completion: {
+            imageCount in
+            
+            var images = [UIImage]()
+            
+            for i in 1...imageCount {
+                self.donwloadImage(imageIndex: i, completion: {
+                    image in
+                    images.append(image)
+                    print(image)
+                })
+            }
+            print("HE|")
+        })
+        
     }
     
     private func encodedStringToImage(encodedString: String) -> ImageSource? {
