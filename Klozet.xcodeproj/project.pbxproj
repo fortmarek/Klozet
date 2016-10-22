@@ -188,6 +188,7 @@
 		C2831FEAD92CB08690D3ADE7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F8F8FBDD1DB6C902001CC28F /* AlamofireImage.framework */,
 				F8C8CAFB1DA53E65003764BE /* ImageSlideshow.framework */,
 				F8EAE8391D6072EF00D60DAB /* CoreLocation.framework */,
 				F8EAE8361D5FCDA700D60DAB /* SwiftyJSON.framework */,
@@ -258,7 +259,6 @@
 		F8EAE7ED1D5FA6A900D60DAB = {
 			isa = PBXGroup;
 			children = (
-				F8F8FBDD1DB6C902001CC28F /* AlamofireImage.framework */,
 				F8EAE7F81D5FA6A900D60DAB /* Klozet */,
 				F8EAE80D1D5FA6A900D60DAB /* KlozetTests */,
 				F8EAE8181D5FA6A900D60DAB /* KlozetUITests */,

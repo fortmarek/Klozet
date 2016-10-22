@@ -13,11 +13,8 @@ import Alamofire
 import SwiftyJSON
 import AlamofireImage
 
-protocol ImageSlidesDelegate {
-    func setNoImageView()
-}
 
-class ImageSlides: ImageSlideshow, ImageController, ImageSlidesDelegate {
+class ImageSlides: ImageSlideshow, ImageController {
     
     var presentDelegate: PresentDelegate?
     var slideshowTransitioningDelegate: ZoomAnimatedTransitioningDelegate?
@@ -46,16 +43,11 @@ class ImageSlides: ImageSlideshow, ImageController, ImageSlidesDelegate {
         
         getImages(toiletId: toiletId, completion: {
             imageSources in
+            
+            self.loadViewToImage(imagesCount: imageSources.count)
             self.setImageInputs(imageSources)
-            
-            
-            
-            
-                    })
-        
-        
-        
-        
+    
+        })
         
     }
     
@@ -69,18 +61,6 @@ class ImageSlides: ImageSlideshow, ImageController, ImageSlidesDelegate {
         
     }
     
-    private func setNoImageView() {
-        let noImageView = UIView()
-        noImageView.backgroundColor = UIColor(red: 0.92, green: 0.92, blue: 0.92, alpha: 1.0)
-        noImageView.frame = frame
-        addSubview(noImageView)
-        
-        let noCameraImageView = UIImageView(image: UIImage(named: "NoCamera"))
-        noCameraImageView.center = noImageView.center
-        addSubview(noCameraImageView)
-        
-        self.activityIndicator.stopAnimating()
-    }
     
     @objc private func imageFullScreen() {
         
@@ -119,6 +99,19 @@ class ImageSlides: ImageSlideshow, ImageController, ImageSlidesDelegate {
         activityIndicator.startAnimating()
     }
     
+    private func setNoImageView() {
+        let noImageView = UIView()
+        noImageView.backgroundColor = UIColor(red: 0.92, green: 0.92, blue: 0.92, alpha: 1.0)
+        noImageView.frame = frame
+        addSubview(noImageView)
+        
+        let noCameraImageView = UIImageView(image: UIImage(named: "NoCamera"))
+        noCameraImageView.center = noImageView.center
+        addSubview(noCameraImageView)
+        
+        self.activityIndicator.stopAnimating()
+    }
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -154,20 +147,34 @@ extension ImageController {
                 let imageCount = JSON(data: data)["image_count"].int
                 else {return}
             
-            if imageCount == 0 {
-                //set no image view
-            }
-            
             completion(imageCount)
         }
     }
     
-    private func donwloadImage(imageIndex: Int, completion: @escaping (_ image: UIImage) -> ()){
+    private func downloadImage(imageIndex: Int, completion: @escaping (_ image: ImageSource) -> ()) {
         Alamofire.request("http://139.59.144.155/klozet/toilets_img/5/1.jpg").responseImage(completionHandler: {
             response in
             guard let image = response.result.value else {return}
-            completion(image)
+            let imageSource = ImageSource(image: image)
+            completion(imageSource)
         })
+    }
+    
+    private func donwloadImages(imageCount: Int, completion: @escaping (_ images: [ImageSource]) -> ()){
+        
+        var images = [ImageSource]()
+        print(imageCount)
+        for i in 0...imageCount - 1 {
+            self.downloadImage(imageIndex: i, completion: {
+                image in
+                images.append(image)
+
+                if images.count == imageCount {
+                    completion(images)
+                }
+            })
+        }
+        
     }
     
     fileprivate func getImages(toiletId: Int, completion: @escaping (_ images: [ImageSource]) -> () ) {
@@ -175,16 +182,10 @@ extension ImageController {
         getImageCount(toiletId: toiletId, completion: {
             imageCount in
             
-            var images = [UIImage]()
-            
-            for i in 1...imageCount {
-                self.donwloadImage(imageIndex: i, completion: {
-                    image in
-                    images.append(image)
-                    print(image)
-                })
-            }
-            print("HE|")
+            self.donwloadImages(imageCount: imageCount, completion: {
+                images in
+                completion(images)
+            })
         })
         
     }
