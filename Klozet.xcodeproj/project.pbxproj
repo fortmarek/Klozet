@@ -51,7 +51,6 @@
 		F8EAE83A1D6072EF00D60DAB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8EAE8391D6072EF00D60DAB /* CoreLocation.framework */; };
 		F8EAE83C1D630E0500D60DAB /* VIewControllerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE83B1D630E0500D60DAB /* VIewControllerInterface.swift */; };
 		F8F8FBDE1DB6C902001CC28F /* AlamofireImage.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8F8FBDD1DB6C902001CC28F /* AlamofireImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F8F8FBE01DBD1F54001CC28F /* MoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F8FBDF1DBD1F54001CC28F /* MoreCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,7 +140,6 @@
 		F8EAE8391D6072EF00D60DAB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F8EAE83B1D630E0500D60DAB /* VIewControllerInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VIewControllerInterface.swift; sourceTree = "<group>"; };
 		F8F8FBDD1DB6C902001CC28F /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
-		F8F8FBDF1DBD1F54001CC28F /* MoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,7 +252,6 @@
 				F8775B081D8EBAAF003B9F4D /* ListButton.swift */,
 				F8775B0A1D908104003B9F4D /* ListButtonDelegate.swift */,
 				F82FB1C31D81D060001FE39D /* ListCell.swift */,
-				F8F8FBDF1DBD1F54001CC28F /* MoreCell.swift */,
 			);
 			name = ListViewController;
 			sourceTree = "<group>";
@@ -483,7 +480,6 @@
 				F8778B5E1D9ABFE8005ACA43 /* PriceCell.swift in Sources */,
 				F8778B601D9D7D13005ACA43 /* MapInfo.swift in Sources */,
 				F8775B0D1D919255003B9F4D /* DetailViewController.swift in Sources */,
-				F8F8FBE01DBD1F54001CC28F /* MoreCell.swift in Sources */,
 				F82FB1C41D81D060001FE39D /* ListCell.swift in Sources */,
 				F8EAE7FC1D5FA6A900D60DAB /* ViewController.swift in Sources */,
 				F8EAE8351D5FC81300D60DAB /* DataController.swift in Sources */,

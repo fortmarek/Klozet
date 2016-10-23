@@ -86,7 +86,8 @@ class ListViewController: UIViewController, DirectionsDelegate, ListTableDelegat
     }
     
     private func setTableFooter() {
-        tableView.tableFooterView = ListFooter(toiletsCount: toilets.count, viewWidth: view.frame.size.width)
+        //tableView.tableFooterView = ListFooter(toiletsCount: toilets.count, viewWidth: view.frame.size.width)
+        tableView.tableFooterView = ListMoreFooter(viewWidth: view.frame.size.width)
         tableView.contentInset.bottom = 100
     }
     
@@ -130,19 +131,10 @@ extension ListViewController: ListToiletsDelegate {
 extension ListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        if indexPath.row < shownCells {
-            let listCell = getListCell(indexPath: indexPath, tableView: tableView)
-            return listCell
-        }
-        
-        else {
-            guard let moreCell = tableView.dequeueReusableCell(withIdentifier: "moreCell") as? MoreCell else {
-                return UITableViewCell()}
-            return moreCell
-            }
-        }
-        
+        let listCell = getListCell(indexPath: indexPath, tableView: tableView)
+        return listCell
+    }
+    
     
     func getListCell(indexPath: IndexPath, tableView: UITableView) -> UITableViewCell {
         //Cell as ListCell
@@ -162,7 +154,7 @@ extension ListViewController: UITableViewDataSource {
         guard shownCells < (toilets.count - 20) else {
             return toilets.count
         }
-        return shownCells + 1
+        return shownCells
     }
 }
 
@@ -188,4 +180,35 @@ class ListFooter: UITableViewHeaderFooterView {
         footerContentView.addSubview(infoLabel)
     }
 }
+
+class ListMoreFooter: UITableViewHeaderFooterView {
+    convenience init(viewWidth: CGFloat) {
+        self.init()
+        
+        let footerContentView = UIView()
+        footerContentView.frame = CGRect(x: 0, y: 0, width: viewWidth, height: 400)
+        contentView.addSubview(footerContentView)
+        
+        let moreStack = UIStackView()
+        moreStack.translatesAutoresizingMaskIntoConstraints = false
+        footerContentView.addSubview(moreStack)
+        moreStack.centerXAnchor.constraint(equalTo: footerContentView.centerXAnchor).isActive = true
+        moreStack.topAnchor.constraint(equalTo: footerContentView.topAnchor, constant: 20).isActive = true
+        
+        
+        let moreButton = UIButton()
+        moreButton.setTitle("Načíst další".localized, for: .normal)
+        moreButton.setTitle("Načíst další".localized, for: .selected)
+        moreButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: UIFontWeightLight)
+        moreButton.titleLabel?.textColor = Colors.pumpkinColor
+        moreButton.addTarget(self, action: #selector(loadMoreToilets), for: .touchUpInside)
+        moreStack.addArrangedSubview(moreButton)
+
+    }
+    
+    func loadMoreToilets() {
+        print("Yup")
+    }
+}
+
 
