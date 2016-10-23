@@ -73,13 +73,25 @@ class ToiletImages(Resource):
 
         encoded_image = parser.parse_args()['encoded_image']
         decoded_image = Image.open(BytesIO(base64.b64decode(encoded_image)))
-        decoded_image.save(directory + image_index_str + '_min.jpg', 'JPEG', optimize=True, quality=40)
+
+        minimized_image = minimize_image(decoded_image)
+        minimized_image.save(directory + image_index_str + '_min.jpg', 'JPEG', optimize=True, quality=10)
+
         decoded_image.save(directory + image_index_str + '.jpg', 'JPEG')
         file = open('/var/www/Klozet/Klozet/static/toilets_img/log-file.txt', 'a')
         file.write("Posted image: {0} for toilet {1}\n".format(image_index_str, klozet_id))
         file.close()
 
+def minimize_image(decoded_image):
+    width, height = decoded_image.size
+    max_size = 120.0
+    ratio = min(max_size/width, max_size/height)
+    min_size = width * ratio, height * ratio
+    decoded_image.thumbnail(min_size)
+    return decoded_image
+
 
 api.add_resource(ToiletImages, '/toilet/<string:klozet_id>')
+
 
 

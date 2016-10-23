@@ -154,7 +154,7 @@ extension ImageController {
     func downloadImage(toiletId: Int, imageIndex: Int, isMin: Bool, completion: @escaping (_ image: UIImage) -> ()) {
         
         let address = "http://139.59.144.155/klozet/toilets_img/5/\(imageIndex)"
-        let suffix = isMin ? "_min.jpg" : ".jpg"
+        let suffix = isMin ? ".jpg" : "_min.jpg"
         
         let wholeAddress = address + suffix
         

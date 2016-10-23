@@ -62,7 +62,7 @@ class ListViewController: UIViewController, DirectionsDelegate, ListTableDelegat
             activityIndicator = activityView.activityIndicator
         }
         
-        let _ = ListControllerContainer(view: view, toiletsDelegate: self)
+        _ = ListControllerContainer(view: view, toiletsDelegate: self)
         
         
     }
@@ -108,6 +108,7 @@ extension ListViewController: ListToiletsDelegate {
         }
     }
     
+    /*
     @objc(tableView:willDisplayCell:forRowAtIndexPath:) func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let lastElement = shownCells - 1
         
@@ -116,6 +117,7 @@ extension ListViewController: ListToiletsDelegate {
             reloadTable()
         }
     }
+ */
     
     /*
     func startUpdating() {
@@ -129,6 +131,20 @@ extension ListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        if indexPath.row < shownCells {
+            let listCell = getListCell(indexPath: indexPath, tableView: tableView)
+            return listCell
+        }
+        
+        else {
+            guard let moreCell = tableView.dequeueReusableCell(withIdentifier: "moreCell") as? MoreCell else {
+                return UITableViewCell()}
+            return moreCell
+            }
+        }
+        
+    
+    func getListCell(indexPath: IndexPath, tableView: UITableView) -> UITableViewCell {
         //Cell as ListCell
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "listCell") as? ListCell else {return UITableViewCell()}
         
@@ -146,7 +162,7 @@ extension ListViewController: UITableViewDataSource {
         guard shownCells < (toilets.count - 20) else {
             return toilets.count
         }
-        return shownCells
+        return shownCells + 1
     }
 }
 
