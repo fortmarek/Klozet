@@ -152,7 +152,7 @@ extension ImageController {
     }
     
     private func downloadImage(imageIndex: Int, completion: @escaping (_ image: ImageSource) -> ()) {
-        Alamofire.request("http://139.59.144.155/klozet/toilets_img/5/1.jpg").responseImage(completionHandler: {
+        Alamofire.request("http://139.59.144.155/klozet/toilets_img/5/\(imageIndex).jpg").responseImage(completionHandler: {
             response in
             guard let image = response.result.value else {return}
             let imageSource = ImageSource(image: image)
@@ -163,8 +163,13 @@ extension ImageController {
     private func donwloadImages(imageCount: Int, completion: @escaping (_ images: [ImageSource]) -> ()){
         
         var images = [ImageSource]()
-        print(imageCount)
-        for i in 0...imageCount - 1 {
+        
+        guard imageCount > 0 else {
+            completion([])
+            return
+        }
+        
+        for i in 0...(imageCount - 1) {
             self.downloadImage(imageIndex: i, completion: {
                 image in
                 images.append(image)

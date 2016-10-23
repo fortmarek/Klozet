@@ -46,7 +46,7 @@ class ToiletImages(Resource):
         images = {'image_count': 0}
         image_count = 0
         for file in os.listdir(directory):
-            if file.find('.jpg') != -1:
+            if file.find('_min.jpg') != -1:
                 image_count += 1
         images['image_count'] = image_count
         return images
@@ -54,13 +54,13 @@ class ToiletImages(Resource):
     def post(self, klozet_id):
         directory = '/var/www/Klozet/Klozet/static/toilets_img/{0}/'.format(klozet_id)
 
-        image_filename = "0.jpg"
+        image_index_str = "0"
 
         try:
             file = open(directory + 'log-file.txt', 'r+')
             text = file.read()
             image_index = int(text) + 1
-            image_filename = "{0}.jpg".format(image_index)
+            image_index_str = "{0}".format(image_index)
             file.seek(0)
             file.truncate()
             file.write("{0}".format(image_index))
@@ -73,9 +73,10 @@ class ToiletImages(Resource):
 
         encoded_image = parser.parse_args()['encoded_image']
         decoded_image = Image.open(BytesIO(base64.b64decode(encoded_image)))
-        decoded_image.save(directory + image_filename, 'JPEG')
+        decoded_image.save(directory + image_index_str + '_min.jpg', 'JPEG', optimize=True, quality=40)
+        decoded_image.save(directory + image_index_str + '.jpg', 'JPEG')
         file = open('/var/www/Klozet/Klozet/static/toilets_img/log-file.txt', 'a')
-        file.write("Posted image: {0} for toilet {1}\n".format(image_filename, klozet_id))
+        file.write("Posted image: {0} for toilet {1}\n".format(image_index_str, klozet_id))
         file.close()
 
 
