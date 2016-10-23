@@ -151,16 +151,21 @@ extension ImageController {
         }
     }
     
-    private func downloadImage(imageIndex: Int, completion: @escaping (_ image: ImageSource) -> ()) {
-        Alamofire.request("http://139.59.144.155/klozet/toilets_img/5/\(imageIndex).jpg").responseImage(completionHandler: {
+    func downloadImage(toiletId: Int, imageIndex: Int, isMin: Bool, completion: @escaping (_ image: UIImage) -> ()) {
+        
+        let address = "http://139.59.144.155/klozet/toilets_img/5/\(imageIndex)"
+        let suffix = isMin ? "_min.jpg" : ".jpg"
+        
+        let wholeAddress = address + suffix
+        
+        Alamofire.request(wholeAddress).responseImage(completionHandler: {
             response in
             guard let image = response.result.value else {return}
-            let imageSource = ImageSource(image: image)
-            completion(imageSource)
+            completion(image)
         })
     }
     
-    private func donwloadImages(imageCount: Int, completion: @escaping (_ images: [ImageSource]) -> ()){
+    private func donwloadImages(toiletId: Int, imageCount: Int, completion: @escaping (_ images: [ImageSource]) -> ()){
         
         var images = [ImageSource]()
         
@@ -170,9 +175,10 @@ extension ImageController {
         }
         
         for i in 0...(imageCount - 1) {
-            self.downloadImage(imageIndex: i, completion: {
+            self.downloadImage(toiletId: toiletId, imageIndex: i, isMin: false, completion: {
                 image in
-                images.append(image)
+                let imageSource = ImageSource(image: image)
+                images.append(imageSource)
 
                 if images.count == imageCount {
                     completion(images)
@@ -187,7 +193,7 @@ extension ImageController {
         getImageCount(toiletId: toiletId, completion: {
             imageCount in
             
-            self.donwloadImages(imageCount: imageCount, completion: {
+            self.donwloadImages(toiletId: toiletId, imageCount: imageCount, completion: {
                 images in
                 completion(images)
             })

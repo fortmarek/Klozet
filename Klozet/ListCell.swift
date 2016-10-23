@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import MapKit
 
-class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate {
+class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate, ImageController {
     
     //Background for toilet image
     @IBOutlet weak var imageBackground: UIView!
@@ -53,6 +53,7 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate {
         setPriceLabel(toilet.price)
         setOpenLabel(toilet)
         setDistanceLabel(toilet.coordinate)
+        setImage(toiletId: toilet.toiletId)
         
         mainAddressLabel.text = toilet.title
         subaddressLabel.text = toilet.subtitle
@@ -94,5 +95,14 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate {
         distanceLabel.text = getDistanceString(coordinate)
     }
     
+    fileprivate func setImage(toiletId: Int) {
+        downloadImage(toiletId: toiletId, imageIndex: 0, isMin: true, completion: {
+            image in
+            
+            let imageView = UIImageView(image: image)
+            imageView.frame = self.imageBackground.frame
+            self.addSubview(imageView)
+        })
+    }
 }
 
