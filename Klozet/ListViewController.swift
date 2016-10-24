@@ -87,7 +87,7 @@ class ListViewController: UIViewController, DirectionsDelegate, ListTableDelegat
     
     private func setTableFooter() {
         //tableView.tableFooterView = ListFooter(toiletsCount: toilets.count, viewWidth: view.frame.size.width)
-        tableView.tableFooterView = ListMoreFooter(viewWidth: view.frame.size.width)
+        tableView.tableFooterView = ListMoreFooter(viewWidth: view.frame.size.width, target: tableView)
         tableView.contentInset.bottom = 100
     }
     
@@ -182,31 +182,41 @@ class ListFooter: UITableViewHeaderFooterView {
 }
 
 class ListMoreFooter: UITableViewHeaderFooterView {
-    convenience init(viewWidth: CGFloat) {
+    convenience init(viewWidth: CGFloat, target: Any) {
         self.init()
-        
+
         let footerContentView = UIView()
         footerContentView.frame = CGRect(x: 0, y: 0, width: viewWidth, height: 400)
-        contentView.addSubview(footerContentView)
+        //contentView.addSubview(footerContentView)
+        sendSubview(toBack: contentView)
+        addSubview(footerContentView)
+        bringSubview(toFront: footerContentView)
+        //sendSubview(toBack: contentView)
+        //contentView.backgroundColor = UIColor.gray
         
         let moreStack = UIStackView()
         moreStack.translatesAutoresizingMaskIntoConstraints = false
         footerContentView.addSubview(moreStack)
         moreStack.centerXAnchor.constraint(equalTo: footerContentView.centerXAnchor).isActive = true
-        moreStack.topAnchor.constraint(equalTo: footerContentView.topAnchor, constant: 20).isActive = true
+        moreStack.topAnchor.constraint(equalTo: footerContentView.topAnchor, constant: 14).isActive = true
         
         
-        let moreButton = UIButton()
+        let moreButton = UIButton(type: .roundedRect)
         moreButton.setTitle("Načíst další".localized, for: .normal)
-        moreButton.setTitle("Načíst další".localized, for: .selected)
+        moreButton.setTitleColor(Colors.pumpkinColor, for: .normal)
         moreButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: UIFontWeightLight)
-        moreButton.titleLabel?.textColor = Colors.pumpkinColor
         moreButton.addTarget(self, action: #selector(loadMoreToilets), for: .touchUpInside)
+        moreButton.backgroundColor = UIColor.black
         moreStack.addArrangedSubview(moreButton)
+        
+        //contentView.bringSubview(toFront: moreButton)
+
+        dump(self)
+        dump(moreButton)
 
     }
     
-    func loadMoreToilets() {
+    func loadMoreToilets(sender: UIButton) {
         print("Yup")
     }
 }
