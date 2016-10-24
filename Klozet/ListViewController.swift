@@ -20,11 +20,8 @@ protocol ListToiletsDelegate {
     func updateToilets(toilets: Array<Toilet>)
 }
 
-protocol ListTableDelegate {
-    func reloadTable()
-}
 
-class ListViewController: UIViewController, DirectionsDelegate, ListTableDelegate {
+class ListViewController: UIViewController, DirectionsDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -42,6 +39,7 @@ class ListViewController: UIViewController, DirectionsDelegate, ListTableDelegat
     var didOrderToilets = false
     
     var shownCells = 20
+    var listFooterDelegate: ListFooterDelegate?
     
     
     override func viewDidLoad() {
@@ -86,20 +84,22 @@ class ListViewController: UIViewController, DirectionsDelegate, ListTableDelegat
     }
     
     private func setTableFooter() {
-        tableView.contentInset.bottom = 60
-
-        let listMoreFooterFrame = CGRect(x: 0, y: 0, width: view.frame.width, height: 40)
-        tableView.tableFooterView = ListMoreFooter(frame: listMoreFooterFrame)
+        let listFooterFrame = CGRect(x: 0, y: 0, width: view.frame.width, height: 40)
+        let listFooter = ListFooter(frame: listFooterFrame)
+        listFooter.reloadDelegate = self
+        listFooterDelegate = listFooter
         
-    }
-    
-    func loadMoreToilets() {
-        print("KILL MME")
+        tableView.tableFooterView = listFooter
+        
+        //Inset so the footer does not appear below ListController
+        tableView.contentInset.bottom = 60
+        
+        
     }
 
 }
 
-extension ListViewController: ListToiletsDelegate {
+extension ListViewController: ListToiletsDelegate, Reload {
     
     func updateToilets(toilets: Array<Toilet>) {
         self.toilets = toilets
@@ -116,7 +116,7 @@ extension ListViewController: ListToiletsDelegate {
     
 }
 
-extension ListViewController: UITableViewDataSource {
+extension ListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let listCell = getListCell(indexPath: indexPath, tableView: tableView)
@@ -140,21 +140,29 @@ extension ListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard shownCells < (toilets.count - 20) else {
+            listFooterDelegate?.changeToFooterWithInfo(toiletsCount: toilets.count)
             return toilets.count
         }
         return shownCells
     }
 }
 
-extension ListViewController: UITableViewDelegate {
-    
+protocol Reload {
+    func reloadTable()
+    var shownCells: Int { get set }
 }
 
-class ListMoreFooter: UIView {
+protocol ListFooterDelegate {
+    func changeToFooterWithInfo(toiletsCount: Int)
+}
+
+class ListFooter: UIView, ListFooterDelegate {
     
     let moreButton = UIButton(type: .roundedRect)
     let moreStack = UIStackView()
     let activityIndicator = UIActivityIndicatorView()
+    
+    var reloadDelegate: Reload?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -187,13 +195,27 @@ class ListMoreFooter: UIView {
     }
     
     func loadMoreToilets() {
-        activityIndicator.isHidden = false
-        activityIndicator.startAnimating()
-        moreStack.addArrangedSubview(activityIndicator)
         
-        moreButton.isHidden = true
-        moreStack.removeArrangedSubview(moreButton)
+        //activityIndicator.isHidden = false
+        //activityIndicator.startAnimating()
+        //moreStack.addArrangedSubview(activityIndicator)
         
+        //moreButton.isHidden = true
+        //moreStack.removeArrangedSubview(moreButton)
+        
+        reloadDelegate?.shownCells += 20
+        reloadDelegate?.reloadTable()
+    }
+    
+    func changeToFooterWithInfo(toiletsCount: Int) {
+        moreButton.removeFromSuperview()
+        
+        
+        let infoLabel = UILabel()
+        infoLabel.text = "Záchodů celkem: \(toiletsCount)".localized
+        infoLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightLight)
+        infoLabel.textColor = Colors.pumpkinColor
+        moreStack.addArrangedSubview(infoLabel)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -201,24 +223,6 @@ class ListMoreFooter: UIView {
     }
 }
 
-class ListFooter: UITableViewHeaderFooterView {
-    convenience init(toiletsCount: Int, viewWidth: CGFloat) {
-        self.init()
-        
-        let footerContentView = UIView()
-        footerContentView.frame = CGRect(x: 0, y: 0, width: viewWidth, height: 400)
-        footerContentView.backgroundColor = UIColor(red: 0.92, green: 0.92, blue: 0.95, alpha: 1.0)
-        contentView.addSubview(footerContentView)
-        
-        let infoLabel = UILabel()
-        infoLabel.text = "Záchodů celkem: \(toiletsCount)".localized
-        infoLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightLight)
-        infoLabel.sizeToFit()
-        infoLabel.frame.origin.x = viewWidth / 2 - infoLabel.frame.size.width / 2
-        infoLabel.frame.origin.y = 16.5
-        footerContentView.addSubview(infoLabel)
-    }
-}
 
 
 
