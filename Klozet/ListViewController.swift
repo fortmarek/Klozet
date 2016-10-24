@@ -88,23 +88,9 @@ class ListViewController: UIViewController, DirectionsDelegate, ListTableDelegat
     private func setTableFooter() {
         tableView.contentInset.bottom = 60
 
-        let footerContentView = UIView()
-        footerContentView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 30)
-
-        let moreStack = UIStackView()
-        moreStack.translatesAutoresizingMaskIntoConstraints = false
-        footerContentView.addSubview(moreStack)
-        moreStack.centerXAnchor.constraint(equalTo: footerContentView.centerXAnchor).isActive = true
-        moreStack.centerYAnchor.constraint(equalTo: footerContentView.centerYAnchor).isActive = true
+        let listMoreFooterFrame = CGRect(x: 0, y: 0, width: view.frame.width, height: 40)
+        tableView.tableFooterView = ListMoreFooter(frame: listMoreFooterFrame)
         
-        
-        let moreButton = UIButton(type: .roundedRect)
-        moreButton.setTitle("Načíst další".localized, for: .normal)
-        moreButton.setTitleColor(Colors.pumpkinColor, for: .normal)
-        moreButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
-        moreButton.addTarget(self, action: #selector(loadMoreToilets), for: .touchUpInside)
-        moreStack.addArrangedSubview(moreButton)
-        tableView.tableFooterView = footerContentView
     }
     
     func loadMoreToilets() {
@@ -128,23 +114,6 @@ extension ListViewController: ListToiletsDelegate {
         }
     }
     
-    /*
-    @objc(tableView:willDisplayCell:forRowAtIndexPath:) func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastElement = shownCells - 1
-        
-        if indexPath.row == lastElement {
-            shownCells += 20
-            reloadTable()
-        }
-    }
- */
-    
-    /*
-    func startUpdating() {
-        activityView.isHidden = false
-        activityIndicator.startAnimating()
-    }
- */
 }
 
 extension ListViewController: UITableViewDataSource {
@@ -181,6 +150,57 @@ extension ListViewController: UITableViewDelegate {
     
 }
 
+class ListMoreFooter: UIView {
+    
+    let moreButton = UIButton(type: .roundedRect)
+    let moreStack = UIStackView()
+    let activityIndicator = UIActivityIndicatorView()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setMoreStack()
+        setMoreButton(moreStack: moreStack)
+        
+    }
+    
+    private func setMoreStack() {
+        moreStack.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(moreStack)
+        moreStack.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        moreStack.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        
+    }
+    
+    private func setMoreButton(moreStack: UIStackView) {
+        moreButton.setTitle("Načíst další".localized, for: .normal)
+        moreButton.setTitleColor(Colors.pumpkinColor, for: .normal)
+        moreButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        moreButton.addTarget(self, action: #selector(loadMoreToilets), for: .touchUpInside)
+        moreStack.addArrangedSubview(moreButton)
+    }
+    
+    private func setActivityIndicator() {
+        activityIndicator.isHidden = true
+        activityIndicator.color = Colors.pumpkinColor
+        activityIndicator.sizeToFit()
+    }
+    
+    func loadMoreToilets() {
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        moreStack.addArrangedSubview(activityIndicator)
+        
+        moreButton.isHidden = true
+        moreStack.removeArrangedSubview(moreButton)
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
 class ListFooter: UITableViewHeaderFooterView {
     convenience init(toiletsCount: Int, viewWidth: CGFloat) {
         self.init()
@@ -199,6 +219,7 @@ class ListFooter: UITableViewHeaderFooterView {
         footerContentView.addSubview(infoLabel)
     }
 }
+
 
 
 
