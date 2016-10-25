@@ -1,0 +1,24 @@
+
+/* Class = "UILabel"; text = "Zdarma"; ObjectID = "4Eg-r5-zve"; */
+"4Eg-r5-zve.text" = "Zdarma";
+
+/* Class = "UINavigationItem"; title = "Klozet"; ObjectID = "4fb-P7-1xj"; */
+"4fb-P7-1xj.title" = "Klozet";
+
+/* Class = "UIViewController"; title = "Klozet"; ObjectID = "BYZ-38-t0r"; */
+"BYZ-38-t0r.title" = "Klozet";
+
+/* Class = "UIBarButtonItem"; title = "List"; ObjectID = "C4x-ur-SQT"; */
+"C4x-ur-SQT.title" = "Seznam";
+
+/* Class = "UILabel"; text = "0,4 km"; ObjectID = "KCW-PP-68l"; */
+"KCW-PP-68l.text" = "0,4 km";
+
+/* Class = "UILabel"; text = "M. Horákové 66"; ObjectID = "fw7-f8-XiQ"; */
+"fw7-f8-XiQ.text" = "M. Horákové 66";
+
+/* Class = "UILabel"; text = "Otevřeno"; ObjectID = "sxw-bR-04X"; */
+"sxw-bR-04X.text" = "Otevřeno";
+
+/* Class = "UILabel"; text = "Na náměstí"; ObjectID = "wT5-Ln-dMi"; */
+"wT5-Ln-dMi.text" = "Na náměstí";

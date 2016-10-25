@@ -103,11 +103,11 @@ extension CameraDelegate where Self: UIViewController, Self: UINavigationControl
     
     
     fileprivate func uploadImage() {
-        let actionSheet = UIAlertController(title: "S fotkou je to vždycky lepší".localized, message: nil, preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: "It's always better with a photo".localized, message: nil, preferredStyle: .actionSheet)
         actionSheet.view.tintColor = Colors.pumpkinColor
         
-        let pickPhotoOption = UIAlertAction(title: "Vybrat z fotogalerie".localized, style: .default, handler: {_ in self.selectPhoto()})
-        let takePhotoOption = UIAlertAction(title: "Pořídit fotku".localized, style: .default, handler: {_ in self.takePhoto()})
+        let pickPhotoOption = UIAlertAction(title: "Choose image from library".localized, style: .default, handler: {_ in self.selectPhoto()})
+        let takePhotoOption = UIAlertAction(title: "Take photo".localized, style: .default, handler: {_ in self.takePhoto()})
         let cancelOption = UIAlertAction(title: "Zrušit".localized, style: .cancel, handler: {_ in actionSheet.dismiss(animated: true, completion: nil)})
         
         actionSheet.addAction(pickPhotoOption)

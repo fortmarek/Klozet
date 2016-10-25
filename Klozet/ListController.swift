@@ -36,7 +36,7 @@ class ListControllerContainer: UIView, ListControllerDelegate {
         
         //ListController
         let contentView = blurredEffectView.contentView
-        let listOpenButton = ListOpenButton(title: "Otevřeno".localized, contentView: contentView, side: .left, toiletsDelegate: toiletsDelegate, listControllerDelegate: self)
+        let listOpenButton = ListOpenButton(title: "Open".localized, contentView: contentView, side: .left, toiletsDelegate: toiletsDelegate, listControllerDelegate: self)
         let listPriceButton = ListPriceButton(title: "Zdarma".localized, contentView: contentView, side: .right, toiletsDelegate: toiletsDelegate, listControllerDelegate: self)
         
         let border = setListControllerBorder(listOpenButton: listOpenButton, listPriceButton: listPriceButton)
