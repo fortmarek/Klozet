@@ -52,10 +52,10 @@ extension ListButtonDelegate where Self: UIButton, Self: FilterOpen, Self: Direc
         guard var toiletsDelegate = self.toiletsDelegate else {return}
         
         var toilets = toiletsDelegate.toilets
-        
+ 
         let isFilterOpenSelected = toiletsDelegate.isFilterOpenSelected
         let isFilterPriceSelected = toiletsDelegate.isFilterPriceSelected
-        
+
         //Get only open and free toilets
         if isFilterOpenSelected && isFilterPriceSelected {
             toilets = toiletsDelegate.allToilets.filter({
@@ -83,7 +83,6 @@ extension ListButtonDelegate where Self: UIButton, Self: FilterOpen, Self: Direc
         }
         
         toiletsDelegate.toilets = toilets
-        
         
         
         //Update table

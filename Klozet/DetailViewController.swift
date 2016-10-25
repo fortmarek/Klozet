@@ -81,8 +81,11 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {return}
         dismiss(animated: true, completion: {
             DispatchQueue.global().async(execute: {
-                guard let orientedImage = image.correctlyOrientedImage() else {return}
-                self.postImage(image: orientedImage)
+                guard
+                    let orientedImage = image.correctlyOrientedImage(),
+                    let toilet = self.toilet
+                else {return}
+                self.postImage(image: orientedImage, toiletId: toilet.toiletId)
             })
         })
         
@@ -134,9 +137,11 @@ extension CameraDelegate where Self: UIViewController, Self: UINavigationControl
         present(imagePicker, animated: true, completion: nil)
     }
     
-    fileprivate func postImage(image: UIImage) {
+    fileprivate func postImage(image: UIImage, toiletId: Int) {
         guard let encodedImage = UIImageJPEGRepresentation(image, 0.9)?.base64EncodedString() else {return}
-        _ = Alamofire.request("http://139.59.144.155/klozet/toilet/5", method: .post, parameters: ["encoded_image" : encodedImage])
+        let path = "http://139.59.144.155/klozet/toilet/\(toiletId)"
+
+        _ = Alamofire.request(path, method: .post, parameters: ["encoded_image" : encodedImage])
     }
     
 

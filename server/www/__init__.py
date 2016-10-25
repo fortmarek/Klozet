@@ -1,4 +1,4 @@
-from flask import Flask, render_template, json
+from flask import Flask, render_template, json, send_from_directory
 from flask_restful import Resource, Api, abort, reqparse
 from PIL import Image
 from io import BytesIO
@@ -8,10 +8,10 @@ import os
 app = Flask(__name__, static_url_path="", static_folder="static")
 api = Api(app)
 
-@app.route('/toilet/<string:klozet_id>/<string:image_id>/image/jpeg')
-def toilet_img(klozet_id, image_id):
-    filename = 'toilets_img/{0}/{1}.jpg'.format(klozet_id, image_id)
-    return render_template('toilet_img.html', filename= filename)
+@app.route('/toilets_img/<string:klozet_id>/<string:image_name>')
+def toilet_img(klozet_id, image_name):
+    directory = '/srv/klozet/toilets_img/{0}/'.format(klozet_id)
+    return send_from_directory(directory, image_name)
 
 class Toilets(Resource):
     def get(self):
@@ -42,7 +42,7 @@ class ToiletImages(Resource):
     '''
 
     def get(self, klozet_id):
-        directory = '/var/www/Klozet/Klozet/static/toilets_img/{0}/'.format(klozet_id)
+        directory = '/srv/klozet/toilets_img/{0}/'.format(klozet_id)
         images = {'image_count': 0}
         image_count = 0
         for file in os.listdir(directory):
@@ -52,7 +52,7 @@ class ToiletImages(Resource):
         return images
 
     def post(self, klozet_id):
-        directory = '/var/www/Klozet/Klozet/static/toilets_img/{0}/'.format(klozet_id)
+        directory = '/srv/klozet/toilets_img/{0}/'.format(klozet_id)
 
         image_index_str = "0"
 
@@ -74,11 +74,13 @@ class ToiletImages(Resource):
         encoded_image = parser.parse_args()['encoded_image']
         decoded_image = Image.open(BytesIO(base64.b64decode(encoded_image)))
 
-        minimized_image = minimize_image(decoded_image)
-        minimized_image.save(directory + image_index_str + '_min.jpg', 'JPEG', optimize=True, quality=10)
-
         decoded_image.save(directory + image_index_str + '.jpg', 'JPEG')
-        file = open('/var/www/Klozet/Klozet/static/toilets_img/log-file.txt', 'a')
+
+        minimized_image = minimize_image(decoded_image)
+        minimized_image.save(directory + image_index_str + '_min.jpg', 'JPEG', optimize=True)
+
+
+        file = open('/srv/klozet/toilets_img/log-file.txt', 'a')
         file.write("Posted image: {0} for toilet {1}\n".format(image_index_str, klozet_id))
         file.close()
 

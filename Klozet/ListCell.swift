@@ -19,6 +19,7 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate, ImageController
     @IBOutlet weak var mainAddressLabel: UILabel!
     @IBOutlet weak var subaddressLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var toiletImageView: UIImageView!
     
     var locationDelegate: UserLocation?
     
@@ -30,7 +31,7 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate, ImageController
         // Initialization code
         
         setCornerRadius(imageBackground, cornerRadius: 10)
-        
+        setCornerRadius(toiletImageView, cornerRadius: 10)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -98,10 +99,7 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate, ImageController
     fileprivate func setImage(toiletId: Int) {
         downloadImage(toiletId: toiletId, imageIndex: 0, isMin: true, completion: {
             image in
-            
-            let imageView = UIImageView(image: image)
-            imageView.frame = self.imageBackground.frame
-            self.addSubview(imageView)
+            self.toiletImageView.image = image
         })
     }
 }

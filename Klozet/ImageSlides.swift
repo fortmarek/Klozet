@@ -140,7 +140,8 @@ extension ImageController {
     
     
     private func getImageCount(toiletId: Int, completion: @escaping(_ imageCount: Int) -> () ) {
-        Alamofire.request("http://139.59.144.155/klozet/toilet/5").responseJSON {
+        let path = "http://139.59.144.155/klozet/toilet/\(toiletId)"
+        Alamofire.request(path).responseJSON {
             response in
             guard
                 let data = response.data,
@@ -153,14 +154,15 @@ extension ImageController {
     
     func downloadImage(toiletId: Int, imageIndex: Int, isMin: Bool, completion: @escaping (_ image: UIImage) -> ()) {
         
-        let address = "http://139.59.144.155/klozet/toilets_img/5/\(imageIndex)"
-        let suffix = isMin ? ".jpg" : "_min.jpg"
+        let path = "http://139.59.144.155/klozet/toilets_img/\(toiletId)/\(imageIndex)"
+        let suffix = isMin ? "_min.jpg" : ".jpg"
         
-        let wholeAddress = address + suffix
-        
-        Alamofire.request(wholeAddress).responseImage(completionHandler: {
+        let wholePath = path + suffix
+
+        Alamofire.request(wholePath).responseImage(completionHandler: {
             response in
             guard let image = response.result.value else {return}
+            print(wholePath)
             completion(image)
         })
     }

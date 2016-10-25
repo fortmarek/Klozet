@@ -126,6 +126,7 @@
                                             <frame key="frameInset" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c7q-6M-mTg"/>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yb8-3q-DbG">
                                                     <color key="backgroundColor" red="1" green="0.49803921568627452" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -187,16 +188,20 @@
                                             <constraints>
                                                 <constraint firstItem="Yb8-3q-DbG" firstAttribute="leading" secondItem="GJu-U4-BFo" secondAttribute="leadingMargin" constant="2" id="08G-a6-yRB"/>
                                                 <constraint firstItem="sxw-bR-04X" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wT5-Ln-dMi" secondAttribute="trailing" priority="999" constant="5" id="25o-YW-XQY"/>
+                                                <constraint firstItem="c7q-6M-mTg" firstAttribute="width" secondItem="Yb8-3q-DbG" secondAttribute="width" id="2WI-qF-RqZ"/>
                                                 <constraint firstItem="srm-8c-zS5" firstAttribute="centerY" secondItem="Yb8-3q-DbG" secondAttribute="centerY" id="341-7a-RDZ"/>
                                                 <constraint firstItem="KCW-PP-68l" firstAttribute="top" secondItem="wT5-Ln-dMi" secondAttribute="bottom" constant="2" id="3hc-k9-8wd"/>
+                                                <constraint firstItem="c7q-6M-mTg" firstAttribute="height" secondItem="Yb8-3q-DbG" secondAttribute="height" id="8Ml-V4-dUH"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="srm-8c-zS5" secondAttribute="trailing" constant="454" id="9lZ-DK-IoG"/>
                                                 <constraint firstItem="fw7-f8-XiQ" firstAttribute="top" secondItem="Yb8-3q-DbG" secondAttribute="top" id="Bng-K9-Cak"/>
                                                 <constraint firstItem="KCW-PP-68l" firstAttribute="leading" secondItem="fw7-f8-XiQ" secondAttribute="leading" id="H3L-ON-gqa"/>
                                                 <constraint firstItem="x10-7X-8Tq" firstAttribute="centerY" secondItem="Yb8-3q-DbG" secondAttribute="centerY" id="KVn-tt-tj8"/>
                                                 <constraint firstItem="4Eg-r5-zve" firstAttribute="top" secondItem="srm-8c-zS5" secondAttribute="bottom" constant="3" id="Ksd-sm-Gki"/>
                                                 <constraint firstItem="srm-8c-zS5" firstAttribute="top" secondItem="sxw-bR-04X" secondAttribute="bottom" constant="3" id="Sno-Wy-BGM"/>
+                                                <constraint firstItem="c7q-6M-mTg" firstAttribute="centerX" secondItem="Yb8-3q-DbG" secondAttribute="centerX" id="aeW-sy-vYE"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="sxw-bR-04X" secondAttribute="trailing" id="arg-rB-VMc"/>
                                                 <constraint firstItem="sxw-bR-04X" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fw7-f8-XiQ" secondAttribute="trailing" constant="5" id="b16-rE-tJ5"/>
+                                                <constraint firstItem="c7q-6M-mTg" firstAttribute="centerY" secondItem="Yb8-3q-DbG" secondAttribute="centerY" id="bSf-gm-6eF"/>
                                                 <constraint firstItem="fw7-f8-XiQ" firstAttribute="leading" secondItem="Yb8-3q-DbG" secondAttribute="trailing" constant="10" id="by8-ev-8la"/>
                                                 <constraint firstItem="wT5-Ln-dMi" firstAttribute="top" secondItem="fw7-f8-XiQ" secondAttribute="bottom" constant="1" id="gXN-Fy-k7B"/>
                                                 <constraint firstItem="x10-7X-8Tq" firstAttribute="centerX" secondItem="Yb8-3q-DbG" secondAttribute="centerX" id="gr9-jh-SKx"/>
@@ -213,6 +218,7 @@
                                             <outlet property="openLabel" destination="sxw-bR-04X" id="P6D-Si-gC0"/>
                                             <outlet property="priceLabel" destination="4Eg-r5-zve" id="odI-Ra-87C"/>
                                             <outlet property="subaddressLabel" destination="wT5-Ln-dMi" id="yCf-F4-Snq"/>
+                                            <outlet property="toiletImageView" destination="c7q-6M-mTg" id="tuB-9t-Bdl"/>
                                             <segue destination="d2y-rP-cyU" kind="show" identifier="detailSegue" id="uzg-Lb-1yb"/>
                                         </connections>
                                     </tableViewCell>
@@ -233,7 +239,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BXe-Xi-ZKL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="998" y="275"/>
+            <point key="canvasLocation" x="997.60000000000002" y="274.81259370314842"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="WxZ-l5-ZOu">

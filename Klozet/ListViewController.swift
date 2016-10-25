@@ -43,8 +43,6 @@ class ListViewController: UIViewController, DirectionsDelegate {
     
     
     override func viewDidLoad() {
-        
-        //Save all toilets (needed for filters)
         allToilets = toilets
         
         tableView.delegate = self
@@ -102,8 +100,14 @@ class ListViewController: UIViewController, DirectionsDelegate {
 extension ListViewController: ListToiletsDelegate, Reload {
     
     func updateToilets(toilets: Array<Toilet>) {
+        
+        //Save all toilets (needed for filters)
+        allToilets = toilets
+
         self.toilets = toilets
         reloadTable()
+        
+        
     }
     
     func reloadTable() {
@@ -120,6 +124,7 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let listCell = getListCell(indexPath: indexPath, tableView: tableView)
+
         return listCell
     }
     
@@ -131,6 +136,8 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate {
         //Getting toilet for cell
         let toilet = toilets[(indexPath as NSIndexPath).row]
         
+        cell.toiletImageView.image = nil
+        
         cell.locationDelegate = self.locationDelegate
         cell.fillCellData(toilet)
         
@@ -139,10 +146,14 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard shownCells < (toilets.count - 20) else {
+        
+        guard shownCells < toilets.count else {
             listFooterDelegate?.changeToFooterWithInfo(toiletsCount: toilets.count)
             return toilets.count
         }
+        
+        listFooterDelegate?.changeToFooterWithMore()
+        
         return shownCells
     }
 }
@@ -154,6 +165,7 @@ protocol Reload {
 
 protocol ListFooterDelegate {
     func changeToFooterWithInfo(toiletsCount: Int)
+    func changeToFooterWithMore()
 }
 
 class ListFooter: UIView, ListFooterDelegate {
@@ -161,6 +173,7 @@ class ListFooter: UIView, ListFooterDelegate {
     let moreButton = UIButton(type: .roundedRect)
     let moreStack = UIStackView()
     let activityIndicator = UIActivityIndicatorView()
+    let infoLabel = UILabel()
     
     var reloadDelegate: Reload?
     
@@ -207,15 +220,28 @@ class ListFooter: UIView, ListFooterDelegate {
         reloadDelegate?.reloadTable()
     }
     
+    func changeToFooterWithMore() {
+        infoLabel.removeFromSuperview()
+        moreStack.removeArrangedSubview(infoLabel)
+        
+        if moreStack.subviews.count == 0 {
+            moreStack.addArrangedSubview(moreButton)
+        }
+    }
+    
     func changeToFooterWithInfo(toiletsCount: Int) {
         moreButton.removeFromSuperview()
+        moreStack.removeArrangedSubview(moreButton)
+
+        if moreStack.subviews.count == 0 {
+            moreStack.addArrangedSubview(infoLabel)
+            infoLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightLight)
+            infoLabel.textColor = Colors.pumpkinColor
+        }
+
         
-        
-        let infoLabel = UILabel()
         infoLabel.text = "Záchodů celkem: \(toiletsCount)".localized
-        infoLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightLight)
-        infoLabel.textColor = Colors.pumpkinColor
-        moreStack.addArrangedSubview(infoLabel)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
