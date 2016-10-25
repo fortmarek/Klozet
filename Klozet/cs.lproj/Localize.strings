@@ -8,6 +8,21 @@
 
 
 "Open" = "Otevřeno";
+"Free" = "Zdarma";
 "It's always better with a photo" = "S fotkou je to vždycky lepší";
 "Choose image from library" = "Vybrat z fotogalerie";
 "Take photo" = "Pořídit fotku";
+"Cancel" = "Zrušit";
+"...loading" = "...načítání";
+"More toilets" = "Načíst další";
+"Number of Toilets: " = "Záchodů celkem: ";
+"Opening time" = "Otevírací doba";
+"Price" = "Cena";
+"Share" = "Sdílet";
+"The simplest way to find public toilets!"; = "Nejjednodušší způsob jak najít veřejné záchody!";
+"Settings" = "Nastavení";
+"Close" = "Zavřít";
+"Directions" = "Navigovat";
+"Support" = "Podpora";
+"Turn on Mail" = "V nastavení účtů si zapněte 'Pošta'";
+"Version 1.0.0\nCreated by Marek Fořt" = "Verze 1.0.0\nVytvořil Marek Fořt";

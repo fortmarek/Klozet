@@ -22,7 +22,7 @@ class PriceCell: UITableViewCell, DetailCell {
         
         let cellStackView = setCellStack(view: self)
         
-        setLeftLabel(stackView: cellStackView, text: "Cena".localized)
+        setLeftLabel(stackView: cellStackView, text: "Price".localized)
         
         setPriceLabel(stackView: cellStackView, price: price, width: width)
     }

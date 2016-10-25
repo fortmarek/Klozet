@@ -194,7 +194,7 @@ class ListFooter: UIView, ListFooterDelegate {
     }
     
     private func setMoreButton(moreStack: UIStackView) {
-        moreButton.setTitle("Načíst další".localized, for: .normal)
+        moreButton.setTitle("More toilets".localized, for: .normal)
         moreButton.setTitleColor(Colors.pumpkinColor, for: .normal)
         moreButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         moreButton.addTarget(self, action: #selector(loadMoreToilets), for: .touchUpInside)
@@ -240,7 +240,7 @@ class ListFooter: UIView, ListFooterDelegate {
         }
 
         
-        infoLabel.text = "Záchodů celkem: \(toiletsCount)".localized
+        infoLabel.text = "Number of Toilets: ".localized + "\(toiletsCount)"
         
     }
     

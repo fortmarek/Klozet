@@ -53,7 +53,7 @@ class ActivityView: UIView {
         
         //ActivityLabel
         let activityLabel = UILabel()
-        activityLabel.text = "...načítání".localized
+        activityLabel.text = "...loading".localized
         activityLabel.textColor = UIColor.gray
         
         activityStack.addArrangedSubview(activityIndicator)

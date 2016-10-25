@@ -108,7 +108,7 @@ extension CameraDelegate where Self: UIViewController, Self: UINavigationControl
         
         let pickPhotoOption = UIAlertAction(title: "Choose image from library".localized, style: .default, handler: {_ in self.selectPhoto()})
         let takePhotoOption = UIAlertAction(title: "Take photo".localized, style: .default, handler: {_ in self.takePhoto()})
-        let cancelOption = UIAlertAction(title: "Zrušit".localized, style: .cancel, handler: {_ in actionSheet.dismiss(animated: true, completion: nil)})
+        let cancelOption = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: {_ in actionSheet.dismiss(animated: true, completion: nil)})
         
         actionSheet.addAction(pickPhotoOption)
         actionSheet.addAction(takePhotoOption)

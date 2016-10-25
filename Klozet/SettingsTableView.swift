@@ -78,7 +78,7 @@ class ShareCell: UITableViewCell, ShareCellDelegate {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        textLabel?.text = "Sdílet".localized
+        textLabel?.text = "Share".localized
         textLabel?.textAlignment = .center
         textLabel?.textColor = Colors.pumpkinColor
     }
@@ -87,7 +87,7 @@ class ShareCell: UITableViewCell, ShareCellDelegate {
         
         guard let appStoreLink = URL(string: "https://appsto.re/cz/fuvb-.i") else {return}
 
-        let myText = "Nejjednodušší způsob jak najít veřejné záchody!".localized
+        let myText = "The simplest way to find public toilets!".localized
         let myObjects = [myText, appStoreLink] as [Any]
         let activityVC = UIActivityViewController(activityItems: myObjects, applicationActivities: nil)
         activityVC.excludedActivityTypes = [UIActivityType.addToReadingList]

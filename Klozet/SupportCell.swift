@@ -22,7 +22,7 @@ class SupportCell: UITableViewCell, MFMailComposeViewControllerDelegate, Support
         accessoryType = .disclosureIndicator
         
         textLabel?.textColor = Colors.pumpkinColor
-        textLabel?.text = "Podpora".localized
+        textLabel?.text = "Support".localized
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -52,9 +52,9 @@ class SupportCell: UITableViewCell, MFMailComposeViewControllerDelegate, Support
     func presentMailAlert() {
         
         // Push notifications are disabled in setting by user.
-        let alertController = UIAlertController(title: "Mail".localized, message: "V nastavení účtů si zapněte 'Pošta'".localized, preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Mail".localized, message: "Turn on Mail".localized, preferredStyle: .alert)
         
-        let settingsAction = UIAlertAction(title: "Nastavení".localized, style: .default) { (_) -> Void in
+        let settingsAction = UIAlertAction(title: "Settings".localized, style: .default) { (_) -> Void in
             let settingsUrl = URL(string: "prefs:root=ACCOUNT_SETTINGS")
             if let url = settingsUrl {
                 UIApplication.shared.openURL(url)
@@ -63,7 +63,7 @@ class SupportCell: UITableViewCell, MFMailComposeViewControllerDelegate, Support
         
         alertController.addAction(settingsAction)
         
-        let cancelAction = UIAlertAction(title: "Zrušit".localized, style: .default, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel".localized, style: .default, handler: nil)
         alertController.addAction(cancelAction)
         
         

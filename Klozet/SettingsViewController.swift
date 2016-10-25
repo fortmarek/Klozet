@@ -41,7 +41,7 @@ class SettingsViewController: UIViewController {
         
         
         let creditsLabel = UILabel()
-        creditsLabel.text = "Verze 1.0.0\nVytvořil Marek Fořt"
+        creditsLabel.text = "Version 1.0.0\nCreated by Marek Fořt".localized
         creditsLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightLight)
         creditsLabel.textAlignment = .center
         creditsLabel.numberOfLines = 2
@@ -96,11 +96,11 @@ class SettingsViewController: UIViewController {
     
     private func setNavigation() {
         //Navigation title
-        navigationItem.title = "Nastavení".localized
+        navigationItem.title = "Settings".localized
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : Colors.pumpkinColor]
         
         //Left navigation item (action to return to MainViewController)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Zavřít".localized, style: .plain, target: self, action: #selector(dismissToMap))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close".localized, style: .plain, target: self, action: #selector(dismissToMap))
         
         navigationController?.navigationBar.tintColor = Colors.pumpkinColor
     }

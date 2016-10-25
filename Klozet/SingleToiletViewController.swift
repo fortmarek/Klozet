@@ -92,7 +92,7 @@ class SingleDirectionsButton: UIBarButtonItem, MapsDirections {
         super.init()
         
         style = .plain
-        title = "Navigovat".localized
+        title = "Directions".localized
         action = #selector(callDirectionsMapsFunc)
         target = self
         
