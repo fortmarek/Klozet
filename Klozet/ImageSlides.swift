@@ -162,7 +162,7 @@ extension ImageController {
         Alamofire.request(wholePath).responseImage(completionHandler: {
             response in
             guard let image = response.result.value else {return}
-            print(wholePath)
+            
             completion(image)
         })
     }

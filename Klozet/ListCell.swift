@@ -32,6 +32,7 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate, ImageController
         
         setCornerRadius(imageBackground, cornerRadius: 10)
         setCornerRadius(toiletImageView, cornerRadius: 10)
+        toiletImageView.layer.masksToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
