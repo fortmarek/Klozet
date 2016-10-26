@@ -85,7 +85,7 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
             //Is toilet opened nonstop?
             if openTimesData["nonstop"].bool == true {
                 //String
-                openTimesString = "Otevřeno"
+                openTimesString = "Open".localized
             }
                 
             else {
@@ -127,10 +127,10 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
     
     fileprivate func getHourString(hour: String?) -> String {
         
-        guard let hour = hour else {return "Neznámo"}
+        guard let hour = hour else {return "Unknown".localized}
         
         if hour == "null" {
-            return "Neznámo"
+            return "Unknown".localized
         }
         else {
             return hour
@@ -177,16 +177,16 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
     }
     
     fileprivate func dayIndexToString(index: Int?) -> String {
-        guard let index = index else {return "Neznámo"}
+        guard let index = index else {return "Unknown".localized}
         
         switch index {
-        case 1: return "Ne"
-        case 2: return "Po"
-        case 3: return "Út"
-        case 4: return "St"
-        case 5: return "Čt"
-        case 6: return "Pá"
-        default: return "So"
+        case 1: return "Sun".localized
+        case 2: return "Mon".localized
+        case 3: return "Tue".localized
+        case 4: return "Wed".localized
+        case 5: return "Thu".localized
+        case 6: return "Fri".localized
+        default: return "Sat".localized
         }
     }
     

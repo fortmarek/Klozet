@@ -76,8 +76,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         createButtons()
         
         addDragRecognizer()
-        print(NSLocale.current.identifier)
-        print(NSLocale.current.languageCode)
     }
     
     override func viewDidAppear(_ animated: Bool) {

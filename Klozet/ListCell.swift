@@ -79,14 +79,14 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate, ImageController
     fileprivate func setOpenLabel(_ toilet: Toilet) {
         //Is toilet open
         if isToiletOpen(toilet) {
-            openLabel.text = "Otevřeno"
+            openLabel.text = "Open".localized
             openLabel.sizeToFit()
             openLabel.textColor = Colors.greenColor
         }
         
         //Toilet is not open
         else {
-            openLabel.text = "Zavřeno"
+            openLabel.text = "Closed".localized
             openLabel.sizeToFit()
             openLabel.textColor = Colors.pumpkinColor
         }

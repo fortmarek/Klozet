@@ -71,7 +71,7 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
-      language = "en">
+      language = "cs">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
@@ -84,6 +84,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
+            argument = ""
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
