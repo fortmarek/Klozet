@@ -44,7 +44,7 @@ class DataController {
     //Fetching toilet data
     func getToilets(_ completion: @escaping (_ toilets: [Toilet]) -> () ){
         
-        let language = NSLocale.current.identifier
+        guard let language = NSLocale.current.languageCode else {return}
         let path = "http://139.59.144.155/klozet/\(language)"
 
         //GET request for toilet data

@@ -31,10 +31,10 @@
 
 
 //Days
-"Mon" = "Po";
-"Tue" = "Út";
-"Wed" = "St";
-"Thu" = "Čt";
-"Fri" = "Pá";
-"Sat" = "So";
-"Sun" = "Ne";
+"Mo" = "Po";
+"Tu" = "Út";
+"We" = "St";
+"Th" = "Čt";
+"Fr" = "Pá";
+"Sa" = "So";
+"Su" = "Ne";
