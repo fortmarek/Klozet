@@ -14,13 +14,14 @@ def toilet_img(klozet_id, image_name):
     return send_from_directory(directory, image_name)
 
 class Toilets(Resource):
-    def get(self):
-        file = open('/home/klozet/wc.json', 'r')
+    def get(self, language_version):
+        filename = '/home/klozet/wc{0}.json'.format(('_' + language_version))
+        file = open(filename, 'r')
         js = json.loads(file.read())
         file.close()
         return js
 
-api.add_resource(Toilets, '/')
+api.add_resource(Toilets, '/<string:language_version>')
 
 parser = reqparse.RequestParser()
 parser.add_argument('encoded_image', type=str)

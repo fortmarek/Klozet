@@ -76,7 +76,7 @@ dict = {
     'toilets': toilets
     }
 js = json.dumps(dict, indent=4 * ' ', ensure_ascii=False)
-file = io.open('wc.json', 'w+', encoding='utf-8')
+file = io.open('wc_cs.json', 'w+', encoding='utf-8')
 file.write(js)
 file.close()
 
