@@ -1,0 +1,8 @@
+/* 
+  InfoPlist.strings
+  Klozet
+
+  Created by Marek Fořt on 26/10/2016.
+  Copyright © 2016 Marek Fořt. All rights reserved.
+*/
+"NSLocationWhenInUseUsageDescription" = "das";

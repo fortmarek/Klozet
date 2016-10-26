@@ -71,7 +71,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         locationManager.delegate = self
         mapView.delegate = self
         
-        getToilets()
+        //getToilets()
         
         createButtons()
         
@@ -81,6 +81,10 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
     override func viewDidAppear(_ animated: Bool) {
         //TODO: Show custom view to first nicely ask the user, not just with default alert
         locationManager.requestWhenInUseAuthorization()
+    }
+    
+    @objc(locationManager:didChangeAuthorizationStatus:) func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        getToilets()
     }
     
     func getToilets() {

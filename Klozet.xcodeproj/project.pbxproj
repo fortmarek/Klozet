@@ -11,6 +11,7 @@
 		F80FC7D61DAC298300D4FC05 /* ImageSlides.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80FC7D51DAC298200D4FC05 /* ImageSlides.swift */; };
 		F818D4481D88482E009B153C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F818D4471D88482E009B153C /* Constants.swift */; };
 		F81B79191DBFD73A00812139 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F81B791B1DBFD73A00812139 /* Localizable.strings */; };
+		F81B79321DC0EE2D00812139 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F81B79341DC0EE2D00812139 /* InfoPlist.strings */; };
 		F8243BE91DA2927400BE5D13 /* DetailMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8243BE81DA2927400BE5D13 /* DetailMapView.swift */; };
 		F8243BEB1DA2F3C700BE5D13 /* SingleToiletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8243BEA1DA2F3C700BE5D13 /* SingleToiletViewController.swift */; };
 		F82655481D930A190007A089 /* ListActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82655471D930A190007A089 /* ListActivity.swift */; };
@@ -101,6 +102,8 @@
 		F81B79161DBFD60A00812139 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		F81B791A1DBFD73A00812139 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F81B791C1DBFD73D00812139 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F81B79331DC0EE2D00812139 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F81B79351DC0EE3600812139 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F8243BE81DA2927400BE5D13 /* DetailMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailMapView.swift; path = ../DetailMapView.swift; sourceTree = "<group>"; };
 		F8243BEA1DA2F3C700BE5D13 /* SingleToiletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleToiletViewController.swift; sourceTree = "<group>"; };
 		F82655471D930A190007A089 /* ListActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListActivity.swift; sourceTree = "<group>"; };
@@ -303,6 +306,7 @@
 				F8EAE8001D5FA6A900D60DAB /* Assets.xcassets */,
 				F8EAE8021D5FA6A900D60DAB /* LaunchScreen.storyboard */,
 				F8EAE8051D5FA6A900D60DAB /* Info.plist */,
+				F81B79341DC0EE2D00812139 /* InfoPlist.strings */,
 			);
 			path = Klozet;
 			sourceTree = "<group>";
@@ -443,6 +447,7 @@
 				F8EAE8011D5FA6A900D60DAB /* Assets.xcassets in Resources */,
 				F8EAE7FF1D5FA6A900D60DAB /* Main.storyboard in Resources */,
 				F81B79191DBFD73A00812139 /* Localizable.strings in Resources */,
+				F81B79321DC0EE2D00812139 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,6 +544,15 @@
 				F81B791C1DBFD73D00812139 /* cs */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		F81B79341DC0EE2D00812139 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F81B79331DC0EE2D00812139 /* cs */,
+				F81B79351DC0EE3600812139 /* Base */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		F8EAE7FD1D5FA6A900D60DAB /* Main.storyboard */ = {
