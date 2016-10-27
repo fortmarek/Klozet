@@ -15,12 +15,18 @@ class KlozetUITests: XCTestCase {
         
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
+        XCUIDevice.shared().orientation = .portrait
+        XCUIDevice.shared().orientation = .portrait
+        
+        
         // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         XCUIApplication().launch()
 
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        
+        
     }
     
     override func tearDown() {
@@ -28,9 +34,31 @@ class KlozetUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testSnaps() {
+        
+        
+        _ = self.expectation(
+            for: NSPredicate(format: "self.isUserLocationVisible = true"),
+            evaluatedWith: XCUIApplication().maps,
+            handler: nil)
+        self.waitForExpectations(timeout: 10.0, handler: nil)
+        
+        snapshot("main-screen")
+        
+        XCUIApplication().navigationBars["Klozet"].buttons["List"].tap()
+        
+        snapshot("list")
+        
+        _ = self.expectation(
+            for: NSPredicate(format: "self.count = 1"),
+            evaluatedWith: XCUIApplication().tables,
+            handler: nil)
+        self.waitForExpectations(timeout: 5.0, handler: nil)
+        
+        let cells = XCUIApplication().tables.cells
+        cells.element(boundBy: 4).tap()
+        
+        snapshot("detail")
     }
     
 }

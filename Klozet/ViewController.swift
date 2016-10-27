@@ -76,6 +76,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         createButtons()
         
         addDragRecognizer()
+
     }
     
     override func viewDidAppear(_ animated: Bool) {

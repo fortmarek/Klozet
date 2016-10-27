@@ -122,7 +122,7 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
         let firstHour = getHourString(hour: hoursArray[0].string)
         let secondHour = getHourString(hour: hoursArray[1].string)
         
-        return "\(firstHour) - \(secondHour)"
+        return "\(firstHour)-\(secondHour)"
     }
     
     fileprivate func getHourString(hour: String?) -> String {
@@ -173,7 +173,7 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
         let firstDay = dayIndexToString(index: edgeDays.0)
         let endDay = dayIndexToString(index: edgeDays.1)
         
-        return "\(firstDay) - \(endDay): "
+        return "\(firstDay)-\(endDay): "
     }
     
     fileprivate func dayIndexToString(index: Int?) -> String {

@@ -40,8 +40,8 @@
       <file leaf-file-name="wc_cs.json" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/klozet/wc_cs.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="402" column="0" selection-start-line="402" selection-start-column="0" selection-end-line="402" selection-end-column="0" />
+            <state relative-caret-position="653">
+              <caret line="6972" column="43" selection-start-line="6972" selection-start-column="33" selection-end-line="6972" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -50,8 +50,8 @@
       <file leaf-file-name="wc_en.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/klozet/wc_en.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="515">
-              <caret line="4021" column="50" selection-start-line="4021" selection-start-column="50" selection-end-line="4021" selection-end-column="50" />
+            <state relative-caret-position="218">
+              <caret line="5713" column="48" selection-start-line="5712" selection-start-column="46" selection-end-line="5712" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -719,7 +719,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
           <caret line="36" column="200" selection-start-line="36" selection-start-column="192" selection-end-line="36" selection-end-column="200" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -851,7 +850,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
           <caret line="36" column="200" selection-start-line="36" selection-start-column="192" selection-end-line="36" selection-end-column="200" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -903,7 +901,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
           <caret line="36" column="200" selection-start-line="36" selection-start-column="192" selection-end-line="36" selection-end-column="200" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -957,7 +954,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -975,7 +971,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1039,7 +1034,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="149" column="145" selection-start-line="149" selection-start-column="138" selection-end-line="149" selection-end-column="145" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1061,8 +1055,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/klozet/wc_en.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="515">
-          <caret line="4021" column="50" selection-start-line="4021" selection-start-column="50" selection-end-line="4021" selection-end-column="50" />
+        <state relative-caret-position="218">
+          <caret line="5713" column="48" selection-start-line="5712" selection-start-column="46" selection-end-line="5712" selection-end-column="48" />
           <folding />
         </state>
       </provider>
@@ -1079,8 +1073,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/klozet/wc_cs.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="402" column="0" selection-start-line="402" selection-start-column="0" selection-end-line="402" selection-end-column="0" />
+        <state relative-caret-position="653">
+          <caret line="6972" column="43" selection-start-line="6972" selection-start-column="33" selection-end-line="6972" selection-end-column="43" />
           <folding />
         </state>
       </provider>
