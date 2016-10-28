@@ -26,9 +26,12 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
         
         let cellStackView = setCellStack(view: self)
         
-        setLeftLabel(stackView: cellStackView, text: "Opening time".localized)
-
+        
+        setLeftLabel(stackView: cellStackView, text: "Open")
+        
+        
         setOpenTimeStack(stackView: cellStackView, openTimes: openTimes)
+    
         
     }
     
@@ -52,6 +55,8 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
             let openLabel = UILabel()
             openLabel.attributedText = openTime
             openLabel.font = UIFont.systemFont(ofSize: fontSize)
+            openLabel.minimumScaleFactor = 0.8
+            openLabel.adjustsFontSizeToFitWidth = true
             openTimeStack.addArrangedSubview(openLabel)
             
         }

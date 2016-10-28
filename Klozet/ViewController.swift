@@ -76,6 +76,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         createButtons()
         
         addDragRecognizer()
+        
+        mapView.userLocation.accessibilityLabel = "location"
 
     }
     

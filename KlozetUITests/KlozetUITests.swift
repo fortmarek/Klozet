@@ -36,12 +36,21 @@ class KlozetUITests: XCTestCase {
     
     func testSnaps() {
         
+        let app = XCUIApplication()
         
-        _ = self.expectation(
-            for: NSPredicate(format: "self.isUserLocationVisible = true"),
-            evaluatedWith: XCUIApplication().maps,
-            handler: nil)
-        self.waitForExpectations(timeout: 10.0, handler: nil)
+        //let annotation = app.maps.element.otherElements["Uhelný trh 1-3, Under plaza in basement - stairs down"]
+        //annotation.tap()
+        
+        
+        let predicate = NSPredicate(format: "exists == 1")
+        //let query = app.maps.element.otherElements["My Location"]
+        let query = app.scrollViews.otherElements["My Location"]
+        expectation(for: predicate, evaluatedWith: query, handler: nil)
+        
+        waitForExpectations(timeout: 30, handler: nil)
+        
+        
+        
         
         snapshot("main-screen")
         

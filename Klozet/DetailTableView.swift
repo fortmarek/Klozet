@@ -65,7 +65,7 @@ protocol DetailCell {
 }
 
 extension DetailCell {
-    func setLeftLabel(stackView: UIStackView, text: String){
+    func setLeftLabel(stackView: UIStackView, text: String) {
         let label = UILabel()
         label.text = text
         label.textColor = Colors.pumpkinColor
@@ -79,8 +79,7 @@ extension DetailCell {
         let cellStackView = UIStackView()
         cellStackView.axis = .horizontal
         cellStackView.alignment = .center
-        
-        
+        cellStackView.spacing = 5
         
         cellStackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(cellStackView)
