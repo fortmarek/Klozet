@@ -7,3 +7,5 @@
 */
 
 "NSLocationWhenInUseUsageDescription" = "Potřebujeme vaši polohu, abychom vám mohli ukázat nejbližší záchody";
+"NSPhotoLibraryUsageDescription" = "Abychom mohli použít vaše fotky, potřebujeme přístup k vašim obrázkům";
+"NSCameraUsageDescription" = "Abyste mohli vyfotit záchod, potřebujeme přístup k vaší kameře";

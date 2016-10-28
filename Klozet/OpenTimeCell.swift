@@ -90,7 +90,7 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
             //Is toilet opened nonstop?
             if openTimesData["nonstop"].bool == true {
                 //String
-                openTimesString = "Open".localized
+                openTimesString = "Nonstop".localized
             }
                 
             else {
