@@ -6,7 +6,13 @@
  Copyright © 2016 Marek Fořt. All rights reserved.
  */
 
-
+"Mon" = "Po";
+"Tue" = "Út";
+"Wed" = "St";
+"Thu" = "Čt";
+"Fri" = "Pá";
+"Sat" = "So";
+"Sun" = "Ne";
 "Open" = "Otevřeno";
 "Free" = "Zdarma";
 "Closed" = "Zavřeno";
@@ -29,12 +35,3 @@
 "Version 1.0.0\nCreated by Marek Fořt" = "Verze 1.0.0\nVytvořil Marek Fořt";
 "Unknown" = "Neznámo";
 
-
-//Days
-"Mo" = "Po";
-"Tu" = "Út";
-"We" = "St";
-"Th" = "Čt";
-"Fr" = "Pá";
-"Sa" = "So";
-"Su" = "Ne";

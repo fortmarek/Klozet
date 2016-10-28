@@ -38,23 +38,23 @@ class KlozetUITests: XCTestCase {
         
         let app = XCUIApplication()
         
-        //let annotation = app.maps.element.otherElements["Uhelný trh 1-3, Under plaza in basement - stairs down"]
-        //annotation.tap()
-        
         
         let predicate = NSPredicate(format: "exists == 1")
-        //let query = app.maps.element.otherElements["My Location"]
-        let query = app.scrollViews.otherElements["My Location"]
+        
+        //let query = app.otherElements["My Location"]
+        let query = app.otherElements["Moje poloha"]
+        
         expectation(for: predicate, evaluatedWith: query, handler: nil)
         
         waitForExpectations(timeout: 30, handler: nil)
         
-        
-        
+        let annotation = app.otherElements["U Radnice 10/2, Restaurant Kotleta"]
+        annotation.tap()
         
         snapshot("main-screen")
         
-        XCUIApplication().navigationBars["Klozet"].buttons["List"].tap()
+        //app.navigationBars["Klozet"].buttons["List"].tap()
+        app.navigationBars["Klozet"].buttons["Seznam"].tap()
         
         snapshot("list")
         
@@ -66,6 +66,15 @@ class KlozetUITests: XCTestCase {
         
         let cells = XCUIApplication().tables.cells
         cells.element(boundBy: 4).tap()
+        
+        _ = self.expectation(
+            for: NSPredicate(format: "self.count = 1"),
+            evaluatedWith: XCUIApplication().tables,
+            handler: nil)
+        self.waitForExpectations(timeout: 5.0, handler: nil)
+        
+        let detailCells = app.tables.cells
+        detailCells.element(boundBy: 1).press(forDuration: 5)
         
         snapshot("detail")
     }

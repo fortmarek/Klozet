@@ -151,7 +151,7 @@
 		F8EAE8391D6072EF00D60DAB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F8EAE83B1D630E0500D60DAB /* VIewControllerInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VIewControllerInterface.swift; sourceTree = "<group>"; };
 		F8F8FBDD1DB6C902001CC28F /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
-		F8FECFF51DC2A5DB00E13388 /* default.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = default.gpx; path = ../../Downloads/default.gpx; sourceTree = "<group>"; };
+		F8FECFF51DC2A5DB00E13388 /* default.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = default.gpx; path = ../../../Downloads/default.gpx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,7 +271,6 @@
 		F8EAE7ED1D5FA6A900D60DAB = {
 			isa = PBXGroup;
 			children = (
-				F8FECFF51DC2A5DB00E13388 /* default.gpx */,
 				F8EAE7F81D5FA6A900D60DAB /* Klozet */,
 				F8EAE80D1D5FA6A900D60DAB /* KlozetTests */,
 				F8EAE8181D5FA6A900D60DAB /* KlozetUITests */,
@@ -310,6 +309,7 @@
 				F8EAE7FD1D5FA6A900D60DAB /* Main.storyboard */,
 				F8EAE8001D5FA6A900D60DAB /* Assets.xcassets */,
 				F8EAE8021D5FA6A900D60DAB /* LaunchScreen.storyboard */,
+				F8FECFF51DC2A5DB00E13388 /* default.gpx */,
 				F8EAE8051D5FA6A900D60DAB /* Info.plist */,
 				F81B79341DC0EE2D00812139 /* InfoPlist.strings */,
 			);
