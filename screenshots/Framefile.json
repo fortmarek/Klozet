@@ -1,0 +1,23 @@
+{
+  "default": {
+   	"title": {
+      "font": "fonts/SF-UI-Text-Medium.otf",
+      "color": "#FFFFFF"
+    },
+    "background": "./background.jpg",
+    "padding": 50,
+    "show_complete_frame": false
+  },
+  "data": [
+  	{
+  		"filter" : "map"
+  	},
+  	{
+  		"filter" : "list"
+  	},
+	{
+  		"filter" : "detail"
+  	}
+  ]
+  
+}
