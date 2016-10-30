@@ -13,7 +13,6 @@
 		F81B79191DBFD73A00812139 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F81B791B1DBFD73A00812139 /* Localizable.strings */; };
 		F81B79321DC0EE2D00812139 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F81B79341DC0EE2D00812139 /* InfoPlist.strings */; };
 		F81B793A1DC0F43F00812139 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81B79391DC0F43F00812139 /* SnapshotHelper.swift */; };
-		F8243BE91DA2927400BE5D13 /* DetailMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8243BE81DA2927400BE5D13 /* DetailMapView.swift */; };
 		F8243BEB1DA2F3C700BE5D13 /* SingleToiletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8243BEA1DA2F3C700BE5D13 /* SingleToiletViewController.swift */; };
 		F82655481D930A190007A089 /* ListActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82655471D930A190007A089 /* ListActivity.swift */; };
 		F82884C11D957E7600F1A737 /* DetailTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82884C01D957E7600F1A737 /* DetailTableView.swift */; };
@@ -25,6 +24,7 @@
 		F82FB1C81D82B7C3001FE39D /* FilterOpen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB1C71D82B7C3001FE39D /* FilterOpen.swift */; };
 		F82FB1CC1D82C82A001FE39D /* FilterOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB1CB1D82C82A001FE39D /* FilterOption.swift */; };
 		F82FB1CF1D82C8AE001FE39D /* FilterPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB1CE1D82C8AE001FE39D /* FilterPrice.swift */; };
+		F83B201B1DC60538006C1D92 /* DetailMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83B20191DC60456006C1D92 /* DetailMapView.swift */; };
 		F86EF5C41DA6EBA40095CCEB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86EF5C31DA6EBA40095CCEB /* SettingsViewController.swift */; };
 		F86EF5C61DA98B5F0095CCEB /* SettingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86EF5C51DA98B5F0095CCEB /* SettingsTableView.swift */; };
 		F86F35681D8DDCB6001A8F6C /* ListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86F35671D8DDCB5001A8F6C /* ListController.swift */; };
@@ -107,7 +107,6 @@
 		F81B79331DC0EE2D00812139 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F81B79351DC0EE3600812139 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F81B79391DC0F43F00812139 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
-		F8243BE81DA2927400BE5D13 /* DetailMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailMapView.swift; path = ../DetailMapView.swift; sourceTree = "<group>"; };
 		F8243BEA1DA2F3C700BE5D13 /* SingleToiletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleToiletViewController.swift; sourceTree = "<group>"; };
 		F82655471D930A190007A089 /* ListActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListActivity.swift; sourceTree = "<group>"; };
 		F82884C01D957E7600F1A737 /* DetailTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTableView.swift; sourceTree = "<group>"; };
@@ -119,6 +118,7 @@
 		F82FB1C71D82B7C3001FE39D /* FilterOpen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterOpen.swift; sourceTree = "<group>"; };
 		F82FB1CB1D82C82A001FE39D /* FilterOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterOption.swift; sourceTree = "<group>"; };
 		F82FB1CE1D82C8AE001FE39D /* FilterPrice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterPrice.swift; sourceTree = "<group>"; };
+		F83B20191DC60456006C1D92 /* DetailMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMapView.swift; sourceTree = "<group>"; };
 		F86EF5C31DA6EBA40095CCEB /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F86EF5C51DA98B5F0095CCEB /* SettingsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableView.swift; sourceTree = "<group>"; };
 		F86F35671D8DDCB5001A8F6C /* ListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListController.swift; sourceTree = "<group>"; };
@@ -215,8 +215,8 @@
 			children = (
 				F8775B0C1D919255003B9F4D /* DetailViewController.swift */,
 				F80FC7D51DAC298200D4FC05 /* ImageSlides.swift */,
+				F83B20191DC60456006C1D92 /* DetailMapView.swift */,
 				F82884C01D957E7600F1A737 /* DetailTableView.swift */,
-				F8243BE81DA2927400BE5D13 /* DetailMapView.swift */,
 				F8778B5F1D9D7D13005ACA43 /* MapInfo.swift */,
 				F8778B5B1D999DDE005ACA43 /* OpenTimeCell.swift */,
 				F8778B5D1D9ABFE8005ACA43 /* PriceCell.swift */,
@@ -496,11 +496,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F83B201B1DC60538006C1D92 /* DetailMapView.swift in Sources */,
 				F8EAE83C1D630E0500D60DAB /* VIewControllerInterface.swift in Sources */,
 				F87C8C5E1D873F4F00B9C6EF /* Filter.swift in Sources */,
 				F82FB1C81D82B7C3001FE39D /* FilterOpen.swift in Sources */,
 				F82FB1BA1D809F27001FE39D /* Directions.swift in Sources */,
-				F8243BE91DA2927400BE5D13 /* DetailMapView.swift in Sources */,
 				F80FC7D41DA99B5200D4FC05 /* SupportCell.swift in Sources */,
 				F8E541541D744CA600BA4BE7 /* Extensions.swift in Sources */,
 				F818D4481D88482E009B153C /* Constants.swift in Sources */,

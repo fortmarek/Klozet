@@ -1,4 +1,4 @@
 github "Alamofire/Alamofire" "4.0.1"
 github "zvonicek/ImageSlideshow" "22b4aa599a57bc35395d6c7039927d9a99824822"
-github "SwiftyJSON/SwiftyJSON" "3.1.0"
+github "SwiftyJSON/SwiftyJSON" "v3.1.1"
 github "Alamofire/AlamofireImage" "3.1.0"
