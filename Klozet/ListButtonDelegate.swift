@@ -59,7 +59,7 @@ extension ListButtonDelegate where Self: UIButton, Self: FilterOpen, Self: Direc
         //Get only open and free toilets
         if isFilterOpenSelected && isFilterPriceSelected {
             toilets = toiletsDelegate.allToilets.filter({
-                isToiletOpen($0) && $0.price == "Zdarma"
+                isToiletOpen($0) && $0.price == "Free".localized
             })
         }
             
@@ -73,7 +73,7 @@ extension ListButtonDelegate where Self: UIButton, Self: FilterOpen, Self: Direc
             //Get free toilets
         else if isFilterPriceSelected {
             toilets = toiletsDelegate.allToilets.filter({
-                $0.price == "Zdarma"
+                $0.price == "Free".localized
             })
         }
             

@@ -67,7 +67,7 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate, ImageController
         
         
         //If toilet is for free => green color, otherwise set color to orange
-        if price == "Zdarma".localized {
+        if price == "Free".localized {
             priceLabel.textColor = Colors.greenColor
         }
         else {

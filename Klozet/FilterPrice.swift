@@ -54,7 +54,7 @@ class FilterPriceButton: UIButton, FilterOptionButton {
         guard let annotationDelegate = self.annotationDelegate else {return}
         
         //Filter all toilets that are not for free
-        let toiletsNotForFree = annotationDelegate.toilets.filter({$0.price != "Zdarma"})
+        let toiletsNotForFree = annotationDelegate.toilets.filter({$0.price != "Free".localized})
         
         if self.isSelected == false {
             annotationDelegate.mapView.removeAnnotations(toiletsNotForFree)
