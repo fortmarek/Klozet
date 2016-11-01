@@ -85,7 +85,7 @@ class ShareCell: UITableViewCell, ShareCellDelegate {
     
     func shareCellTapped() {
         
-        guard let appStoreLink = URL(string: "https://appsto.re/cz/fuvb-.i") else {return}
+        guard let appStoreLink = URL(string: "https://itunes.apple.com/us/app/klozet-prague-toilets/id1170530956?l=cs&ls=1&mt=8") else {return}
 
         let myText = "The simplest way to find public toilets!".localized
         let myObjects = [myText, appStoreLink] as [Any]
