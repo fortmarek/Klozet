@@ -8,7 +8,6 @@
 
 import UIKit
 import MapKit
-//import CoreLocation
 
 protocol AnnotationController {
     var toilets: Array<Toilet> { get set }
@@ -67,10 +66,11 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        mapView.delegate = self
+        locationManager.delegate = self
+        
         startTrackingLocation()
         
-        
-        //getToilets()
         
         createButtons()
         
@@ -84,13 +84,14 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
     }
     
     @objc(locationManager:didChangeAuthorizationStatus:) func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        
         getToilets()
     }
     
     func getToilets() {
         //DataController for fetching toilets
         let dataController = DataController()
-        print("HEy")
+        
         dataController.getToilets({
             toilets in
             self.toilets = toilets
