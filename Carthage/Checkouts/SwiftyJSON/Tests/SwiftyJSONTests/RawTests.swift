@@ -1,6 +1,6 @@
 //  RawTests.swift
 //
-//  Copyright (c) 2014 - 2016 Pinglin Tang
+//  Copyright (c) 2014 - 2017 Pinglin Tang
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -75,25 +75,21 @@ class RawTests: XCTestCase {
     
     func testString() {
         let json:JSON = "I'm a json"
-        print(json.rawString())
-        XCTAssertTrue(json.rawString() == "I'm a json")
+        XCTAssertEqual(json.rawString(), "I'm a json")
     }
     
     func testNumber() {
         let json:JSON = 123456789.123
-        print(json.rawString())
-        XCTAssertTrue(json.rawString() == "123456789.123")
+        XCTAssertEqual(json.rawString(), "123456789.123")
     }
     
     func testBool() {
         let json:JSON = true
-        print(json.rawString())
-        XCTAssertTrue(json.rawString() == "true")
+        XCTAssertEqual(json.rawString(), "true")
     }
     
     func testNull() {
-        let json:JSON = nil
-        print(json.rawString())
-        XCTAssertTrue(json.rawString() == "null")
+        let json:JSON = JSON.null
+        XCTAssertEqual(json.rawString(), "null")
     }
 }

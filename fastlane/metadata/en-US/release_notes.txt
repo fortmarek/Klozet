@@ -1,0 +1,6 @@
+Fix color for free toilets
+Fix free toilets filter
+
+CZ: 
+Oprava barvy pro záchody zdarma
+Oprava filtrování záchodů zdarma

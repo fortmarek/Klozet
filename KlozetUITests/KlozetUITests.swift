@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import MapKit
 
 class KlozetUITests: XCTestCase {
         
@@ -23,9 +24,9 @@ class KlozetUITests: XCTestCase {
         continueAfterFailure = false
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         XCUIApplication().launch()
+        
 
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-        
         
     }
     
@@ -34,18 +35,31 @@ class KlozetUITests: XCTestCase {
         super.tearDown()
     }
     
+    func tesdS() {
+        
+        let app = XCUIApplication()
+        
+        
+        
+        
+        
+        let annotation = app.otherElements["Divadelní 2-10"]
+        annotation.tap()
+        
+    }
+    
     func testSnaps() {
         
         let app = XCUIApplication()
         
         
+    
         let predicate = NSPredicate(format: "exists == 1")
-        
-        //let query = app.otherElements["My Location"]
-        let query = app.otherElements["Moje poloha"]
+
+        let query = app.otherElements["My Location"]
+        //let query = app.otherElements["Moje poloha"]
         
         expectation(for: predicate, evaluatedWith: query, handler: nil)
-        
         waitForExpectations(timeout: 30, handler: nil)
         
         let annotation = app.otherElements["U Radnice 10/2, Restaurant Kotleta"]
@@ -53,8 +67,8 @@ class KlozetUITests: XCTestCase {
         
         snapshot("main-screen")
         
-        //app.navigationBars["Klozet"].buttons["List"].tap()
-        app.navigationBars["Klozet"].buttons["Seznam"].tap()
+        app.navigationBars["Klozet"].buttons["List"].tap()
+        //app.navigationBars["Klozet"].buttons["Seznam"].tap()
         
         snapshot("list")
         

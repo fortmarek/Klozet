@@ -68,8 +68,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         // Do any additional setup after loading the view, typically from a nib.
         
         startTrackingLocation()
-        locationManager.delegate = self
-        mapView.delegate = self
+        
         
         //getToilets()
         
@@ -91,7 +90,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
     func getToilets() {
         //DataController for fetching toilets
         let dataController = DataController()
-        
+        print("HEy")
         dataController.getToilets({
             toilets in
             self.toilets = toilets

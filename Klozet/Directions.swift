@@ -117,7 +117,4 @@ extension DirectionsDelegate {
         return kilometresString
         
     }
-    
-    
-    
 }

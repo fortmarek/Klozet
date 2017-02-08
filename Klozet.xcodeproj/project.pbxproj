@@ -12,7 +12,6 @@
 		F818D4481D88482E009B153C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F818D4471D88482E009B153C /* Constants.swift */; };
 		F81B79191DBFD73A00812139 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F81B791B1DBFD73A00812139 /* Localizable.strings */; };
 		F81B79321DC0EE2D00812139 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F81B79341DC0EE2D00812139 /* InfoPlist.strings */; };
-		F81B793A1DC0F43F00812139 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81B79391DC0F43F00812139 /* SnapshotHelper.swift */; };
 		F8243BEB1DA2F3C700BE5D13 /* SingleToiletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8243BEA1DA2F3C700BE5D13 /* SingleToiletViewController.swift */; };
 		F82655481D930A190007A089 /* ListActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82655471D930A190007A089 /* ListActivity.swift */; };
 		F82884C11D957E7600F1A737 /* DetailTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82884C01D957E7600F1A737 /* DetailTableView.swift */; };
@@ -25,6 +24,7 @@
 		F82FB1CC1D82C82A001FE39D /* FilterOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB1CB1D82C82A001FE39D /* FilterOption.swift */; };
 		F82FB1CF1D82C8AE001FE39D /* FilterPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB1CE1D82C8AE001FE39D /* FilterPrice.swift */; };
 		F83B201B1DC60538006C1D92 /* DetailMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83B20191DC60456006C1D92 /* DetailMapView.swift */; };
+		F858907B1DC9043D00F1C3F1 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F858907A1DC9043D00F1C3F1 /* SnapshotHelper.swift */; };
 		F86EF5C41DA6EBA40095CCEB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86EF5C31DA6EBA40095CCEB /* SettingsViewController.swift */; };
 		F86EF5C61DA98B5F0095CCEB /* SettingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86EF5C51DA98B5F0095CCEB /* SettingsTableView.swift */; };
 		F86F35681D8DDCB6001A8F6C /* ListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86F35671D8DDCB5001A8F6C /* ListController.swift */; };
@@ -54,7 +54,6 @@
 		F8EAE83A1D6072EF00D60DAB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8EAE8391D6072EF00D60DAB /* CoreLocation.framework */; };
 		F8EAE83C1D630E0500D60DAB /* VIewControllerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE83B1D630E0500D60DAB /* VIewControllerInterface.swift */; };
 		F8F8FBDE1DB6C902001CC28F /* AlamofireImage.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8F8FBDD1DB6C902001CC28F /* AlamofireImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F8FECFF61DC2A5DB00E13388 /* default.gpx in Resources */ = {isa = PBXBuildFile; fileRef = F8FECFF51DC2A5DB00E13388 /* default.gpx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,7 +105,6 @@
 		F81B791C1DBFD73D00812139 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F81B79331DC0EE2D00812139 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F81B79351DC0EE3600812139 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		F81B79391DC0F43F00812139 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		F8243BEA1DA2F3C700BE5D13 /* SingleToiletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleToiletViewController.swift; sourceTree = "<group>"; };
 		F82655471D930A190007A089 /* ListActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListActivity.swift; sourceTree = "<group>"; };
 		F82884C01D957E7600F1A737 /* DetailTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTableView.swift; sourceTree = "<group>"; };
@@ -119,6 +117,7 @@
 		F82FB1CB1D82C82A001FE39D /* FilterOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterOption.swift; sourceTree = "<group>"; };
 		F82FB1CE1D82C8AE001FE39D /* FilterPrice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterPrice.swift; sourceTree = "<group>"; };
 		F83B20191DC60456006C1D92 /* DetailMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMapView.swift; sourceTree = "<group>"; };
+		F858907A1DC9043D00F1C3F1 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		F86EF5C31DA6EBA40095CCEB /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F86EF5C51DA98B5F0095CCEB /* SettingsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableView.swift; sourceTree = "<group>"; };
 		F86F35671D8DDCB5001A8F6C /* ListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListController.swift; sourceTree = "<group>"; };
@@ -151,7 +150,6 @@
 		F8EAE8391D6072EF00D60DAB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F8EAE83B1D630E0500D60DAB /* VIewControllerInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VIewControllerInterface.swift; sourceTree = "<group>"; };
 		F8F8FBDD1DB6C902001CC28F /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
-		F8FECFF51DC2A5DB00E13388 /* default.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = default.gpx; path = ../../../Downloads/default.gpx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,7 +307,6 @@
 				F8EAE7FD1D5FA6A900D60DAB /* Main.storyboard */,
 				F8EAE8001D5FA6A900D60DAB /* Assets.xcassets */,
 				F8EAE8021D5FA6A900D60DAB /* LaunchScreen.storyboard */,
-				F8FECFF51DC2A5DB00E13388 /* default.gpx */,
 				F8EAE8051D5FA6A900D60DAB /* Info.plist */,
 				F81B79341DC0EE2D00812139 /* InfoPlist.strings */,
 			);
@@ -329,7 +326,7 @@
 			isa = PBXGroup;
 			children = (
 				F8EAE8191D5FA6A900D60DAB /* KlozetUITests.swift */,
-				F81B79391DC0F43F00812139 /* SnapshotHelper.swift */,
+				F858907A1DC9043D00F1C3F1 /* SnapshotHelper.swift */,
 				F8EAE81B1D5FA6A900D60DAB /* Info.plist */,
 			);
 			path = KlozetUITests;
@@ -455,7 +452,6 @@
 				F8EAE7FF1D5FA6A900D60DAB /* Main.storyboard in Resources */,
 				F81B79191DBFD73A00812139 /* Localizable.strings in Resources */,
 				F81B79321DC0EE2D00812139 /* InfoPlist.strings in Resources */,
-				F8FECFF61DC2A5DB00E13388 /* default.gpx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,7 +538,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8EAE81A1D5FA6A900D60DAB /* KlozetUITests.swift in Sources */,
-				F81B793A1DC0F43F00812139 /* SnapshotHelper.swift in Sources */,
+				F858907B1DC9043D00F1C3F1 /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
