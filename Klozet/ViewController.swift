@@ -126,7 +126,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         //Recognizing start of the drag, it's also called only once per interaction
         if dragRecognizer.state == .began {
             currentLocationButton.isSelected = false
-            
             currentLocationHeadingSelected = false
             locationManager.stopUpdatingHeading()
         }
