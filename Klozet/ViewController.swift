@@ -74,9 +74,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         locationManager.delegate = self
         
         startTrackingLocation()
-        
-        
-        createButtons()
+    
+        setCurrentLocationButton()
         
         addDragRecognizer()
 

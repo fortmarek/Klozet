@@ -91,16 +91,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Klozet" id="4fb-P7-1xj">
-                        <barButtonItem key="leftBarButtonItem" image="Settings" id="3I2-ko-mPW">
+                        <barButtonItem key="rightBarButtonItem" image="Settings" id="3I2-ko-mPW">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="7Uc-cy-owQ" kind="presentation" id="Nuz-im-MA4"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="List" id="C4x-ur-SQT">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <segue destination="fSV-uZ-aC4" kind="show" identifier="listSegue" id="BxX-Yd-tDd"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -111,6 +105,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="305" y="275"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="GcB-DM-GEt">
+            <objects>
+                <navigationController storyboardIdentifier="ListNavigationController" id="wvy-3J-u0k" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Cv0-Fd-9Go">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="dodgerBlue"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="fSV-uZ-aC4" kind="relationship" relationship="rootViewController" id="cDq-40-GV3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Ie-gl-E7L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-447" y="1000"/>
         </scene>
         <!--List View Controller-->
         <scene sceneID="jSd-8M-tic">
@@ -252,13 +263,14 @@
                             <constraint firstItem="hDK-eL-HGH" firstAttribute="bottom" secondItem="tXq-mB-wfZ" secondAttribute="top" id="W2c-Ls-UNf"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="MlK-XJ-7A2"/>
                     <connections>
                         <outlet property="tableView" destination="hDK-eL-HGH" id="e8N-jL-f2t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BXe-Xi-ZKL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="997.60000000000002" y="274.81259370314842"/>
+            <point key="canvasLocation" x="305" y="1000"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="WxZ-l5-ZOu">
@@ -276,7 +288,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sqJ-bS-d7k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1711" y="275"/>
+            <point key="canvasLocation" x="1065" y="999"/>
         </scene>
         <!--Single Toilet View Controller-->
         <scene sceneID="j4G-Yl-y1z">
@@ -294,12 +306,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jXN-Yg-Iuv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2452" y="282"/>
+            <point key="canvasLocation" x="1809" y="999"/>
         </scene>
     </scenes>
     <resources>
         <image name="Settings" width="26" height="27"/>
         <image name="Toilet" width="33" height="33"/>
+        <namedColor name="dodgerBlue">
+            <color red="0.36100000143051147" green="0.59200000762939453" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="dodgerBlue">
             <color red="0.36100000143051147" green="0.59200000762939453" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
