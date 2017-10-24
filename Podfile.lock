@@ -1,0 +1,34 @@
+PODS:
+  - Alamofire (4.5.1)
+  - AlamofireImage (3.3.0):
+    - Alamofire (~> 4.5)
+  - ImageSlideshow (1.4.1):
+    - ImageSlideshow/Core (= 1.4.1)
+  - ImageSlideshow/Core (1.4.1)
+  - ReactiveCocoa (6.0.2):
+    - ReactiveSwift (~> 2.0)
+  - ReactiveSwift (2.0.1):
+    - Result (~> 3.2)
+  - Result (3.2.4)
+  - SwiftyJSON (3.1.4)
+
+DEPENDENCIES:
+  - Alamofire
+  - AlamofireImage (~> 3.1)
+  - ImageSlideshow
+  - ReactiveCocoa
+  - ReactiveSwift
+  - SwiftyJSON (~> 3.1.0)
+
+SPEC CHECKSUMS:
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
+  ImageSlideshow: 1bb0e610e28a71e8936d57265d882f61714a470b
+  ReactiveCocoa: 9dcbd8275374f35a6e5fcce01a93b860a7b92c44
+  ReactiveSwift: 60a29ff35988a964fd2bb759755cb6594de523fc
+  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+
+PODFILE CHECKSUM: ff9523c5a6ab1044eecdd05cf45b4325b18d1c5f
+
+COCOAPODS: 1.2.1

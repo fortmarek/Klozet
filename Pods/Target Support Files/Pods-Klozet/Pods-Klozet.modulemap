@@ -1,0 +1,6 @@
+framework module Pods_Klozet {
+  umbrella header "Pods-Klozet-umbrella.h"
+
+  export *
+  module * { export * }
+}

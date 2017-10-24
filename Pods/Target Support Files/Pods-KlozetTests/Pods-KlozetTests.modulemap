@@ -1,0 +1,6 @@
+framework module Pods_KlozetTests {
+  umbrella header "Pods-KlozetTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

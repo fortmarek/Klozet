@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		38448C25D99E81886C14BBA6 /* Pods_KlozetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DE514F1EDEB00D1C8F927A3 /* Pods_KlozetTests.framework */; };
+		7E8A621CAB900EC1EA34D4DC /* Pods_Klozet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B55D4D326062FED854ACAB4 /* Pods_Klozet.framework */; };
+		C9A340FD3DE0D1E4E0C6F1B6 /* Pods_KlozetUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93639C254FB11FBAEAB66E19 /* Pods_KlozetUITests.framework */; };
 		F80FC7D41DA99B5200D4FC05 /* SupportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80FC7D31DA99B5200D4FC05 /* SupportCell.swift */; };
 		F80FC7D61DAC298300D4FC05 /* ImageSlides.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80FC7D51DAC298200D4FC05 /* ImageSlides.swift */; };
 		F818D4481D88482E009B153C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F818D4471D88482E009B153C /* Constants.swift */; };
@@ -39,8 +42,6 @@
 		F8C41A6D1F9A42B700E16612 /* UIColor+UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C41A6C1F9A42B700E16612 /* UIColor+UIFontExtension.swift */; };
 		F8C41A6F1F9A46D700E16612 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C41A6E1F9A46D700E16612 /* Images.swift */; };
 		F8C41A721F9A4C1C00E16612 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C41A711F9A4C1C00E16612 /* UIKitExtensions.swift */; };
-		F8C8CAFC1DA53E65003764BE /* ImageSlideshow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8C8CAFB1DA53E65003764BE /* ImageSlideshow.framework */; };
-		F8C8CAFD1DA53E6C003764BE /* ImageSlideshow.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8C8CAFB1DA53E65003764BE /* ImageSlideshow.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F8E541541D744CA600BA4BE7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E541531D744CA600BA4BE7 /* Extensions.swift */; };
 		F8EAE7FA1D5FA6A900D60DAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE7F91D5FA6A900D60DAB /* AppDelegate.swift */; };
 		F8EAE7FC1D5FA6A900D60DAB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE7FB1D5FA6A900D60DAB /* ViewController.swift */; };
@@ -50,14 +51,9 @@
 		F8EAE80F1D5FA6A900D60DAB /* KlozetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE80E1D5FA6A900D60DAB /* KlozetTests.swift */; };
 		F8EAE81A1D5FA6A900D60DAB /* KlozetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE8191D5FA6A900D60DAB /* KlozetUITests.swift */; };
 		F8EAE82A1D5FAAF300D60DAB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8EAE8291D5FAAF300D60DAB /* MapKit.framework */; };
-		F8EAE8301D5FB4DD00D60DAB /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8EAE82F1D5FB4DD00D60DAB /* Alamofire.framework */; };
-		F8EAE8321D5FB54100D60DAB /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8EAE82F1D5FB4DD00D60DAB /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F8EAE8351D5FC81300D60DAB /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE8341D5FC81300D60DAB /* DataController.swift */; };
-		F8EAE8371D5FCDA700D60DAB /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8EAE8361D5FCDA700D60DAB /* SwiftyJSON.framework */; };
-		F8EAE8381D5FCF0400D60DAB /* SwiftyJSON.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8EAE8361D5FCDA700D60DAB /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F8EAE83A1D6072EF00D60DAB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8EAE8391D6072EF00D60DAB /* CoreLocation.framework */; };
 		F8EAE83C1D630E0500D60DAB /* VIewControllerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE83B1D630E0500D60DAB /* VIewControllerInterface.swift */; };
-		F8F8FBDE1DB6C902001CC28F /* AlamofireImage.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8F8FBDD1DB6C902001CC28F /* AlamofireImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,10 +80,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F8C8CAFD1DA53E6C003764BE /* ImageSlideshow.framework in CopyFiles */,
-				F8EAE8381D5FCF0400D60DAB /* SwiftyJSON.framework in CopyFiles */,
-				F8EAE8321D5FB54100D60DAB /* Alamofire.framework in CopyFiles */,
-				F8F8FBDE1DB6C902001CC28F /* AlamofireImage.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,9 +89,12 @@
 		182FCC4E410E72C6C4A26B1B /* Pods-KlozetUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KlozetUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KlozetUITests/Pods-KlozetUITests.release.xcconfig"; sourceTree = "<group>"; };
 		1F76E0CF6A8949547037658F /* Pods-KlozetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KlozetUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KlozetUITests/Pods-KlozetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3BE3E28D5EB85723CEEDF5D1 /* Pods-Klozet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Klozet.release.xcconfig"; path = "Pods/Target Support Files/Pods-Klozet/Pods-Klozet.release.xcconfig"; sourceTree = "<group>"; };
+		5B55D4D326062FED854ACAB4 /* Pods_Klozet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Klozet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64FAEE6D86EBB51AC1E892EC /* Pods-KlozetTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KlozetTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KlozetTests/Pods-KlozetTests.release.xcconfig"; sourceTree = "<group>"; };
 		67D98F14D4389FC6AA72E2F3 /* Pods-KlozetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KlozetTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KlozetTests/Pods-KlozetTests.debug.xcconfig"; sourceTree = "<group>"; };
 		68349D920E93E823BFCB4670 /* Pods-Klozet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Klozet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Klozet/Pods-Klozet.debug.xcconfig"; sourceTree = "<group>"; };
+		7DE514F1EDEB00D1C8F927A3 /* Pods_KlozetTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KlozetTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		93639C254FB11FBAEAB66E19 /* Pods_KlozetUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KlozetUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F80FC7D31DA99B5200D4FC05 /* SupportCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportCell.swift; sourceTree = "<group>"; };
 		F80FC7D51DAC298200D4FC05 /* ImageSlides.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSlides.swift; sourceTree = "<group>"; };
 		F818D4471D88482E009B153C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -136,7 +131,6 @@
 		F8C41A6C1F9A42B700E16612 /* UIColor+UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+UIFontExtension.swift"; sourceTree = "<group>"; };
 		F8C41A6E1F9A46D700E16612 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		F8C41A711F9A4C1C00E16612 /* UIKitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitExtensions.swift; sourceTree = "<group>"; };
-		F8C8CAFB1DA53E65003764BE /* ImageSlideshow.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageSlideshow.framework; path = Carthage/Build/iOS/ImageSlideshow.framework; sourceTree = "<group>"; };
 		F8E541531D744CA600BA4BE7 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F8EAE7F61D5FA6A900D60DAB /* Klozet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Klozet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8EAE7F91D5FA6A900D60DAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -152,12 +146,9 @@
 		F8EAE8191D5FA6A900D60DAB /* KlozetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KlozetUITests.swift; sourceTree = "<group>"; };
 		F8EAE81B1D5FA6A900D60DAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8EAE8291D5FAAF300D60DAB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		F8EAE82F1D5FB4DD00D60DAB /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		F8EAE8341D5FC81300D60DAB /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
-		F8EAE8361D5FCDA700D60DAB /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		F8EAE8391D6072EF00D60DAB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F8EAE83B1D630E0500D60DAB /* VIewControllerInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VIewControllerInterface.swift; sourceTree = "<group>"; };
-		F8F8FBDD1DB6C902001CC28F /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,11 +156,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8C8CAFC1DA53E65003764BE /* ImageSlideshow.framework in Frameworks */,
 				F8EAE83A1D6072EF00D60DAB /* CoreLocation.framework in Frameworks */,
 				F8EAE82A1D5FAAF300D60DAB /* MapKit.framework in Frameworks */,
-				F8EAE8301D5FB4DD00D60DAB /* Alamofire.framework in Frameworks */,
-				F8EAE8371D5FCDA700D60DAB /* SwiftyJSON.framework in Frameworks */,
+				7E8A621CAB900EC1EA34D4DC /* Pods_Klozet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +166,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38448C25D99E81886C14BBA6 /* Pods_KlozetTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,6 +174,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9A340FD3DE0D1E4E0C6F1B6 /* Pods_KlozetUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,12 +197,11 @@
 		C2831FEAD92CB08690D3ADE7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F8F8FBDD1DB6C902001CC28F /* AlamofireImage.framework */,
-				F8C8CAFB1DA53E65003764BE /* ImageSlideshow.framework */,
 				F8EAE8391D6072EF00D60DAB /* CoreLocation.framework */,
-				F8EAE8361D5FCDA700D60DAB /* SwiftyJSON.framework */,
-				F8EAE82F1D5FB4DD00D60DAB /* Alamofire.framework */,
 				F8EAE8291D5FAAF300D60DAB /* MapKit.framework */,
+				5B55D4D326062FED854ACAB4 /* Pods_Klozet.framework */,
+				7DE514F1EDEB00D1C8F927A3 /* Pods_KlozetTests.framework */,
+				93639C254FB11FBAEAB66E19 /* Pods_KlozetUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -359,11 +349,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F8EAE81E1D5FA6A900D60DAB /* Build configuration list for PBXNativeTarget "Klozet" */;
 			buildPhases = (
+				5403595CEBAE75BE1F6C6500 /* [CP] Check Pods Manifest.lock */,
 				F8EAE7F21D5FA6A900D60DAB /* Sources */,
 				F8EAE7F31D5FA6A900D60DAB /* Frameworks */,
 				F8EAE7F41D5FA6A900D60DAB /* Resources */,
 				F8EAE8311D5FB53000D60DAB /* CopyFiles */,
-				F81ED2481DC3A9E200336F15 /* ShellScript */,
+				4DE924A80B05B46C4460ACD4 /* [CP] Embed Pods Frameworks */,
+				E6A07BD0D54FF9761B85818D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -378,9 +370,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F8EAE8211D5FA6A900D60DAB /* Build configuration list for PBXNativeTarget "KlozetTests" */;
 			buildPhases = (
+				F38B1B62B7FC07766E2C15E7 /* [CP] Check Pods Manifest.lock */,
 				F8EAE8061D5FA6A900D60DAB /* Sources */,
 				F8EAE8071D5FA6A900D60DAB /* Frameworks */,
 				F8EAE8081D5FA6A900D60DAB /* Resources */,
+				21BBA73B7C4702558AB3C09F /* [CP] Embed Pods Frameworks */,
+				1F1F545D1E98283FB6E2A078 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -396,9 +391,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F8EAE8241D5FA6A900D60DAB /* Build configuration list for PBXNativeTarget "KlozetUITests" */;
 			buildPhases = (
+				7211AFE14BEE5378260EC153 /* [CP] Check Pods Manifest.lock */,
 				F8EAE8111D5FA6A900D60DAB /* Sources */,
 				F8EAE8121D5FA6A900D60DAB /* Frameworks */,
 				F8EAE8131D5FA6A900D60DAB /* Resources */,
+				60DF33FEC943DC3EB2AEADEB /* [CP] Embed Pods Frameworks */,
+				7D4EE85121AE8235C4261F46 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -492,18 +490,140 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		F81ED2481DC3A9E200336F15 /* ShellScript */ = {
+		1F1F545D1E98283FB6E2A078 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KlozetTests/Pods-KlozetTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		21BBA73B7C4702558AB3C09F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KlozetTests/Pods-KlozetTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4DE924A80B05B46C4460ACD4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Klozet/Pods-Klozet-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5403595CEBAE75BE1F6C6500 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		60DF33FEC943DC3EB2AEADEB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KlozetUITests/Pods-KlozetUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7211AFE14BEE5378260EC153 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7D4EE85121AE8235C4261F46 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KlozetUITests/Pods-KlozetUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E6A07BD0D54FF9761B85818D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Klozet/Pods-Klozet-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F38B1B62B7FC07766E2C15E7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -672,15 +792,13 @@
 		};
 		F8EAE8201D5FA6A900D60DAB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3BE3E28D5EB85723CEEDF5D1 /* Pods-Klozet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = QH95ER52SG;
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Klozet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -698,6 +816,7 @@
 		};
 		F8EAE8231D5FA6A900D60DAB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 64FAEE6D86EBB51AC1E892EC /* Pods-KlozetTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -713,6 +832,7 @@
 		};
 		F8EAE8261D5FA6A900D60DAB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 182FCC4E410E72C6C4A26B1B /* Pods-KlozetUITests.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
