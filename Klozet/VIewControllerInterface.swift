@@ -62,12 +62,12 @@ extension ViewController {
     }
     
     //Button properties
-    fileprivate func setButtonProperties(_ button: UIButton, image: String, selectedImage: String, action: Selector, attribute: NSLayoutAttribute) {
+    fileprivate func setButtonProperties(_ button: UIButton, imageAsset: Asset, selectedImageAsset: Asset, action: Selector, attribute: NSLayoutAttribute) {
         
         //image
-        button.setImage(UIImage(named: image), for: UIControlState())
-        button.setImage(UIImage(named: selectedImage), for: .selected)
-        button.setImage(UIImage(named: selectedImage), for: .highlighted)
+        button.setImage(UIImage(asset: imageAsset), for: .normal)
+        button.setImage(UIImage(asset: selectedImageAsset), for: .selected)
+        button.setImage(UIImage(asset: selectedImageAsset), for: .highlighted)
         
         //Target function
         button.addTarget(UIButton(), action: action, for: .touchUpInside)
@@ -90,11 +90,17 @@ extension ViewController {
     }
     
     fileprivate func setCurrentLocationButton() {
-        setButtonProperties(currentLocationButton, image: "CurrentLocation", selectedImage: "CurrentLocationSelected", action: #selector(currentLocationButtonTapped(_:)), attribute: .leading)
+        currentLocationButton.backgroundColor = .white
+        currentLocationButton.imageEdgeInsets = UIEdgeInsets(top: 12, left: 13, bottom: 12, right: 13)
+        currentLocationButton.translatesAutoresizingMaskIntoConstraints = false
+        currentLocationButton.layer.cornerRadius = 26
+        currentLocationButton.imageView?.contentMode = .scaleAspectFit
+        currentLocationButton.setHeightAndWidthAnchorToConstant(52)
+        setButtonProperties(currentLocationButton, imageAsset: .directionIcon, selectedImageAsset: .directionIconSelected, action: #selector(currentLocationButtonTapped(_:)), attribute: .leading)
         
         //View first appears at user's location (therefore current location button should be set as selected)
         currentLocationButton.isSelected = true
-        currentLocationButton.setImage(UIImage(named:"CurrentLocationSelected"), for: [.selected, .highlighted])
+        currentLocationButton.setImage(UIImage(asset: .currentLocationSelected), for: [.selected, .highlighted])
     }
     
     fileprivate func setOptionButtons() {

@@ -97,12 +97,12 @@ class SettingsViewController: UIViewController {
     private func setNavigation() {
         //Navigation title
         navigationItem.title = "Settings".localized
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : Colors.pumpkinColor]
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.mainBlue]
         
         //Left navigation item (action to return to MainViewController)
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close".localized, style: .plain, target: self, action: #selector(dismissToMap))
         
-        navigationController?.navigationBar.tintColor = Colors.pumpkinColor
+        navigationController?.navigationBar.tintColor = .mainBlue
     }
     
     func dismissToMap() {

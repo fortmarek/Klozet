@@ -48,7 +48,7 @@ class ListViewController: UIViewController, DirectionsDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         
-        navigationController?.navigationBar.tintColor = UIColor(red: 1.00, green: 0.42, blue: 0.20, alpha: 1.0)
+        navigationController?.navigationBar.tintColor = .mainBlue 
         
         setTableFooter()
         
@@ -195,7 +195,7 @@ class ListFooter: UIView, ListFooterDelegate {
     
     private func setMoreButton(moreStack: UIStackView) {
         moreButton.setTitle("More toilets".localized, for: .normal)
-        moreButton.setTitleColor(Colors.pumpkinColor, for: .normal)
+        moreButton.setTitleColor(.mainBlue, for: .normal)
         moreButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         moreButton.addTarget(self, action: #selector(loadMoreToilets), for: .touchUpInside)
         moreStack.addArrangedSubview(moreButton)
@@ -203,7 +203,7 @@ class ListFooter: UIView, ListFooterDelegate {
     
     private func setActivityIndicator() {
         activityIndicator.isHidden = true
-        activityIndicator.color = Colors.pumpkinColor
+        activityIndicator.color = .mainBlue
         activityIndicator.sizeToFit()
     }
     
@@ -236,7 +236,7 @@ class ListFooter: UIView, ListFooterDelegate {
         if moreStack.subviews.count == 0 {
             moreStack.addArrangedSubview(infoLabel)
             infoLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightLight)
-            infoLabel.textColor = Colors.pumpkinColor
+            infoLabel.textColor = .mainBlue
         }
 
         

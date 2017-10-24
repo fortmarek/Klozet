@@ -95,7 +95,7 @@ extension ListButtonDelegate where Self: UIButton, Self: FilterOpen, Self: Direc
     
     func changeInterface(isSelected: Bool){
         if isSelected {
-            backgroundColor = Colors.pumpkinColor
+            backgroundColor = .mainBlue
         }
         else {
             backgroundColor = UIColor.clear
@@ -143,9 +143,9 @@ extension ListButtonDelegate where Self: UIButton, Self: FilterOpen, Self: Direc
         setTitle(title, for: .selected)
         
         //Colors also for highlighted, text was changing color before background (that only responds to touchUpInside)
-        setTitleColor(Colors.pumpkinColor, for: .normal)
+        setTitleColor(.mainBlue, for: .normal)
         setTitleColor(UIColor.white, for: .selected)
-        setTitleColor(Colors.pumpkinColor, for: .highlighted)
+        setTitleColor(.mainBlue, for: .highlighted)
         setTitleColor(UIColor.white, for: [.highlighted, .selected])
         
         titleLabel?.font = titleLabel?.font.withSize(15)

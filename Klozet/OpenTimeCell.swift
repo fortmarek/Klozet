@@ -116,7 +116,7 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
         }
         //Toilet is closed, make label orange
         else {
-            return Colors.pumpkinColor
+            return .mainBlue
         }
     }
     

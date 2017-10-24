@@ -27,7 +27,7 @@ class ToiletAnnotationView: MKAnnotationView {
         
         //Detailed toilet info button
         let rightButton = UIButton.init(type: .detailDisclosure)
-        rightButton.tintColor = Colors.pumpkinColor
+        rightButton.tintColor = .mainBlue
         rightButton.addTarget(self, action: #selector(detailButtonTapped), for: .touchUpInside)
         rightCalloutAccessoryView = rightButton
 
@@ -47,7 +47,7 @@ class ToiletAnnotationView: MKAnnotationView {
             let ShowDelegate = self.ShowDelegate
         else {return}
         
-        viewController.navigationController?.navigationBar.tintColor = Colors.pumpkinColor
+        viewController.navigationController?.navigationBar.tintColor = .mainBlue
         viewController.toilet = toilet
         
         ShowDelegate.showViewController(viewController: viewController)
@@ -73,7 +73,7 @@ class DirectionButton: UIButton, DirectionsDelegate, MapsDirections {
         self.addTarget(self, action: #selector(callGetDirectionsFunc), for: .touchUpInside)
         
         //BackgroundColor
-        backgroundColor = Colors.pumpkinColor
+        backgroundColor = .mainBlue
         
         //Image
         setImage(UIImage(named: "Walking"), for: UIControlState())

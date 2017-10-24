@@ -17,9 +17,9 @@ import AlamofireImage
 class ImageSlides: ImageSlideshow, ImageController {
     
     var presentDelegate: PresentDelegate?
-    var slideshowTransitioningDelegate: ZoomAnimatedTransitioningDelegate?
+    var slideShowTransitioningDelegate: ZoomAnimatedTransitioningDelegate?
     
-    let activityIndicator = UIActivityIndicatorView()
+    let activityIndicatorView = UIActivityIndicatorView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,7 +52,7 @@ class ImageSlides: ImageSlideshow, ImageController {
     }
     
     fileprivate func loadViewToImage(imagesCount: Int) {
-        self.activityIndicator.stopAnimating()
+        self.activityIndicatorView.stopAnimating()
         guard imagesCount > 0 else {
             self.setNoImageView()
             return}
@@ -75,11 +75,11 @@ class ImageSlides: ImageSlideshow, ImageController {
         }
         
         // set the initial page
-        fullScreen.initialImageIndex = scrollViewPage
+        fullScreen.initialPage = scrollViewPage
         // set the inputs
         fullScreen.inputs = images
-        slideshowTransitioningDelegate = ZoomAnimatedTransitioningDelegate(slideshowView: self, slideshowController: fullScreen)
-        fullScreen.transitioningDelegate = self.slideshowTransitioningDelegate
+        slideShowTransitioningDelegate = ZoomAnimatedTransitioningDelegate(slideshowView: self, slideshowController: fullScreen)
+        fullScreen.transitioningDelegate = self.slideShowTransitioningDelegate
         presentDelegate?.present(viewController: fullScreen)
         
         fullScreen.closeButton.setImage(UIImage(named: "WhiteCross"), for: .normal)
@@ -87,16 +87,16 @@ class ImageSlides: ImageSlideshow, ImageController {
     }
     
     private func setIndicatorView(detailStackView: UIStackView) {
-        activityIndicator.color = Colors.pumpkinColor
+        activityIndicatorView.color = .mainBlue
         
         guard let detailSuperview = detailStackView.superview else {return}
-        detailSuperview.addSubview(activityIndicator)
+        detailSuperview.addSubview(activityIndicatorView)
         detailStackView.layoutIfNeeded()
-        activityIndicator.frame.origin.x = frame.size.width / 2 - 10
-        activityIndicator.frame.origin.y = detailSuperview.frame.size.height - detailStackView.frame.size.height + 90
-        activityIndicator.sizeToFit()
+        activityIndicatorView.frame.origin.x = frame.size.width / 2 - 10
+        activityIndicatorView.frame.origin.y = detailSuperview.frame.size.height - detailStackView.frame.size.height + 90
+        activityIndicatorView.sizeToFit()
         
-        activityIndicator.startAnimating()
+        activityIndicatorView.startAnimating()
     }
     
     private func setNoImageView() {
@@ -109,7 +109,7 @@ class ImageSlides: ImageSlideshow, ImageController {
         noCameraImageView.center = noImageView.center
         addSubview(noCameraImageView)
         
-        self.activityIndicator.stopAnimating()
+        self.activityIndicatorView.stopAnimating()
     }
     
     

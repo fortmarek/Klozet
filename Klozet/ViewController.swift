@@ -25,6 +25,10 @@ protocol FilterInterfaceDelegate {
 
 
 class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocation, AnnotationController, FilterInterfaceDelegate, DirectionsDelegate, ShowDelegate {
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 
     //UI elements
     @IBOutlet weak var mapView: MKMapView!
@@ -192,15 +196,15 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
             currentLocationHeadingSelected = false
             currentLocationButton.isSelected = false
             locationManager.stopUpdatingHeading()
-            setImageForSelectedHighlighted(currentLocationButton, image: "CurrentLocationSelected")
+            setImageForSelectedHighlighted(currentLocationButton, imageAsset: .directionIconSelected)
         }
         else if currentLocationButton.isSelected {
             currentLocationHeadingSelected = true
-            setImageForSelectedHighlighted(currentLocationButton, image: "CurrentLocationHeading")
+            setImageForSelectedHighlighted(currentLocationButton, imageAsset: .directionIconHeading)
             locationManager.startUpdatingHeading()
         }
         else {
-            setImageForSelectedHighlighted(currentLocationButton, image: "CurrentLocationSelected")
+            setImageForSelectedHighlighted(currentLocationButton, imageAsset: .directionIconSelected)
             currentLocationButton.isSelected = true
         }
     }
@@ -244,9 +248,9 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         }
     }
     
-    fileprivate func setImageForSelectedHighlighted(_ button: UIButton, image: String) {
-        button.setImage(UIImage(named: image), for: .selected)
-        button.setImage(UIImage(named: image), for: [.selected, .highlighted])
+    fileprivate func setImageForSelectedHighlighted(_ button: UIButton, imageAsset: Asset) {
+        button.setImage(UIImage(asset: imageAsset), for: .selected)
+        button.setImage(UIImage(asset: imageAsset), for: [.selected, .highlighted])
     }
     
     

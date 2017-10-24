@@ -114,7 +114,7 @@ class MapInfoText: UIStackView, DirectionsDelegate {
         //etaLabel init
         let etaLabel = UILabel()
         etaLabel.alpha = 0
-        etaLabel.textColor = Colors.pumpkinColor
+        etaLabel.textColor = .mainBlue
         
         //Get eta string for etaLabel
         getEta(toiletCoordinate, completion: {

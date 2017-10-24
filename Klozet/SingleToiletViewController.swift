@@ -29,7 +29,7 @@ class SingleToiletViewController: UIViewController, MKMapViewDelegate, UserLocat
         
         let rightBarButtonItem = SingleDirectionsButton(annotation: toilet)
         navigationItem.rightBarButtonItem = rightBarButtonItem
-        navigationController?.navigationBar.tintColor = Colors.pumpkinColor
+        navigationController?.navigationBar.tintColor = .mainBlue
     }
     
     private func setMapView(toilet: Toilet) {

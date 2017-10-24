@@ -80,7 +80,7 @@ class ShareCell: UITableViewCell, ShareCellDelegate {
         
         textLabel?.text = "Share".localized
         textLabel?.textAlignment = .center
-        textLabel?.textColor = Colors.pumpkinColor
+        textLabel?.textColor = .mainBlue
     }
     
     func shareCellTapped() {
