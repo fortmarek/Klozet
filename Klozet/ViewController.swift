@@ -81,6 +81,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         setCurrentLocationButton()
         
         addDragRecognizer()
+        
+        setupBindings()
 
     }
     
@@ -90,15 +92,24 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
     }
     
     private func setupBindings() {
-        toiletsViewModel.toilets.producer.observe(on: UIScheduler()).startWithValues { [weak self] toilets in
+        
+        locationDelegate = self
+        
+        toiletsViewModel.directionsDelegate = self
+        
+        getToilets()
+    }
+    
+    private func getToilets() {
+        toiletsViewModel.getToilets().startWithResult { [weak self] result in
+            guard let toilets = result.value else {return}
             self?.mapView.addAnnotations(toilets)
-            self?.orderToilets(toilets)
         }
     }
     
     @objc(locationManager:didChangeAuthorizationStatus:) func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
-        toiletsViewModel.getToilets().start()
+        
     }
     
     
@@ -133,7 +144,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
     
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
         //Checking that annotation really is a Toilet class
         guard let toiletAnnotation = annotation as? Toilet else {return nil}
         

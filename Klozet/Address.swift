@@ -27,3 +27,9 @@ extension Address: Decodable {
         self.init(mainAddress: mainAddress, subAddress: subAddress)
     }
 }
+
+extension Address: Equatable {
+    static func ==(lhs: Address, rhs: Address) -> Bool {
+        return lhs.mainAddress == rhs.mainAddress && lhs.subAddress == rhs.mainAddress
+    }
+}

@@ -25,7 +25,7 @@ def get_properties(properties_json, coordinates):
     # Object_id
     toilet_id = properties_json['OBJECTID']
     dict['toilet_id'] = toilet_id
-    
+    print(toilet_id)
 
     # Coordinates
     dict['coordinates'] = coordinates
@@ -41,7 +41,8 @@ def get_properties(properties_json, coordinates):
         dict['price'] = simplified_price
     # Price is null
     except AttributeError:
-        pass
+        print("FAILED")
+        return
 
     # Open times
     try:
@@ -58,6 +59,7 @@ def get_properties(properties_json, coordinates):
     #Adress is null
     except AttributeError:
         pass
+    print("FACK")
     return dict
 
 file = open('verejnawc.json', 'r')
@@ -66,7 +68,7 @@ data = js['features']
 
 toilets = []
 
-for toilet_json in data:
+for toilet_json in data[136:]:
     properties = toilet_json['properties']
     coordinates = toilet_json['geometry']['coordinates']
 

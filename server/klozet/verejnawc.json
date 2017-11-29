@@ -136,7 +136,6 @@
 ,{"type":"Feature","geometry":{"type":"Point","coordinates":[14.402707994,50.0734886930001]},"properties":{"OBJECTID":134,"ADRESA":"Plzeňská 9","OTEVRENO":"po-ne 7:30-24:00 h","CENA":"zdarma"}}
 ,{"type":"Feature","geometry":{"type":"Point","coordinates":[14.41026866,50.062754462]},"properties":{"OBJECTID":135,"ADRESA":"Praha 5, Strakonická 116","OTEVRENO":"po-ne: 7:00-24:00","CENA":"zdarma"}}
 ,{"type":"Feature","geometry":{"type":"Point","coordinates":[14.3539148880001,50.047488377]},"properties":{"OBJECTID":136,"ADRESA":"Radlická 520/117","OTEVRENO":"7:00 - 22:00","CENA":"zdarma"}}
-,{"type":"Feature","geometry":{"type":"Point","coordinates":[14.4340470560001,50.0902730660001]},"properties":{"OBJECTID":137,"ADRESA":null,"OTEVRENO":null,"CENA":null}}
 ,{"type":"Feature","geometry":{"type":"Point","coordinates":[14.418668273,50.0136397100001]},"properties":{"OBJECTID":138,"ADRESA":"Modřany, Lhotecká 2109/2d","OTEVRENO":"po-ne 7:00-0:00","CENA":"zdarma"}}
 ,{"type":"Feature","geometry":{"type":"Point","coordinates":[14.4301070920001,50.0156639730001]},"properties":{"OBJECTID":139,"ADRESA":"Praha 4, Lhotecká 446, GPS:  50°0'56.31048\"N, 14°25'48.45432\"E","OTEVRENO":"po-ne 7:00-21:00","CENA":"zdarma"}}
 ,{"type":"Feature","geometry":{"type":"Point","coordinates":[14.414686096,50.005721545]},"properties":{"OBJECTID":140,"ADRESA":"Praha 4, Soukalova 3, GPS: 50°0'20.83032\"N, 14°24'53.00028\"E","OTEVRENO":null,"CENA":"zdarma"}}

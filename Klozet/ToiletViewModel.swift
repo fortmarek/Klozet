@@ -19,6 +19,7 @@ protocol ToiletViewModeling {
 
 class ToiletViewModel: APIService, ToiletViewModeling {
 
+    var directionsDelegate: DirectionsDelegate?
     var toilets: MutableProperty<[Toilet]> = MutableProperty([])
     
     func getToilets() -> SignalProducer<[Toilet], ConnectionError> {
@@ -32,6 +33,19 @@ class ToiletViewModel: APIService, ToiletViewModeling {
                 sink.sendCompleted()
             }
         }
+    }
+ 
+    private func setupBindings() {
+        toilets.producer.startWithValues { [weak self] toilets in
+            self?.orderToilets(toilets)
+        }
+    }
+    
+    private func orderToilets(_ toilets: [Toilet]) {
+        guard let directionsDelegate = self.directionsDelegate else {return}
+        self.toilets.value = toilets.sorted(by: {
+            directionsDelegate.getDistance($0.coordinate) < directionsDelegate.getDistance($1.coordinate)
+        })
     }
     
 }

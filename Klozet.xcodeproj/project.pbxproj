@@ -30,6 +30,7 @@
 		F83CB9BC1FCF3B2C002CECDC /* Toilet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83CB9BB1FCF3B2C002CECDC /* Toilet.swift */; };
 		F83CB9BE1FCF3B63002CECDC /* OpenTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83CB9BD1FCF3B63002CECDC /* OpenTimes.swift */; };
 		F83CB9C01FCF3B84002CECDC /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83CB9BF1FCF3B84002CECDC /* Address.swift */; };
+		F83CB9C31FCF3CC8002CECDC /* ToiletViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83CB9C21FCF3CC8002CECDC /* ToiletViewModelTests.swift */; };
 		F858907B1DC9043D00F1C3F1 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F858907A1DC9043D00F1C3F1 /* SnapshotHelper.swift */; };
 		F86EF5C41DA6EBA40095CCEB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86EF5C31DA6EBA40095CCEB /* SettingsViewController.swift */; };
 		F86EF5C61DA98B5F0095CCEB /* SettingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86EF5C51DA98B5F0095CCEB /* SettingsTableView.swift */; };
@@ -124,6 +125,7 @@
 		F83CB9BB1FCF3B2C002CECDC /* Toilet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toilet.swift; sourceTree = "<group>"; };
 		F83CB9BD1FCF3B63002CECDC /* OpenTimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTimes.swift; sourceTree = "<group>"; };
 		F83CB9BF1FCF3B84002CECDC /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		F83CB9C21FCF3CC8002CECDC /* ToiletViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToiletViewModelTests.swift; sourceTree = "<group>"; };
 		F858907A1DC9043D00F1C3F1 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		F86EF5C31DA6EBA40095CCEB /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F86EF5C51DA98B5F0095CCEB /* SettingsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableView.swift; sourceTree = "<group>"; };
@@ -350,6 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				F8EAE80E1D5FA6A900D60DAB /* KlozetTests.swift */,
+				F83CB9C21FCF3CC8002CECDC /* ToiletViewModelTests.swift */,
 				F8EAE8101D5FA6A900D60DAB /* Info.plist */,
 			);
 			path = KlozetTests;
@@ -702,6 +705,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8EAE80F1D5FA6A900D60DAB /* KlozetTests.swift in Sources */,
+				F83CB9C31FCF3CC8002CECDC /* ToiletViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

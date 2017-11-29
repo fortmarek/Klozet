@@ -2349,18 +2349,6 @@
             }
         },
         {
-            "toilet_id": 74,
-            "price": "Free",
-            "coordinates": [
-                14.4275644570001,
-                50.0865174210001
-            ],
-            "address": {
-                "sub_address": "",
-                "main_address": "Na Příkopě 24"
-            }
-        },
-        {
             "toilet_id": 75,
             "price": "Free",
             "open_times": [
@@ -3230,18 +3218,6 @@
             "address": {
                 "sub_address": "",
                 "main_address": "U Slavie 1527/68b"
-            }
-        },
-        {
-            "toilet_id": 103,
-            "price": "Free",
-            "coordinates": [
-                14.401721251,
-                50.0744091660001
-            ],
-            "address": {
-                "sub_address": "",
-                "main_address": "Drtinova 1861/1"
             }
         },
         {
@@ -4306,13 +4282,6 @@
             }
         },
         {
-            "toilet_id": 137,
-            "coordinates": [
-                14.4340470560001,
-                50.0902730660001
-            ]
-        },
-        {
             "toilet_id": 138,
             "price": "Free",
             "open_times": [
@@ -4370,18 +4339,6 @@
             "address": {
                 "sub_address": "",
                 "main_address": "Lhotecká 2H"
-            }
-        },
-        {
-            "toilet_id": 140,
-            "price": "Free",
-            "coordinates": [
-                14.414686096,
-                50.005721545
-            ],
-            "address": {
-                "sub_address": "",
-                "main_address": "Soukalova 3"
             }
         },
         {
