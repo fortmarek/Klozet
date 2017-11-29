@@ -207,7 +207,7 @@ class ListFooter: UIView, ListFooterDelegate {
         activityIndicator.sizeToFit()
     }
     
-    func loadMoreToilets() {
+    @objc func loadMoreToilets() {
         
         //activityIndicator.isHidden = false
         //activityIndicator.startAnimating()
@@ -235,7 +235,7 @@ class ListFooter: UIView, ListFooterDelegate {
 
         if moreStack.subviews.count == 0 {
             moreStack.addArrangedSubview(infoLabel)
-            infoLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightLight)
+            infoLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.light)
             infoLabel.textColor = .mainBlue
         }
 

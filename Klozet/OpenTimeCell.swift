@@ -100,7 +100,7 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
             }
             
             //Add attributedString to array
-            let attributedString = NSAttributedString(string: openTimesString, attributes: [NSForegroundColorAttributeName: color])
+            let attributedString = NSAttributedString(string: openTimesString, attributes: [NSAttributedStringKey.foregroundColor: color])
             openTimesStrings.append(attributedString)
             
             

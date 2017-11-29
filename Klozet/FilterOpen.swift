@@ -49,7 +49,7 @@ class FilterOpenButton: UIButton, FilterOpen, FilterOptionButton {
         setBasicInterface()
     }
     
-    func filterOpenButtonTapped(_ sender: FilterOpenButton) {
+    @objc func filterOpenButtonTapped(_ sender: FilterOpenButton) {
         filterOpenToilet()
     }
     

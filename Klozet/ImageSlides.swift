@@ -205,7 +205,7 @@ extension ImageController {
     
     private func encodedStringToImage(encodedString: String) -> ImageSource? {
         guard
-            let imageData = NSData(base64Encoded: encodedString, options: .ignoreUnknownCharacters) as? Data,
+            let imageData = NSData(base64Encoded: encodedString, options: .ignoreUnknownCharacters) as Data?,
             let image = UIImage(data: imageData)
             else {return nil}
         return ImageSource(image: image)

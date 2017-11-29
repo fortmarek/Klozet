@@ -125,7 +125,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
     }
     
     //If map was dragged, map is not following user's current location - current location should not be selected
-    func didDragMap() {
+    @objc func didDragMap() {
         //Recognizing start of the drag, it's also called only once per interaction
         if dragRecognizer.state == .began {
             currentLocationButton.isSelected = false
@@ -185,7 +185,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         view.tag = 0
     }
     
-    func currentLocationButtonTapped(_ sender: UIButton) {
+    @objc func currentLocationButtonTapped(_ sender: UIButton) {
         locationManager.startUpdatingLocation()
         determineCurrentLocationButtonImage()
     }

@@ -42,7 +42,7 @@ class SettingsViewController: UIViewController {
         
         let creditsLabel = UILabel()
         creditsLabel.text = "Version 1.0.1\nCreated by Marek Fořt".localized
-        creditsLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightLight)
+        creditsLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.light)
         creditsLabel.textAlignment = .center
         creditsLabel.numberOfLines = 2
         settingsTableStack.addArrangedSubview(creditsLabel)
@@ -97,7 +97,7 @@ class SettingsViewController: UIViewController {
     private func setNavigation() {
         //Navigation title
         navigationItem.title = "Settings".localized
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.mainBlue]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.mainBlue]
         
         //Left navigation item (action to return to MainViewController)
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close".localized, style: .plain, target: self, action: #selector(dismissToMap))
@@ -105,7 +105,7 @@ class SettingsViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .mainBlue
     }
     
-    func dismissToMap() {
+    @objc func dismissToMap() {
         self.dismiss(animated: true, completion: nil)
     }
 

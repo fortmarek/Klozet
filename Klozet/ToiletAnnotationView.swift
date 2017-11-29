@@ -40,7 +40,7 @@ class ToiletAnnotationView: MKAnnotationView {
     
     
     
-    func detailButtonTapped() {
+    @objc func detailButtonTapped() {
         guard
             let toilet = annotation as? Toilet,
             let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "detailVC") as? DetailViewController,
@@ -97,7 +97,7 @@ class DirectionButton: UIButton, DirectionsDelegate, MapsDirections {
             
             //Title with attributes
             self.titleLabel?.alpha = 0
-            let attributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 10), NSForegroundColorAttributeName: UIColor.white]
+            let attributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 10), NSAttributedStringKey.foregroundColor: UIColor.white]
             self.setAttributedTitle(NSAttributedString(string: eta, attributes: attributes), for: UIControlState())
             self.setAttributedTitle(NSAttributedString(string: eta, attributes: attributes), for: .highlighted)
             
@@ -109,7 +109,7 @@ class DirectionButton: UIButton, DirectionsDelegate, MapsDirections {
     fileprivate func animateETA() {
         
         //Start with label rotated upside down to then rotate it to the right angle
-        titleLabel?.layer.transform = CATransform3DMakeRotation(CGFloat(M_PI / 2), 1, 0, 0)
+        titleLabel?.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi / 2), 1, 0, 0)
         titleLabel?.sizeToFit()
         
         guard let superview = self.superview else {return}
@@ -139,7 +139,7 @@ class DirectionButton: UIButton, DirectionsDelegate, MapsDirections {
     }
     
     
-    func callGetDirectionsFunc(sender: UIButton) {
+    @objc func callGetDirectionsFunc(sender: UIButton) {
         guard let toilet = self.toilet else {return}
         getDirections(coordinate: toilet.coordinate)
     }

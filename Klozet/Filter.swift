@@ -92,7 +92,7 @@ class FilterButton: UIButton, FilterButtonDelegate {
 //MARK: Animations
 
 extension FilterButton {
-    func filterButtonTapped(_ sender: UIButton) {
+    @objc func filterButtonTapped(_ sender: UIButton) {
         
         animateSwitch()
         
@@ -141,7 +141,7 @@ extension FilterButton {
         UIView.animateKeyframes(withDuration: 0.6, delay: 0, options: [.calculationModePaced, UIViewKeyframeAnimationOptions(animationOptions: .curveEaseOut)], animations: {
             
             //360°
-            let fullRotation = CGFloat(M_PI * 2)
+            let fullRotation = CGFloat(Double.pi * 2)
             
             //At least three key frames (not only 360° is not unequivocal, neither is 180°)
             for i in 1...3 {

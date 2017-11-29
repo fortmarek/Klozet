@@ -63,7 +63,7 @@ class TabBarItem: UITabBarItem {
         imageInsets.bottom = -7
 
         if let tintColor = selectedTintColor {
-            setTitleTextAttributes([NSForegroundColorAttributeName: tintColor], for: .selected)
+            setTitleTextAttributes([NSAttributedStringKey.foregroundColor: tintColor], for: .selected)
         }
     }
 

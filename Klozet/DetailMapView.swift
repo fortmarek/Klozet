@@ -115,7 +115,7 @@ class MapOverlayButton: UIButton, ShowMap {
         layer.addSublayer(gradientLayer)
     }
     
-    func showMapAction(sender: UIButton) {
+    @objc func showMapAction(sender: UIButton) {
         showMapView()
     }
     

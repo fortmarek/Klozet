@@ -98,7 +98,7 @@ class SingleDirectionsButton: UIBarButtonItem, MapsDirections {
         
     }
     
-    func callDirectionsMapsFunc() {
+    @objc func callDirectionsMapsFunc() {
         //Open Apple Maps
         getDirections(coordinate: annotation.coordinate)
     }

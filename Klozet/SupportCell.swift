@@ -57,7 +57,7 @@ class SupportCell: UITableViewCell, MFMailComposeViewControllerDelegate, Support
         let settingsAction = UIAlertAction(title: "Settings".localized, style: .default) { (_) -> Void in
             let settingsUrl = URL(string: "prefs:root=ACCOUNT_SETTINGS")
             if let url = settingsUrl {
-                UIApplication.shared.openURL(url)
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         }
         

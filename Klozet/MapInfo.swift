@@ -147,7 +147,7 @@ class MapInfoText: UIStackView, DirectionsDelegate {
         
         
         //Start with label rotated upside down to then rotate it to the right angle
-        etaLabel.layer.transform = CATransform3DMakeRotation(CGFloat(M_PI / 2), 1, 0, 0)
+        etaLabel.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi / 2), 1, 0, 0)
 
     }
     
@@ -230,7 +230,7 @@ class ShowMapButton: UIButton, ShowMap {
         addTarget(self, action: #selector(showMapAction), for: .touchUpInside)
     }
     
-    func showMapAction(sender: UIButton) {
+    @objc func showMapAction(sender: UIButton) {
         showMapView()
     }
     

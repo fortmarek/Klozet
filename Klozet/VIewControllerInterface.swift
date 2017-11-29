@@ -36,7 +36,7 @@ extension ViewController {
         currentLocationButton.addTarget(self, action: #selector(currentLocationButtonTapped(_:)), for: .touchUpInside)
         
         
-        currentLocationButton.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor, constant: -17).isActive = true
+        currentLocationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -17).isActive = true
         currentLocationButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 18).isActive = true
         
         //View first appears at user's location (therefore current location button should be set as selected)

@@ -45,7 +45,7 @@ class FilterPriceButton: UIButton, FilterOptionButton {
     }
     
     //TODO: Check if other filter is selected
-    func priceButtonTapped(_ sender: UIButton) {
+    @objc func priceButtonTapped(_ sender: UIButton) {
         
         defer {
             changeButtonState()

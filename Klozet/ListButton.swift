@@ -21,7 +21,7 @@ class ListOpenButton: UIButton, FilterOpen, ListButtonDelegate, DirectionsDelega
         addTarget(self, action: #selector(filterOpenButtonTapped), for: .touchUpInside)
     }
     
-    func filterOpenButtonTapped(sender: ListOpenButton) {
+    @objc func filterOpenButtonTapped(sender: ListOpenButton) {
         guard var toiletsDelegate = self.toiletsDelegate else {return}
         
         //toiletsDelegate.startUpdating()
@@ -59,7 +59,7 @@ class ListPriceButton: UIButton, FilterOpen, ListButtonDelegate, DirectionsDeleg
     }
     
     
-    func filterPriceButtonTapped(sender: ListPriceButton) {
+    @objc func filterPriceButtonTapped(sender: ListPriceButton) {
         guard var toiletsDelegate = self.toiletsDelegate else {return}
         
         //toiletsDelegate.startUpdating()

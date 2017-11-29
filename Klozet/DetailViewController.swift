@@ -27,7 +27,6 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
         
         //Main Stack View
         let detailStackView = setDetailStackView()
-        automaticallyAdjustsScrollViewInsets = false
         
         guard let toilet = toilet else {return}
         
@@ -37,6 +36,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
         let tableView = DetailTableView()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.contentInsetAdjustmentBehavior = .never
         detailStackView.addArrangedSubview(tableView)
         
         _ = MapInfoView(detailStackView: detailStackView, toilet: toilet, showDelegate: self)
@@ -73,7 +73,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
         return detailStackView
     }
     
-    func imageButtonTapped() {
+    @objc func imageButtonTapped() {
         uploadImage()
     }
     
