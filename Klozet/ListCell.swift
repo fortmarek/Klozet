@@ -54,7 +54,7 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate, ImageController
     func fillCellData(_ toilet: Toilet) {
         setPriceLabel(toilet.price)
         setOpenLabel(toilet)
-        setDistanceLabel(toilet.coordinate)
+        setDistanceLabel(toilet.toiletAnnotation.coordinate)
         setImage(toiletId: toilet.toiletId)
         
         mainAddressLabel.text = toilet.title

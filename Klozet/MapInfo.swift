@@ -106,7 +106,7 @@ class MapInfoText: UIStackView, DirectionsDelegate {
         setEtaImage(etaStack: etaStack)
         
         //Add eta under walking image
-        setEtaLabel(etaStack: etaStack, toiletCoordinate: toilet.coordinate)
+        setEtaLabel(etaStack: etaStack, toiletCoordinate: toilet.toiletAnnotation.coordinate)
     }
     
     fileprivate func setEtaLabel(etaStack: UIStackView, toiletCoordinate: CLLocationCoordinate2D) {

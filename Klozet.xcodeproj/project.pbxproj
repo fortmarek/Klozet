@@ -37,6 +37,9 @@
 		F8778B5C1D999DDE005ACA43 /* OpenTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8778B5B1D999DDE005ACA43 /* OpenTimeCell.swift */; };
 		F8778B5E1D9ABFE8005ACA43 /* PriceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8778B5D1D9ABFE8005ACA43 /* PriceCell.swift */; };
 		F8778B601D9D7D13005ACA43 /* MapInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8778B5F1D9D7D13005ACA43 /* MapInfo.swift */; };
+		F87BEE201FCF24400059F862 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87BEE1F1FCF24400059F862 /* APIService.swift */; };
+		F87BEE221FCF2B920059F862 /* CodableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87BEE211FCF2B920059F862 /* CodableError.swift */; };
+		F87BEE241FCF2E410059F862 /* ToiletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87BEE231FCF2E410059F862 /* ToiletViewModel.swift */; };
 		F87C8C5E1D873F4F00B9C6EF /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87C8C5D1D873F4F00B9C6EF /* Filter.swift */; };
 		F87CE85F1F9FB14400D98515 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87CE85E1F9FB14400D98515 /* TabBarController.swift */; };
 		F8C41A6D1F9A42B700E16612 /* UIColor+UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C41A6C1F9A42B700E16612 /* UIColor+UIFontExtension.swift */; };
@@ -126,6 +129,9 @@
 		F8778B5B1D999DDE005ACA43 /* OpenTimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenTimeCell.swift; sourceTree = "<group>"; };
 		F8778B5D1D9ABFE8005ACA43 /* PriceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceCell.swift; sourceTree = "<group>"; };
 		F8778B5F1D9D7D13005ACA43 /* MapInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapInfo.swift; sourceTree = "<group>"; };
+		F87BEE1F1FCF24400059F862 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		F87BEE211FCF2B920059F862 /* CodableError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableError.swift; sourceTree = "<group>"; };
+		F87BEE231FCF2E410059F862 /* ToiletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToiletViewModel.swift; sourceTree = "<group>"; };
 		F87C8C5D1D873F4F00B9C6EF /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		F87CE85E1F9FB14400D98515 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		F8C41A6C1F9A42B700E16612 /* UIColor+UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+UIFontExtension.swift"; sourceTree = "<group>"; };
@@ -298,7 +304,10 @@
 			isa = PBXGroup;
 			children = (
 				F8EAE7F91D5FA6A900D60DAB /* AppDelegate.swift */,
+				F87BEE1F1FCF24400059F862 /* APIService.swift */,
+				F87BEE211FCF2B920059F862 /* CodableError.swift */,
 				F8EAE8341D5FC81300D60DAB /* DataController.swift */,
+				F87BEE231FCF2E410059F862 /* ToiletViewModel.swift */,
 				F87CE85E1F9FB14400D98515 /* TabBarController.swift */,
 				F82FB1B81D7F5E1F001FE39D /* ViewController */,
 				F86F356A1D8DE772001A8F6C /* ListViewController */,
@@ -633,9 +642,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F83B201B1DC60538006C1D92 /* DetailMapView.swift in Sources */,
+				F87BEE201FCF24400059F862 /* APIService.swift in Sources */,
 				F8EAE83C1D630E0500D60DAB /* VIewControllerInterface.swift in Sources */,
 				F87C8C5E1D873F4F00B9C6EF /* Filter.swift in Sources */,
 				F82FB1C81D82B7C3001FE39D /* FilterOpen.swift in Sources */,
+				F87BEE221FCF2B920059F862 /* CodableError.swift in Sources */,
 				F82FB1BA1D809F27001FE39D /* Directions.swift in Sources */,
 				F80FC7D41DA99B5200D4FC05 /* SupportCell.swift in Sources */,
 				F8E541541D744CA600BA4BE7 /* Extensions.swift in Sources */,
@@ -643,6 +654,7 @@
 				F82884C11D957E7600F1A737 /* DetailTableView.swift in Sources */,
 				F8775B0B1D908104003B9F4D /* ListButtonDelegate.swift in Sources */,
 				F8C41A6D1F9A42B700E16612 /* UIColor+UIFontExtension.swift in Sources */,
+				F87BEE241FCF2E410059F862 /* ToiletViewModel.swift in Sources */,
 				F82FB1BE1D81BA41001FE39D /* UserLocation.swift in Sources */,
 				F80FC7D61DAC298300D4FC05 /* ImageSlides.swift in Sources */,
 				F8775B091D8EBAAF003B9F4D /* ListButton.swift in Sources */,

@@ -141,7 +141,7 @@ class DirectionButton: UIButton, DirectionsDelegate, MapsDirections {
     
     @objc func callGetDirectionsFunc(sender: UIButton) {
         guard let toilet = self.toilet else {return}
-        getDirections(coordinate: toilet.coordinate)
+        getDirections(coordinate: toilet.toiletAnnotation.coordinate)
     }
     
 

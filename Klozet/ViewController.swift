@@ -141,7 +141,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         //Checking that annotation really is a Toilet class
-        guard let toiletAnnotation = annotation as? Toilet else {return nil}
+        guard let toiletAnnotation = annotation as? ToiletAnnotation else {return nil}
         
         var annotationView = MKAnnotationView()
         
@@ -177,7 +177,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         else {return}
         
         directionButton.toilet = toilet
-        directionButton.setEtaTitle(coordinate: toilet.coordinate)
+        directionButton.setEtaTitle(coordinate: toilet.toiletAnnotation.coordinate)
         
     }
     

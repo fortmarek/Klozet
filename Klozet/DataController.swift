@@ -7,111 +7,102 @@
 //
 
 import Foundation
-import Alamofire
 import SwiftyJSON
 import MapKit
 
+struct OpenTimes {
+    let hours: [String]
+    let days: [Int]
+    let isNonstop: Bool
+}
 
-class Toilet: NSObject, MKAnnotation {
+extension OpenTimes: Decodable {
+    enum OpenTimesKeys: String, CodingKey {
+        case hours = "hours"
+        case days = "days"
+        case isNonstop = "nonstop"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: OpenTimesKeys.self)
+        let hours: [String] = try container.decode([String].self, forKey: .hours)
+        let days: [Int] = try container.decode([Int].self, forKey: .days)
+        let isNonstop: Bool = try container.decode(Bool.self, forKey: .isNonstop)
+        self.init(hours: hours, days: days, isNonstop: isNonstop)
+    }
+}
+
+struct Address {
+    let mainAddress: String
+    let subAddress: String
+}
+
+extension Address: Decodable {
+    enum AddressKeys: String, CodingKey {
+        case mainAddress = "main_address"
+        case subAddress = "sub_address"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: AddressKeys.self)
+        let mainAddress: String = try container.decode(String.self, forKey: .mainAddress)
+        let subAddress: String = try container.decode(String.self, forKey: .subAddress)
+        self.init(mainAddress: mainAddress, subAddress: subAddress)
+    }
+}
+
+class ToiletAnnotation: NSObject, MKAnnotation {
+    
+    var coordinate: CLLocationCoordinate2D
+    var title: String?
+    var subtitle: String?
+    
+    init(coordinate: CLLocationCoordinate2D, title: String, subtitle: String) {
+        self.coordinate = coordinate
+        self.title = title
+        self.subtitle = subtitle
+    }
+}
+
+struct Toilets {
+    let toilets: [Toilet]
+}
+
+extension Toilets: Decodable {
+    enum ToiletsKeys: String, CodingKey {
+        case toilets = "toilets"
+    }
+}
+
+struct Toilet {
     
     //MKAnnotation properties
-    //Title - main address
-    let title: String?
-    
-    //Subtitle - additional info about toilet's position
-    let subtitle: String?
-    
-    let openTimes: [JSON]
+    let toiletAnnotation: ToiletAnnotation
+    let openTimes: OpenTimes
     let price: String
-    let coordinate: CLLocationCoordinate2D
     let toiletId: Int
     
-    init(mainAdress: String, subAddress: String, openTimes: [JSON], price: String, coordinate: CLLocationCoordinate2D, toiletId: Int) {
-        self.title = mainAdress
-        self.subtitle = subAddress
-        self.openTimes = openTimes
-        self.price = price
-        self.coordinate = coordinate
-        self.toiletId = toiletId
-    }
-    
-
 }
 
-
-class DataController {
-    
-    //Fetching toilet data
-    func getToilets(_ completion: @escaping (_ toilets: [Toilet]) -> () ){
-        
-        guard var language = NSLocale.current.languageCode else {return}
-        if language != "cs" {
-            language = "en"
-        }
-        let path = "http://139.59.144.155/klozet/\(language)"
-
-        //GET request for toilet data
-        Alamofire.request(path)
-            .responseJSON { response in
-                
-                var toilets = [Toilet]()
-                
-                guard let data = response.data else {return}
-                
-                //Converting data to JSON
-                let json = JSON(data: data)
-                
-                let allToiletsDict = json["toilets"]
-
-                
-                for (_, toiletsDict) in allToiletsDict {
-                    
-                    //Coordinates
-                    guard let coordinate = self.getCoordinate(toiletsDict["coordinates"]) else {continue}
-                    
-                    //Getting other JSON toilet values then init of Toilet
-                    let toilet = self.getToilet(toiletsDict, coordinate: coordinate)
-                    
-                    toilets.append(toilet)
-                }
-                
-                //Returning toilets array, when GET request done, app can start adding annotationViews to the map
-                completion(toilets)
-        }
-
+extension Toilet: Decodable {
+    enum ToiletKeys: String, CodingKey {
+        case address = "address"
+        case openTimes = "open_times"
+        case price = "price"
+        case coordinates = "coordinates"
+        case toiletId = "toilet_id"
     }
     
-    //Parsing other toilet values from tolietJson
-    fileprivate func getToilet(_ propertiesJson: JSON, coordinate: CLLocationCoordinate2D) -> Toilet {
-        guard
-            //Price
-            let price = propertiesJson["price"].string,
-            
-            //Open times
-            let openTimes = propertiesJson["open_times"].array,
-            
-            //Addresses
-            let address = propertiesJson["address"].dictionary,
-            let mainAddress = address["main_address"]?.string,
-            let subAddress = address["sub_address"]?.string,
-            
-            //toiletId
-            let toiletId = propertiesJson["toilet_id"].int
-            
-            //At least one of the values is nil
-            else {return Toilet(mainAdress: "", subAddress: "", openTimes: [], price: "", coordinate: coordinate, toiletId: 0)}
-
-        
-        return Toilet(mainAdress: mainAddress, subAddress: subAddress, openTimes: openTimes, price: price, coordinate: coordinate, toiletId: toiletId)
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: ToiletKeys.self)
+        let address: Address = try container.decode(Address.self, forKey: .address)
+        let openTimes: OpenTimes = try container.decode(OpenTimes.self, forKey: .openTimes)
+        let price: String = try container.decode(String.self, forKey: .price)
+        let coordinates: [Double] = try container.decode([Double].self, forKey: .coordinates)
+        let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: coordinates[1], longitude: coordinates[0])
+        let toiletId: Int = try container.decode(Int.self, forKey: .toiletId)
+        let toiletAnnotation: ToiletAnnotation = ToiletAnnotation(coordinate: coordinate, title: address.mainAddress, subtitle: address.subAddress)
+        self.init(toiletAnnotation: toiletAnnotation, openTimes: openTimes, price: price, toiletId: toiletId)
     }
-    
-    fileprivate func getCoordinate(_ coordinateJson: JSON) -> CLLocationCoordinate2D? {
-        guard
-            let coordinates = coordinateJson.array,
-            let latitude = coordinates[1].double,
-            let longitude = coordinates[0].double
-        else {return nil}
-        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-    }
-
 }
+
