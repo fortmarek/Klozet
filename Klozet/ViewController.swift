@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import ReactiveSwift
 
 protocol AnnotationController {
     var toilets: Array<Toilet> { get set }
@@ -30,6 +31,9 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         return .lightContent
     }
 
+    let toiletsViewModel: ToiletViewModel = ToiletViewModel()
+    var toilets: [Toilet] = []
+    
     //UI elements
     @IBOutlet weak var mapView: MKMapView!
     
@@ -49,7 +53,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
     //Default width and height of buttons
     let sizeConstant = CGFloat(55)
     
-    var toilets = [Toilet]()
     var toiletsNotOpen = [Toilet]()
     
     var locationDelegate: UserLocation?
@@ -86,27 +89,18 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         locationManager.requestWhenInUseAuthorization()
     }
     
-    @objc(locationManager:didChangeAuthorizationStatus:) func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        
-        getToilets()
+    private func setupBindings() {
+        toiletsViewModel.toilets.producer.observe(on: UIScheduler()).startWithValues { [weak self] toilets in
+            self?.mapView.addAnnotations(toilets)
+            self?.orderToilets(toilets)
+        }
     }
     
-    func getToilets() {
-        //DataController for fetching toilets
-        let dataController = DataController()
+    @objc(locationManager:didChangeAuthorizationStatus:) func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
-        dataController.getToilets({
-            toilets in
-            self.toilets = toilets
-            //UI changes, main queue
-            DispatchQueue.main.async(execute: {
-                //Placing toilets on the map
-                self.mapView.addAnnotations(toilets)
-            })
-            
-            self.orderToilets()
-        })
+        toiletsViewModel.getToilets().start()
     }
+    
     
     
     
@@ -141,7 +135,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         //Checking that annotation really is a Toilet class
-        guard let toiletAnnotation = annotation as? ToiletAnnotation else {return nil}
+        guard let toiletAnnotation = annotation as? Toilet else {return nil}
         
         var annotationView = MKAnnotationView()
         
@@ -152,7 +146,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         
         //Init of reusableAnnotationView
         else {
-            let toiletAnnotationView = ToiletAnnotationView(annotation: toiletAnnotation, reuseIdentifier: "toiletAnnotation")
+            let toiletAnnotationView = ToiletView(annotation: toiletAnnotation, reuseIdentifier: "toiletAnnotation")
             
             toiletAnnotationView.centerOffset = CGPoint(x: 0, y: -toiletAnnotationView.frame.height/2)
             
@@ -171,13 +165,13 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         guard
-            let toiletAnnotationView = view as? ToiletAnnotationView,
+            let toiletAnnotationView = view as? ToiletView,
             let toilet = toiletAnnotationView.annotation as? Toilet,
             let directionButton = toiletAnnotationView.leftCalloutAccessoryView as? DirectionButton
         else {return}
         
         directionButton.toilet = toilet
-        directionButton.setEtaTitle(coordinate: toilet.toiletAnnotation.coordinate)
+        directionButton.setEtaTitle(coordinate: toilet.coordinate)
         
     }
     
@@ -209,22 +203,20 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
     }
     
     //Order toilets depending on distance from user
-    fileprivate func orderToilets() {
+    private func orderToilets(_ toilets: [Toilet]) {
         
+        self.locationDelegate = self
+        
+        self.toilets = toilets.sorted(by: {
+            self.getDistance($0.coordinate) < self.getDistance($1.coordinate)
+        })
+        
+    
         //Asynchronouly order toilets by distance, make them ready for list
-        DispatchQueue.global().async {
-            self.locationDelegate = self
-            
-            self.toilets = self.toilets.sorted(by: {
-                self.getDistance($0.coordinate) < self.getDistance($1.coordinate)
-            })
-            
-            //Done ordering toilets
-            self.didOrderToilets = true
-            self.toiletsDelegate?.updateToilets(toilets: self.toilets)
-        }
-        
-        
+//        DispatchQueue.global().async {
+//            self.locationDelegate = self
+//
+//        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

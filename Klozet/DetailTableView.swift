@@ -38,17 +38,20 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let toilet = toilet else {return UITableViewCell()}
         
+        //FIX:
+//        if indexPath.row == 0 {
+//            let openTimeCell = OpenTimeCell(style: .default, reuseIdentifier: "openTimeCell", openTimes: toilet.openTimes)
+//            widthDimension = openTimeCell.widthDimension
+//            return openTimeCell
+//        }
+//
+//        else {
+//            let priceCell = PriceCell(style: .default, reuseIdentifier: "priceCell", price: toilet.price, width: widthDimension)
+//            return priceCell
+//        }
         
-        if indexPath.row == 0 {
-            let openTimeCell = OpenTimeCell(style: .default, reuseIdentifier: "openTimeCell", openTimes: toilet.openTimes)
-            widthDimension = openTimeCell.widthDimension
-            return openTimeCell
-        }
-        
-        else {
-            let priceCell = PriceCell(style: .default, reuseIdentifier: "priceCell", price: toilet.price, width: widthDimension)
-            return priceCell
-        }
+        let priceCell = PriceCell(style: .default, reuseIdentifier: "priceCell", price: toilet.price, width: widthDimension)
+        return priceCell
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -46,20 +46,21 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
         
         openTimeStack.rightAnchor.constraint(equalTo: stackView.rightAnchor).isActive = true
         
-        let openTimesAsStrings = openTimesToStrings(openTimes: openTimes)
-        
-        //Get fontsize depending on number of elements
-        let fontSize = getFontSize(count: openTimesAsStrings.count)
-        
-        for openTime in openTimesAsStrings {
-            let openLabel = UILabel()
-            openLabel.attributedText = openTime
-            openLabel.font = UIFont.systemFont(ofSize: fontSize)
-            openLabel.minimumScaleFactor = 0.8
-            openLabel.adjustsFontSizeToFitWidth = true
-            openTimeStack.addArrangedSubview(openLabel)
-            
-        }
+        //FIX:
+//        let openTimesAsStrings = openTimesToStrings(openTimes: openTimes)
+//
+//        //Get fontsize depending on number of elements
+//        let fontSize = getFontSize(count: openTimesAsStrings.count)
+//
+//        for openTime in openTimesAsStrings {
+//            let openLabel = UILabel()
+//            openLabel.attributedText = openTime
+//            openLabel.font = UIFont.systemFont(ofSize: fontSize)
+//            openLabel.minimumScaleFactor = 0.8
+//            openLabel.adjustsFontSizeToFitWidth = true
+//            openTimeStack.addArrangedSubview(openLabel)
+//
+//        }
 
         widthDimension = openTimeStack.frame.size.width
     }
@@ -79,34 +80,37 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
     
     typealias AttributedArray = Array<NSAttributedString>
     
-    fileprivate func openTimesToStrings(openTimes: Array<JSON>) -> AttributedArray {
-        
-        var openTimesStrings = AttributedArray()
-        for openTimesData in openTimes {
-            
-            var openTimesString = ""
-            let color = getLabelColor(openTimesData: openTimesData)
-            
-            //Is toilet opened nonstop?
-            if openTimesData["nonstop"].bool == true {
-                //String
-                openTimesString = "Nonstop".localized
-            }
-                
-            else {
-                //Days interval
-                openTimesString += getDayInterval(openTimesDays: openTimesData["days"])
-                openTimesString += getHoursInterval(openTimesHours: openTimesData["hours"])
-            }
-            
-            //Add attributedString to array
-            let attributedString = NSAttributedString(string: openTimesString, attributes: [NSAttributedStringKey.foregroundColor: color])
-            openTimesStrings.append(attributedString)
-            
-            
-        }
-        return openTimesStrings
-    }
+    //FIX: 
+//    fileprivate func openTimesToStrings(openTimes: OpenTimes) {
+//
+//
+//
+//        var openTimesStrings = AttributedArray()
+//        for openTimesData in openTimes {
+//
+//            var openTimesString = ""
+//            let color = getLabelColor(openTimesData: openTimesData)
+//
+//            //Is toilet opened nonstop?
+//            if openTimesData["nonstop"].bool == true {
+//                //String
+//                openTimesString = "Nonstop".localized
+//            }
+//
+//            else {
+//                //Days interval
+//                openTimesString += getDayInterval(openTimesDays: openTimesData["days"])
+//                openTimesString += getHoursInterval(openTimesHours: openTimesData["hours"])
+//            }
+//
+//            //Add attributedString to array
+//            let attributedString = NSAttributedString(string: openTimesString, attributes: [NSAttributedStringKey.foregroundColor: color])
+//            openTimesStrings.append(attributedString)
+//
+//
+//        }
+//        return openTimesStrings
+//    }
     
     fileprivate func getLabelColor(openTimesData: JSON) -> UIColor {
         

@@ -37,9 +37,9 @@ class DetailMapStack: UIStackView, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         //Checking that annotation really is a Toilet class
-        guard let toiletAnnotation = annotation as? ToiletAnnotation else {return nil}
+        guard let toiletAnnotation = annotation as? Toilet else {return nil}
         
-        let toiletAnnotationView = ToiletAnnotationView(annotation: toiletAnnotation, reuseIdentifier: "toiletDetailAnnotation")
+        let toiletAnnotationView = ToiletView(annotation: toiletAnnotation, reuseIdentifier: "toiletDetailAnnotation")
         
         //Center pin image
         toiletAnnotationView.centerOffset = CGPoint(x: 0, y: -toiletAnnotationView.frame.height/2)
@@ -65,9 +65,9 @@ class DetailMapView: MKMapView {
         let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
         
         //Move map so the pin appears a little bit under the center
-        let latitude = toilet.toiletAnnotation.coordinate.latitude + span.latitudeDelta * 0.3
+        let latitude = toilet.coordinate.latitude + span.latitudeDelta * 0.3
         
-        let center = CLLocationCoordinate2DMake(latitude, toilet.toiletAnnotation.coordinate.longitude)
+        let center = CLLocationCoordinate2DMake(latitude, toilet.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: span)
         
         //Show region in mapView
@@ -76,7 +76,7 @@ class DetailMapView: MKMapView {
         delegate = mapDelegate
         
         DispatchQueue.main.async(execute: {
-            self.addAnnotation(toilet.toiletAnnotation)
+            self.addAnnotation(toilet)
         })
         
     }

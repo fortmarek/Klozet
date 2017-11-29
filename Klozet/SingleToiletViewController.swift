@@ -54,13 +54,13 @@ class SingleToiletViewController: UIViewController, MKMapViewDelegate, UserLocat
         else {return}
         
         //Center map between user location and toilet
-        let latitude = (toilet.toiletAnnotation.coordinate.latitude + userLocation.coordinate.latitude) / 2
-        let longitude = (toilet.toiletAnnotation.coordinate.longitude + userLocation.coordinate.longitude) / 2
+        let latitude = (toilet.coordinate.latitude + userLocation.coordinate.latitude) / 2
+        let longitude = (toilet.coordinate.longitude + userLocation.coordinate.longitude) / 2
         let center = CLLocationCoordinate2DMake(latitude, longitude)
         
         //Span = distance between locations multiplied by 1.4 so  there is some space on the edges of annotations
-        let latitudeDelta = abs(toilet.toiletAnnotation.coordinate.latitude - userLocation.coordinate.latitude) * 1.4
-        let longitudeDelta = abs(toilet.toiletAnnotation.coordinate.longitude - userLocation.coordinate.longitude) * 1.4
+        let latitudeDelta = abs(toilet.coordinate.latitude - userLocation.coordinate.latitude) * 1.4
+        let longitudeDelta = abs(toilet.coordinate.longitude - userLocation.coordinate.longitude) * 1.4
         let span = MKCoordinateSpan(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
         
         let region = MKCoordinateRegion(center: center, span: span)
@@ -73,7 +73,7 @@ class SingleToiletViewController: UIViewController, MKMapViewDelegate, UserLocat
         //Checking that annotation really is a Toilet class
         guard let toiletAnnotation = annotation as? Toilet else {return nil}
         
-        let toiletAnnotationView = ToiletAnnotationView(annotation: toiletAnnotation, reuseIdentifier: "singleToiletAnnotation")
+        let toiletAnnotationView = ToiletView(annotation: toiletAnnotation, reuseIdentifier: "singleToilet")
         
         //Center pin image
         toiletAnnotationView.centerOffset = CGPoint(x: 0, y: -toiletAnnotationView.frame.height/2)

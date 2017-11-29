@@ -95,19 +95,20 @@ extension FilterOpen {
         let toiletTimes = toilet.openTimes
         
         //Getting dictionary of toilet opening times
-        for toiletTimeDict in toiletTimes {
-            
-            //If isToiletOpen, iteration could end, otherwise continue
-            let isToiletOpen = isToiletOpenInInterval(toiletTimeDict: toiletTimeDict)
-            
-            if isToiletOpen {
-                return true
-            }
-            
-            else {
-                continue
-            }
-        }
+        //FIX:
+//        for toiletTimeDict in toiletTimes {
+//
+//            //If isToiletOpen, iteration could end, otherwise continue
+//            let isToiletOpen = isToiletOpenInInterval(toiletTimeDict: toiletTimeDict)
+//            
+//            if isToiletOpen {
+//                return true
+//            }
+//            
+//            else {
+//                continue
+//            }
+//        }
         
         //No dict return isToiletOpen as true => toilet is closed
         return false

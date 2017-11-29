@@ -1,5 +1,5 @@
 //
-//  ToiletAnnotationView.swift
+//  ToiletView.swift
 //  Klozet
 //
 //  Created by Marek Fořt on 07/09/16.
@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import MapKit
 
-class ToiletAnnotationView: MKAnnotationView {
+class ToiletView: MKAnnotationView {
     var ShowDelegate: ShowDelegate?
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
@@ -141,7 +141,7 @@ class DirectionButton: UIButton, DirectionsDelegate, MapsDirections {
     
     @objc func callGetDirectionsFunc(sender: UIButton) {
         guard let toilet = self.toilet else {return}
-        getDirections(coordinate: toilet.toiletAnnotation.coordinate)
+        getDirections(coordinate: toilet.coordinate)
     }
     
 
