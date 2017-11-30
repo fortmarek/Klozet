@@ -55,17 +55,14 @@ class Toilet: NSObject, MKAnnotation, Decodable {
     }
     
     required convenience init(from decoder: Decoder) throws {
-        print("GP")
         let container = try decoder.container(keyedBy: ToiletKeys.self)
         let toiletId: Int = try container.decode(Int.self, forKey: .toiletId)
-        print(toiletId)
+        //print(toiletId)
         let address: Address = try container.decode(Address.self, forKey: .address)
         let openTimes: [OpenTimes] = try container.decode([OpenTimes].self, forKey: .openTimes)
         let price: String? = try container.decodeIfPresent(String.self, forKey: .price)
         let coordinates: [Double] = try container.decode([Double].self, forKey: .coordinates)
         let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: coordinates[1], longitude: coordinates[0])
-        print(coordinate)
         self.init(title: address.mainAddress, subtitle: address.subAddress, coordinate: coordinate, openTimes: openTimes, price: price ?? "Free", toiletId: toiletId)
-        print(self)
     }
 }

@@ -25,8 +25,8 @@ class ToiletViewModel: APIService, ToiletViewModeling {
     func getToilets() -> SignalProducer<[Toilet], ConnectionError> {
         return SignalProducer<[Toilet], ConnectionError> { [weak self] sink, disposable in
             guard let languageCode = NSLocale.current.languageCode else {return}
-            let language = languageCode == "cs" ? "cs" : "en"
-            self?.getCodableStruct(subpath: language, codableType: Toilets.self).startWithResult { result in
+                let language = languageCode == "cs" ? "cs" : "en"
+                self?.getCodableStruct(subpath: language, codableType: Toilets.self).startWithResult { result in
                 guard let toilets = result.value?.toilets else {sink.send(error: .DecodeError); return}
                 self?.toilets.value = toilets
                 sink.send(value: toilets)

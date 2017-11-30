@@ -23,16 +23,13 @@ class ToiletViewModelTests: XCTestCase {
     
     func testGettingToiletsGetsToilets() {
         let getToiletsExpectation = expectation(description: "Wait for getting toilets")
-        
-//        let expectedToilet = Toilet.init(title: "Ondříčkova 580/39", subtitle: "Close to Stadium", coordinate: CLLocationCoordinate2D.init(latitude: 14.456224317, longitude: 50.0823295810001) , openTimes: [OpenTimes(hours: ["08:00", "22:00"], days: [1, 2], isNonstop: false)], price: "5 CZK", toiletId: 1)
-        
+        let expectedToilet = Toilet(title: "Ondříčkova 580/39", subtitle: "Close to Stadium", coordinate: CLLocationCoordinate2D(latitude: 14.456224317, longitude: 50.0823295810001) , openTimes: [OpenTimes(hours: ["08:00", "22:00"], days: [1, 2], isNonstop: false)], price: "5 CZK", toiletId: 1)
         toiletViewModelMock.toilets.producer.startWithValues { toilets in
-            guard let toilet = toilets.first else {XCTFail(); return}
-//            XCTAssertEqual(toilet.title, expectedToilet.title)
-//            XCTAssertEqual(toilet.toiletId, expectedToilet.toiletId)
-//            XCTAssertEqual(toilet.openTimes, expectedToilet.openTimes)
+            guard let toilet = toilets.first else {return}
+            XCTAssertEqual(toilet.title, expectedToilet.title)
+            XCTAssertEqual(toilet.toiletId, expectedToilet.toiletId)
+            XCTAssertEqual(toilet.openTimes, expectedToilet.openTimes)
         }
-        
         toiletViewModelMock.getToilets().startWithCompleted {
             getToiletsExpectation.fulfill()
         }
@@ -46,7 +43,7 @@ class ToiletViewModelTests: XCTestCase {
 class ToiletViewModelMock: ToiletViewModel {
     override init() {
         super.init()
-        serverPath = "https://private-2ac87a-bitesized.apiary-mock.com/api/"
+        serverPath = APIService.serverTestPath
     }
 }
 

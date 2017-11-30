@@ -29,7 +29,7 @@ class APIService: APIServicing {
     var serverPath: String = "http://139.59.144.155/klozet/"
     //let userManager = UserManager()
     
-    static let serverTestPath: String = "https://private-2ac87a-bitesized.apiary-mock.com/api/"
+    static let serverTestPath: String = "http://private-34358d-klozet.apiary-mock.com/klozet/"
     
     func getData(path: String) -> SignalProducer<Data, ConnectionError> {
         return SignalProducer<Data, ConnectionError> { [weak self] sink, disposable in

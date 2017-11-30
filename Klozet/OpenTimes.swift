@@ -10,8 +10,8 @@ import Foundation
 
 
 struct OpenTimes {
-//    let hours: [String]?
-//    let days: [Int]?
+    let hours: [String]?
+    let days: [Int]?
     let isNonstop: Bool?
 }
 
@@ -24,15 +24,15 @@ extension OpenTimes: Decodable {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: OpenTimesKeys.self)
-//        let hours: [String]? = try container.decodeIfPresent([String].self, forKey: .hours)
-//        let days: [Int]? = try container.decodeIfPresent([Int].self, forKey: .days)
+        let hours: [String]? = try container.decodeIfPresent([String].self, forKey: .hours)
+        let days: [Int]? = try container.decodeIfPresent([Int].self, forKey: .days)
         let isNonstop: Bool? = try container.decodeIfPresent(Bool.self, forKey: .isNonstop)
-        self.init(isNonstop: isNonstop)
+        self.init(hours: hours, days: days, isNonstop: isNonstop)
     }
 }
 
 extension OpenTimes: Equatable {
     static func ==(lhs: OpenTimes, rhs: OpenTimes) -> Bool {
-        return lhs.isNonstop == rhs.isNonstop
+        return lhs.hours ?? [] == rhs.hours ?? [] && lhs.days ?? [] == rhs.days ?? [] && lhs.isNonstop == rhs.isNonstop
     }
 }
