@@ -15,7 +15,7 @@ class MapInfoView: UIStackView, UserLocation {
     let locationManager = CLLocationManager()
     
     //UserLocation
-    var mapView: MKMapView!
+    var mapView: MKMapView = MKMapView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -114,7 +114,7 @@ class MapInfoText: UIStackView, DirectionsDelegate {
         //etaLabel init
         let etaLabel = UILabel()
         etaLabel.alpha = 0
-        etaLabel.textColor = .mainBlue
+        etaLabel.textColor = .mainOrange
         
         //Get eta string for etaLabel
         getEta(toiletCoordinate, completion: {

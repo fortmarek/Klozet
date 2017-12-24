@@ -63,7 +63,7 @@ extension UIView {
         backgroundShadowView.translatesAutoresizingMaskIntoConstraints = false
         superview?.addSubview(backgroundShadowView)
         superview?.sendSubview(toBack: backgroundShadowView)
-        backgroundShadowView.backgroundColor = .mainBlue
+        backgroundShadowView.backgroundColor = .mainOrange
         backgroundShadowView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7).isActive = true
         backgroundShadowView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
         backgroundShadowView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
@@ -179,15 +179,11 @@ extension UITableView {
 extension UINavigationController {
     
     func setDefaultNavigationBar() {
+        navigationBar.titleTextAttributes = [.foregroundColor: UIColor.mainOrange]
         navigationBar.backgroundColor = .white
         navigationBar.shadowImage = UIImage()
         navigationBar.isTranslucent = true
         navigationBar.barTintColor = .white
-        
-        if #available(iOS 11.0, *) {
-            navigationItem.largeTitleDisplayMode = .automatic
-            navigationBar.prefersLargeTitles = true
-        }
     }
 }
 

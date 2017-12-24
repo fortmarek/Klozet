@@ -67,7 +67,7 @@ class ActivityView: UIView {
         activityStack.spacing = 13
         activityStack.alignment = .center
         activityStack.translatesAutoresizingMaskIntoConstraints = false
-        activityStack.backgroundColor = .mainBlue 
+        activityStack.backgroundColor = .mainOrange 
     }
     
     required init?(coder aDecoder: NSCoder) {

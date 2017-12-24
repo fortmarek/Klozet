@@ -21,7 +21,7 @@ class SupportCell: UITableViewCell, MFMailComposeViewControllerDelegate, Support
         
         accessoryType = .disclosureIndicator
         
-        textLabel?.textColor = .mainBlue
+        textLabel?.textColor = .mainOrange
         textLabel?.text = "Support".localized
     }
     

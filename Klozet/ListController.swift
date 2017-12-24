@@ -65,7 +65,7 @@ class ListControllerContainer: UIView, ListControllerDelegate {
         
         border.frame = CGRect(x: listOpenButton.frame.origin.x, y: listOpenButton.frame.origin.y, width: width, height: 30)
         border.layer.cornerRadius = 5
-        border.layer.borderColor = UIColor.mainBlue.cgColor
+        border.layer.borderColor = UIColor.mainOrange.cgColor
         border.layer.borderWidth = 1
         
         return border
@@ -75,7 +75,7 @@ class ListControllerContainer: UIView, ListControllerDelegate {
         middleBorder.frame = CGRect(x: listPriceButton.frame.origin.x - 1 , y: listPriceButton.frame.origin.y, width: 1, height: 30)
         
         //Default backgroundColor
-        middleBorder.backgroundColor = .mainBlue
+        middleBorder.backgroundColor = .mainOrange
         
         contentView.addSubview(middleBorder)
     }
@@ -86,7 +86,7 @@ class ListControllerContainer: UIView, ListControllerDelegate {
             middleBorder.backgroundColor = UIColor.clear
         }
         else {
-            middleBorder.backgroundColor = .mainBlue
+            middleBorder.backgroundColor = .mainOrange
         }
     }
     

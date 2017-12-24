@@ -39,12 +39,12 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate, ImageController
         super.setSelected(selected, animated: animated)
         
         //Same background color for image when selected / highlighted
-        imageBackground.backgroundColor = .mainBlue
+        imageBackground.backgroundColor = .mainOrange
         
     }
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        imageBackground.backgroundColor = .mainBlue
+        imageBackground.backgroundColor = .mainOrange
     }
     
     fileprivate func setCornerRadius(_ view: UIView, cornerRadius: CGFloat) {
@@ -71,7 +71,7 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate, ImageController
             priceLabel.textColor = Colors.greenColor
         }
         else {
-            priceLabel.textColor = .mainBlue
+            priceLabel.textColor = .mainOrange
         }
  
     }
@@ -88,7 +88,7 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate, ImageController
         else {
             openLabel.text = "Closed".localized
             openLabel.sizeToFit()
-            openLabel.textColor = .mainBlue
+            openLabel.textColor = .mainOrange
         }
  
     }

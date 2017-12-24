@@ -11,7 +11,7 @@ import MapKit
 
 protocol UserLocation: CLLocationManagerDelegate, MKMapViewDelegate {
     var locationManager: CLLocationManager { get }
-    var mapView: MKMapView! { get }
+    var mapView: MKMapView { get }
 }
 
 extension UserLocation {

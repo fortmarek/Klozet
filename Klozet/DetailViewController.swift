@@ -19,7 +19,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.tintColor = .mainBlue
+        navigationController?.navigationBar.tintColor = .mainOrange
         
         let imageBarButtonItem = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(imageButtonTapped))
         
@@ -104,7 +104,7 @@ extension CameraDelegate where Self: UIViewController, Self: UINavigationControl
     
     fileprivate func uploadImage() {
         let actionSheet = UIAlertController(title: "It's always better with a photo".localized, message: nil, preferredStyle: .actionSheet)
-        actionSheet.view.tintColor = .mainBlue
+        actionSheet.view.tintColor = .mainOrange
         
         let pickPhotoOption = UIAlertAction(title: "Choose image from library".localized, style: .default, handler: {_ in self.selectPhoto()})
         let takePhotoOption = UIAlertAction(title: "Take photo".localized, style: .default, handler: {_ in self.takePhoto()})

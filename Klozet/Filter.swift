@@ -126,7 +126,7 @@ extension FilterButton {
     //Color change
     fileprivate func colorTransition() {
         //Determine what color based on if filter is selected or not
-        let color = isFilterSelected ? .mainBlue : UIColor.white
+        let color = isFilterSelected ? .mainOrange : UIColor.white
         
         //Animate color with duration
         UIView.animate(withDuration: 0.6, animations: {

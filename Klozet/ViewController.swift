@@ -13,7 +13,7 @@ import ReactiveSwift
 protocol AnnotationController {
     var toilets: Array<Toilet> { get set }
     var toiletsNotOpen: Array<Toilet> { get set }
-    var mapView: MKMapView! { get }
+    var mapView: MKMapView { get }
 }
 
 protocol FilterInterfaceDelegate {
@@ -26,16 +26,12 @@ protocol FilterInterfaceDelegate {
 
 
 class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocation, AnnotationController, FilterInterfaceDelegate, DirectionsDelegate, ShowDelegate {
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
 
     let toiletsViewModel: ToiletViewModel = ToiletViewModel()
     var toilets: [Toilet] = []
     
     //UI elements
-    @IBOutlet weak var mapView: MKMapView!
+    let mapView: MKMapView = MKMapView()
     
     //Buttons
     let currentLocationButton = UIButton()
@@ -72,6 +68,12 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        title = "Klozet"
+        //navigationController?.title = "Klozet"
+        
+        view.addSubview(mapView)
+        mapView.pinToView(view)
         
         mapView.delegate = self
         locationManager.delegate = self

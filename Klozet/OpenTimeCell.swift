@@ -120,7 +120,7 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
         }
         //Toilet is closed, make label orange
         else {
-            return .mainBlue
+            return .mainOrange
         }
     }
     

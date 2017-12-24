@@ -12,7 +12,7 @@ import MapKit
 
 class SingleToiletViewController: UIViewController, MKMapViewDelegate, UserLocation {
     
-    var mapView: MKMapView!
+    var mapView: MKMapView = MKMapView()
     
     var locationManager = CLLocationManager()
     
@@ -29,11 +29,11 @@ class SingleToiletViewController: UIViewController, MKMapViewDelegate, UserLocat
         
         let rightBarButtonItem = SingleDirectionsButton(annotation: toilet)
         navigationItem.rightBarButtonItem = rightBarButtonItem
-        navigationController?.navigationBar.tintColor = .mainBlue
+        navigationController?.navigationBar.tintColor = .mainOrange
     }
     
     private func setMapView(toilet: Toilet) {
-        mapView = MKMapView()
+        
         mapView.frame = view.frame
         mapView.delegate = self
         view.addSubview(mapView)

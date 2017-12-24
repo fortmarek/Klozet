@@ -87,7 +87,7 @@ class ImageSlides: ImageSlideshow, ImageController {
     }
     
     private func setIndicatorView(detailStackView: UIStackView) {
-        activityIndicatorView.color = .mainBlue
+        activityIndicatorView.color = .mainOrange
         
         guard let detailSuperview = detailStackView.superview else {return}
         detailSuperview.addSubview(activityIndicatorView)

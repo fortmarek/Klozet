@@ -9,19 +9,11 @@
 import UIKit 
 
 extension UIColor {
-    class var mainBlue: UIColor {
-        return UIColor(red: 92.0 / 255.0, green: 151.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+    class var mainOrange: UIColor {
+        return UIColor(red: 1.00, green: 0.42, blue: 0.20, alpha: 1.0)
     }
     
-    class var lightBlue: UIColor {
-        return UIColor(red: 119.0 / 255.0, green: 175.0 / 255.0, blue: 253.0 / 255.0, alpha: 1.0)
-    }
-    
-    class var darkIndigo: UIColor {
-        return UIColor(red: 12.0 / 255.0, green: 39.0 / 255.0, blue: 76.0 / 255.0, alpha: 1.0)
-    }
-    
-    class var veryLightPink: UIColor {
-        return UIColor(red: 255.0 / 255.0, green: 245.0 / 255.0, blue: 237.0 / 255.0, alpha: 1.0)
+    class var lightOrange: UIColor {
+        return UIColor(red: 255.0 / 255.0, green: 108.0 / 255.0, blue: 50.0 / 255.0, alpha: 1.0)
     }
 }
