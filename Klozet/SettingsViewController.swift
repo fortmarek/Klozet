@@ -20,7 +20,7 @@ class SettingsViewController: UIViewController {
         
         view.backgroundColor = UIColor(red: 0.92, green: 0.92, blue: 0.95, alpha: 1.0)
         
-        setNavigation()
+        
         
         let settingsStack = setSettingsStack()
         
@@ -92,17 +92,6 @@ class SettingsViewController: UIViewController {
         settingsStack.spacing = 50
         
         return settingsStack
-    }
-    
-    private func setNavigation() {
-        //Navigation title
-        navigationItem.title = "Settings".localized
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.mainOrange]
-        
-        //Left navigation item (action to return to MainViewController)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close".localized, style: .plain, target: self, action: #selector(dismissToMap))
-        
-        navigationController?.navigationBar.tintColor = .mainOrange
     }
     
     @objc func dismissToMap() {

@@ -184,6 +184,7 @@ extension UINavigationController {
         navigationBar.shadowImage = UIImage()
         navigationBar.isTranslucent = true
         navigationBar.barTintColor = .white
+        navigationBar.tintColor = .mainOrange 
     }
 }
 

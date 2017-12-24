@@ -69,8 +69,10 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        title = "Klozet"
-        //navigationController?.title = "Klozet"
+        title = "Map"
+        
+        let settingsBarButtonItem = UIBarButtonItem(image: UIImage(asset: .settings), style: .plain, target: self, action: #selector(settingsButtonTapped))
+        navigationItem.leftBarButtonItem = settingsBarButtonItem
         
         view.addSubview(mapView)
         mapView.pinToView(view)
@@ -114,6 +116,11 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         
     }
     
+    
+    @objc private func settingsButtonTapped() {
+        let settingsViewController = SettingsViewController()
+        navigationController?.pushViewController(settingsViewController, animated: true)
+    }
     
     
     
