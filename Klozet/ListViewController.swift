@@ -43,6 +43,9 @@ class ListViewController: UIViewController, DirectionsDelegate {
     
     
     override func viewDidLoad() {
+        
+        title = "List"
+        
         allToilets = toilets
         
         view.addSubview(tableView)

@@ -94,39 +94,40 @@ extension FilterOpen {
     func isToiletOpen(_ toilet: Toilet) -> Bool {
         let toiletTimes = toilet.openTimes
         
+        
         //Getting dictionary of toilet opening times
-        //FIX:
-//        for toiletTimeDict in toiletTimes {
-//
-//            //If isToiletOpen, iteration could end, otherwise continue
-//            let isToiletOpen = isToiletOpenInInterval(toiletTimeDict: toiletTimeDict)
-//            
-//            if isToiletOpen {
-//                return true
-//            }
-//            
-//            else {
-//                continue
-//            }
-//        }
+        for openTimes in toiletTimes {
+
+            //If isToiletOpen, iteration could end, otherwise continue
+            let isToiletOpen = determineIfIsToiletOpen(during: openTimes)
+            
+            if isToiletOpen {
+                return true
+            }
+            
+            else {
+                continue
+            }
+        }
         
         //No dict return isToiletOpen as true => toilet is closed
         return false
     }
     
-    func isToiletOpenInInterval(toiletTimeDict: JSON) -> Bool {
+    func determineIfIsToiletOpen(during openTimes: OpenTimes) -> Bool {
         //Int of today's weekday
         let todayWeekday = Date().getTodayWeekday()
         
         //If the toilet is open nonstop, I can right away return true
-        if toiletTimeDict["nonstop"].bool == true {
+        if openTimes.isNonstop ?? false {
             return true
         }
         
+        
         //Getting array of ints of open weekdays
         guard
-            let toiletDays = toiletTimeDict["days"].arrayObject as? Array<Int> , toiletDays.index(of: todayWeekday) != nil,
-            let hours = toiletTimeDict["hours"].arrayObject as? Array<String>
+            let toiletDays = openTimes.days, toiletDays.index(of: todayWeekday) != nil,
+            let hours = openTimes.hours
             else {return false}
         
         //If the toilet is open on today's weekday, check additionaly time

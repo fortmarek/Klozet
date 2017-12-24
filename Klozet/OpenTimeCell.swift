@@ -21,7 +21,7 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
         
     }
     
-    convenience init(style: UITableViewCellStyle, reuseIdentifier: String?, openTimes: Array<JSON>) {
+    convenience init(style: UITableViewCellStyle, reuseIdentifier: String?, openTimes: [OpenTimes]) {
         self.init(style: style, reuseIdentifier: reuseIdentifier)
         
         let cellStackView = setCellStack(view: self)
@@ -36,7 +36,7 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
     }
     
     
-    fileprivate func setOpenTimeStack(stackView: UIStackView, openTimes: Array<JSON>) {
+    fileprivate func setOpenTimeStack(stackView: UIStackView, openTimes: [OpenTimes]) {
         let openTimeStack = UIStackView()
         stackView.addArrangedSubview(openTimeStack)
         
@@ -47,20 +47,20 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
         openTimeStack.rightAnchor.constraint(equalTo: stackView.rightAnchor).isActive = true
         
         //FIX:
-//        let openTimesAsStrings = openTimesToStrings(openTimes: openTimes)
-//
-//        //Get fontsize depending on number of elements
-//        let fontSize = getFontSize(count: openTimesAsStrings.count)
-//
-//        for openTime in openTimesAsStrings {
-//            let openLabel = UILabel()
-//            openLabel.attributedText = openTime
-//            openLabel.font = UIFont.systemFont(ofSize: fontSize)
-//            openLabel.minimumScaleFactor = 0.8
-//            openLabel.adjustsFontSizeToFitWidth = true
-//            openTimeStack.addArrangedSubview(openLabel)
-//
-//        }
+        let openTimesAsStrings = openTimesToStrings(openTimes: openTimes)
+
+        //Get fontsize depending on number of elements
+        let fontSize = getFontSize(count: openTimesAsStrings.count)
+
+        for openTime in openTimesAsStrings {
+            let openLabel = UILabel()
+            openLabel.attributedText = openTime
+            openLabel.font = UIFont.systemFont(ofSize: fontSize)
+            openLabel.minimumScaleFactor = 0.8
+            openLabel.adjustsFontSizeToFitWidth = true
+            openTimeStack.addArrangedSubview(openLabel)
+
+        }
 
         widthDimension = openTimeStack.frame.size.width
     }
@@ -80,42 +80,41 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
     
     typealias AttributedArray = Array<NSAttributedString>
     
-    //FIX: 
-//    fileprivate func openTimesToStrings(openTimes: OpenTimes) {
-//
-//
-//
-//        var openTimesStrings = AttributedArray()
-//        for openTimesData in openTimes {
-//
-//            var openTimesString = ""
-//            let color = getLabelColor(openTimesData: openTimesData)
-//
-//            //Is toilet opened nonstop?
-//            if openTimesData["nonstop"].bool == true {
-//                //String
-//                openTimesString = "Nonstop".localized
-//            }
-//
-//            else {
-//                //Days interval
-//                openTimesString += getDayInterval(openTimesDays: openTimesData["days"])
-//                openTimesString += getHoursInterval(openTimesHours: openTimesData["hours"])
-//            }
-//
-//            //Add attributedString to array
-//            let attributedString = NSAttributedString(string: openTimesString, attributes: [NSAttributedStringKey.foregroundColor: color])
-//            openTimesStrings.append(attributedString)
-//
-//
-//        }
-//        return openTimesStrings
-//    }
     
-    fileprivate func getLabelColor(openTimesData: JSON) -> UIColor {
+    fileprivate func openTimesToStrings(openTimes: [OpenTimes]) -> AttributedArray {
+        
+        var openTimesStrings = AttributedArray()
+        for openTimesStruct in openTimes {
+            
+
+            var openTimesString = ""
+            let color = getLabelColor(openTimes: openTimesStruct)
+
+            //Is toilet opened nonstop?
+            if openTimesStruct.isNonstop ?? false {
+                //String
+                openTimesString = "Nonstop".localized
+            }
+
+            else {
+                //Days interval
+                openTimesString += getDayInterval(openTimesDays: openTimesStruct.days)
+                openTimesString += getHoursInterval(openTimesHours: openTimesStruct.hours)
+            }
+
+            //Add attributedString to array
+            let attributedString = NSAttributedString(string: openTimesString, attributes: [NSAttributedStringKey.foregroundColor: color])
+            openTimesStrings.append(attributedString)
+
+
+        }
+        return openTimesStrings
+    }
+    
+    fileprivate func getLabelColor(openTimes: OpenTimes) -> UIColor {
         
         //Toilet is open, make label green
-        if isToiletOpenInInterval(toiletTimeDict: openTimesData) {
+        if determineIfIsToiletOpen(during: openTimes) {
             return Colors.greenColor
         }
         //Toilet is closed, make label orange
@@ -124,12 +123,12 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
         }
     }
     
-    fileprivate func getHoursInterval(openTimesHours: JSON) -> String {
-        guard let hoursArray = openTimesHours.array else {return String()}
+    fileprivate func getHoursInterval(openTimesHours: [String]?) -> String {
+        guard let hoursArray = openTimesHours else {return String()}
         
         
-        let firstHour = getHourString(hour: hoursArray[0].string)
-        let secondHour = getHourString(hour: hoursArray[1].string)
+        let firstHour = getHourString(hour: hoursArray[0])
+        let secondHour = getHourString(hour: hoursArray[1])
         
         return "\(firstHour)-\(secondHour)"
     }
@@ -146,8 +145,8 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
         }
     }
     
-    fileprivate func getDayInterval(openTimesDays: JSON) -> String {
-        guard let daysArray = openTimesDays.array else {return String()}
+    fileprivate func getDayInterval(openTimesDays: [Int]?) -> String {
+        guard let daysArray = openTimesDays else {return String()}
         
         if daysArray.count > 1 {
             return getMultipleDaysInterval(daysArray: daysArray)
@@ -155,7 +154,7 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
         
         //Only one day interval
         else {
-            let dayIndex = daysArray[0].int
+            let dayIndex = daysArray[0]
             let day = dayIndexToString(index: dayIndex)
             
             return "\(day): "
@@ -163,7 +162,7 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
         
     }
     
-    fileprivate func getMultipleDaysInterval(daysArray: Array<JSON>) -> String {
+    fileprivate func getMultipleDaysInterval(daysArray: [Int]) -> String {
         //First element of array (need to check if it is sunday or not)
         guard let firstElement = daysArray.first else {return String()}
         
@@ -176,7 +175,7 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
         }
         
         //Edge days of intervals - eg. Mon-Wed, etc.
-        let edgeDays = (mutableDaysArray[0].int, mutableDaysArray.last?.int)
+        let edgeDays = (mutableDaysArray[0], mutableDaysArray.last)
         
         //Convert index number of day to day abbreviation like Mon, Tue, etc.
         let firstDay = dayIndexToString(index: edgeDays.0)
