@@ -79,17 +79,6 @@ class ListViewController: UIViewController, DirectionsDelegate {
         tableView.deselectRow(at: indexPath, animated: false)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "detailSegue" {
-            guard
-                let detailViewController = segue.destination as? DetailViewController,
-                let indexPath = tableView.indexPathForSelectedRow
-            else {return}
-            
-            detailViewController.toilet = toilets[indexPath.row]
-        }
-    }
-    
     private func setupBindings() {
         
         toiletsViewModel?.toiletsForList.producer.startWithResult { [weak self] result in
@@ -160,6 +149,12 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate {
         listFooterDelegate?.changeToFooterWithMore()
         
         return shownCells
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailViewController = DetailViewController()
+        detailViewController.toilet = toilets[indexPath.row]
+        navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
 

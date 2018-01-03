@@ -181,10 +181,11 @@ extension UINavigationController {
     func setDefaultNavigationBar() {
         navigationBar.titleTextAttributes = [.foregroundColor: UIColor.mainOrange]
         navigationBar.backgroundColor = .white
+        view.backgroundColor = .white
         navigationBar.shadowImage = UIImage()
         navigationBar.isTranslucent = true
         navigationBar.barTintColor = .white
-        navigationBar.tintColor = .mainOrange 
+        navigationBar.tintColor = .mainOrange
     }
 }
 

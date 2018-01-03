@@ -19,7 +19,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.tintColor = .mainOrange
+        view.backgroundColor = .white
         
         let imageBarButtonItem = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(imageButtonTapped))
         
@@ -41,6 +41,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
         
         _ = MapInfoView(detailStackView: detailStackView, toilet: toilet, showDelegate: self)
         _ = DetailMapStack(detailStackView: detailStackView, toilet: toilet, showDelegate: self)
+        
     }
     
     
