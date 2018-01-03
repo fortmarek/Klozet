@@ -53,7 +53,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
     
     var locationManager = CLLocationManager()
     
-    var didOrderToilets = false
     var toiletsDelegate: ListToiletsDelegate?
 
     override func viewDidLoad() {
@@ -229,38 +228,10 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         }
     }
     
-    //Order toilets depending on distance from user
-    private func orderToilets(_ toilets: [Toilet]) {
-        
-        self.locationDelegate = self
-        
-        self.toilets = toilets.sorted(by: {
-            self.getDistance($0.coordinate) < self.getDistance($1.coordinate)
-        })
-        
-    
-        //Asynchronouly order toilets by distance, make them ready for list
-//        DispatchQueue.global().async {
-//            self.locationDelegate = self
-//
-//        }
-    }
     
     fileprivate func setImageForSelectedHighlighted(_ button: UIButton, imageAsset: Asset) {
         button.setImage(UIImage(asset: imageAsset), for: .selected)
         button.setImage(UIImage(asset: imageAsset), for: [.selected, .highlighted])
-    }
-    
-    
-    func addConstraint(_ view: UIView, attribute: NSLayoutAttribute, constant: CGFloat) -> NSLayoutConstraint {
-        let constraint = NSLayoutConstraint(item: view, attribute: attribute, relatedBy: .equal, toItem: self.view, attribute: attribute, multiplier: 1.0, constant: constant)
-        self.view.addConstraint(constraint)
-        
-        return constraint
-    }
-    
-    func addSubview(_ view: UIView) {
-        self.view.addSubview(view)
     }
 }
 
