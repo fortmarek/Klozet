@@ -21,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
         
+        let attributes: [NSAttributedStringKey : Any] = [.font: UIFont.systemFont(ofSize: 19, weight: .semibold), .foregroundColor : UIColor.mainOrange]
+        UINavigationBar.appearance().titleTextAttributes = attributes
+        
         return true
     }
 

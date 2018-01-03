@@ -9,47 +9,22 @@
 import Foundation
 import UIKit
 
-class FilterPriceButton: UIButton, FilterOptionButton {
+class FilterPriceButton: ButtonColorChangeable {
     
     var annotationDelegate: AnnotationController?
-    var filterDelegate: FilterInterfaceDelegate?
-    var filterButtonDelegate: FilterButtonDelegate?
-    var constraint: NSLayoutConstraint?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        self.addTarget(self, action: #selector(priceButtonTapped(_:)), for: .touchUpInside)
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func setInterface() {
-        setBasicInterface()
-        
-        guard let filterDelegate = self.filterDelegate else {return}
-        
-        self.setImage(UIImage(named: "Price"), for: UIControlState())
-        self.setImage(UIImage(named: "PriceSelected"), for: .selected)
-        
-        let cornerConstant = filterDelegate.cornerConstant
-        
-        let bottomLayout = filterDelegate.addConstraint(self, attribute: .bottom, constant: -cornerConstant)
-        self.constraint = bottomLayout
-        
-        
-        _ = filterDelegate.addConstraint(self, attribute: .trailing, constant: -cornerConstant)
-
+    convenience init(title: String) {
+        self.init(frame: .zero)
+        addTarget(self, action: #selector(priceButtonTapped), for: .touchUpInside)
+        setButton(with: title, normalColor: .mainOrange, selectedColor: .white)
     }
     
     //TODO: Check if other filter is selected
     @objc func priceButtonTapped(_ sender: UIButton) {
-        
-        defer {
-            changeButtonState()
-        }
         
         guard let annotationDelegate = self.annotationDelegate else {return}
         
@@ -63,5 +38,9 @@ class FilterPriceButton: UIButton, FilterOptionButton {
             annotationDelegate.mapView.addAnnotations(toiletsNotForFree)
         }
         
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

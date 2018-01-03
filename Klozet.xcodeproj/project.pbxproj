@@ -24,7 +24,6 @@
 		F82FB1C01D81C7B6001FE39D /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB1BF1D81C7B6001FE39D /* ListViewController.swift */; };
 		F82FB1C41D81D060001FE39D /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB1C31D81D060001FE39D /* ListCell.swift */; };
 		F82FB1C81D82B7C3001FE39D /* FilterOpen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB1C71D82B7C3001FE39D /* FilterOpen.swift */; };
-		F82FB1CC1D82C82A001FE39D /* FilterOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB1CB1D82C82A001FE39D /* FilterOption.swift */; };
 		F82FB1CF1D82C8AE001FE39D /* FilterPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB1CE1D82C8AE001FE39D /* FilterPrice.swift */; };
 		F83B201B1DC60538006C1D92 /* DetailMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83B20191DC60456006C1D92 /* DetailMapView.swift */; };
 		F83CB9BC1FCF3B2C002CECDC /* Toilet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83CB9BB1FCF3B2C002CECDC /* Toilet.swift */; };
@@ -44,8 +43,8 @@
 		F87BEE201FCF24400059F862 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87BEE1F1FCF24400059F862 /* APIService.swift */; };
 		F87BEE221FCF2B920059F862 /* CodableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87BEE211FCF2B920059F862 /* CodableError.swift */; };
 		F87BEE241FCF2E410059F862 /* ToiletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87BEE231FCF2E410059F862 /* ToiletViewModel.swift */; };
-		F87C8C5E1D873F4F00B9C6EF /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87C8C5D1D873F4F00B9C6EF /* Filter.swift */; };
 		F87CE85F1F9FB14400D98515 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87CE85E1F9FB14400D98515 /* TabBarController.swift */; };
+		F8B9F7CF1FF4015E00C7C024 /* ButtonColorChangeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B9F7CE1FF4015D00C7C024 /* ButtonColorChangeable.swift */; };
 		F8C41A6D1F9A42B700E16612 /* UIColor+UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C41A6C1F9A42B700E16612 /* UIColor+UIFontExtension.swift */; };
 		F8C41A6F1F9A46D700E16612 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C41A6E1F9A46D700E16612 /* Images.swift */; };
 		F8C41A721F9A4C1C00E16612 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C41A711F9A4C1C00E16612 /* UIKitExtensions.swift */; };
@@ -119,7 +118,6 @@
 		F82FB1BF1D81C7B6001FE39D /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		F82FB1C31D81D060001FE39D /* ListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		F82FB1C71D82B7C3001FE39D /* FilterOpen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterOpen.swift; sourceTree = "<group>"; };
-		F82FB1CB1D82C82A001FE39D /* FilterOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterOption.swift; sourceTree = "<group>"; };
 		F82FB1CE1D82C8AE001FE39D /* FilterPrice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterPrice.swift; sourceTree = "<group>"; };
 		F83B20191DC60456006C1D92 /* DetailMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMapView.swift; sourceTree = "<group>"; };
 		F83CB9BB1FCF3B2C002CECDC /* Toilet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toilet.swift; sourceTree = "<group>"; };
@@ -139,8 +137,8 @@
 		F87BEE1F1FCF24400059F862 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		F87BEE211FCF2B920059F862 /* CodableError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableError.swift; sourceTree = "<group>"; };
 		F87BEE231FCF2E410059F862 /* ToiletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToiletViewModel.swift; sourceTree = "<group>"; };
-		F87C8C5D1D873F4F00B9C6EF /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		F87CE85E1F9FB14400D98515 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		F8B9F7CE1FF4015D00C7C024 /* ButtonColorChangeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonColorChangeable.swift; sourceTree = "<group>"; };
 		F8C41A6C1F9A42B700E16612 /* UIColor+UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+UIFontExtension.swift"; sourceTree = "<group>"; };
 		F8C41A6E1F9A46D700E16612 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		F8C41A711F9A4C1C00E16612 /* UIKitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitExtensions.swift; sourceTree = "<group>"; };
@@ -247,8 +245,6 @@
 			children = (
 				F82FB1C71D82B7C3001FE39D /* FilterOpen.swift */,
 				F82FB1CE1D82C8AE001FE39D /* FilterPrice.swift */,
-				F82FB1CB1D82C82A001FE39D /* FilterOption.swift */,
-				F87C8C5D1D873F4F00B9C6EF /* Filter.swift */,
 			);
 			name = Filter;
 			sourceTree = "<group>";
@@ -325,6 +321,7 @@
 				F83CB9C11FCF3B96002CECDC /* Codables */,
 				F87BEE231FCF2E410059F862 /* ToiletViewModel.swift */,
 				F87CE85E1F9FB14400D98515 /* TabBarController.swift */,
+				F8B9F7CE1FF4015D00C7C024 /* ButtonColorChangeable.swift */,
 				F82FB1B81D7F5E1F001FE39D /* ViewController */,
 				F86F356A1D8DE772001A8F6C /* ListViewController */,
 				F82FB1CD1D82C836001FE39D /* Filter */,
@@ -661,7 +658,6 @@
 				F83B201B1DC60538006C1D92 /* DetailMapView.swift in Sources */,
 				F87BEE201FCF24400059F862 /* APIService.swift in Sources */,
 				F8EAE83C1D630E0500D60DAB /* VIewControllerInterface.swift in Sources */,
-				F87C8C5E1D873F4F00B9C6EF /* Filter.swift in Sources */,
 				F82FB1C81D82B7C3001FE39D /* FilterOpen.swift in Sources */,
 				F83CB9BE1FCF3B63002CECDC /* OpenTimes.swift in Sources */,
 				F87BEE221FCF2B920059F862 /* CodableError.swift in Sources */,
@@ -690,9 +686,9 @@
 				F87CE85F1F9FB14400D98515 /* TabBarController.swift in Sources */,
 				F82FB1C41D81D060001FE39D /* ListCell.swift in Sources */,
 				F8EAE7FC1D5FA6A900D60DAB /* ViewController.swift in Sources */,
-				F82FB1CC1D82C82A001FE39D /* FilterOption.swift in Sources */,
 				F82FB1CF1D82C8AE001FE39D /* FilterPrice.swift in Sources */,
 				F82FB1C01D81C7B6001FE39D /* ListViewController.swift in Sources */,
+				F8B9F7CF1FF4015E00C7C024 /* ButtonColorChangeable.swift in Sources */,
 				F8EAE7FA1D5FA6A900D60DAB /* AppDelegate.swift in Sources */,
 				F8C41A6F1F9A46D700E16612 /* Images.swift in Sources */,
 				F86F35681D8DDCB6001A8F6C /* ListController.swift in Sources */,

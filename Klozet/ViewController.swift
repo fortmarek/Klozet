@@ -16,16 +16,8 @@ protocol AnnotationController {
     var mapView: MKMapView { get }
 }
 
-protocol FilterInterfaceDelegate {
-    var priceButton: FilterPriceButton { get }
-    var timeButton: FilterOpenButton { get }
-    var cornerConstant: CGFloat { get }
-    func addConstraint(_ view: UIView, attribute: NSLayoutAttribute, constant: CGFloat) ->  NSLayoutConstraint
-    func addSubview(_ view: UIView)
-}
 
-
-class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocation, AnnotationController, FilterInterfaceDelegate, DirectionsDelegate, ShowDelegate {
+class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocation, AnnotationController, DirectionsDelegate, ShowDelegate {
 
     let toiletsViewModel: ToiletViewModel = ToiletViewModel()
     var toilets: [Toilet] = []
@@ -35,7 +27,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
     
     //Buttons
     let currentLocationButton = UIButton()
-    let filterButton = FilterButton()
     let priceButton = FilterPriceButton()
     let timeButton = FilterOpenButton()
     
@@ -87,7 +78,23 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         addDragRecognizer()
         
         setupBindings()
-
+        
+        let filtersStackView = UIStackView()
+        filtersStackView.axis = .horizontal
+        filtersStackView.spacing = 8
+        filtersStackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(filtersStackView)
+        filtersStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        filtersStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16).isActive = true
+        
+        let filterOpenButton = FilterOpenButton(title: "Open".localized)
+        filterOpenButton.annotationDelegate = self
+        filtersStackView.addArrangedSubview(filterOpenButton)
+        
+        let filterPriceButton = FilterPriceButton(title: "Free".localized)
+        filterPriceButton.annotationDelegate = self
+        filtersStackView.addArrangedSubview(filterPriceButton)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -107,6 +114,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
     private func getToilets() {
         toiletsViewModel.getToilets().startWithResult { [weak self] result in
             guard let toilets = result.value else {return}
+            self?.toilets = toilets 
             self?.mapView.addAnnotations(toilets)
         }
     }

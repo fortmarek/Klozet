@@ -33,6 +33,7 @@ class TabBarController: UITabBarController {
 
         let viewControllTabBarItem = TabBarItem(image: UIImage(asset: asset), selectedImage: UIImage(asset: selectedAsset), title: title, selectedTintColor: .mainOrange)
         navigationController.tabBarItem = viewControllTabBarItem
+        viewController.tabBarItem = viewControllTabBarItem
         return navigationController
     }
 

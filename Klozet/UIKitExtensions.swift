@@ -189,6 +189,13 @@ extension UINavigationController {
 }
 
 
+//Extension to simplify setting options for UIViewKeyFrameAnimation
+extension UIViewKeyframeAnimationOptions {
+    init(animationOptions: UIViewAnimationOptions) {
+        rawValue = animationOptions.rawValue
+    }
+}
+
 
 
 

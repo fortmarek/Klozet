@@ -15,72 +15,49 @@ protocol FilterOpen {
     
 }
 
-class FilterOpenButton: UIButton, FilterOpen, FilterOptionButton {
+class FilterOpenButton: ButtonColorChangeable, FilterOpen {
     
     var annotationDelegate: AnnotationController?
-    var filterDelegate: FilterInterfaceDelegate?
-    var filterButtonDelegate: FilterButtonDelegate?
-    var constraint: NSLayoutConstraint?
-    
+
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        self.addTarget(self, action: #selector(filterOpenButtonTapped), for: .touchUpInside)
     }
     
-    func setInterface() {
-        
-        //Images
-        self.setImage(UIImage(named: "Clock"), for: UIControlState())
-        self.setImage(UIImage(named: "ClockSelected"), for: .selected)
-        
-        //Unwarp filteDelegate
-        guard let filterDelegate = self.filterDelegate else {return}
-        
-        let cornerConstant = filterDelegate.cornerConstant
-        
-        //Trailing layout
-        let trailingLayout = filterDelegate.addConstraint(self, attribute: .trailing, constant: -cornerConstant)
-        constraint = trailingLayout
-        
-        //Bottom layout
-        _ = filterDelegate.addConstraint(self, attribute: .bottom, constant: -cornerConstant)
-        
-        setBasicInterface()
+    convenience init(title: String) {
+        self.init(frame: .zero)
+        addTarget(self, action: #selector(filterOpenButtonTapped), for: .touchUpInside)
+        setButton(with: title, normalColor: .mainOrange, selectedColor: .white)
     }
     
     @objc func filterOpenButtonTapped(_ sender: FilterOpenButton) {
-        filterOpenToilet()
+        DispatchQueue.main.async { [weak self] in
+            self?.filterOpenToilet()
+        }
     }
     
     func filterOpenToilet() {
         
-        OperationQueue.main.addOperation({
-            //Change timeButton image
-            self.isSelected = !(self.isSelected)
+        //Unwrap annotationDelegate
+        guard var annotationDelegate = self.annotationDelegate else {return}
+        
+        
+        // == false because state is changed after this function
+        if self.isSelected  {
+            //Filter toilets to open ones only
+            let toiletsNotOpen = annotationDelegate.toilets.filter({
+                self.isToiletOpen($0) == false
+            })
             
+            //Saving closed toilets so they can be added later
+            annotationDelegate.toiletsNotOpen = toiletsNotOpen
             
-            //Unwrap annotationDelegate
-            guard var annotationDelegate = self.annotationDelegate else {return}
-            
-            
-            // == false because state is changed after this function
-            if self.isSelected  {
-                //Filter toilets to open ones only
-                let toiletsNotOpen = annotationDelegate.toilets.filter({
-                    self.isToiletOpen($0) == false
-                })
-                
-                //Saving closed toilets so they can be added later
-                annotationDelegate.toiletsNotOpen = toiletsNotOpen
-                
-                annotationDelegate.mapView.removeAnnotations(toiletsNotOpen)
-            }
-                //Add back closed toilets (filter not applied)
-            else {
-                annotationDelegate.mapView.addAnnotations(annotationDelegate.toiletsNotOpen)
-            }
-        })
+            annotationDelegate.mapView.removeAnnotations(toiletsNotOpen)
+        }
+            //Add back closed toilets (filter not applied)
+        else {
+            annotationDelegate.mapView.addAnnotations(annotationDelegate.toiletsNotOpen)
+        }
         
     }
     
