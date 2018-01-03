@@ -16,4 +16,20 @@ extension UIColor {
     class var lightOrange: UIColor {
         return UIColor(red: 255.0 / 255.0, green: 108.0 / 255.0, blue: 50.0 / 255.0, alpha: 1.0)
     }
+    
+    class var defaultTextColor: UIColor {
+        return UIColor(red: 31.0 / 255.0, green: 49.0 / 255.0, blue: 74.0 / 255.0, alpha: 1.0)
+    }
+    
+    class var vibrantGreen: UIColor {
+        return UIColor(red: 0.0, green: 223.0 / 255.0, blue: 27.0 / 255.0, alpha: 1.0)
+    }
+    
+    class var watermelon: UIColor {
+        return UIColor(red: 255.0 / 255.0, green: 59.0 / 255.0, blue: 86.0 / 255.0, alpha: 1.0)
+    }
+    
+    class var coolGrey: UIColor {
+        return UIColor(red: 166.0 / 255.0, green: 173.0 / 255.0, blue: 183.0 / 255.0, alpha: 1.0)
+    }
 }

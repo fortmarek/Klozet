@@ -17,7 +17,7 @@ protocol ListToiletsDelegate {
     var locationDelegate: UserLocation? { get }
     func reloadTable()
     //func startUpdating()
-    func updateToilets(toilets: Array<Toilet>)
+    func updateToilets(_ toilets: Array<Toilet>)
 }
 
 
@@ -52,15 +52,17 @@ class ListViewController: UIViewController, DirectionsDelegate {
         view.addSubview(tableView)
         tableView.pinToView(view)
         
+        tableView.rowHeight = 83
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(ListCell.self, forCellReuseIdentifier: "listCell")
         
         navigationController?.navigationBar.tintColor = .mainOrange 
         
         setTableFooter()
         
-        //Have not ordered toilets yet, show activityIndicator
-        if didOrderToilets == false {
+        //Have not loaded toilets yet, show activityIndicator
+        if allToilets.isEmpty {
             activityView = ActivityView(view: view)
             activityIndicator = activityView.activityIndicator
         }
@@ -89,10 +91,10 @@ class ListViewController: UIViewController, DirectionsDelegate {
     }
     
     private func setupBindings() {
+        
         toiletsViewModel?.toiletsForList.producer.startWithResult { [weak self] result in
             guard let toilets = result.value else {return}
-            self?.toilets = toilets
-            self?.tableView.reloadData()
+            self?.updateToilets(toilets)
         }
     }
     
@@ -106,23 +108,19 @@ class ListViewController: UIViewController, DirectionsDelegate {
         
         //Inset so the footer does not appear below ListController
         tableView.contentInset.bottom = 60
-        
-        
     }
 
 }
 
 extension ListViewController: ListToiletsDelegate, Reload {
     
-    func updateToilets(toilets: Array<Toilet>) {
+    func updateToilets(_ toilets: Array<Toilet>) {
         
         //Save all toilets (needed for filters)
         allToilets = toilets
-
+        print(toilets.count)
         self.toilets = toilets
         reloadTable()
-        
-        
     }
     
     func reloadTable() {
@@ -138,27 +136,19 @@ extension ListViewController: ListToiletsDelegate, Reload {
 extension ListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let listCell = getListCell(indexPath: indexPath, tableView: tableView)
+        let listCell = tableView.dequeueReusableCell(withIdentifier: "listCell") as! ListCell
+        
+        //Getting toilet for cell
+        let toilet = toilets[indexPath.row]
+        
+        listCell.toiletImageView.image = nil
+        
+        listCell.locationDelegate = self.locationDelegate
+        listCell.fillCellData(toilet)
 
         return listCell
     }
     
-    
-    func getListCell(indexPath: IndexPath, tableView: UITableView) -> UITableViewCell {
-        //Cell as ListCell
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "listCell") as? ListCell else {return UITableViewCell()}
-        
-        //Getting toilet for cell
-        let toilet = toilets[(indexPath as NSIndexPath).row]
-        
-        cell.toiletImageView.image = nil
-        
-        cell.locationDelegate = self.locationDelegate
-        cell.fillCellData(toilet)
-        
-        
-        return cell
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         

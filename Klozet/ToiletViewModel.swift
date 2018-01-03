@@ -23,6 +23,11 @@ class ToiletViewModel: APIService, ToiletViewModeling {
     var toilets: MutableProperty<[Toilet]> = MutableProperty([])
     var toiletsForList: MutableProperty<[Toilet]> = MutableProperty([])
     
+    override init() {
+        super.init()
+        setupBindings()
+    }
+    
     
     func getToilets() -> SignalProducer<[Toilet], ConnectionError> {
         return SignalProducer<[Toilet], ConnectionError> { [weak self] sink, disposable in
@@ -45,7 +50,7 @@ class ToiletViewModel: APIService, ToiletViewModeling {
     
     private func orderToilets(_ toilets: [Toilet]) {
         guard let directionsDelegate = self.directionsDelegate else {return}
-        self.toiletsForList.value = toilets.sorted(by: {
+        toiletsForList.value = toilets.sorted(by: {
             directionsDelegate.getDistance($0.coordinate) < directionsDelegate.getDistance($1.coordinate)
         })
     }
