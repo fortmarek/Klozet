@@ -1,0 +1,5 @@
+xcassets:
+  paths:
+   - Klozet/Assets.xcassets
+  templateName: swift3
+  output: Klozet/Images.swift

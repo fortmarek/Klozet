@@ -61,7 +61,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         
         title = "Map"
         
-        let settingsBarButtonItem = UIBarButtonItem(image: UIImage(asset: .settings), style: .plain, target: self, action: #selector(settingsButtonTapped))
+        let settingsBarButtonItem = UIBarButtonItem(image: UIImage(asset: Asset.settings), style: .plain, target: self, action: #selector(settingsButtonTapped))
         navigationItem.leftBarButtonItem = settingsBarButtonItem
         
         view.addSubview(mapView)
@@ -215,21 +215,21 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
             currentLocationHeadingSelected = false
             currentLocationButton.isSelected = false
             locationManager.stopUpdatingHeading()
-            setImageForSelectedHighlighted(currentLocationButton, imageAsset: .directionIconSelected)
+            setImageForSelectedHighlighted(currentLocationButton, imageAsset: Asset.directionIconSelected)
         }
         else if currentLocationButton.isSelected {
             currentLocationHeadingSelected = true
-            setImageForSelectedHighlighted(currentLocationButton, imageAsset: .directionIconHeading)
+            setImageForSelectedHighlighted(currentLocationButton, imageAsset: Asset.directionIconHeading)
             locationManager.startUpdatingHeading()
         }
         else {
-            setImageForSelectedHighlighted(currentLocationButton, imageAsset: .directionIconSelected)
+            setImageForSelectedHighlighted(currentLocationButton, imageAsset: Asset.directionIconSelected)
             currentLocationButton.isSelected = true
         }
     }
     
     
-    fileprivate func setImageForSelectedHighlighted(_ button: UIButton, imageAsset: Asset) {
+    fileprivate func setImageForSelectedHighlighted(_ button: UIButton, imageAsset: ImageAsset) {
         button.setImage(UIImage(asset: imageAsset), for: .selected)
         button.setImage(UIImage(asset: imageAsset), for: [.selected, .highlighted])
     }

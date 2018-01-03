@@ -17,19 +17,20 @@ class TabBarController: UITabBarController {
     init() {
         super.init(nibName: nil, bundle: nil)
         let viewController = ViewController()
-        let navigationViewController = createViewControllerTab(viewController, title: "Map", asset: .mapIconUnselected, selectedAsset: .mapIconSelected)
+        let navigationViewController = createViewControllerTab(viewController, title: "Map", asset: Asset.mapIconUnselected, selectedAsset: Asset.mapIconSelected)
         let listViewController = ListViewController()
-        let listNavigationController = createViewControllerTab(listViewController, title: "List", asset: .listIcon, selectedAsset: .listIconSelected)
-        let viewControllerr = createViewControllerTab(ViewController(), title: "Map", asset: .mapIconUnselected, selectedAsset: .mapIconSelected)
+        let listNavigationController = createViewControllerTab(listViewController, title: "List", asset: Asset.listIcon, selectedAsset: Asset.listIconSelected)
+        let viewControllerr = createViewControllerTab(ViewController(), title: "Map", asset: Asset.mapIconUnselected, selectedAsset: Asset.mapIconSelected)
         
         listViewController.toiletsViewModel = viewController.toiletsViewModel
+        listViewController.locationDelegate = viewController
         
         viewControllers = [navigationViewController, viewControllerr, listNavigationController]
                 
         tabBar.barTintColor = .white 
     }
     
-    private func createViewControllerTab<T: UIViewController>(_ viewController: T, title: String, asset: Asset, selectedAsset: Asset) -> UIViewController {
+    private func createViewControllerTab<T: UIViewController>(_ viewController: T, title: String, asset: ImageAsset, selectedAsset: ImageAsset) -> UIViewController {
         let navigationController = UINavigationController(rootViewController: viewController)
         //navigationController.setDefaultBackButtonWithTitle(title)
         navigationController.setDefaultNavigationBar()

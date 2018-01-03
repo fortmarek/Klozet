@@ -30,9 +30,9 @@ extension ViewController {
         view.addSubview(currentLocationButton)
         view.bringSubview(toFront: currentLocationButton)
         currentLocationButton.setHeightAndWidthAnchorToConstant(52)
-        currentLocationButton.setImage(UIImage(asset: .directionIcon), for: .normal)
-        currentLocationButton.setImage(UIImage(asset: .directionIconSelected), for: .selected)
-        currentLocationButton.setImage(UIImage(asset: .directionIconSelected), for: .highlighted)
+        currentLocationButton.setImage(UIImage(asset: Asset.directionIcon), for: .normal)
+        currentLocationButton.setImage(UIImage(asset: Asset.directionIconSelected), for: .selected)
+        currentLocationButton.setImage(UIImage(asset: Asset.directionIconSelected), for: .highlighted)
         currentLocationButton.addTarget(self, action: #selector(currentLocationButtonTapped(_:)), for: .touchUpInside)
         
         
@@ -41,6 +41,6 @@ extension ViewController {
         
         //View first appears at user's location (therefore current location button should be set as selected)
         currentLocationButton.isSelected = true
-        currentLocationButton.setImage(UIImage(asset: .currentLocationSelected), for: [.selected, .highlighted])
+        currentLocationButton.setImage(UIImage(asset: Asset.currentLocationSelected), for: [.selected, .highlighted])
     }
 }

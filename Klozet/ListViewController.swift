@@ -118,7 +118,7 @@ extension ListViewController: ListToiletsDelegate, Reload {
         
         //Save all toilets (needed for filters)
         allToilets = toilets
-        print(toilets.count)
+        
         self.toilets = toilets
         reloadTable()
     }

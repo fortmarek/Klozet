@@ -12,6 +12,7 @@ import MapKit
 
 class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate, ImageController {
     
+    let imageBackground = UIView()
     let listCellStackView = UIStackView()
     let toiletImageView = UIImageView()
     let mainAddressLabel = UILabel()
@@ -37,13 +38,19 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate, ImageController
         listCellStackView.pinToViewHorizontally(self)
         listCellStackView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
-        let imageBackground = UIView()
+        
         imageBackground.layer.cornerRadius = 10
         imageBackground.backgroundColor = .mainOrange
         listCellStackView.addSubview(imageBackground)
         
+        let toiletSignImageView = UIImageView()
+        toiletSignImageView.image = UIImage(asset: Asset.toiletSignIcon)
+        listCellStackView.addSubview(toiletSignImageView)
+        toiletSignImageView.centerInView(imageBackground)
+        
         toiletImageView.setHeightAndWidthAnchorToConstant(60)
         toiletImageView.clipsToBounds = true
+        toiletImageView.layer.cornerRadius = 10
         listCellStackView.addArrangedSubview(toiletImageView)
         
         imageBackground.pinToView(toiletImageView)
@@ -77,17 +84,17 @@ class ListCell: UITableViewCell, FilterOpen, DirectionsDelegate, ImageController
         openLabelWidthAnchor?.isActive = true
     }
     
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        //Same background color for image when selected / highlighted
-//        imageBackground.backgroundColor = .mainOrange
-//
-//    }
-//
-//    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-//        imageBackground.backgroundColor = .mainOrange
-//    }
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        //Same background color for image when selected / highlighted
+        imageBackground.backgroundColor = .mainOrange
+
+    }
+
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        imageBackground.backgroundColor = .mainOrange
+    }
     
     
     func fillCellData(_ toilet: Toilet) {
