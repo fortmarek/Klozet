@@ -246,26 +246,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
 //        }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        //Check segue identifier
-        if segue.identifier == "listSegue" {
-            
-            //Wait for toilets to be ordered by distance
-            
-            //Check viewController type
-            guard let listViewController = segue.destination as? ListViewController else {return}
-            
-            listViewController.locationDelegate = self
-            
-            toiletsDelegate = listViewController
-            
-            //Passing toilets
-            listViewController.toilets = self.toilets
-            listViewController.didOrderToilets = self.didOrderToilets
-        }
-    }
-    
     fileprivate func setImageForSelectedHighlighted(_ button: UIButton, imageAsset: Asset) {
         button.setImage(UIImage(asset: imageAsset), for: .selected)
         button.setImage(UIImage(asset: imageAsset), for: [.selected, .highlighted])

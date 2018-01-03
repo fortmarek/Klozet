@@ -16,12 +16,15 @@ class TabBarController: UITabBarController {
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        
-        let viewController = createViewControllerTab(ViewController(), title: "Map", asset: .mapIconUnselected, selectedAsset: .mapIconSelected)
-        let listNavigationController = createViewControllerTab(ListViewController(), title: "List", asset: .listIcon, selectedAsset: .listIconSelected)
+        let viewController = ViewController()
+        let navigationViewController = createViewControllerTab(viewController, title: "Map", asset: .mapIconUnselected, selectedAsset: .mapIconSelected)
+        let listViewController = ListViewController()
+        let listNavigationController = createViewControllerTab(listViewController, title: "List", asset: .listIcon, selectedAsset: .listIconSelected)
         let viewControllerr = createViewControllerTab(ViewController(), title: "Map", asset: .mapIconUnselected, selectedAsset: .mapIconSelected)
         
-        viewControllers = [viewController, viewControllerr, listNavigationController]
+        listViewController.toiletsViewModel = viewController.toiletsViewModel
+        
+        viewControllers = [navigationViewController, viewControllerr, listNavigationController]
                 
         tabBar.barTintColor = .white 
     }

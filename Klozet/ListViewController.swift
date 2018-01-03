@@ -23,6 +23,7 @@ protocol ListToiletsDelegate {
 
 class ListViewController: UIViewController, DirectionsDelegate {
     
+    var toiletsViewModel: ToiletViewModel?
     var tableView: UITableView = UITableView()
     
     var toilets = [Toilet]()
@@ -66,7 +67,7 @@ class ListViewController: UIViewController, DirectionsDelegate {
         
         _ = ListControllerContainer(view: view, toiletsDelegate: self)
         
-        
+        setupBindings()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,6 +85,14 @@ class ListViewController: UIViewController, DirectionsDelegate {
             else {return}
             
             detailViewController.toilet = toilets[indexPath.row]
+        }
+    }
+    
+    private func setupBindings() {
+        toiletsViewModel?.toiletsForList.producer.startWithResult { [weak self] result in
+            guard let toilets = result.value else {return}
+            self?.toilets = toilets
+            self?.tableView.reloadData()
         }
     }
     
