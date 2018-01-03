@@ -49,8 +49,30 @@ class ListViewController: UIViewController, DirectionsDelegate {
         
         allToilets = toilets
         
+        let filtersStackView = UIStackView()
+        filtersStackView.axis = .horizontal
+        filtersStackView.spacing = 8
+        filtersStackView.addBackgroundViewWithColor(.white)
+        filtersStackView.isLayoutMarginsRelativeArrangement = true
+        filtersStackView.layoutMargins = UIEdgeInsets(top: 3, left: 0, bottom: 10, right: 0)
+        filtersStackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(filtersStackView)
+        filtersStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        filtersStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        
+        let priceButton = FilterPriceButton(title: "Free".localized)
+        priceButton.layer.borderWidth = 2
+        filtersStackView.addArrangedSubview(priceButton)
+        
+        let openButton = FilterOpenButton(title: "Open".localized)
+        openButton.layer.borderWidth = 2
+        filtersStackView.addArrangedSubview(openButton)
+        
+        
         view.addSubview(tableView)
-        tableView.pinToView(view)
+        tableView.pinToViewHorizontally(view)
+        tableView.topAnchor.constraint(equalTo: filtersStackView.bottomAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
         tableView.rowHeight = 83
         tableView.delegate = self
@@ -74,6 +96,8 @@ class ListViewController: UIViewController, DirectionsDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        navigationController?.navigationBar.isHidden = true
+        
         //Deselect selected row
         guard let indexPath = tableView.indexPathForSelectedRow else {return}
         tableView.deselectRow(at: indexPath, animated: false)
@@ -95,8 +119,7 @@ class ListViewController: UIViewController, DirectionsDelegate {
         
         tableView.tableFooterView = listFooter
         
-        //Inset so the footer does not appear below ListController
-        tableView.contentInset.bottom = 60
+        tableView.contentInset.bottom = 10
     }
 
 }

@@ -45,10 +45,8 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
     }
     
     
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = false
     }
     
     private func setDetailStackView() -> UIStackView {

@@ -17,8 +17,8 @@ protocol AnnotationController {
 }
 
 
-class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocation, AnnotationController, DirectionsDelegate, ShowDelegate {
-
+class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocation, ToiletController, DirectionsDelegate, ShowDelegate {
+    
     let toiletsViewModel: ToiletViewModel = ToiletViewModel()
     var toilets: [Toilet] = []
     
@@ -29,10 +29,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
     let currentLocationButton = UIButton()
     let priceButton = FilterPriceButton()
     let timeButton = FilterOpenButton()
-    
-    //Option buttons' constraints, used later for animation
-    var priceButtonConstraint = NSLayoutConstraint()
-    var timeButtonConstraint = NSLayoutConstraint()
 
     
     //Default button distance from the edges of the screen
@@ -87,11 +83,11 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         filtersStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16).isActive = true
         
         let filterOpenButton = FilterOpenButton(title: "Open".localized)
-        filterOpenButton.annotationDelegate = self
+        filterOpenButton.toiletController = self
         filtersStackView.addArrangedSubview(filterOpenButton)
         
         let filterPriceButton = FilterPriceButton(title: "Free".localized)
-        filterPriceButton.annotationDelegate = self
+        filterPriceButton.toiletController = self
         filtersStackView.addArrangedSubview(filterPriceButton)
         
     }
@@ -129,6 +125,14 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         navigationController?.pushViewController(settingsViewController, animated: true)
     }
     
+    
+    func addToilets(_ toilets: [Toilet]) {
+        mapView.addAnnotations(toilets)
+    }
+    
+    func removeToilets(_ toilets: [Toilet]) {
+        mapView.removeAnnotations(toilets)
+    }
     
     
     //MARK: DragRecognizer

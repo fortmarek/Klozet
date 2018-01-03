@@ -17,7 +17,7 @@ protocol FilterOpen {
 
 class FilterOpenButton: ButtonColorChangeable, FilterOpen {
     
-    var annotationDelegate: AnnotationController?
+    var toiletController: ToiletController?
 
 
     override init(frame: CGRect) {
@@ -39,24 +39,24 @@ class FilterOpenButton: ButtonColorChangeable, FilterOpen {
     func filterOpenToilet() {
         
         //Unwrap annotationDelegate
-        guard var annotationDelegate = self.annotationDelegate else {return}
+        guard var toiletController = self.toiletController else {return}
         
         
         // == false because state is changed after this function
         if self.isSelected  {
             //Filter toilets to open ones only
-            let toiletsNotOpen = annotationDelegate.toilets.filter({
+            let toiletsNotOpen = toiletController.toilets.filter({
                 self.isToiletOpen($0) == false
             })
             
             //Saving closed toilets so they can be added later
-            annotationDelegate.toiletsNotOpen = toiletsNotOpen
+            toiletController.toiletsNotOpen = toiletsNotOpen
             
-            annotationDelegate.mapView.removeAnnotations(toiletsNotOpen)
+            toiletController.removeToilets(toiletsNotOpen)
         }
             //Add back closed toilets (filter not applied)
         else {
-            annotationDelegate.mapView.addAnnotations(annotationDelegate.toiletsNotOpen)
+            toiletController.addToilets(toiletController.toiletsNotOpen)
         }
         
     }

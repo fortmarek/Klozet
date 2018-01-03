@@ -44,7 +44,9 @@ class ToiletViewModel: APIService, ToiletViewModeling {
  
     private func setupBindings() {
         toilets.producer.startWithValues { [weak self] toilets in
-            self?.orderToilets(toilets)
+            DispatchQueue.global(qos: .userInitiated).async {
+                self?.orderToilets(toilets)
+            }
         }
     }
     

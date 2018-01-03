@@ -9,9 +9,16 @@
 import Foundation
 import UIKit
 
+protocol ToiletController {
+    func addToilets(_ toilets: [Toilet])
+    func removeToilets(_ toilets: [Toilet])
+    var toilets: [Toilet] {get set}
+    var toiletsNotOpen: [Toilet] {get set}
+}
+
 class FilterPriceButton: ButtonColorChangeable {
     
-    var annotationDelegate: AnnotationController?
+    var toiletController: ToiletController?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,16 +33,16 @@ class FilterPriceButton: ButtonColorChangeable {
     //TODO: Check if other filter is selected
     @objc func priceButtonTapped(_ sender: UIButton) {
         
-        guard let annotationDelegate = self.annotationDelegate else {return}
+        guard let toiletController = self.toiletController else {return}
         
         //Filter all toilets that are not for free
-        let toiletsNotForFree = annotationDelegate.toilets.filter({$0.price != "Free".localized})
+        let toiletsNotForFree = toiletController.toilets.filter({$0.price != "Free".localized})
         
         if self.isSelected == false {
-            annotationDelegate.mapView.removeAnnotations(toiletsNotForFree)
+            toiletController.removeToilets(toiletsNotForFree)
         }
         else {
-            annotationDelegate.mapView.addAnnotations(toiletsNotForFree)
+            toiletController.addToilets(toiletsNotForFree)
         }
         
     }
