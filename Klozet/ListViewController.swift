@@ -11,7 +11,6 @@ import UIKit
 
 protocol ListToiletsDelegate {
     var toilets: Array<Toilet> { get set }
-    var allToilets: Array<Toilet> { get set }
     var isFilterOpenSelected: Bool { get set }
     var isFilterPriceSelected: Bool { get set }
     var locationDelegate: UserLocation? { get }
@@ -26,11 +25,12 @@ class ListViewController: UIViewController, DirectionsDelegate {
     var toiletsViewModel: ToiletViewModel?
     var tableView: UITableView = UITableView()
     
+    var allToilets: [Toilet] = []
     var toilets = [Toilet]()
-    var allToilets = [Toilet]()
+    var toiletsNotOpen: [Toilet] = []
     
-    var isFilterOpenSelected = false
-    var isFilterPriceSelected = false
+    let priceButton = FilterPriceButton(title: "Free".localized)
+    let openButton = FilterOpenButton(title: "Open".localized)
     
     var locationDelegate: UserLocation?
     
@@ -47,8 +47,6 @@ class ListViewController: UIViewController, DirectionsDelegate {
         
         title = "List"
         
-        allToilets = toilets
-        
         let filtersStackView = UIStackView()
         filtersStackView.axis = .horizontal
         filtersStackView.spacing = 8
@@ -60,12 +58,14 @@ class ListViewController: UIViewController, DirectionsDelegate {
         filtersStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         filtersStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         
-        let priceButton = FilterPriceButton(title: "Free".localized)
+        
         priceButton.layer.borderWidth = 2
+        priceButton.addTarget(self, action: #selector(filterToilets), for: .touchUpInside)
         filtersStackView.addArrangedSubview(priceButton)
         
-        let openButton = FilterOpenButton(title: "Open".localized)
+        
         openButton.layer.borderWidth = 2
+        openButton.addTarget(self, action: #selector(filterToilets), for: .touchUpInside)
         filtersStackView.addArrangedSubview(openButton)
         
         
@@ -84,12 +84,10 @@ class ListViewController: UIViewController, DirectionsDelegate {
         setTableFooter()
         
         //Have not loaded toilets yet, show activityIndicator
-        if allToilets.isEmpty {
+        if toilets.isEmpty {
             activityView = ActivityView(view: view)
             activityIndicator = activityView.activityIndicator
         }
-        
-        _ = ListControllerContainer(view: view, toiletsDelegate: self)
         
         setupBindings()
     }
@@ -124,14 +122,11 @@ class ListViewController: UIViewController, DirectionsDelegate {
 
 }
 
-extension ListViewController: ListToiletsDelegate, Reload {
+extension ListViewController: Reload {
     
     func updateToilets(_ toilets: Array<Toilet>) {
-        
-        //Save all toilets (needed for filters)
-        allToilets = toilets
-        
         self.toilets = toilets
+        allToilets = toilets
         reloadTable()
     }
     
@@ -141,6 +136,38 @@ extension ListViewController: ListToiletsDelegate, Reload {
             self.activityView.isHidden = true
             self.activityIndicator.stopAnimating()
         }
+    }
+    
+    @objc func filterToilets() {
+    
+        //Get only open and free toilets
+        if openButton.isSelected && priceButton.isSelected {
+            self.toilets = self.allToilets.filter({
+                self.openButton.isToiletOpen($0) && $0.price == "Free".localized
+            })
+        }
+            
+            //Get open toilets
+        else if openButton.isSelected {
+            self.toilets = self.allToilets.filter({
+                self.openButton.isToiletOpen($0)
+            })
+        }
+            
+            //Get free toilets
+        else if self.priceButton.isSelected {
+            self.toilets = self.allToilets.filter({
+                $0.price == "Free".localized
+            })
+        }
+            
+            //Get all toilets
+        else {
+            toilets = allToilets
+        }
+        
+        
+        tableView.reloadData()
     }
     
 }
@@ -273,6 +300,17 @@ class ListFooter: UIView, ListFooterDelegate {
 }
 
 
-
+extension ListViewController: ToiletController {
+    func addToilets(_ toilets: [Toilet]) {
+        self.toilets += toilets
+        tableView.reloadData()
+    }
+    
+    func removeToilets(_ toilets: [Toilet]) {
+        let filteredToilets = self.toilets.filter { !toilets.contains($0) }
+        self.toilets = filteredToilets
+        tableView.reloadData()
+    }
+}
 
 

@@ -33,9 +33,6 @@
 		F858907B1DC9043D00F1C3F1 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F858907A1DC9043D00F1C3F1 /* SnapshotHelper.swift */; };
 		F86EF5C41DA6EBA40095CCEB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86EF5C31DA6EBA40095CCEB /* SettingsViewController.swift */; };
 		F86EF5C61DA98B5F0095CCEB /* SettingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86EF5C51DA98B5F0095CCEB /* SettingsTableView.swift */; };
-		F86F35681D8DDCB6001A8F6C /* ListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86F35671D8DDCB5001A8F6C /* ListController.swift */; };
-		F8775B091D8EBAAF003B9F4D /* ListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8775B081D8EBAAF003B9F4D /* ListButton.swift */; };
-		F8775B0B1D908104003B9F4D /* ListButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8775B0A1D908104003B9F4D /* ListButtonDelegate.swift */; };
 		F8775B0D1D919255003B9F4D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8775B0C1D919255003B9F4D /* DetailViewController.swift */; };
 		F8778B5C1D999DDE005ACA43 /* OpenTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8778B5B1D999DDE005ACA43 /* OpenTimeCell.swift */; };
 		F8778B5E1D9ABFE8005ACA43 /* PriceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8778B5D1D9ABFE8005ACA43 /* PriceCell.swift */; };
@@ -45,6 +42,7 @@
 		F87BEE241FCF2E410059F862 /* ToiletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87BEE231FCF2E410059F862 /* ToiletViewModel.swift */; };
 		F87CE85F1F9FB14400D98515 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87CE85E1F9FB14400D98515 /* TabBarController.swift */; };
 		F8B9F7CF1FF4015E00C7C024 /* ButtonColorChangeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B9F7CE1FF4015D00C7C024 /* ButtonColorChangeable.swift */; };
+		F8B9F7D71FFD827C00C7C024 /* ToiletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B9F7D61FFD827C00C7C024 /* ToiletController.swift */; };
 		F8C41A6D1F9A42B700E16612 /* UIColor+UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C41A6C1F9A42B700E16612 /* UIColor+UIFontExtension.swift */; };
 		F8C41A6F1F9A46D700E16612 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C41A6E1F9A46D700E16612 /* Images.swift */; };
 		F8C41A721F9A4C1C00E16612 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C41A711F9A4C1C00E16612 /* UIKitExtensions.swift */; };
@@ -127,9 +125,6 @@
 		F858907A1DC9043D00F1C3F1 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		F86EF5C31DA6EBA40095CCEB /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F86EF5C51DA98B5F0095CCEB /* SettingsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableView.swift; sourceTree = "<group>"; };
-		F86F35671D8DDCB5001A8F6C /* ListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListController.swift; sourceTree = "<group>"; };
-		F8775B081D8EBAAF003B9F4D /* ListButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListButton.swift; sourceTree = "<group>"; };
-		F8775B0A1D908104003B9F4D /* ListButtonDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListButtonDelegate.swift; sourceTree = "<group>"; };
 		F8775B0C1D919255003B9F4D /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		F8778B5B1D999DDE005ACA43 /* OpenTimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenTimeCell.swift; sourceTree = "<group>"; };
 		F8778B5D1D9ABFE8005ACA43 /* PriceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceCell.swift; sourceTree = "<group>"; };
@@ -139,6 +134,7 @@
 		F87BEE231FCF2E410059F862 /* ToiletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToiletViewModel.swift; sourceTree = "<group>"; };
 		F87CE85E1F9FB14400D98515 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		F8B9F7CE1FF4015D00C7C024 /* ButtonColorChangeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonColorChangeable.swift; sourceTree = "<group>"; };
+		F8B9F7D61FFD827C00C7C024 /* ToiletController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToiletController.swift; sourceTree = "<group>"; };
 		F8C41A6C1F9A42B700E16612 /* UIColor+UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+UIFontExtension.swift"; sourceTree = "<group>"; };
 		F8C41A6E1F9A46D700E16612 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		F8C41A711F9A4C1C00E16612 /* UIKitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitExtensions.swift; sourceTree = "<group>"; };
@@ -275,9 +271,6 @@
 			children = (
 				F82FB1BF1D81C7B6001FE39D /* ListViewController.swift */,
 				F82655471D930A190007A089 /* ListActivity.swift */,
-				F86F35671D8DDCB5001A8F6C /* ListController.swift */,
-				F8775B081D8EBAAF003B9F4D /* ListButton.swift */,
-				F8775B0A1D908104003B9F4D /* ListButtonDelegate.swift */,
 				F82FB1C31D81D060001FE39D /* ListCell.swift */,
 			);
 			name = ListViewController;
@@ -289,6 +282,14 @@
 				F8C41A6E1F9A46D700E16612 /* Images.swift */,
 			);
 			name = Generated;
+			sourceTree = "<group>";
+		};
+		F8B9F7D81FFD828700C7C024 /* ToiletController */ = {
+			isa = PBXGroup;
+			children = (
+				F8B9F7D61FFD827C00C7C024 /* ToiletController.swift */,
+			);
+			name = ToiletController;
 			sourceTree = "<group>";
 		};
 		F8EAE7ED1D5FA6A900D60DAB = {
@@ -328,6 +329,7 @@
 				F82884BF1D957E4A00F1A737 /* DetailViewController */,
 				F86EF5C71DA98C0D0095CCEB /* SettingsViewController */,
 				F82FB1BB1D80AA02001FE39D /* ToiletAnnotationView.swift */,
+				F8B9F7D81FFD828700C7C024 /* ToiletController */,
 				F8243BEA1DA2F3C700BE5D13 /* SingleToiletViewController.swift */,
 				F82FB1B91D809F27001FE39D /* Directions.swift */,
 				F8B9F7D51FFD533400C7C024 /* Generated */,
@@ -659,6 +661,7 @@
 				F87BEE201FCF24400059F862 /* APIService.swift in Sources */,
 				F8EAE83C1D630E0500D60DAB /* VIewControllerInterface.swift in Sources */,
 				F82FB1C81D82B7C3001FE39D /* FilterOpen.swift in Sources */,
+				F8B9F7D71FFD827C00C7C024 /* ToiletController.swift in Sources */,
 				F83CB9BE1FCF3B63002CECDC /* OpenTimes.swift in Sources */,
 				F87BEE221FCF2B920059F862 /* CodableError.swift in Sources */,
 				F82FB1BA1D809F27001FE39D /* Directions.swift in Sources */,
@@ -666,14 +669,12 @@
 				F8E541541D744CA600BA4BE7 /* Extensions.swift in Sources */,
 				F818D4481D88482E009B153C /* Constants.swift in Sources */,
 				F82884C11D957E7600F1A737 /* DetailTableView.swift in Sources */,
-				F8775B0B1D908104003B9F4D /* ListButtonDelegate.swift in Sources */,
 				F8C41A6D1F9A42B700E16612 /* UIColor+UIFontExtension.swift in Sources */,
 				F83CB9C01FCF3B84002CECDC /* Address.swift in Sources */,
 				F87BEE241FCF2E410059F862 /* ToiletViewModel.swift in Sources */,
 				F83CB9BC1FCF3B2C002CECDC /* Toilet.swift in Sources */,
 				F82FB1BE1D81BA41001FE39D /* UserLocation.swift in Sources */,
 				F80FC7D61DAC298300D4FC05 /* ImageSlides.swift in Sources */,
-				F8775B091D8EBAAF003B9F4D /* ListButton.swift in Sources */,
 				F8243BEB1DA2F3C700BE5D13 /* SingleToiletViewController.swift in Sources */,
 				F8778B5C1D999DDE005ACA43 /* OpenTimeCell.swift in Sources */,
 				F82FB1BC1D80AA02001FE39D /* ToiletAnnotationView.swift in Sources */,
@@ -691,7 +692,6 @@
 				F8B9F7CF1FF4015E00C7C024 /* ButtonColorChangeable.swift in Sources */,
 				F8EAE7FA1D5FA6A900D60DAB /* AppDelegate.swift in Sources */,
 				F8C41A6F1F9A46D700E16612 /* Images.swift in Sources */,
-				F86F35681D8DDCB6001A8F6C /* ListController.swift in Sources */,
 				F86EF5C41DA6EBA40095CCEB /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

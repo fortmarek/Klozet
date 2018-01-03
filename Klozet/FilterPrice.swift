@@ -9,13 +9,6 @@
 import Foundation
 import UIKit
 
-protocol ToiletController {
-    func addToilets(_ toilets: [Toilet])
-    func removeToilets(_ toilets: [Toilet])
-    var toilets: [Toilet] {get set}
-    var toiletsNotOpen: [Toilet] {get set}
-}
-
 class FilterPriceButton: ButtonColorChangeable {
     
     var toiletController: ToiletController?
