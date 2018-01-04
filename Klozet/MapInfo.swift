@@ -115,10 +115,10 @@ class MapInfoText: UIStackView, DirectionsDelegate {
         let etaLabel = UILabel()
         etaLabel.alpha = 0
         etaLabel.textColor = .mainOrange
+        etaLabel.font = UIFont.systemFont(ofSize: 17, weight: .heavy)
         
         //Get eta string for etaLabel
-        getEta(toiletCoordinate, completion: {
-            eta in
+        getEta(toiletCoordinate, completion: { eta in
             etaLabel.text = eta
             
             //Prepare eta for animation
@@ -130,10 +130,10 @@ class MapInfoText: UIStackView, DirectionsDelegate {
     }
     
     fileprivate func setEtaImage(etaStack: UIStackView) {
-        etaImage = UIImageView(image: UIImage(named: "WalkingDetail"))
+        etaImage = UIImageView(image: UIImage(asset: Asset.walkingDetail))
         etaStack.addArrangedSubview(etaImage)
-        etaImage.heightAnchor.constraint(equalToConstant: 36).isActive = true
-        etaImage.widthAnchor.constraint(equalToConstant: 36).isActive = true
+//        etaImage.heightAnchor.constraint(equalToConstant: 36).isActive = true
+//        etaImage.widthAnchor.constraint(equalToConstant: 36).isActive = true
         etaImage.leftAnchor.constraint(equalTo: etaStack.leftAnchor, constant: 40).isActive = true
     }
     
@@ -189,11 +189,12 @@ class MapInfoText: UIStackView, DirectionsDelegate {
         mainAddressLabel.text = mainAddress
         mainAddressLabel.lineBreakMode = .byWordWrapping
         mainAddressLabel.numberOfLines = 0
+        mainAddressLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         addressStack.addArrangedSubview(mainAddressLabel)
         
         let subAddressLabel = UILabel()
         subAddressLabel.text = subAddress
-        subAddressLabel.font = UIFont.systemFont(ofSize: 14)
+        subAddressLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         subAddressLabel.textColor = UIColor.gray
         subAddressLabel.textAlignment = .left
         subAddressLabel.lineBreakMode = .byWordWrapping

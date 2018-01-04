@@ -55,7 +55,7 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
         for openTime in openTimesAsStrings {
             let openLabel = UILabel()
             openLabel.attributedText = openTime
-            openLabel.font = UIFont.systemFont(ofSize: fontSize)
+            openLabel.font = UIFont.systemFont(ofSize: fontSize, weight: .heavy)
             openLabel.minimumScaleFactor = 0.8
             openLabel.adjustsFontSizeToFitWidth = true
             openTimeStack.addArrangedSubview(openLabel)
@@ -71,7 +71,7 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
             return 18
         }
         else if count == 2 {
-            return 17
+            return 16
         }
         else {
             return 15
@@ -115,11 +115,11 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
         
         //Toilet is open, make label green
         if determineIfIsToiletOpen(during: openTimes) {
-            return Colors.greenColor
+            return .vibrantGreen
         }
         //Toilet is closed, make label orange
         else {
-            return .mainOrange
+            return .watermelon
         }
     }
     

@@ -1,23 +1,23 @@
 {
+  "info" : {
+    "author" : "zeplin",
+    "version" : 1
+  },
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "WalkingDetail.png",
+      "filename" : "walkingDetail.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "WalkingDetail@2x.png",
+      "filename" : "walkingDetail@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "WalkingDetail@3x.png",
+      "filename" : "walkingDetail@3x.png",
       "scale" : "3x"
     }
-  ],
-  "info" : {
-    "version" : 1,
-    "author" : "xcode"
-  }
+  ]
 }

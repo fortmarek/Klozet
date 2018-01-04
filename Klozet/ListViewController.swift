@@ -127,13 +127,15 @@ extension ListViewController: Reload {
     func updateToilets(_ toilets: Array<Toilet>) {
         self.toilets = toilets
         allToilets = toilets
+        if !toilets.isEmpty {
+            self.activityView.isHidden = true
+        }
         reloadTable()
     }
     
     func reloadTable() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
-            self.activityView.isHidden = true
             self.activityIndicator.stopAnimating()
         }
     }
@@ -192,11 +194,12 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         guard shownCells < toilets.count else {
-            listFooterDelegate?.changeToFooterWithInfo(toiletsCount: toilets.count)
             return toilets.count
         }
         
-        listFooterDelegate?.changeToFooterWithMore()
+        if toilets.count > 0 {
+            listFooterDelegate?.changeToFooterWithMore()
+        }
         
         return shownCells
     }
@@ -214,7 +217,6 @@ protocol Reload {
 }
 
 protocol ListFooterDelegate {
-    func changeToFooterWithInfo(toiletsCount: Int)
     func changeToFooterWithMore()
 }
 
@@ -277,21 +279,6 @@ class ListFooter: UIView, ListFooterDelegate {
         if moreStack.subviews.count == 0 {
             moreStack.addArrangedSubview(moreButton)
         }
-    }
-    
-    func changeToFooterWithInfo(toiletsCount: Int) {
-        moreButton.removeFromSuperview()
-        moreStack.removeArrangedSubview(moreButton)
-
-        if moreStack.subviews.count == 0 {
-            moreStack.addArrangedSubview(infoLabel)
-            infoLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.light)
-            infoLabel.textColor = .mainOrange
-        }
-
-        
-        infoLabel.text = "Number of Toilets: ".localized + "\(toiletsCount)"
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

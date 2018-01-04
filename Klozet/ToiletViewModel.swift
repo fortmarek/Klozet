@@ -46,7 +46,7 @@ class ToiletViewModel: APIService, ToiletViewModeling {
         toilets.producer.startWithValues { [weak self] toilets in
             DispatchQueue.global(qos: .userInitiated).async {
                 self?.orderToilets(toilets)
-            }
+                }
         }
     }
     

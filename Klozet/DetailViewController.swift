@@ -51,18 +51,11 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
     
     private func setDetailStackView() -> UIStackView {
         let detailStackView = UIStackView()
-        view.layoutIfNeeded()
         view.addSubview(detailStackView)
         detailStackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        //TopAnchor to bottom of navigationBar (by adding its x origin and height)
-        guard let navigationController = navigationController else {return UIStackView()}
-        let topMainAnchor = navigationController.navigationBar.frame.height + navigationController.navigationBar.frame.origin.x
-        detailStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: topMainAnchor).isActive = true
-        
-        detailStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        detailStackView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        detailStackView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        detailStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        detailStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        detailStackView.pinToViewHorizontally(view)
         
         //Axis
         detailStackView.axis = .vertical

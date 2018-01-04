@@ -68,8 +68,8 @@ extension DetailCell {
     func setLeftLabel(stackView: UIStackView, text: String) {
         let label = UILabel()
         label.text = text
-        label.textColor = .mainOrange
-        label.font = UIFont.systemFont(ofSize: 18)
+        label.textColor = .defaultTextColor
+        label.font = UIFont.systemFont(ofSize: 17, weight: .heavy)
 
         stackView.addArrangedSubview(label)
         label.leftAnchor.constraint(equalTo: stackView.leftAnchor).isActive = true

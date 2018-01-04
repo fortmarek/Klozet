@@ -29,9 +29,10 @@ class PriceCell: UITableViewCell, DetailCell {
     
     fileprivate func setPriceLabel(stackView: UIStackView, price: String, width: CGFloat) {
         let label = UILabel()
-        label.textColor = Colors.greenColor
+        label.textColor = .vibrantGreen
         label.text = price
         label.textAlignment = .right
+        label.font = UIFont.systemFont(ofSize: 17, weight: .heavy)
         
         stackView.addArrangedSubview(label)
         
