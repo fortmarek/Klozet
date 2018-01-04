@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import ReactiveSwift
 
 protocol ListToiletsDelegate {
     var toilets: Array<Toilet> { get set }
@@ -20,7 +21,11 @@ protocol ListToiletsDelegate {
 }
 
 
-class ListViewController: UIViewController, DirectionsDelegate {
+class ListViewController: UIViewController, DirectionsDelegate, LoadingDelegate {
+    
+    
+    
+    
     
     var toiletsViewModel: ToiletViewModel?
     var tableView: UITableView = UITableView()
@@ -32,10 +37,9 @@ class ListViewController: UIViewController, DirectionsDelegate {
     let priceButton = FilterPriceButton(title: "Free".localized)
     let openButton = FilterOpenButton(title: "Open".localized)
     
+    var isExecuting: MutableProperty<Bool> = MutableProperty(true)
     var locationDelegate: UserLocation?
-    
-    var activityView = ActivityView()
-    var activityIndicator = UIActivityIndicatorView()
+    var loadingImageView: LoadingImageView = LoadingImageView()
     
     var didOrderToilets = false
     
@@ -83,11 +87,9 @@ class ListViewController: UIViewController, DirectionsDelegate {
         
         setTableFooter()
         
-        //Have not loaded toilets yet, show activityIndicator
-        if toilets.isEmpty {
-            activityView = ActivityView(view: view)
-            activityIndicator = activityView.activityIndicator
-        }
+        tableView.tableFooterView?.isHidden = true
+        
+        addRotatingLoadingImageView()
         
         setupBindings()
     }
@@ -103,10 +105,12 @@ class ListViewController: UIViewController, DirectionsDelegate {
     
     private func setupBindings() {
         
-        toiletsViewModel?.toiletsForList.producer.startWithResult { [weak self] result in
+        toiletsViewModel?.toiletsForList.producer.observe(on: UIScheduler()).startWithResult { [weak self] result in
             guard let toilets = result.value else {return}
+            self?.isExecuting.value = toilets.count == 0
             self?.updateToilets(toilets)
         }
+        
     }
     
     private func setTableFooter() {
@@ -127,16 +131,12 @@ extension ListViewController: Reload {
     func updateToilets(_ toilets: Array<Toilet>) {
         self.toilets = toilets
         allToilets = toilets
-        if !toilets.isEmpty {
-            self.activityView.isHidden = true
-        }
         reloadTable()
     }
     
     func reloadTable() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
-            self.activityIndicator.stopAnimating()
         }
     }
     
@@ -198,6 +198,7 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         if toilets.count > 0 {
+            tableView.tableFooterView?.isHidden = false 
             listFooterDelegate?.changeToFooterWithMore()
         }
         
@@ -224,7 +225,6 @@ class ListFooter: UIView, ListFooterDelegate {
     
     let moreButton = UIButton(type: .roundedRect)
     let moreStack = UIStackView()
-    let activityIndicator = UIActivityIndicatorView()
     let infoLabel = UILabel()
     
     var reloadDelegate: Reload?
@@ -253,29 +253,12 @@ class ListFooter: UIView, ListFooterDelegate {
         moreStack.addArrangedSubview(moreButton)
     }
     
-    private func setActivityIndicator() {
-        activityIndicator.isHidden = true
-        activityIndicator.color = .mainOrange
-        activityIndicator.sizeToFit()
-    }
-    
     @objc func loadMoreToilets() {
-        
-        //activityIndicator.isHidden = false
-        //activityIndicator.startAnimating()
-        //moreStack.addArrangedSubview(activityIndicator)
-        
-        //moreButton.isHidden = true
-        //moreStack.removeArrangedSubview(moreButton)
-        
         reloadDelegate?.shownCells += 20
         reloadDelegate?.reloadTable()
     }
     
     func changeToFooterWithMore() {
-        infoLabel.removeFromSuperview()
-        moreStack.removeArrangedSubview(infoLabel)
-        
         if moreStack.subviews.count == 0 {
             moreStack.addArrangedSubview(moreButton)
         }

@@ -79,6 +79,7 @@ enum Asset {
   static let lightGold = ColorAsset(name: "lightGold")
   static let listIcon = ImageAsset(name: "listIcon")
   static let listIconSelected = ImageAsset(name: "listIconSelected")
+  static let loadingIconShadow = ImageAsset(name: "loadingIconShadow")
   static let mapIconSelected = ImageAsset(name: "mapIconSelected")
   static let mapIconUnselected = ImageAsset(name: "mapIconUnselected")
   static let melon = ColorAsset(name: "melon")
@@ -136,6 +137,7 @@ enum Asset {
     icon,
     listIcon,
     listIconSelected,
+    loadingIconShadow,
     mapIconSelected,
     mapIconUnselected,
     toiletSignIcon,
