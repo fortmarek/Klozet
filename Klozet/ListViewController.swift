@@ -116,7 +116,7 @@ class ListViewController: UIViewController, DirectionsDelegate, LoadingDelegate,
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        guard viewController.isKind(of: ViewController.self) == false else {return true}
+        guard viewController.isKind(of: UINavigationController.self) == false else {return true}
         
         let addToiletViewController = AddToiletViewController()
         let addNavigationController = UINavigationController(rootViewController: addToiletViewController)

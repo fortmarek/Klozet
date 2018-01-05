@@ -136,7 +136,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITabBarCon
         mapView.removeAnnotations(toilets)
     }
     
-    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool { 
         guard viewController.isKind(of: UINavigationController.self) == false else {return true}
         
         let addToiletViewController = AddToiletViewController()
