@@ -47,6 +47,7 @@
 		F8B9F7DC1FFFE16D00C7C024 /* AddToiletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B9F7DB1FFFE16D00C7C024 /* AddToiletViewController.swift */; };
 		F8B9F7DF200006B100C7C024 /* MapCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B9F7DE200006B100C7C024 /* MapCollectionViewCell.swift */; };
 		F8B9F7E720001B2300C7C024 /* Separable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B9F7E620001B2300C7C024 /* Separable.swift */; };
+		F8B9F7E920002CF800C7C024 /* TappableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B9F7E820002CF800C7C024 /* TappableCellView.swift */; };
 		F8C41A6D1F9A42B700E16612 /* UIColor+UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C41A6C1F9A42B700E16612 /* UIColor+UIFontExtension.swift */; };
 		F8C41A6F1F9A46D700E16612 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C41A6E1F9A46D700E16612 /* Images.swift */; };
 		F8C41A721F9A4C1C00E16612 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C41A711F9A4C1C00E16612 /* UIKitExtensions.swift */; };
@@ -143,6 +144,7 @@
 		F8B9F7DB1FFFE16D00C7C024 /* AddToiletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToiletViewController.swift; sourceTree = "<group>"; };
 		F8B9F7DE200006B100C7C024 /* MapCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCollectionViewCell.swift; sourceTree = "<group>"; };
 		F8B9F7E620001B2300C7C024 /* Separable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Separable.swift; sourceTree = "<group>"; };
+		F8B9F7E820002CF800C7C024 /* TappableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableCellView.swift; sourceTree = "<group>"; };
 		F8C41A6C1F9A42B700E16612 /* UIColor+UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+UIFontExtension.swift"; sourceTree = "<group>"; };
 		F8C41A6E1F9A46D700E16612 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		F8C41A711F9A4C1C00E16612 /* UIKitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitExtensions.swift; sourceTree = "<group>"; };
@@ -326,6 +328,14 @@
 			name = Protocols;
 			sourceTree = "<group>";
 		};
+		F8B9F7EA20002CFE00C7C024 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F8B9F7E820002CF800C7C024 /* TappableCellView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		F8EAE7ED1D5FA6A900D60DAB = {
 			isa = PBXGroup;
 			children = (
@@ -357,6 +367,7 @@
 				F87BEE231FCF2E410059F862 /* ToiletViewModel.swift */,
 				F87CE85E1F9FB14400D98515 /* TabBarController.swift */,
 				F8B9F7CE1FF4015D00C7C024 /* ButtonColorChangeable.swift */,
+				F8B9F7EA20002CFE00C7C024 /* Views */,
 				F82FB1B81D7F5E1F001FE39D /* ViewController */,
 				F86F356A1D8DE772001A8F6C /* ListViewController */,
 				F82FB1CD1D82C836001FE39D /* Filter */,
@@ -733,6 +744,7 @@
 				F8EAE7FA1D5FA6A900D60DAB /* AppDelegate.swift in Sources */,
 				F8C41A6F1F9A46D700E16612 /* Images.swift in Sources */,
 				F86EF5C41DA6EBA40095CCEB /* SettingsViewController.swift in Sources */,
+				F8B9F7E920002CF800C7C024 /* TappableCellView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

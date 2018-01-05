@@ -40,24 +40,8 @@ class MapCollectionViewCell: UICollectionViewCell, UserLocation, Separable {
         let region = MKCoordinateRegion(center: userLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         mapView.setRegion(region, animated: true)
         
-        let editMapCellStackView = UIStackView()
-        editMapCellStackView.axis = .horizontal
-        editMapCellStackView.alignment = .center
-        editMapCellStackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 18)
-        editMapCellStackView.isLayoutMarginsRelativeArrangement = true
+        let editMapCellStackView = TappableCellView()
         mapStackView.addArrangedSubview(editMapCellStackView)
-        editMapCellStackView.heightAnchor.constraint(equalToConstant: 53).isActive = true
-        
-        let editMapLabel = UILabel()
-        editMapLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-        editMapLabel.textColor = .defaultTextColor
-        editMapLabel.textAlignment = .left
-        editMapLabel.text = "Edit map pin"
-        editMapCellStackView.addArrangedSubview(editMapLabel)
-        
-        let chevron = UIImageView(image: UIImage(asset: Asset.backChevron))
-        editMapCellStackView.addArrangedSubview(chevron)
-        chevron.widthAnchor.constraint(equalToConstant: 9).isActive = true
         
         addSeparator()
         
@@ -75,7 +59,6 @@ class MapCollectionViewCell: UICollectionViewCell, UserLocation, Separable {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
 
 class AddToiletAnnotation: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
