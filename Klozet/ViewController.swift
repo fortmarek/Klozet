@@ -17,7 +17,7 @@ protocol AnnotationController {
 }
 
 
-class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocation, ToiletController, DirectionsDelegate, ShowDelegate {
+class ViewController: UIViewController, UIGestureRecognizerDelegate, UITabBarControllerDelegate, UserLocation, ToiletController, DirectionsDelegate, ShowDelegate {
     
     let toiletsViewModel: ToiletViewModel = ToiletViewModel()
     var toilets: [Toilet] = []
@@ -56,6 +56,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
         // Do any additional setup after loading the view, typically from a nib.
         
         title = "Map"
+        
+        tabBarController?.delegate = self
         
         let settingsBarButtonItem = UIBarButtonItem(image: UIImage(asset: Asset.settings), style: .plain, target: self, action: #selector(settingsButtonTapped))
         navigationItem.leftBarButtonItem = settingsBarButtonItem
@@ -132,6 +134,16 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UserLocatio
     
     func removeToilets(_ toilets: [Toilet]) {
         mapView.removeAnnotations(toilets)
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        guard viewController.isKind(of: UINavigationController.self) == false else {return true}
+        
+        let addToiletViewController = AddToiletViewController()
+        let addNavigationController = UINavigationController(rootViewController: addToiletViewController)
+        navigationController?.present(addNavigationController, animated: true, completion: nil)
+        
+        return false
     }
     
     

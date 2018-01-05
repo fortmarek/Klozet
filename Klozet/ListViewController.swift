@@ -21,7 +21,7 @@ protocol ListToiletsDelegate {
 }
 
 
-class ListViewController: UIViewController, DirectionsDelegate, LoadingDelegate {
+class ListViewController: UIViewController, DirectionsDelegate, LoadingDelegate, UITabBarControllerDelegate {
     
     
     
@@ -50,6 +50,8 @@ class ListViewController: UIViewController, DirectionsDelegate, LoadingDelegate 
     override func viewDidLoad() {
         
         title = "List"
+        
+        tabBarController?.delegate = self
         
         let filtersStackView = UIStackView()
         filtersStackView.axis = .horizontal
@@ -111,6 +113,16 @@ class ListViewController: UIViewController, DirectionsDelegate, LoadingDelegate 
             self?.updateToilets(toilets)
         }
         
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        guard viewController.isKind(of: ViewController.self) == false else {return true}
+        
+        let addToiletViewController = AddToiletViewController()
+        let addNavigationController = UINavigationController(rootViewController: addToiletViewController)
+        navigationController?.present(addNavigationController, animated: true, completion: nil)
+        
+        return false
     }
     
     private func setTableFooter() {
@@ -198,7 +210,7 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         if toilets.count > 0 {
-            tableView.tableFooterView?.isHidden = false 
+            tableView.tableFooterView?.isHidden = false
             listFooterDelegate?.changeToFooterWithMore()
         }
         

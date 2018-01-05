@@ -20,12 +20,14 @@ class TabBarController: UITabBarController {
         let navigationViewController = createViewControllerTab(viewController, title: "Map", asset: Asset.mapIconUnselected, selectedAsset: Asset.mapIconSelected)
         let listViewController = ListViewController()
         let listNavigationController = createViewControllerTab(listViewController, title: "List", asset: Asset.listIcon, selectedAsset: Asset.listIconSelected)
-        let viewControllerr = createViewControllerTab(ViewController(), title: "Map", asset: Asset.mapIconUnselected, selectedAsset: Asset.mapIconSelected)
+        let addProxyViewController = UIViewController()
+        let addProxyViewControllerTabBarItem = TabBarItem(image: UIImage(asset: Asset.addIcon), selectedImage: UIImage(asset: Asset.addIconSelected), title: "Add", selectedTintColor: .mainOrange)
+        addProxyViewController.tabBarItem = addProxyViewControllerTabBarItem
         
         listViewController.toiletsViewModel = viewController.toiletsViewModel
         listViewController.locationDelegate = viewController
         
-        viewControllers = [navigationViewController, viewControllerr, listNavigationController]
+        viewControllers = [navigationViewController, addProxyViewController, listNavigationController]
                 
         tabBar.barTintColor = .white 
     }
