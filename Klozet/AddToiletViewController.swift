@@ -21,6 +21,15 @@ class AddToiletViewController: UIViewController {
         let cancelAttributes: [NSAttributedStringKey : Any] = [.font : UIFont.systemFont(ofSize: 17, weight: .medium), .foregroundColor : UIColor.mainOrange]
         cancelBarButtonItem.setTitleTextAttributes(cancelAttributes, for: .normal)
         navigationItem.leftBarButtonItem = cancelBarButtonItem
+        
+        
+        let addToiletCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        addToiletCollectionView.dataSource = self
+        addToiletCollectionView.delegate = self
+        addToiletCollectionView.backgroundColor = .white
+        addToiletCollectionView.register(MapCollectionViewCell.self, forCellWithReuseIdentifier: "mapCell")
+        view.addSubview(addToiletCollectionView)
+        addToiletCollectionView.pinToView(view)
     }
     
     @objc private func cancelBarButtonTapped() {
@@ -29,3 +38,27 @@ class AddToiletViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 }
+
+extension AddToiletViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let mapCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "mapCell", for: indexPath) as! MapCollectionViewCell
+        return mapCollectionViewCell
+    }
+    
+    
+}
+
+extension AddToiletViewController: UICollectionViewDelegate {
+    
+}
+
+extension AddToiletViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width, height: 223)
+    }
+}
+

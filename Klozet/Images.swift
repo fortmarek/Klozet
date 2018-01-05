@@ -65,6 +65,7 @@ enum Asset {
   static let whiteCross = ImageAsset(name: "WhiteCross")
   static let addIcon = ImageAsset(name: "addIcon")
   static let addIconSelected = ImageAsset(name: "addIconSelected")
+  static let backChevron = ImageAsset(name: "backChevron")
   static let connectionError = ImageAsset(name: "connectionError")
   static let coolGrey = ColorAsset(name: "coolGrey")
   static let cornflower = ColorAsset(name: "cornflower")
@@ -130,6 +131,7 @@ enum Asset {
     whiteCross,
     addIcon,
     addIconSelected,
+    backChevron,
     connectionError,
     directionIcon,
     directionIconHeading,

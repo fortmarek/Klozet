@@ -27,7 +27,6 @@ class MapInfoView: UIStackView, UserLocation {
         //Location
         locationManager.startUpdatingLocation()
         
-        
         detailStackView.addArrangedSubview(self)
         
         axis = .vertical
