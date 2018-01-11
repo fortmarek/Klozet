@@ -80,8 +80,6 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
                 self.postImage(image: orientedImage, toiletId: toilet.toiletId)
             })
         })
-        
-        
     }
 
 }

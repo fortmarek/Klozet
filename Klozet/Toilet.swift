@@ -32,7 +32,7 @@ class Toilet: NSObject, MKAnnotation, Decodable {
     //MKAnnotation properties
     let title: String?
     let subtitle: String?
-    let coordinate: CLLocationCoordinate2D
+    var coordinate: CLLocationCoordinate2D
     let openTimes: [OpenTimes]
     let price: String
     let toiletId: Int

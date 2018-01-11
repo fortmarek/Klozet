@@ -7,8 +7,15 @@
 //
 
 import UIKit
+import CoreLocation
 
 class AddToiletViewController: UIViewController {
+    
+    var toilet: Toilet = Toilet(title: "", subtitle: "", coordinate: CLLocationCoordinate2D(), openTimes: [], price: "", toiletId: 0)
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print(toilet.coordinate)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +60,15 @@ extension AddToiletViewController: UICollectionViewDataSource {
 }
 
 extension AddToiletViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 0:
+            let addMapViewController = AddMapToiletViewController()
+            addMapViewController.toilet = toilet
+            navigationController?.pushViewController(addMapViewController, animated: true)
+        default: break
+        }
+    }
 }
 
 extension AddToiletViewController: UICollectionViewDelegateFlowLayout {

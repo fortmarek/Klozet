@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 import MapKit
 
-class SingleToiletViewController: UIViewController, MKMapViewDelegate, UserLocation {
+
+    class SingleToiletViewController: UIViewController, MKMapViewDelegate, UserLocation {
     
     var mapView: MKMapView = MKMapView()
     
@@ -23,13 +24,10 @@ class SingleToiletViewController: UIViewController, MKMapViewDelegate, UserLocat
         guard let toilet = self.toilet else {return}
         
         setMapView(toilet: toilet)
-
         startTrackingLocation()
         
+        centerMap()
         
-        let rightBarButtonItem = SingleDirectionsButton(annotation: toilet)
-        navigationItem.rightBarButtonItem = rightBarButtonItem
-        navigationController?.navigationBar.tintColor = .mainOrange
     }
     
     private func setMapView(toilet: Toilet) {
@@ -46,7 +44,7 @@ class SingleToiletViewController: UIViewController, MKMapViewDelegate, UserLocat
         centerMap()
     }
     
-    private func centerMap() {
+    func centerMap() {
         
         guard
             let toilet = self.toilet,
@@ -74,7 +72,6 @@ class SingleToiletViewController: UIViewController, MKMapViewDelegate, UserLocat
         guard let toiletAnnotation = annotation as? Toilet else {return nil}
         
         let toiletAnnotationView = ToiletView(annotation: toiletAnnotation, reuseIdentifier: "singleToilet")
-        
         //Center pin image
         toiletAnnotationView.centerOffset = CGPoint(x: 0, y: -toiletAnnotationView.frame.height/2)
         
@@ -83,33 +80,6 @@ class SingleToiletViewController: UIViewController, MKMapViewDelegate, UserLocat
 }
 
 
-class SingleDirectionsButton: UIBarButtonItem, MapsDirections {
-    
-    var annotation: Toilet
-    
-    init(annotation: Toilet) {
-        self.annotation = annotation
-        super.init()
-        
-        style = .plain
-        title = "Directions".localized
-        action = #selector(callDirectionsMapsFunc)
-        target = self
-        
-    }
-    
-    @objc func callDirectionsMapsFunc() {
-        //Open Apple Maps
-        getDirections(coordinate: annotation.coordinate)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    
-    
-}
+
 
 
