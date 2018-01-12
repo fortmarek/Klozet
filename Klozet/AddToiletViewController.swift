@@ -39,6 +39,7 @@ class AddToiletViewController: UIViewController, UIGestureRecognizerDelegate, UI
         addToiletCollectionView.register(MapCollectionViewCell.self, forCellWithReuseIdentifier: "mapCell")
         addToiletCollectionView.register(LocationDetailCollectionViewCell.self, forCellWithReuseIdentifier: "locationDetails")
         addToiletCollectionView.register(AddToiletCollectionViewCell.self, forCellWithReuseIdentifier: "addToiletCell")
+        addToiletCollectionView.register(PriceCollectionViewCell.self, forCellWithReuseIdentifier: "priceCell")
         view.addSubview(addToiletCollectionView)
         addToiletCollectionView.heightAnchor.constraint(equalToConstant: 435).isActive = true
         addToiletCollectionView.pinToViewHorizontally(view)
@@ -53,15 +54,15 @@ class AddToiletViewController: UIViewController, UIGestureRecognizerDelegate, UI
         proxyView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
         
-        let saveButton = UIButton()
-        saveButton.backgroundColor = .mainOrange
-        saveButton.setTitle("Add Toilet", for: .normal)
-        saveButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        view.addSubview(saveButton)
-        saveButton.centerInView(proxyView)
-        saveButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        saveButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        saveButton.layer.cornerRadius = 22
+        let addToiletButton = UIButton()
+        addToiletButton.backgroundColor = .mainOrange
+        addToiletButton.setTitle("Add Toilet", for: .normal)
+        addToiletButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        view.addSubview(addToiletButton)
+        addToiletButton.centerInView(proxyView)
+        addToiletButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        addToiletButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        addToiletButton.layer.cornerRadius = 22
         
     }
     
@@ -81,7 +82,12 @@ class AddToiletViewController: UIViewController, UIGestureRecognizerDelegate, UI
         view.endEditing(true)
     }
     
-    @objc private func saveButtonTapped() {
+    @objc private func addToiletButtonTapped() {
+        //TODO: Tell user if upload succeded or not
+        dismiss(animated: true, completion: nil)
+    }
+    
+    private func uploadToilet() {
         
     }
     
@@ -103,7 +109,7 @@ class AddToiletViewController: UIViewController, UIGestureRecognizerDelegate, UI
 
 extension AddToiletViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -116,9 +122,13 @@ extension AddToiletViewController: UICollectionViewDataSource {
             cell = mapCell
         case 1:
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: "locationDetails", for: indexPath) as! LocationDetailCollectionViewCell
-        case 2...3:
+        case 2:
+            let priceToiletCell = collectionView.dequeueReusableCell(withReuseIdentifier: "priceCell", for: indexPath) as! PriceCollectionViewCell
+            priceToiletCell.tappableCellView.cellViewLabel.text = "Price"
+            cell = priceToiletCell
+        case 3...4:
             let addToiletCell = collectionView.dequeueReusableCell(withReuseIdentifier: "addToiletCell", for: indexPath) as! AddToiletCollectionViewCell
-            addToiletCell.tappableCellView.cellViewLabel.text = indexPath.row == 2 ? "Add photo of hours" : "Add photo of toilet"
+            addToiletCell.tappableCellView.cellViewLabel.text = indexPath.row == 3 ? "Add photo of hours" : "Add photo of toilet"
             cell = addToiletCell
         default:
             cell = UICollectionViewCell()
@@ -138,10 +148,10 @@ extension AddToiletViewController: UICollectionViewDelegate {
             let addMapViewController = AddMapToiletViewController()
             addMapViewController.toilet = toilet
             navigationController?.pushViewController(addMapViewController, animated: true)
-        case 2:
+        case 3:
             uploadImageType = .hours
             uploadImage()
-        case 3:
+        case 4:
             uploadImageType = .toilet
             uploadImage()
         default: break
@@ -153,9 +163,9 @@ extension AddToiletViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height: CGFloat
         switch indexPath.row {
-        case 0: height = 223
+        case 0: height = AppDelegate.isScreenSmall ? 163 : 223
         case 1: height = 105
-        case 2...3: height = 53
+        case 2...4: height = 53
         default: height = 100
         }
         return CGSize(width: view.frame.width, height: height)
@@ -165,4 +175,50 @@ extension AddToiletViewController: UICollectionViewDelegateFlowLayout {
         return 0
     }
 }
+
+//protocol PricePickerDelegate {
+//    var prices: [String] {get}
+//}
+//
+//
+//extension PricePickerDelegate where Self: UIPickerViewDelegate, Self: UIPickerViewDataSource {
+//    func createPricesArray() -> [String] {
+//        var prices: [String] = ["Free"]
+//        let currentYear = getCurrentYear()
+//        for price in 1...100 {
+//            years.append("\(price) CZK")
+//        }
+//        return years
+//    }
+//    
+//    fileprivate func getCurrentYear() -> Int {
+//        let date = Date()
+//        let calendar = Calendar.current
+//        let currentYear = calendar.component(.year, from: date)
+//        
+//        return currentYear - 18
+//    }
+//}
+//
+//extension SignUpViewController: UIPickerViewDelegate, UIPickerViewDataSource, YearPickerDelegate {
+//    
+//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+//        return 1
+//    }
+//    
+//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+//        return years.count
+//    }
+//    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+//        let attributedTitle = NSAttributedString(string: years[years.count - row - 1], attributes: [.foregroundColor: UIColor.mainRedColor()])
+//        return attributedTitle
+//    }
+//    
+//    
+//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//        dismissKeyboard()
+//        
+//        viewModel.birthyear.value = years[years.count - row - 1]
+//    }
+//}
 

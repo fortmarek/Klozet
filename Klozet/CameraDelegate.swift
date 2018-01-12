@@ -6,7 +6,8 @@
 //  Copyright © 2018 Marek Fořt. All rights reserved.
 //
 
-import UIKit 
+import UIKit
+import Alamofire 
 
 protocol CameraDelegate {
     var uploadImageType: UploadImageType {get}
@@ -69,7 +70,7 @@ extension CameraDelegate where Self: UIViewController, Self: UINavigationControl
         present(imagePicker, animated: true, completion: nil)
     }
     
-    fileprivate func postImage(image: UIImage, toiletId: Int) {
+    func postImage(image: UIImage, toiletId: Int) {
         guard let encodedImage = UIImageJPEGRepresentation(image, 0.9)?.base64EncodedString() else {return}
         let subpath = uploadImageType == .hours ? "hours" : ""
         let path = "http://139.59.144.155/klozet/toilet/\(toiletId)" + subpath

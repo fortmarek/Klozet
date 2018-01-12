@@ -57,6 +57,7 @@
 		F8D9843F2007BF0D00686834 /* SingleDirectionsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D9843E2007BF0D00686834 /* SingleDirectionsButton.swift */; };
 		F8D984412009059600686834 /* AddToiletCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D984402009059600686834 /* AddToiletCollectionViewCell.swift */; };
 		F8D984432009315400686834 /* CameraDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D984422009315400686834 /* CameraDelegate.swift */; };
+		F8D984452009348400686834 /* PriceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D984442009348400686834 /* PriceCollectionViewCell.swift */; };
 		F8E541541D744CA600BA4BE7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E541531D744CA600BA4BE7 /* Extensions.swift */; };
 		F8EAE7FA1D5FA6A900D60DAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE7F91D5FA6A900D60DAB /* AppDelegate.swift */; };
 		F8EAE7FC1D5FA6A900D60DAB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE7FB1D5FA6A900D60DAB /* ViewController.swift */; };
@@ -160,6 +161,7 @@
 		F8D9843E2007BF0D00686834 /* SingleDirectionsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleDirectionsButton.swift; sourceTree = "<group>"; };
 		F8D984402009059600686834 /* AddToiletCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToiletCollectionViewCell.swift; sourceTree = "<group>"; };
 		F8D984422009315400686834 /* CameraDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraDelegate.swift; sourceTree = "<group>"; };
+		F8D984442009348400686834 /* PriceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceCollectionViewCell.swift; sourceTree = "<group>"; };
 		F8E541531D744CA600BA4BE7 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F8EAE7F61D5FA6A900D60DAB /* Klozet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Klozet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8EAE7F91D5FA6A900D60DAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 			isa = PBXGroup;
 			children = (
 				F8B9F7DE200006B100C7C024 /* MapCollectionViewCell.swift */,
+				F8D984442009348400686834 /* PriceCollectionViewCell.swift */,
 				F8B9F7EB20002DF500C7C024 /* LocationDetailCollectionViewCell.swift */,
 				F8D984402009059600686834 /* AddToiletCollectionViewCell.swift */,
 			);
@@ -724,6 +727,7 @@
 			files = (
 				F83B201B1DC60538006C1D92 /* DetailMapView.swift in Sources */,
 				F87BEE201FCF24400059F862 /* APIService.swift in Sources */,
+				F8D984452009348400686834 /* PriceCollectionViewCell.swift in Sources */,
 				F8EAE83C1D630E0500D60DAB /* VIewControllerInterface.swift in Sources */,
 				F82FB1C81D82B7C3001FE39D /* FilterOpen.swift in Sources */,
 				F8B9F7D71FFD827C00C7C024 /* ToiletController.swift in Sources */,
