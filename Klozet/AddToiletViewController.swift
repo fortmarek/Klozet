@@ -37,10 +37,32 @@ class AddToiletViewController: UIViewController, UIGestureRecognizerDelegate {
         addToiletCollectionView.register(LocationDetailCollectionViewCell.self, forCellWithReuseIdentifier: "locationDetails")
         addToiletCollectionView.register(AddToiletCollectionViewCell.self, forCellWithReuseIdentifier: "addToiletCell")
         view.addSubview(addToiletCollectionView)
-        addToiletCollectionView.pinToView(view)
+        addToiletCollectionView.heightAnchor.constraint(equalToConstant: 435).isActive = true
+        addToiletCollectionView.pinToViewHorizontally(view)
+        addToiletCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         self.addToiletCollectionView = addToiletCollectionView
+
+        
+        let proxyView = UIView()
+        view.addSubview(proxyView)
+        proxyView.pinToViewHorizontally(view)
+        proxyView.topAnchor.constraint(equalTo: addToiletCollectionView.bottomAnchor).isActive = true
+        proxyView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        
+        
+        let saveButton = UIButton()
+        saveButton.backgroundColor = .mainOrange
+        saveButton.setTitle("Add Toilet", for: .normal)
+        saveButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        view.addSubview(saveButton)
+        saveButton.centerInView(proxyView)
+        saveButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        saveButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        saveButton.layer.cornerRadius = 22
+        
     }
     
+
     override func viewDidAppear(_ animated: Bool) {
         addToiletCollectionView?.reloadItems(at: [IndexPath(row: 0, section: 0)])
     

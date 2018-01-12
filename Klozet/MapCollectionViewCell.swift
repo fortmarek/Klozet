@@ -48,8 +48,6 @@ class MapCollectionViewCell: UICollectionViewCell, UserLocation, Separable {
         
         setToiletPositionToCurrentIfNone()
         
-        //centerToToilet()
-        
         addSeparator()
         
     }
@@ -64,8 +62,6 @@ class MapCollectionViewCell: UICollectionViewCell, UserLocation, Separable {
         guard let toilet = self.toilet else {return}
         let region = MKCoordinateRegion(center: toilet.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         mapView.setRegion(region, animated: false)
-        print("SET")
-        print(toilet.coordinate)
     }
     
     
