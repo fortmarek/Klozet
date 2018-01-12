@@ -69,6 +69,8 @@
 		F8EAE82A1D5FAAF300D60DAB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8EAE8291D5FAAF300D60DAB /* MapKit.framework */; };
 		F8EAE83A1D6072EF00D60DAB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8EAE8391D6072EF00D60DAB /* CoreLocation.framework */; };
 		F8EAE83C1D630E0500D60DAB /* VIewControllerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE83B1D630E0500D60DAB /* VIewControllerInterface.swift */; };
+		F8FE861C2009428900A9EAA9 /* PricePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FE861B2009428900A9EAA9 /* PricePickerView.swift */; };
+		F8FE861E2009474600A9EAA9 /* PricePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FE861D2009474600A9EAA9 /* PricePickerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -179,6 +181,8 @@
 		F8EAE8291D5FAAF300D60DAB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F8EAE8391D6072EF00D60DAB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F8EAE83B1D630E0500D60DAB /* VIewControllerInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VIewControllerInterface.swift; sourceTree = "<group>"; };
+		F8FE861B2009428900A9EAA9 /* PricePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PricePickerView.swift; sourceTree = "<group>"; };
+		F8FE861D2009474600A9EAA9 /* PricePickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PricePickerDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -343,6 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				F8B9F7E620001B2300C7C024 /* Separable.swift */,
+				F8FE861D2009474600A9EAA9 /* PricePickerDelegate.swift */,
 				F8D984422009315400686834 /* CameraDelegate.swift */,
 			);
 			name = Protocols;
@@ -351,6 +356,7 @@
 		F8B9F7EA20002CFE00C7C024 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F8FE861B2009428900A9EAA9 /* PricePickerView.swift */,
 				F8B9F7E820002CF800C7C024 /* TappableCellView.swift */,
 				F8D9843E2007BF0D00686834 /* SingleDirectionsButton.swift */,
 			);
@@ -771,8 +777,10 @@
 				F8B9F7CF1FF4015E00C7C024 /* ButtonColorChangeable.swift in Sources */,
 				F8EAE7FA1D5FA6A900D60DAB /* AppDelegate.swift in Sources */,
 				F8C41A6F1F9A46D700E16612 /* Images.swift in Sources */,
+				F8FE861E2009474600A9EAA9 /* PricePickerDelegate.swift in Sources */,
 				F86EF5C41DA6EBA40095CCEB /* SettingsViewController.swift in Sources */,
 				F8B9F7E920002CF800C7C024 /* TappableCellView.swift in Sources */,
+				F8FE861C2009428900A9EAA9 /* PricePickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

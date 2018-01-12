@@ -10,8 +10,10 @@ import UIKit
 
 class PriceCollectionViewCell: UICollectionViewCell, Separable {
     
+    var prices: [String] = []
     var separatorView: UIView = UIView()
     let tappableCellView = TappableCellView()
+    let priceLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -19,14 +21,13 @@ class PriceCollectionViewCell: UICollectionViewCell, Separable {
         addSubview(tappableCellView)
         tappableCellView.pinToView(self)
         
-        let priceLabel = UILabel()
         priceLabel.textColor = .defaultTextColor
         priceLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         priceLabel.text = "Free"
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(priceLabel)
         priceLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true 
-        priceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -90).isActive = true
+        priceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -60).isActive = true
         
         addSeparator()
     }
@@ -36,3 +37,5 @@ class PriceCollectionViewCell: UICollectionViewCell, Separable {
     }
     
 }
+
+

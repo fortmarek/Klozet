@@ -10,8 +10,10 @@ import UIKit
 import CoreLocation
 import MapKit
 
-class AddToiletViewController: UIViewController, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, CameraDelegate, UINavigationControllerDelegate {
+class AddToiletViewController: UIViewController, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, CameraDelegate, UINavigationControllerDelegate, PricePickerViewDelegate {
     
+    let pricePickerView = PricePickerView()
+    var selectedPrice: String = "Free"
     var toilet: Toilet = Toilet(title: "", subtitle: "", coordinate: CLLocationCoordinate2D(), openTimes: [], price: "", toiletId: 0)
     var tapGestureRecognizer: UITapGestureRecognizer?
     var addToiletCollectionView: UICollectionView?
@@ -25,6 +27,7 @@ class AddToiletViewController: UIViewController, UIGestureRecognizerDelegate, UI
         title = "Add Toilet"
         
         view.backgroundColor = .white
+        
 
         let cancelBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelBarButtonTapped))
         let cancelAttributes: [NSAttributedStringKey : Any] = [.font : UIFont.systemFont(ofSize: 17, weight: .medium), .foregroundColor : UIColor.mainOrange]
@@ -64,6 +67,14 @@ class AddToiletViewController: UIViewController, UIGestureRecognizerDelegate, UI
         addToiletButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
         addToiletButton.layer.cornerRadius = 22
         
+        
+        pricePickerView.pricePickerViewDelegate = self
+        pricePickerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(pricePickerView)
+        pricePickerView.pinToViewHorizontally(view)
+        pricePickerView.pickerStackBottomAnchor = pricePickerView.topAnchor.constraint(equalTo: view.bottomAnchor)
+        pricePickerView.pickerStackBottomAnchor?.isActive = true
+        
     }
     
 
@@ -76,6 +87,18 @@ class AddToiletViewController: UIViewController, UIGestureRecognizerDelegate, UI
         
         //TODO: Alert when some info filled in?
         dismiss(animated: true, completion: nil)
+    }
+    
+    func dismissPicker() {
+        pricePickerView.pickerStackBottomAnchor?.isActive = false
+        pricePickerView.pickerStackBottomAnchor = pricePickerView.topAnchor.constraint(equalTo: view.bottomAnchor)
+        pricePickerView.pickerStackBottomAnchor?.isActive = true
+        
+        addToiletCollectionView?.reloadItems(at: [IndexPath(row: 2, section: 0)])
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.view.layoutIfNeeded()
+        })
     }
     
     @objc private func dismissKeyboard() {
@@ -125,6 +148,7 @@ extension AddToiletViewController: UICollectionViewDataSource {
         case 2:
             let priceToiletCell = collectionView.dequeueReusableCell(withReuseIdentifier: "priceCell", for: indexPath) as! PriceCollectionViewCell
             priceToiletCell.tappableCellView.cellViewLabel.text = "Price"
+            priceToiletCell.priceLabel.text = selectedPrice
             cell = priceToiletCell
         case 3...4:
             let addToiletCell = collectionView.dequeueReusableCell(withReuseIdentifier: "addToiletCell", for: indexPath) as! AddToiletCollectionViewCell
@@ -148,6 +172,8 @@ extension AddToiletViewController: UICollectionViewDelegate {
             let addMapViewController = AddMapToiletViewController()
             addMapViewController.toilet = toilet
             navigationController?.pushViewController(addMapViewController, animated: true)
+        case 2:
+            showPricePickerView()
         case 3:
             uploadImageType = .hours
             uploadImage()
@@ -156,6 +182,18 @@ extension AddToiletViewController: UICollectionViewDelegate {
             uploadImage()
         default: break
         }
+    }
+    
+    func showPricePickerView() {
+        dismissKeyboard()
+        guard let priceIndex = pricePickerView.prices.index(of: selectedPrice) else {return}
+        pricePickerView.pricePicker.selectRow(pricePickerView.prices.endIndex - priceIndex - 1, inComponent: 0, animated: false)
+        pricePickerView.pickerStackBottomAnchor?.isActive = false
+        pricePickerView.pickerStackBottomAnchor = pricePickerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        pricePickerView.pickerStackBottomAnchor?.isActive = true
+        UIView.animate(withDuration: 0.3, animations: {
+            self.view.layoutIfNeeded()
+        })
     }
 }
 
@@ -174,51 +212,4 @@ extension AddToiletViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-}
-
-//protocol PricePickerDelegate {
-//    var prices: [String] {get}
-//}
-//
-//
-//extension PricePickerDelegate where Self: UIPickerViewDelegate, Self: UIPickerViewDataSource {
-//    func createPricesArray() -> [String] {
-//        var prices: [String] = ["Free"]
-//        let currentYear = getCurrentYear()
-//        for price in 1...100 {
-//            years.append("\(price) CZK")
-//        }
-//        return years
-//    }
-//    
-//    fileprivate func getCurrentYear() -> Int {
-//        let date = Date()
-//        let calendar = Calendar.current
-//        let currentYear = calendar.component(.year, from: date)
-//        
-//        return currentYear - 18
-//    }
-//}
-//
-//extension SignUpViewController: UIPickerViewDelegate, UIPickerViewDataSource, YearPickerDelegate {
-//    
-//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-//        return 1
-//    }
-//    
-//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-//        return years.count
-//    }
-//    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-//        let attributedTitle = NSAttributedString(string: years[years.count - row - 1], attributes: [.foregroundColor: UIColor.mainRedColor()])
-//        return attributedTitle
-//    }
-//    
-//    
-//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        dismissKeyboard()
-//        
-//        viewModel.birthyear.value = years[years.count - row - 1]
-//    }
-//}
-
+} 
