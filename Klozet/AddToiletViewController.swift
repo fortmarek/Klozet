@@ -17,7 +17,7 @@ class AddToiletViewController: UIViewController, UIGestureRecognizerDelegate, UI
     var addToiletCollectionView: UICollectionView?
     var uploadImageType: UploadImageType = .toilet
     var toiletImage: UIImage?
-    var hoursImage: UIImage? 
+    var hoursImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,8 +81,23 @@ class AddToiletViewController: UIViewController, UIGestureRecognizerDelegate, UI
         view.endEditing(true)
     }
     
+    @objc private func saveButtonTapped() {
+        
+    }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        finishPicking(toilet: toilet, info: info, completion: nil)
+        finishPicking(toilet: toilet, info: info, completion:  { [weak self] image, _ in
+            self?.saveImage(image)
+        })
+    }
+    
+    private func saveImage(_ image: UIImage) {
+        if uploadImageType == .hours {
+            hoursImage = image
+        }
+        else {
+            toiletImage = image
+        }
     }
 }
 
