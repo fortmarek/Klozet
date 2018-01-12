@@ -10,11 +10,14 @@ import UIKit
 import CoreLocation
 import MapKit
 
-class AddToiletViewController: UIViewController, UIGestureRecognizerDelegate {
+class AddToiletViewController: UIViewController, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, CameraDelegate, UINavigationControllerDelegate {
     
     var toilet: Toilet = Toilet(title: "", subtitle: "", coordinate: CLLocationCoordinate2D(), openTimes: [], price: "", toiletId: 0)
     var tapGestureRecognizer: UITapGestureRecognizer?
     var addToiletCollectionView: UICollectionView?
+    var uploadImageType: UploadImageType = .toilet
+    var toiletImage: UIImage?
+    var hoursImage: UIImage? 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,6 +80,10 @@ class AddToiletViewController: UIViewController, UIGestureRecognizerDelegate {
     @objc private func dismissKeyboard() {
         view.endEditing(true)
     }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        finishPicking(toilet: toilet, info: info, completion: nil)
+    }
 }
 
 extension AddToiletViewController: UICollectionViewDataSource {
@@ -116,6 +123,12 @@ extension AddToiletViewController: UICollectionViewDelegate {
             let addMapViewController = AddMapToiletViewController()
             addMapViewController.toilet = toilet
             navigationController?.pushViewController(addMapViewController, animated: true)
+        case 2:
+            uploadImageType = .hours
+            uploadImage()
+        case 3:
+            uploadImageType = .toilet
+            uploadImage()
         default: break
         }
     }

@@ -12,6 +12,7 @@ import Alamofire
 
 class DetailViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, ShowDelegate, PresentDelegate, CameraDelegate {
     
+    var uploadImageType: UploadImageType = .toilet
     var toilet: Toilet?
 
     var widthDimension = CGFloat()
@@ -70,30 +71,41 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {return}
-        dismiss(animated: true, completion: {
-            DispatchQueue.global().async(execute: {
-                guard
-                    let orientedImage = image.correctlyOrientedImage(),
-                    let toilet = self.toilet
-                else {return}
-                self.postImage(image: orientedImage, toiletId: toilet.toiletId)
-            })
+        finishPicking(toilet: toilet, info: info, completion: { [weak self] image, toiletId in
+            self?.postImage(image: image, toiletId: toiletId)
         })
     }
 
 }
 
 protocol CameraDelegate {
-    
+    var uploadImageType: UploadImageType {get}
 }
 
+enum UploadImageType {
+    case toilet
+    case hours
+}
 
 extension CameraDelegate where Self: UIViewController, Self: UINavigationControllerDelegate, Self: UIImagePickerControllerDelegate {
     
+    func finishPicking(toilet: Toilet?, info: [String : Any], completion: ((_ image: UIImage,_ toiletId: Int) -> ())?) {
+        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {return}
+        dismiss(animated: true, completion: {
+            DispatchQueue.global().async(execute: {
+                guard
+                    let orientedImage = image.correctlyOrientedImage(),
+                    let toilet = toilet
+                    else {return}
+                self.postImage(image: orientedImage, toiletId: toilet.toiletId)
+            })
+        })
+    }
     
-    fileprivate func uploadImage() {
-        let actionSheet = UIAlertController(title: "It's always better with a photo".localized, message: nil, preferredStyle: .actionSheet)
+    
+    func uploadImage() {
+        let alertTitle = uploadImageType == .hours ? "We need a photo to add hours for toilet" : "It's always better with a photo".localized
+        let actionSheet = UIAlertController(title: alertTitle, message: nil, preferredStyle: .actionSheet)
         actionSheet.view.tintColor = .mainOrange
         
         let pickPhotoOption = UIAlertAction(title: "Choose image from library".localized, style: .default, handler: {_ in self.selectPhoto()})
@@ -129,7 +141,9 @@ extension CameraDelegate where Self: UIViewController, Self: UINavigationControl
     
     fileprivate func postImage(image: UIImage, toiletId: Int) {
         guard let encodedImage = UIImageJPEGRepresentation(image, 0.9)?.base64EncodedString() else {return}
-        let path = "http://139.59.144.155/klozet/toilet/\(toiletId)"
+        let subpath = uploadImageType == .hours ? "hours" : ""
+        let path = "http://139.59.144.155/klozet/toilet/\(toiletId)" + subpath
+        
 
         _ = Alamofire.request(path, method: .post, parameters: ["encoded_image" : encodedImage])
     }
