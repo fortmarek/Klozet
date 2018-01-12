@@ -10,6 +10,8 @@ import UIKit
 
 class TappableCellView: UIStackView {
     
+    let cellViewLabel: UILabel = UILabel()
+    
      init() {
         super.init(frame: .zero)
         
@@ -19,12 +21,11 @@ class TappableCellView: UIStackView {
         isLayoutMarginsRelativeArrangement = true
         heightAnchor.constraint(equalToConstant: 53).isActive = true
         
-        let editMapLabel = UILabel()
-        editMapLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-        editMapLabel.textColor = .defaultTextColor
-        editMapLabel.textAlignment = .left
-        editMapLabel.text = "Edit map pin"
-        addArrangedSubview(editMapLabel)
+        
+        cellViewLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        cellViewLabel.textColor = .defaultTextColor
+        cellViewLabel.textAlignment = .left
+        addArrangedSubview(cellViewLabel)
         
         let chevron = UIImageView(image: UIImage(asset: Asset.backChevron))
         addArrangedSubview(chevron)

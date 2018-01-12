@@ -55,6 +55,7 @@
 		F8D9843B2007BE2900686834 /* AddMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D9843A2007BE2900686834 /* AddMapViewController.swift */; };
 		F8D9843D2007BEAF00686834 /* DirectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D9843C2007BEAF00686834 /* DirectionsViewController.swift */; };
 		F8D9843F2007BF0D00686834 /* SingleDirectionsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D9843E2007BF0D00686834 /* SingleDirectionsButton.swift */; };
+		F8D984412009059600686834 /* AddToiletCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D984402009059600686834 /* AddToiletCollectionViewCell.swift */; };
 		F8E541541D744CA600BA4BE7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E541531D744CA600BA4BE7 /* Extensions.swift */; };
 		F8EAE7FA1D5FA6A900D60DAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE7F91D5FA6A900D60DAB /* AppDelegate.swift */; };
 		F8EAE7FC1D5FA6A900D60DAB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE7FB1D5FA6A900D60DAB /* ViewController.swift */; };
@@ -156,6 +157,7 @@
 		F8D9843A2007BE2900686834 /* AddMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMapViewController.swift; sourceTree = "<group>"; };
 		F8D9843C2007BEAF00686834 /* DirectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsViewController.swift; sourceTree = "<group>"; };
 		F8D9843E2007BF0D00686834 /* SingleDirectionsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleDirectionsButton.swift; sourceTree = "<group>"; };
+		F8D984402009059600686834 /* AddToiletCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToiletCollectionViewCell.swift; sourceTree = "<group>"; };
 		F8E541531D744CA600BA4BE7 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F8EAE7F61D5FA6A900D60DAB /* Klozet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Klozet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8EAE7F91D5FA6A900D60DAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 			children = (
 				F8B9F7DE200006B100C7C024 /* MapCollectionViewCell.swift */,
 				F8B9F7EB20002DF500C7C024 /* LocationDetailCollectionViewCell.swift */,
+				F8D984402009059600686834 /* AddToiletCollectionViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -725,6 +728,7 @@
 				F87BEE221FCF2B920059F862 /* CodableError.swift in Sources */,
 				F82FB1BA1D809F27001FE39D /* Directions.swift in Sources */,
 				F80FC7D41DA99B5200D4FC05 /* SupportCell.swift in Sources */,
+				F8D984412009059600686834 /* AddToiletCollectionViewCell.swift in Sources */,
 				F8E541541D744CA600BA4BE7 /* Extensions.swift in Sources */,
 				F818D4481D88482E009B153C /* Constants.swift in Sources */,
 				F8D9843F2007BF0D00686834 /* SingleDirectionsButton.swift in Sources */,

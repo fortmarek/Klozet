@@ -14,11 +14,14 @@ class MapCollectionViewCell: UICollectionViewCell, UserLocation, Separable {
     var separatorView: UIView = UIView()
     var locationManager = CLLocationManager()
     var mapView = MKMapView()
+    var toilet: Toilet?
+    let editMapCellStackView = TappableCellView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         locationManager.startUpdatingLocation()
+        
         
         let mapStackView = UIStackView()
         mapStackView.axis = .vertical
@@ -32,26 +35,37 @@ class MapCollectionViewCell: UICollectionViewCell, UserLocation, Separable {
         mapView.translatesAutoresizingMaskIntoConstraints = false
         mapStackView.addArrangedSubview(mapView)
         
-        guard let userLocation = locationManager.location else {return}
-        let addToiletAnnotation = AddToiletAnnotation(coordinate: userLocation.coordinate)
-        mapView.addAnnotation(addToiletAnnotation)
+        
+        let toiletPinImageView = UIImageView()
+        toiletPinImageView.image = UIImage(asset: Asset.pin)
+        addSubview(toiletPinImageView)
+        toiletPinImageView.centerInView(mapView)
         
         
-        let region = MKCoordinateRegion(center: userLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-        mapView.setRegion(region, animated: true)
         
-        let editMapCellStackView = TappableCellView()
+        editMapCellStackView.cellViewLabel.text = "Edit map pin"
         mapStackView.addArrangedSubview(editMapCellStackView)
+        
+        setToiletPositionToCurrentIfNone()
+        
+        //centerToToilet()
         
         addSeparator()
         
     }
     
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let annotationView = MKAnnotationView()
-        annotationView.image = UIImage(asset: Asset.pin)
-        
-        return annotationView
+    private func setToiletPositionToCurrentIfNone() {
+        guard toilet?.coordinate.latitude == 0.0, let userLocation = getUserLocation() else {return}
+        toilet?.coordinate = userLocation.coordinate
+    }
+    
+    func centerToToilet() {
+        setToiletPositionToCurrentIfNone()
+        guard let toilet = self.toilet else {return}
+        let region = MKCoordinateRegion(center: toilet.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        mapView.setRegion(region, animated: false)
+        print("SET")
+        print(toilet.coordinate)
     }
     
     
@@ -60,11 +74,3 @@ class MapCollectionViewCell: UICollectionViewCell, UserLocation, Separable {
     }
 }
 
-class AddToiletAnnotation: NSObject, MKAnnotation {
-    var coordinate: CLLocationCoordinate2D
-    
-    init(coordinate: CLLocationCoordinate2D) {
-        self.coordinate = coordinate
-    }
-    
-}

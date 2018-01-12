@@ -22,8 +22,6 @@ class AddMapToiletViewController: UIViewController, MKMapViewDelegate, UserLocat
         
         startTrackingLocation()
         
-        setToiletPositionToCurrentIfNone()
-        
         mapView.frame = view.frame
         mapView.delegate = self
         view.addSubview(mapView)
@@ -35,11 +33,6 @@ class AddMapToiletViewController: UIViewController, MKMapViewDelegate, UserLocat
         
         centerMap()
         
-    }
-    
-    private func setToiletPositionToCurrentIfNone() {
-        guard toilet?.coordinate.latitude == 0.0, let userLocation = getUserLocation() else {return}
-        toilet?.coordinate = userLocation.coordinate
     }
     
     func centerMap() {

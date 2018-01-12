@@ -45,6 +45,7 @@ extension ViewController: CLLocationManagerDelegate {
     
     //The initial positon and region of the map
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
         //Locations.last = current location
         guard let location = locations.last else {return}
         

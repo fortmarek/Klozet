@@ -17,8 +17,8 @@ class LocationDetailCollectionViewCell: UICollectionViewCell, Separable {
         
         let locationDetailStackView = UIStackView()
         locationDetailStackView.axis = .vertical
-        locationDetailStackView.spacing = 15
-        locationDetailStackView.layoutMargins = UIEdgeInsets(top: 18, left: 16, bottom: 10, right: 5)
+        locationDetailStackView.spacing = 5
+        locationDetailStackView.layoutMargins = UIEdgeInsets(top: 18, left: 16, bottom: 5, right: 5)
         locationDetailStackView.isLayoutMarginsRelativeArrangement = true
         locationDetailStackView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(locationDetailStackView)
@@ -31,7 +31,14 @@ class LocationDetailCollectionViewCell: UICollectionViewCell, Separable {
         locationDetailLabel.textColor = .defaultTextColor
         locationDetailLabel.text = "Location details"
         locationDetailLabel.textAlignment = .left
+        locationDetailLabel.heightAnchor.constraint(equalToConstant: locationDetailLabel.font.getHeight()).isActive = true
         locationDetailStackView.addArrangedSubview(locationDetailLabel)
+        
+        let locationDetailTextView = UITextView()
+        locationDetailTextView.font = UIFont.systemFont(ofSize: 18)
+        locationDetailTextView.textColor = .defaultTextColor
+        locationDetailStackView.addArrangedSubview(locationDetailTextView)
+        
         
         
         addSeparator()
