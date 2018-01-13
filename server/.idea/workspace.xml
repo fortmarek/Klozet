@@ -25,30 +25,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="wc_cs.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/klozet/wc_cs.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="247" column="33" selection-start-line="247" selection-start-column="33" selection-end-line="247" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wc_en.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/klozet/wc_en.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="580">
-              <caret line="2668" column="28" selection-start-line="2668" selection-start-column="16" selection-end-line="2668" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="parse.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/klozet/parse.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="445">
+            <state relative-caret-position="490">
               <caret line="136" column="36" selection-start-line="136" selection-start-column="36" selection-end-line="136" selection-end-column="36" />
               <folding>
                 <element signature="e#24#61#0" expanded="true" />
@@ -61,7 +41,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="verejnawc.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="verejnawc.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/klozet/verejnawc.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-509">
@@ -71,67 +51,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="translate.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/klozet/translate.py">
+      <file leaf-file-name="wc_en.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/klozet/wc_en.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+            <state relative-caret-position="385">
+              <caret line="2668" column="28" selection-start-line="2668" selection-start-column="16" selection-end-line="2668" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="open_times.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/klozet/open_times.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1372">
-              <caret line="93" column="23" selection-start-line="93" selection-start-column="16" selection-end-line="93" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+            <state relative-caret-position="225">
+              <caret line="34" column="61" selection-start-line="34" selection-start-column="61" selection-end-line="34" selection-end-column="61" />
               <folding>
                 <element signature="e#0#67#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="database_import.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/klozet/database_import.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dbconnect.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/dbconnect.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="adress.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/klozet/adress.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="7" column="25" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="25" />
-              <folding>
-                <element signature="e#25#61#0" expanded="true" />
+                <marker date="1515883684172" expanded="true" signature="724:747" ph="SELECT * FRO... toilets" />
+                <marker date="1515883684172" expanded="true" signature="1669:1695" ph="SELECT * FRO... " />
+                <marker date="1515883684172" expanded="true" signature="1669:1717" ph="SELECT * FRO... open_times" />
               </folding>
             </state>
           </provider>
@@ -160,10 +99,10 @@
         <option value="$PROJECT_DIR$/klozet/wc.json" />
         <option value="$PROJECT_DIR$/klozet/adress.py" />
         <option value="$PROJECT_DIR$/klozet/wc_en.json" />
-        <option value="$PROJECT_DIR$/www/__init__.py" />
-        <option value="$PROJECT_DIR$/templates/dbconnect.py" />
         <option value="$PROJECT_DIR$/klozet/parse.py" />
         <option value="$PROJECT_DIR$/klozet/verejnawc.json" />
+        <option value="$PROJECT_DIR$/templates/dbconnect.py" />
+        <option value="$PROJECT_DIR$/www/__init__.py" />
       </list>
     </option>
   </component>
@@ -269,6 +208,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -620,7 +573,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -644,7 +599,7 @@
         <state relative-caret-position="300">
           <caret line="21" column="59" selection-start-line="21" selection-start-column="59" selection-end-line="21" selection-end-column="59" />
           <folding>
-            <element signature="e#25#61#0" expanded="true" />
+            <element signature="e#25#61#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -690,7 +645,7 @@
         <state relative-caret-position="300">
           <caret line="21" column="59" selection-start-line="21" selection-start-column="59" selection-end-line="21" selection-end-column="59" />
           <folding>
-            <element signature="e#25#61#0" expanded="true" />
+            <element signature="e#25#61#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -743,7 +698,7 @@
         <state relative-caret-position="315">
           <caret line="21" column="59" selection-start-line="21" selection-start-column="59" selection-end-line="21" selection-end-column="59" />
           <folding>
-            <element signature="e#25#61#0" expanded="true" />
+            <element signature="e#25#61#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -789,7 +744,7 @@
         <state relative-caret-position="300">
           <caret line="21" column="59" selection-start-line="21" selection-start-column="59" selection-end-line="21" selection-end-column="59" />
           <folding>
-            <element signature="e#25#61#0" expanded="true" />
+            <element signature="e#25#61#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -828,7 +783,7 @@
         <state relative-caret-position="300">
           <caret line="21" column="59" selection-start-line="21" selection-start-column="59" selection-end-line="21" selection-end-column="59" />
           <folding>
-            <element signature="e#25#61#0" expanded="true" />
+            <element signature="e#25#61#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -881,7 +836,7 @@
         <state relative-caret-position="300">
           <caret line="21" column="59" selection-start-line="21" selection-start-column="59" selection-end-line="21" selection-end-column="59" />
           <folding>
-            <element signature="e#25#61#0" expanded="true" />
+            <element signature="e#25#61#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -941,7 +896,7 @@
         <state relative-caret-position="240">
           <caret line="16" column="46" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
           <folding>
-            <element signature="e#25#61#0" expanded="true" />
+            <element signature="e#25#61#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -995,56 +950,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/klozet/wc_cs.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="247" column="33" selection-start-line="247" selection-start-column="33" selection-end-line="247" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/klozet/wc_en.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="2668" column="28" selection-start-line="2668" selection-start-column="16" selection-end-line="2668" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/klozet/adress.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="7" column="25" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="25" />
           <folding>
-            <element signature="e#25#61#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/dbconnect.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/klozet/database_import.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#67#0" expanded="true" />
+            <element signature="e#25#61#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1057,6 +968,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/klozet/database_import.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/klozet/translate.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -1065,9 +984,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/klozet/wc_cs.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="247" column="33" selection-start-line="247" selection-start-column="33" selection-end-line="247" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/dbconnect.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#14#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/klozet/parse.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
+        <state relative-caret-position="490">
           <caret line="136" column="36" selection-start-line="136" selection-start-column="36" selection-end-line="136" selection-end-column="36" />
           <folding>
             <element signature="e#24#61#0" expanded="true" />
@@ -1084,6 +1021,27 @@
         <state relative-caret-position="-509">
           <caret line="170" column="198" selection-start-line="170" selection-start-column="194" selection-end-line="170" selection-end-column="198" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/klozet/wc_en.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="2668" column="28" selection-start-line="2668" selection-start-column="16" selection-end-line="2668" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="34" column="61" selection-start-line="34" selection-start-column="61" selection-end-line="34" selection-end-column="61" />
+          <folding>
+            <element signature="e#0#67#0" expanded="true" />
+            <marker date="1515883684172" expanded="true" signature="724:747" ph="SELECT * FRO... toilets" />
+            <marker date="1515883684172" expanded="true" signature="1669:1695" ph="SELECT * FRO... " />
+            <marker date="1515883684172" expanded="true" signature="1669:1717" ph="SELECT * FRO... open_times" />
+          </folding>
         </state>
       </provider>
     </entry>

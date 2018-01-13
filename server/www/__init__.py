@@ -1,5 +1,8 @@
 from flask import Flask, render_template, json, send_from_directory
 from flask_restful import Resource, Api, abort, reqparse
+from templates.dbconnect import connection
+from pymysql.converters import escape_item
+from decimal import Decimal
 from PIL import Image
 from io import BytesIO
 import base64
@@ -15,11 +18,55 @@ def toilet_img(klozet_id, image_name):
 
 class Toilets(Resource):
     def get(self, language_version):
-        filename = '/home/klozet/wc{0}.json'.format(('_' + language_version))
-        file = open(filename, 'r')
-        js = json.loads(file.read())
-        file.close()
-        return js
+        c, conn = connection()
+        sql = "SELECT * FROM `toilets`"
+        c.execute(sql, ())
+        toilets = c.fetchall()
+
+        toilets_dict = {}
+        toilets_dict["toilets"] = []
+
+        for toilet in toilets:
+            toilet_dict = {}
+            toilet_dict["toilet_id"] = toilet[0]
+            toilet_dict["price"] = toilet[1]
+            toilet_dict["open_times"] = get_open_times(c, toilet[0])
+            latitude = float(escape_item(toilet[2], 'utf8'))
+            longitude = float(escape_item(toilet[3], 'utf8'))
+            toilet_dict["coordinates"] = [latitude, longitude]
+            address_dict = {}
+            address_dict["main_address"] = toilet[4]
+            address_dict["sub_address"] = toilet[5]
+            toilet_dict["address"] = address_dict
+            toilet_dict["image_count"] = toilet[6]
+            toilets_dict["toilets"].append(toilet_dict)
+
+        conn.close()
+        return toilets_dict
+
+def get_open_times(c, toilet_id):
+    sql = "SELECT * FROM `open_times` WHERE `toilet_id` =%s"
+    c.execute(sql, toilet_id)
+    open_times = c.fetchall()
+    open_times_dict_list = []
+    for open_time in open_times:
+        open_time_dict = {}
+        hours = []
+        if open_time[2] != None:
+            hours.append(open_time[2])
+        if open_time[3] != None:
+            hours.append(open_time[3])
+        open_time_dict["hours"] = hours
+        days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
+        open_days = []
+        for i, is_open in enumerate(days):
+            if is_open == 1:
+                open_days.append(i)
+        open_time_dict["days"] = open_days
+        open_time_dict["nonstop"] = open_time[11] == 1
+        open_times_dict_list.append(open_time_dict)
+    return open_times_dict_list
+
 
 
 api.add_resource(Toilets, '/<string:language_version>')
