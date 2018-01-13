@@ -45,27 +45,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="parse.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="parse.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/klozet/parse.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="715">
-              <caret line="121" column="20" selection-start-line="121" selection-start-column="20" selection-end-line="121" selection-end-column="20" />
+            <state relative-caret-position="445">
+              <caret line="136" column="36" selection-start-line="136" selection-start-column="36" selection-end-line="136" selection-end-column="36" />
               <folding>
                 <element signature="e#24#61#0" expanded="true" />
-                <marker date="1515873614618" expanded="true" signature="2026:2152" ph="INSERT INTO `open_times`... " />
-                <marker date="1515873614618" expanded="true" signature="2026:2268" ph="INSERT INTO `open_times`... " />
-                <marker date="1515873614618" expanded="true" signature="3376:3460" ph="SELECT `clas... classes" />
-                <marker date="1515873614618" expanded="true" signature="3624:3758" ph="INSERT INTO `classes`... " />
+                <marker date="1515875444971" expanded="true" signature="2026:2152" ph="INSERT INTO `open_times`... " />
+                <marker date="1515875444971" expanded="true" signature="2026:2268" ph="INSERT INTO `open_times`... " />
+                <marker date="1515875444971" expanded="true" signature="3376:3460" ph="SELECT `clas... classes" />
+                <marker date="1515875444971" expanded="true" signature="3624:3758" ph="INSERT INTO `classes`... " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="verejnawc.json" pinned="false" current-in-tab="false">
+      <file leaf-file-name="verejnawc.json" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/klozet/verejnawc.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="137" selection-start-line="10" selection-start-column="130" selection-end-line="10" selection-end-column="137" />
+            <state relative-caret-position="-509">
+              <caret line="170" column="198" selection-start-line="170" selection-start-column="194" selection-end-line="170" selection-end-column="198" />
               <folding />
             </state>
           </provider>
@@ -76,6 +76,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
               <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="open_times.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/klozet/open_times.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1372">
+              <caret line="93" column="23" selection-start-line="93" selection-start-column="16" selection-end-line="93" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -152,8 +162,8 @@
         <option value="$PROJECT_DIR$/klozet/wc_en.json" />
         <option value="$PROJECT_DIR$/www/__init__.py" />
         <option value="$PROJECT_DIR$/templates/dbconnect.py" />
-        <option value="$PROJECT_DIR$/klozet/verejnawc.json" />
         <option value="$PROJECT_DIR$/klozet/parse.py" />
+        <option value="$PROJECT_DIR$/klozet/verejnawc.json" />
       </list>
     </option>
   </component>
@@ -245,7 +255,38 @@
       <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
-        <subPane />
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="klozet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
       </pane>
     </panes>
   </component>
@@ -547,7 +588,7 @@
     <frame x="0" y="23" width="1440" height="877" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25250357" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25250357" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32909605" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.66621065" sideWeight="0.50555557" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -621,10 +662,10 @@
           <caret line="75" column="5" selection-start-line="75" selection-start-column="5" selection-end-line="75" selection-end-column="5" />
           <folding>
             <element signature="e#24#61#0" expanded="true" />
-            <marker date="1515873614618" expanded="true" signature="2026:2152" ph="INSERT INTO `open_times`... " />
-            <marker date="1515873614618" expanded="true" signature="2026:2268" ph="INSERT INTO `open_times`... " />
-            <marker date="1515873614618" expanded="true" signature="3376:3460" ph="SELECT `clas... classes" />
-            <marker date="1515873614618" expanded="true" signature="3624:3758" ph="INSERT INTO `classes`... " />
+            <marker date="1515875444971" expanded="true" signature="2026:2152" ph="INSERT INTO `open_times`... " />
+            <marker date="1515875444971" expanded="true" signature="2026:2268" ph="INSERT INTO `open_times`... " />
+            <marker date="1515875444971" expanded="true" signature="3376:3460" ph="SELECT `clas... classes" />
+            <marker date="1515875444971" expanded="true" signature="3624:3758" ph="INSERT INTO `classes`... " />
           </folding>
         </state>
       </provider>
@@ -674,10 +715,10 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#24#61#0" expanded="true" />
-            <marker date="1515873614618" expanded="true" signature="2026:2152" ph="INSERT INTO `open_times`... " />
-            <marker date="1515873614618" expanded="true" signature="2026:2268" ph="INSERT INTO `open_times`... " />
-            <marker date="1515873614618" expanded="true" signature="3376:3460" ph="SELECT `clas... classes" />
-            <marker date="1515873614618" expanded="true" signature="3624:3758" ph="INSERT INTO `classes`... " />
+            <marker date="1515875444971" expanded="true" signature="2026:2152" ph="INSERT INTO `open_times`... " />
+            <marker date="1515875444971" expanded="true" signature="2026:2268" ph="INSERT INTO `open_times`... " />
+            <marker date="1515875444971" expanded="true" signature="3376:3460" ph="SELECT `clas... classes" />
+            <marker date="1515875444971" expanded="true" signature="3624:3758" ph="INSERT INTO `classes`... " />
           </folding>
         </state>
       </provider>
@@ -720,10 +761,10 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#24#61#0" expanded="true" />
-            <marker date="1515873614618" expanded="true" signature="2026:2152" ph="INSERT INTO `open_times`... " />
-            <marker date="1515873614618" expanded="true" signature="2026:2268" ph="INSERT INTO `open_times`... " />
-            <marker date="1515873614618" expanded="true" signature="3376:3460" ph="SELECT `clas... classes" />
-            <marker date="1515873614618" expanded="true" signature="3624:3758" ph="INSERT INTO `classes`... " />
+            <marker date="1515875444971" expanded="true" signature="2026:2152" ph="INSERT INTO `open_times`... " />
+            <marker date="1515875444971" expanded="true" signature="2026:2268" ph="INSERT INTO `open_times`... " />
+            <marker date="1515875444971" expanded="true" signature="3376:3460" ph="SELECT `clas... classes" />
+            <marker date="1515875444971" expanded="true" signature="3624:3758" ph="INSERT INTO `classes`... " />
           </folding>
         </state>
       </provider>
@@ -759,10 +800,10 @@
           <caret line="41" column="60" selection-start-line="41" selection-start-column="60" selection-end-line="41" selection-end-column="60" />
           <folding>
             <element signature="e#24#61#0" expanded="true" />
-            <marker date="1515873614618" expanded="true" signature="2026:2152" ph="INSERT INTO `open_times`... " />
-            <marker date="1515873614618" expanded="true" signature="2026:2268" ph="INSERT INTO `open_times`... " />
-            <marker date="1515873614618" expanded="true" signature="3376:3460" ph="SELECT `clas... classes" />
-            <marker date="1515873614618" expanded="true" signature="3624:3758" ph="INSERT INTO `classes`... " />
+            <marker date="1515875444971" expanded="true" signature="2026:2152" ph="INSERT INTO `open_times`... " />
+            <marker date="1515875444971" expanded="true" signature="2026:2268" ph="INSERT INTO `open_times`... " />
+            <marker date="1515875444971" expanded="true" signature="3376:3460" ph="SELECT `clas... classes" />
+            <marker date="1515875444971" expanded="true" signature="3624:3758" ph="INSERT INTO `classes`... " />
           </folding>
         </state>
       </provider>
@@ -812,10 +853,10 @@
           <caret line="41" column="60" selection-start-line="41" selection-start-column="60" selection-end-line="41" selection-end-column="60" />
           <folding>
             <element signature="e#24#61#0" expanded="true" />
-            <marker date="1515873614618" expanded="true" signature="2026:2152" ph="INSERT INTO `open_times`... " />
-            <marker date="1515873614618" expanded="true" signature="2026:2268" ph="INSERT INTO `open_times`... " />
-            <marker date="1515873614618" expanded="true" signature="3376:3460" ph="SELECT `clas... classes" />
-            <marker date="1515873614618" expanded="true" signature="3624:3758" ph="INSERT INTO `classes`... " />
+            <marker date="1515875444971" expanded="true" signature="2026:2152" ph="INSERT INTO `open_times`... " />
+            <marker date="1515875444971" expanded="true" signature="2026:2268" ph="INSERT INTO `open_times`... " />
+            <marker date="1515875444971" expanded="true" signature="3376:3460" ph="SELECT `clas... classes" />
+            <marker date="1515875444971" expanded="true" signature="3624:3758" ph="INSERT INTO `classes`... " />
           </folding>
         </state>
       </provider>
@@ -865,10 +906,10 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#24#61#0" expanded="true" />
-            <marker date="1515873614618" expanded="true" signature="2026:2152" ph="INSERT INTO `open_times`... " />
-            <marker date="1515873614618" expanded="true" signature="2026:2268" ph="INSERT INTO `open_times`... " />
-            <marker date="1515873614618" expanded="true" signature="3376:3460" ph="SELECT `clas... classes" />
-            <marker date="1515873614618" expanded="true" signature="3624:3758" ph="INSERT INTO `classes`... " />
+            <marker date="1515875444971" expanded="true" signature="2026:2152" ph="INSERT INTO `open_times`... " />
+            <marker date="1515875444971" expanded="true" signature="2026:2268" ph="INSERT INTO `open_times`... " />
+            <marker date="1515875444971" expanded="true" signature="3376:3460" ph="SELECT `clas... classes" />
+            <marker date="1515875444971" expanded="true" signature="3624:3758" ph="INSERT INTO `classes`... " />
           </folding>
         </state>
       </provider>
@@ -879,10 +920,10 @@
           <caret line="62" column="13" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
           <folding>
             <element signature="e#24#61#0" expanded="true" />
-            <marker date="1515873614618" expanded="true" signature="2026:2152" ph="INSERT INTO `open_times`... " />
-            <marker date="1515873614618" expanded="true" signature="2026:2268" ph="INSERT INTO `open_times`... " />
-            <marker date="1515873614618" expanded="true" signature="3376:3460" ph="SELECT `clas... classes" />
-            <marker date="1515873614618" expanded="true" signature="3624:3758" ph="INSERT INTO `classes`... " />
+            <marker date="1515875444971" expanded="true" signature="2026:2152" ph="INSERT INTO `open_times`... " />
+            <marker date="1515875444971" expanded="true" signature="2026:2268" ph="INSERT INTO `open_times`... " />
+            <marker date="1515875444971" expanded="true" signature="3376:3460" ph="SELECT `clas... classes" />
+            <marker date="1515875444971" expanded="true" signature="3624:3758" ph="INSERT INTO `classes`... " />
           </folding>
         </state>
       </provider>
@@ -925,10 +966,10 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#24#61#0" expanded="true" />
-            <marker date="1515873614618" expanded="true" signature="2026:2152" ph="INSERT INTO `open_times`... " />
-            <marker date="1515873614618" expanded="true" signature="2026:2268" ph="INSERT INTO `open_times`... " />
-            <marker date="1515873614618" expanded="true" signature="3376:3460" ph="SELECT `clas... classes" />
-            <marker date="1515873614618" expanded="true" signature="3624:3758" ph="INSERT INTO `classes`... " />
+            <marker date="1515875444971" expanded="true" signature="2026:2152" ph="INSERT INTO `open_times`... " />
+            <marker date="1515875444971" expanded="true" signature="2026:2268" ph="INSERT INTO `open_times`... " />
+            <marker date="1515875444971" expanded="true" signature="3376:3460" ph="SELECT `clas... classes" />
+            <marker date="1515875444971" expanded="true" signature="3624:3758" ph="INSERT INTO `classes`... " />
           </folding>
         </state>
       </provider>
@@ -937,13 +978,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/klozet/open_times.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-458">
-          <caret line="93" column="23" selection-start-line="93" selection-start-column="16" selection-end-line="93" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -958,42 +992,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/klozet/adress.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="7" column="25" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="25" />
-          <folding>
-            <element signature="e#25#61#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/klozet/database_import.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/klozet/translate.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#67#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1013,6 +1011,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/klozet/adress.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="7" column="25" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="25" />
+          <folding>
+            <element signature="e#25#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/dbconnect.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -1023,25 +1031,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/klozet/verejnawc.json">
+    <entry file="file://$PROJECT_DIR$/klozet/database_import.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="137" selection-start-line="10" selection-start-column="130" selection-end-line="10" selection-end-column="137" />
+        <state relative-caret-position="105">
+          <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#67#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/klozet/open_times.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1372">
+          <caret line="93" column="23" selection-start-line="93" selection-start-column="16" selection-end-line="93" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/klozet/translate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/klozet/parse.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="715">
-          <caret line="121" column="20" selection-start-line="121" selection-start-column="20" selection-end-line="121" selection-end-column="20" />
+        <state relative-caret-position="445">
+          <caret line="136" column="36" selection-start-line="136" selection-start-column="36" selection-end-line="136" selection-end-column="36" />
           <folding>
             <element signature="e#24#61#0" expanded="true" />
-            <marker date="1515873614618" expanded="true" signature="2026:2152" ph="INSERT INTO `open_times`... " />
-            <marker date="1515873614618" expanded="true" signature="2026:2268" ph="INSERT INTO `open_times`... " />
-            <marker date="1515873614618" expanded="true" signature="3376:3460" ph="SELECT `clas... classes" />
-            <marker date="1515873614618" expanded="true" signature="3624:3758" ph="INSERT INTO `classes`... " />
+            <marker date="1515875444971" expanded="true" signature="2026:2152" ph="INSERT INTO `open_times`... " />
+            <marker date="1515875444971" expanded="true" signature="2026:2268" ph="INSERT INTO `open_times`... " />
+            <marker date="1515875444971" expanded="true" signature="3376:3460" ph="SELECT `clas... classes" />
+            <marker date="1515875444971" expanded="true" signature="3624:3758" ph="INSERT INTO `classes`... " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/klozet/verejnawc.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-509">
+          <caret line="170" column="198" selection-start-line="170" selection-start-column="194" selection-end-line="170" selection-end-column="198" />
+          <folding />
         </state>
       </provider>
     </entry>
