@@ -55,22 +55,30 @@ def get_properties(properties_json, coordinates):
         pass
 
     try:
-        adress = properties['ADRESA'].encode('utf-8')
+        adress = properties_json['ADRESA'].encode('utf-8')
         dict['address'] = get_adresses(adress, coordinates)
     #Adress is null
     except AttributeError:
         pass
     return dict
 
-def open_times_to_db(open_times_dict, toilet_id):
+def open_times_to_db(toilet_id, open_times_dict):
     c, conn = connection()
     for open_times in open_times_dict:
         days_dict = get_days_dict(open_times["days"])
         nonstop = is_nonstop(open_times)
-        sql = "INSERT INTO `open_times` (`toilet_id`, `start_time`, `close_time`, `mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`, `nonstop`) VALUES (%d, %s, %s, %d, %d, %d, %d, %d, %d, %d, %d)"
-        c.execute(sql, toilet_id, open_times["hours"][0], open_times["hours"][1], days_dict["mon"], days_dict["tue"], days_dict["wed"], days_dict["thu"], days_dict["fri"], days_dict["sat"], days_dict["sun"], nonstop)
+        hours = get_hours(open_times)
+        sql = "INSERT INTO `open_times` (`toilet_id`, `start_time`, `close_time`, `mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`, `nonstop`) VALUES ((SELECT `toilet_id` FROM `toilets` WHERE `toilet_id` = %s LIMIT 1), %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+        c.execute(sql, (toilet_id, hours[0], hours[1], days_dict["mon"], days_dict["tue"], days_dict["wed"], days_dict["thu"], days_dict["fri"], days_dict["sat"], days_dict["sun"], nonstop))
     conn.commit()
     conn.close()
+
+def get_hours(open_times_dict):
+        hours = open_times_dict["hours"]
+        if len(hours) == 2:
+            return hours
+        else:
+            return [None, None]
 
 def is_nonstop(open_times):
     if open_times["nonstop"] == 'False':
@@ -102,36 +110,44 @@ def toilet_to_db(toilet_dict):
     c.execute(sql, (coordinates[0], coordinates[1]))
     result = c.fetchone()
     if result == None:
-        sql = "INSERT INTO `toilets` (`price`, `latitude`, `longitude`, `main_address`, `sub_address`, `image_count`) VALUES (%s, %d, %d, %s, %s, %d)"
-        address_dict = ["address"]
-        c.execute(sql, (toilet_dict["price"], coordinates[0], coordinates[1], address_dict["main_address"], address_dict["sub_address", 0]))
+        sql = "INSERT INTO `toilets` (`price`, `latitude`, `longitude`, `main_address`, `sub_address`, `image_count`) VALUES (%s, %s, %s, %s, %s, %s)"
+        address_dict = toilet_dict["address"]
+        c.execute(sql, (toilet_dict["price"], coordinates[0], coordinates[1], address_dict["main_address"], address_dict["sub_address"], 0))
+        conn.commit()
         toilet_id = c.lastrowid
-        open_times_to_db()
+        open_times_to_db(toilet_id, toilet_dict["open_times"])
         conn.commit()
         conn.close()
-    conn.close()
+    else:
+        conn.close()
 
-file = open('verejnawc.json', 'r')
-js = json.load(file)
-data = js['features']
+def parse():
+    file = open('verejnawc.json', 'r')
+    js = json.load(file)
+    data = js['features']
 
-toilets = []
+    toilets = []
 
-for toilet_json in data[136:]:
-    properties = toilet_json['properties']
-    coordinates = toilet_json['geometry']['coordinates']
+    for toilet_json in data:
+        properties = toilet_json['properties']
+        coordinates = toilet_json['geometry']['coordinates']
 
-    toilets.append(get_properties(properties, coordinates))
+        toilets.append(get_properties(properties, coordinates))
 
-for toilet_dict in toilets:
-    toilet_to_db(toilet_dict)
+    for toilet_dict in toilets:
+        print(toilet_dict)
+        toilet_to_db(toilet_dict)
 
 
-dict = {
-    'toilets': toilets
+    dict = {
+        'toilets': toilets
     }
-js = json.dumps(dict, indent=4 * ' ', ensure_ascii=False)
-file = io.open('wc_cs.json', 'w+', encoding='utf-8')
-file.write(js)
-file.close()
+    js = json.dumps(dict, indent=4 * ' ', ensure_ascii=False)
+    file = io.open('wc_cs.json', 'w+', encoding='utf-8')
+    file.write(js)
+    file.close()
+
+parse()
+
+
 
