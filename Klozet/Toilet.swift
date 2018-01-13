@@ -31,10 +31,10 @@ class Toilet: NSObject, MKAnnotation, Decodable {
     
     //MKAnnotation properties
     let title: String?
-    let subtitle: String?
+    var subtitle: String?
     var coordinate: CLLocationCoordinate2D
     let openTimes: [OpenTimes]
-    let price: String
+    var price: String
     let toiletId: Int
     
     init(title: String, subtitle: String, coordinate: CLLocationCoordinate2D, openTimes: [OpenTimes], price: String, toiletId: Int) {

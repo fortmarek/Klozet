@@ -28,7 +28,7 @@ extension CameraDelegate where Self: UIViewController, Self: UINavigationControl
                     let orientedImage = image.correctlyOrientedImage(),
                     let toilet = toilet
                     else {return}
-                self.postImage(image: orientedImage, toiletId: toilet.toiletId)
+                completion?(orientedImage, toilet.toiletId)
             })
         })
     }

@@ -21,6 +21,7 @@ class Toilets(Resource):
         file.close()
         return js
 
+
 api.add_resource(Toilets, '/<string:language_version>')
 
 parser = reqparse.RequestParser()

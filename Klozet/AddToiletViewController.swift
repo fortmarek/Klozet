@@ -20,6 +20,7 @@ class AddToiletViewController: UIViewController, UIGestureRecognizerDelegate, UI
     var uploadImageType: UploadImageType = .toilet
     var toiletImage: UIImage?
     var hoursImage: UIImage?
+    let addToiletViewModel = AddToiletViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +62,7 @@ class AddToiletViewController: UIViewController, UIGestureRecognizerDelegate, UI
         addToiletButton.backgroundColor = .mainOrange
         addToiletButton.setTitle("Add Toilet", for: .normal)
         addToiletButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        addToiletButton.addTarget(self, action: #selector(addToiletButtonTapped), for: .touchUpInside)
         view.addSubview(addToiletButton)
         addToiletButton.centerInView(proxyView)
         addToiletButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
@@ -106,11 +108,18 @@ class AddToiletViewController: UIViewController, UIGestureRecognizerDelegate, UI
     }
     
     @objc private func addToiletButtonTapped() {
+        
+        uploadToilet()
+        
         //TODO: Tell user if upload succeded or not
         dismiss(animated: true, completion: nil)
     }
     
     private func uploadToilet() {
+        toilet.price = selectedPrice
+        guard let locationDetailsCell = addToiletCollectionView?.dequeueReusableCell(withReuseIdentifier: "locationDetails", for: IndexPath(row: 1, section: 0)) as? LocationDetailCollectionViewCell else {return}
+        toilet.subtitle = locationDetailsCell.locationDetailTextView.text
+        addToiletViewModel.uploadToilet(toilet, hoursImage: hoursImage, toiletImage: toiletImage).start()
         
     }
     
@@ -121,6 +130,7 @@ class AddToiletViewController: UIViewController, UIGestureRecognizerDelegate, UI
     }
     
     private func saveImage(_ image: UIImage) {
+        print(image)
         if uploadImageType == .hours {
             hoursImage = image
         }
@@ -212,4 +222,4 @@ extension AddToiletViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-} 
+}

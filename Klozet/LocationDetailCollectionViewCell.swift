@@ -11,6 +11,7 @@ import UIKit
 class LocationDetailCollectionViewCell: UICollectionViewCell, Separable {
     
     var separatorView: UIView = UIView()
+    let locationDetailTextView = UITextView()
     
     override init(frame: CGRect) {
         super.init(frame: .zero)

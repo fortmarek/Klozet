@@ -3,6 +3,7 @@ from open_times import get_open_times
 from adress import get_adresses
 import simplejson as json
 import io
+from dbconnect import connection
 
 def capitalize_price(price):
     # Capitalize first word
@@ -59,8 +60,56 @@ def get_properties(properties_json, coordinates):
     #Adress is null
     except AttributeError:
         pass
-    print("FACK")
     return dict
+
+def open_times_to_db(open_times_dict, toilet_id):
+    c, conn = connection()
+    for open_times in open_times_dict:
+        days_dict = get_days_dict(open_times["days"])
+        nonstop = is_nonstop(open_times)
+        sql = "INSERT INTO `open_times` (`toilet_id`, `start_time`, `close_time`, `mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`, `nonstop`) VALUES (%d, %s, %s, %d, %d, %d, %d, %d, %d, %d, %d)"
+        c.execute(sql, toilet_id, open_times["hours"][0], open_times["hours"][1], days_dict["mon"], days_dict["tue"], days_dict["wed"], days_dict["thu"], days_dict["fri"], days_dict["sat"], days_dict["sun"], nonstop)
+    conn.commit()
+    conn.close()
+
+def is_nonstop(open_times):
+    if open_times["nonstop"] == 'False':
+        return 0
+    else:
+        return 1
+
+def get_days_dict(days_list):
+    days_dict = {}
+    days_dict["mon"] = includes_day(2, days_list)
+    days_dict["tue"] = includes_day(3, days_list)
+    days_dict["wed"] = includes_day(4, days_list)
+    days_dict["thu"] = includes_day(5, days_list)
+    days_dict["fri"] = includes_day(6, days_list)
+    days_dict["sat"] = includes_day(7, days_list)
+    days_dict["sun"] = includes_day(1, days_list)
+    return days_dict
+
+def includes_day(i, open_times):
+    if i in open_times:
+        return 1
+    else:
+        return 0
+
+def toilet_to_db(toilet_dict):
+    c, conn = connection()
+    sql = "SELECT `latitude`, `longitude` FROM `toilets` WHERE `latitude`=%s AND `longitude`=%s"
+    coordinates = toilet_dict["coordinates"]
+    c.execute(sql, (coordinates[0], coordinates[1]))
+    result = c.fetchone()
+    if result == None:
+        sql = "INSERT INTO `toilets` (`price`, `latitude`, `longitude`, `main_address`, `sub_address`, `image_count`) VALUES (%s, %d, %d, %s, %s, %d)"
+        address_dict = ["address"]
+        c.execute(sql, (toilet_dict["price"], coordinates[0], coordinates[1], address_dict["main_address"], address_dict["sub_address", 0]))
+        toilet_id = c.lastrowid
+        open_times_to_db()
+        conn.commit()
+        conn.close()
+    conn.close()
 
 file = open('verejnawc.json', 'r')
 js = json.load(file)
@@ -73,6 +122,10 @@ for toilet_json in data[136:]:
     coordinates = toilet_json['geometry']['coordinates']
 
     toilets.append(get_properties(properties, coordinates))
+
+for toilet_dict in toilets:
+    toilet_to_db(toilet_dict)
+
 
 dict = {
     'toilets': toilets

@@ -71,6 +71,7 @@
 		F8EAE83C1D630E0500D60DAB /* VIewControllerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE83B1D630E0500D60DAB /* VIewControllerInterface.swift */; };
 		F8FE861C2009428900A9EAA9 /* PricePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FE861B2009428900A9EAA9 /* PricePickerView.swift */; };
 		F8FE861E2009474600A9EAA9 /* PricePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FE861D2009474600A9EAA9 /* PricePickerDelegate.swift */; };
+		F8FE8621200948D400A9EAA9 /* AddToiletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FE8620200948D400A9EAA9 /* AddToiletViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -183,6 +184,7 @@
 		F8EAE83B1D630E0500D60DAB /* VIewControllerInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VIewControllerInterface.swift; sourceTree = "<group>"; };
 		F8FE861B2009428900A9EAA9 /* PricePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PricePickerView.swift; sourceTree = "<group>"; };
 		F8FE861D2009474600A9EAA9 /* PricePickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PricePickerDelegate.swift; sourceTree = "<group>"; };
+		F8FE8620200948D400A9EAA9 /* AddToiletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToiletViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -391,7 +393,7 @@
 				F8EAE7F91D5FA6A900D60DAB /* AppDelegate.swift */,
 				F87BEE1F1FCF24400059F862 /* APIService.swift */,
 				F83CB9C11FCF3B96002CECDC /* Codables */,
-				F87BEE231FCF2E410059F862 /* ToiletViewModel.swift */,
+				F8FE861F200948C600A9EAA9 /* ViewModels */,
 				F87CE85E1F9FB14400D98515 /* TabBarController.swift */,
 				F8B9F7CE1FF4015D00C7C024 /* ButtonColorChangeable.swift */,
 				F8B9F7EA20002CFE00C7C024 /* Views */,
@@ -439,6 +441,15 @@
 				F8EAE81B1D5FA6A900D60DAB /* Info.plist */,
 			);
 			path = KlozetUITests;
+			sourceTree = "<group>";
+		};
+		F8FE861F200948C600A9EAA9 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F87BEE231FCF2E410059F862 /* ToiletViewModel.swift */,
+				F8FE8620200948D400A9EAA9 /* AddToiletViewModel.swift */,
+			);
+			name = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -773,6 +784,7 @@
 				F8B9F7E720001B2300C7C024 /* Separable.swift in Sources */,
 				F8D9843D2007BEAF00686834 /* DirectionsViewController.swift in Sources */,
 				F8B9F7DF200006B100C7C024 /* MapCollectionViewCell.swift in Sources */,
+				F8FE8621200948D400A9EAA9 /* AddToiletViewModel.swift in Sources */,
 				F82FB1C01D81C7B6001FE39D /* ListViewController.swift in Sources */,
 				F8B9F7CF1FF4015E00C7C024 /* ButtonColorChangeable.swift in Sources */,
 				F8EAE7FA1D5FA6A900D60DAB /* AppDelegate.swift in Sources */,
