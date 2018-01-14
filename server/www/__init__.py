@@ -7,7 +7,7 @@ from pymysql.converters import escape_item
 from PIL import Image
 from io import BytesIO
 import base64
-import os
+import getpass
 
 app = Flask(__name__, static_url_path="", static_folder="static")
 api = Api(app)
@@ -48,7 +48,7 @@ class Toilets(Resource):
     def post(self, language_version):
         toilet_dict = request.get_json(self)
         toilet_dict["address"]["main_address"] = address.get_main_address(toilet_dict["coordinates"])
-        toilet_dict["open_times"] = [{"hours": [], "days": [1, 2, 3, 4, 5, 6, 7], "nonstop": "False"}]
+        toilet_dict["open_times"] = [{"hours": [], "days": [1, 2, 3, 4, 5, 6, 7], "nonstop": "True"}]
         parse.toilet_to_db(toilet_dict)
 
 
@@ -106,7 +106,7 @@ class ToiletImages(Resource):
         c, conn = connection()
         image_count_sql = "SELECT `image_count` FROM `toilets` WHERE `toilet_id`=%s"
         c.execute(image_count_sql, klozet_id)
-        image_count = c.fetchone() + 1
+        image_count = c.fetchone()[0]
 
         sql = "UPDATE `toilets` SET `image_count` = `image_count` + 1 WHERE `toilet_id`=%s"
         c.execute(sql, klozet_id)
@@ -128,6 +128,8 @@ class ToiletImages(Resource):
         file.write("Posted image: {0} for toilet {1}\n".format(image_index_str, klozet_id))
         file.close()
 
+        conn.commit()
+
 def minimize_image(decoded_image):
     width, height = decoded_image.size
     max_size = 120.0
@@ -135,7 +137,6 @@ def minimize_image(decoded_image):
     min_size = width * ratio, height * ratio
     decoded_image.thumbnail(min_size)
     return decoded_image
-
 
 api.add_resource(ToiletImages, '/toilet/<string:klozet_id>')
 

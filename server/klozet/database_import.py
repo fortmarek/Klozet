@@ -1,6 +1,6 @@
 import os
 
-for i in range(1, 248):
+for i in range(111, 347):
 
     directory = '/srv/klozet/toilets_img/{0}/'.format(i)
 

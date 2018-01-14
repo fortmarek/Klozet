@@ -4,6 +4,7 @@ from address import get_main_address
 import simplejson as json
 import io
 from dbconnect import connection
+import os
 
 def capitalize_price(price):
     # Capitalize first word
@@ -118,11 +119,18 @@ def toilet_to_db(toilet_dict):
         c.execute(sql, (toilet_dict["price"], coordinates[0], coordinates[1], address_dict["main_address"], address_dict["sub_address"], 0))
         conn.commit()
         toilet_id = c.lastrowid
+        create_image_dir(toilet_id)
         open_times_to_db(toilet_id, toilet_dict["open_times"])
         conn.commit()
         conn.close()
     else:
         conn.close()
+
+def create_image_dir(toilet_id):
+    directory = '/srv/klozet/toilets_img/{0}/'.format(toilet_id)
+
+    if not os.path.exists(directory):
+        os.mkdir(directory)
 
 def parse():
     file = open('verejnawc.json', 'r')
