@@ -69,7 +69,7 @@ class APIService: APIServicing {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.httpBody = bodyData
-            request.setValue("multipart/form-data", forHTTPHeaderField: "Content-Type")
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             //request.setCredentialsHeader()
             self?.startTask(request: request, sink: sink)
         }

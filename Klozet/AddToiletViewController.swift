@@ -117,7 +117,9 @@ class AddToiletViewController: UIViewController, UIGestureRecognizerDelegate, UI
     
     private func uploadToilet() {
         toilet.price = selectedPrice
-        guard let locationDetailsCell = addToiletCollectionView?.dequeueReusableCell(withReuseIdentifier: "locationDetails", for: IndexPath(row: 1, section: 0)) as? LocationDetailCollectionViewCell else {return}
+        guard let addToiletCollectionView = self.addToiletCollectionView, let locationDetailsCell =
+            addToiletCollectionView.cellForItem(at: IndexPath(row: 1, section: 0))  as? LocationDetailCollectionViewCell else {return}
+        
         toilet.subtitle = locationDetailsCell.locationDetailTextView.text
         addToiletViewModel.uploadToilet(toilet, hoursImage: hoursImage, toiletImage: toiletImage).start()
         
@@ -130,7 +132,6 @@ class AddToiletViewController: UIViewController, UIGestureRecognizerDelegate, UI
     }
     
     private func saveImage(_ image: UIImage) {
-        print(image)
         if uploadImageType == .hours {
             hoursImage = image
         }

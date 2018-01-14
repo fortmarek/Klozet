@@ -9,13 +9,13 @@
 import Foundation
 
 
-struct OpenTimes {
+struct OpenTimes: Codable {
     let hours: [String]?
     let days: [Int]?
     let isNonstop: Bool?
 }
 
-extension OpenTimes: Decodable {
+extension OpenTimes {
     enum OpenTimesKeys: String, CodingKey {
         case hours = "hours"
         case days = "days"

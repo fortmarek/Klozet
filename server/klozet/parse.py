@@ -134,7 +134,7 @@ def parse():
 
         toilets.append(get_properties(properties, coordinates))
 
-    for toilet_dict in toilets[150:]:
+    for toilet_dict in toilets:
         print(toilet_dict)
         toilet_to_db(toilet_dict)
 
@@ -147,7 +147,7 @@ def parse():
     file.write(js)
     file.close()
 
-parse()
-
+if __name__ == '__main__':
+    parse()
 
 

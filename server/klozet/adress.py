@@ -61,7 +61,7 @@ def get_main_sub_address(adress, coordinates):
             return (main_address, sub_address)
 
     return (main_address, sub_address)
-def get_adresses(address, coordinates):
+def get_address(address, coordinates):
 
     # Converting to string, needed for geopy reverse function
     str_coordinates = "{0}, {1}".format(coordinates[1], coordinates[0])

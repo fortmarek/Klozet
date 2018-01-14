@@ -35,7 +35,6 @@ class LocationDetailCollectionViewCell: UICollectionViewCell, Separable {
         locationDetailLabel.heightAnchor.constraint(equalToConstant: locationDetailLabel.font.getHeight()).isActive = true
         locationDetailStackView.addArrangedSubview(locationDetailLabel)
         
-        let locationDetailTextView = UITextView()
         locationDetailTextView.font = UIFont.systemFont(ofSize: 18)
         locationDetailTextView.textColor = .defaultTextColor
         locationDetailStackView.addArrangedSubview(locationDetailTextView)

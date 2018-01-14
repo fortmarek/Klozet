@@ -9,12 +9,12 @@
 import Foundation
 
 
-struct Address {
+struct Address: Codable {
     let mainAddress: String
     let subAddress: String
 }
 
-extension Address: Decodable {
+extension Address{
     enum AddressKeys: String, CodingKey {
         case mainAddress = "main_address"
         case subAddress = "sub_address"

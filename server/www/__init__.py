@@ -1,8 +1,8 @@
-from flask import Flask, render_template, json, send_from_directory
+from flask import Flask, render_template, json, send_from_directory, request
 from flask_restful import Resource, Api, abort, reqparse
 from templates.dbconnect import connection
+import templates.parse as parse
 from pymysql.converters import escape_item
-from decimal import Decimal
 from PIL import Image
 from io import BytesIO
 import base64
@@ -43,6 +43,12 @@ class Toilets(Resource):
 
         conn.close()
         return toilets_dict
+
+    def post(self, language_version):
+        toilet_dict = request.get_json(self)
+        parse.toilet_to_db(toilet_dict)
+
+
 
 def get_open_times(c, toilet_id):
     sql = "SELECT * FROM `open_times` WHERE `toilet_id` =%s"
