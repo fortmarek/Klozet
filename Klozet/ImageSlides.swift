@@ -25,7 +25,7 @@ class ImageSlides: ImageSlideshow, ImageController {
         super.init(frame: frame)
     }
     
-    init(toiletId: Int, detailStackView: UIStackView, presentDelegate: PresentDelegate) {
+    init(imageCount: Int, toiletId: Int, detailStackView: UIStackView, presentDelegate: PresentDelegate) {
         self.init()
         
         self.presentDelegate = presentDelegate
@@ -41,7 +41,7 @@ class ImageSlides: ImageSlideshow, ImageController {
         contentScaleMode = .scaleAspectFill
         
         
-        getImages(toiletId: toiletId, completion: {
+        getImages(toiletId: toiletId, imageCount: imageCount, completion: {
             imageSources in
             
             self.loadViewToImage(imagesCount: imageSources.count)
@@ -105,9 +105,9 @@ class ImageSlides: ImageSlideshow, ImageController {
         noImageView.frame = frame
         addSubview(noImageView)
         
-        let noCameraImageView = UIImageView(image: UIImage(named: "NoCamera"))
-        noCameraImageView.center = noImageView.center
+        let noCameraImageView = UIImageView(image: UIImage(asset: Asset.noCamera))
         addSubview(noCameraImageView)
+        noCameraImageView.centerInView(self)
         
         self.activityIndicatorView.stopAnimating()
     }
@@ -137,21 +137,7 @@ protocol ImageController {
 }
 
 extension ImageController {
-    
-    
-    private func getImageCount(toiletId: Int, completion: @escaping(_ imageCount: Int) -> () ) {
-        let path = "http://139.59.144.155/klozet/toilet/\(toiletId)"
-        Alamofire.request(path).responseJSON {
-            response in
-            guard
-                let data = response.data,
-                let imageCount = JSON(data: data)["image_count"].int
-                else {return}
-            
-            completion(imageCount)
-        }
-    }
-    
+
     func downloadImage(toiletId: Int, imageIndex: Int, isMin: Bool, completion: @escaping (_ image: UIImage) -> ()) {
         let path = "http://139.59.144.155/klozet/toilets_img/\(toiletId)/\(imageIndex)"
         let suffix = isMin ? "_min.jpg" : ".jpg"
@@ -189,17 +175,11 @@ extension ImageController {
         
     }
     
-    fileprivate func getImages(toiletId: Int, completion: @escaping (_ images: [ImageSource]) -> () ) {
-        
-        getImageCount(toiletId: toiletId, completion: {
-            imageCount in
-            
-            self.donwloadImages(toiletId: toiletId, imageCount: imageCount, completion: {
-                images in
-                completion(images)
-            })
+    fileprivate func getImages(toiletId: Int, imageCount: Int, completion: @escaping (_ images: [ImageSource]) -> () ) {
+        donwloadImages(toiletId: toiletId, imageCount: imageCount, completion: {
+            images in
+            completion(images)
         })
-        
     }
     
     private func encodedStringToImage(encodedString: String) -> ImageSource? {

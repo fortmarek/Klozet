@@ -48,6 +48,7 @@ class Toilets(Resource):
     def post(self, language_version):
         toilet_dict = request.get_json(self)
         toilet_dict["address"]["main_address"] = address.get_main_address(toilet_dict["coordinates"])
+        toilet_dict["open_times"] = [{"hours": [], "days": [1, 2, 3, 4, 5, 6, 7], "nonstop": "False"}]
         parse.toilet_to_db(toilet_dict)
 
 
@@ -67,9 +68,11 @@ def get_open_times(c, toilet_id):
         open_time_dict["hours"] = hours
         days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
         open_days = []
-        for i, is_open in enumerate(days):
-            if is_open == 1:
-                open_days.append(i)
+        for i, is_open in enumerate(open_time[4:10]):
+            if is_open == 1 and i == 8:
+                open_days.append(2)
+            elif is_open == 1:
+                open_days.append(i + 1)
         open_time_dict["days"] = open_days
         open_time_dict["nonstop"] = open_time[11] == 1
         open_times_dict_list.append(open_time_dict)
@@ -98,35 +101,19 @@ class ToiletImages(Resource):
         return images
     '''
 
-    def get(self, klozet_id):
-        directory = '/srv/klozet/toilets_img/{0}/'.format(klozet_id)
-        images = {'image_count': 0}
-        image_count = 0
-        for file in os.listdir(directory):
-            if file.find('_min.jpg') != -1:
-                image_count += 1
-        images['image_count'] = image_count
-        return images
-
     def post(self, klozet_id):
+
+        c, conn = connection()
+        image_count_sql = "SELECT `image_count` FROM `toilets` WHERE `toilet_id`=%s"
+        c.execute(image_count_sql, klozet_id)
+        image_count = c.fetchone() + 1
+
+        sql = "UPDATE `toilets` SET `image_count` = `image_count` + 1 WHERE `toilet_id`=%s"
+        c.execute(sql, klozet_id)
+
         directory = '/srv/klozet/toilets_img/{0}/'.format(klozet_id)
 
-        image_index_str = "0"
-
-        try:
-            file = open(directory + 'log-file.txt', 'r+')
-            text = file.read()
-            image_index = int(text) + 1
-            image_index_str = "{0}".format(image_index)
-            file.seek(0)
-            file.truncate()
-            file.write("{0}".format(image_index))
-            file.close()
-
-        except IOError:
-            file = open(directory + 'log-file.txt', 'w')
-            file.write('0')
-            file.close()
+        image_index_str = "{0}".format(image_count)
 
         encoded_image = parser.parse_args()['encoded_image']
         decoded_image = Image.open(BytesIO(base64.b64decode(encoded_image)))

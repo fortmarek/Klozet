@@ -31,7 +31,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
         
         guard let toilet = toilet else {return}
         
-        _ = ImageSlides(toiletId: toilet.toiletId, detailStackView: detailStackView, presentDelegate: self)
+        _ = ImageSlides(imageCount: toilet.imageCount, toiletId: toilet.toiletId, detailStackView: detailStackView, presentDelegate: self)
         
         //TableView
         let tableView = DetailTableView()

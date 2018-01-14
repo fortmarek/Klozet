@@ -95,17 +95,17 @@ extension FilterOpen {
         //Int of today's weekday
         let todayWeekday = Date().getTodayWeekday()
         
+        print(openTimes)
+        
         //If the toilet is open nonstop, I can right away return true
-        if openTimes.isNonstop ?? false {
+        if openTimes.isNonstop {
             return true
         }
         
-        
         //Getting array of ints of open weekdays
-        guard
-            let toiletDays = openTimes.days, toiletDays.index(of: todayWeekday) != nil,
-            let hours = openTimes.hours
-            else {return false}
+        let toiletDays = openTimes.days
+        let hours = openTimes.hours
+        guard toiletDays.index(of: todayWeekday) != nil else {return false}
         
         //If the toilet is open on today's weekday, check additionaly time
         if isOpenInHours(hours) {

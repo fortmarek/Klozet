@@ -91,7 +91,7 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
             let color = getLabelColor(openTimes: openTimesStruct)
 
             //Is toilet opened nonstop?
-            if openTimesStruct.isNonstop ?? false {
+            if openTimesStruct.isNonstop {
                 //String
                 openTimesString = "Nonstop".localized
             }
@@ -145,19 +145,22 @@ class OpenTimeCell: UITableViewCell, DetailCell, FilterOpen {
         }
     }
     
-    fileprivate func getDayInterval(openTimesDays: [Int]?) -> String {
-        guard let daysArray = openTimesDays else {return String()}
+    fileprivate func getDayInterval(openTimesDays: [Int]) -> String {
         
-        if daysArray.count > 1 {
-            return getMultipleDaysInterval(daysArray: daysArray)
+        if openTimesDays.count > 1 {
+            return getMultipleDaysInterval(daysArray: openTimesDays)
         }
         
         //Only one day interval
-        else {
-            let dayIndex = daysArray[0]
+        else if openTimesDays.count == 1 {
+            
+            let dayIndex = openTimesDays[0]
             let day = dayIndexToString(index: dayIndex)
             
             return "\(day): "
+        }
+        else {
+            return "" 
         }
         
     }

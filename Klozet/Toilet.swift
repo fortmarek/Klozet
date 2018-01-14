@@ -36,14 +36,16 @@ class Toilet: NSObject, MKAnnotation, Decodable {
     let openTimes: [OpenTimes]
     var price: String
     let toiletId: Int
+    let imageCount: Int
     
-    init(title: String, subtitle: String, coordinate: CLLocationCoordinate2D, openTimes: [OpenTimes], price: String, toiletId: Int) {
+    init(title: String, subtitle: String, coordinate: CLLocationCoordinate2D, openTimes: [OpenTimes], price: String, toiletId: Int, imageCount: Int) {
         self.title = title
         self.subtitle = subtitle
         self.coordinate = coordinate
         self.openTimes = openTimes
         self.price = price
         self.toiletId = toiletId
+        self.imageCount = imageCount
     }
     
     enum ToiletKeys: String, CodingKey {
@@ -52,6 +54,7 @@ class Toilet: NSObject, MKAnnotation, Decodable {
         case price = "price"
         case coordinates = "coordinates"
         case toiletId = "toilet_id"
+        case imageCount = "image_count"
     }
     
     required convenience init(from decoder: Decoder) throws {
@@ -63,6 +66,7 @@ class Toilet: NSObject, MKAnnotation, Decodable {
         let price: String? = try container.decodeIfPresent(String.self, forKey: .price)
         let coordinates: [Double] = try container.decode([Double].self, forKey: .coordinates)
         let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: coordinates[1], longitude: coordinates[0])
-        self.init(title: address.mainAddress, subtitle: address.subAddress, coordinate: coordinate, openTimes: openTimes, price: price ?? "Free", toiletId: toiletId)
+        let imageCount: Int = try container.decode(Int.self, forKey: .imageCount)
+        self.init(title: address.mainAddress, subtitle: address.subAddress, coordinate: coordinate, openTimes: openTimes, price: price ?? "Free", toiletId: toiletId, imageCount: imageCount)
     }
 }

@@ -14,7 +14,7 @@ class AddToiletViewController: UIViewController, UIGestureRecognizerDelegate, UI
     
     let pricePickerView = PricePickerView()
     var selectedPrice: String = "Free"
-    var toilet: Toilet = Toilet(title: "", subtitle: "", coordinate: CLLocationCoordinate2D(), openTimes: [], price: "", toiletId: 0)
+    var toilet: Toilet = Toilet(title: "", subtitle: "", coordinate: CLLocationCoordinate2D(), openTimes: [], price: "", toiletId: 0, imageCount: 0)
     var tapGestureRecognizer: UITapGestureRecognizer?
     var addToiletCollectionView: UICollectionView?
     var uploadImageType: UploadImageType = .toilet
