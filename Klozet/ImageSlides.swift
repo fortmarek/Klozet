@@ -143,7 +143,7 @@ extension ImageController {
         let suffix = isMin ? "_min.jpg" : ".jpg"
         
         let wholePath = path + suffix
-
+    
         Alamofire.request(wholePath).responseImage(completionHandler: {
             response in
             guard let image = response.result.value else {return}

@@ -12,7 +12,7 @@ protocol AddToiletViewModeling {
     func uploadToilet(_ toilet: Toilet, hoursImage: UIImage?, toiletImage: UIImage?)  -> SignalProducer<Void, ServerError>
 }
 
-class AddToiletViewModel: APIService, AddToiletViewModeling {
+class AddToiletViewModel: APIService, AddToiletViewModeling, ImagePostable {
     
     private func createToiletDict(_ toilet: Toilet) -> [String : Any] {
         var toiletDict: [String : Any] = [:]
@@ -31,12 +31,27 @@ class AddToiletViewModel: APIService, AddToiletViewModeling {
     
     func uploadToilet(_ toilet: Toilet, hoursImage: UIImage?, toiletImage: UIImage?) -> SignalProducer<Void, ServerError> {
         return SignalProducer<Void, ServerError> { [weak self] sink, disposable in
-            guard let toiletDict = self?.createToiletDict(toilet) else {return}
-            self?.postCodableData(jsonDictionary: toiletDict, subpath: "en", codableType: Toilet.self).startWithResult { result in
-                guard result.error == nil else {sink.send(error: result.error ?? .defaultError); return}
-                sink.sendCompleted()
+            self?.uploadToiletData(toilet).startWithResult { result in
+                guard let toiletId = result.value?.toiletId else {return}
+                print(toiletId)
+                if let toiletImage = toiletImage {
+                    self?.postImage(image: toiletImage, toiletId: toiletId, uploadImageType: .toilet)
+                }
+                if let hoursImage = hoursImage {
+                    self?.postImage(image: hoursImage, toiletId: toiletId, uploadImageType: .hours)
+                }
             }
         }
-        
+    }
+    
+    private func uploadToiletData(_ toilet: Toilet) -> SignalProducer<ToiletId, ServerError> {
+        return SignalProducer<ToiletId, ServerError> { [weak self] sink, disposable in
+            guard let toiletDict = self?.createToiletDict(toilet) else {return}
+            self?.postCodableData(jsonDictionary: toiletDict, subpath: "en", codableType: ToiletId.self).startWithResult { result in
+                guard let toiletId = result.value else {sink.send(error: result.error ?? .defaultError); return}
+                print(toiletId)
+                sink.send(value: toiletId)
+            }
+        }
     }
 }

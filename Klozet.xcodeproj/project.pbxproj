@@ -72,6 +72,7 @@
 		F8FE861C2009428900A9EAA9 /* PricePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FE861B2009428900A9EAA9 /* PricePickerView.swift */; };
 		F8FE861E2009474600A9EAA9 /* PricePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FE861D2009474600A9EAA9 /* PricePickerDelegate.swift */; };
 		F8FE8621200948D400A9EAA9 /* AddToiletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FE8620200948D400A9EAA9 /* AddToiletViewModel.swift */; };
+		F8FE8625200BEEF200A9EAA9 /* ToiletId.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FE8624200BEEF200A9EAA9 /* ToiletId.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -185,6 +186,7 @@
 		F8FE861B2009428900A9EAA9 /* PricePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PricePickerView.swift; sourceTree = "<group>"; };
 		F8FE861D2009474600A9EAA9 /* PricePickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PricePickerDelegate.swift; sourceTree = "<group>"; };
 		F8FE8620200948D400A9EAA9 /* AddToiletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToiletViewModel.swift; sourceTree = "<group>"; };
+		F8FE8624200BEEF200A9EAA9 /* ToiletId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToiletId.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,6 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				F87BEE211FCF2B920059F862 /* CodableError.swift */,
+				F8FE8624200BEEF200A9EAA9 /* ToiletId.swift */,
 				F83CB9BF1FCF3B84002CECDC /* Address.swift */,
 				F83CB9BB1FCF3B2C002CECDC /* Toilet.swift */,
 				F83CB9BD1FCF3B63002CECDC /* OpenTimes.swift */,
@@ -757,6 +760,7 @@
 				F818D4481D88482E009B153C /* Constants.swift in Sources */,
 				F8D9843F2007BF0D00686834 /* SingleDirectionsButton.swift in Sources */,
 				F82884C11D957E7600F1A737 /* DetailTableView.swift in Sources */,
+				F8FE8625200BEEF200A9EAA9 /* ToiletId.swift in Sources */,
 				F8D9843B2007BE2900686834 /* AddMapViewController.swift in Sources */,
 				F8C41A6D1F9A42B700E16612 /* UIColor+UIFontExtension.swift in Sources */,
 				F83CB9C01FCF3B84002CECDC /* Address.swift in Sources */,

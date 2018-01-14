@@ -123,6 +123,7 @@ def toilet_to_db(toilet_dict):
         open_times_to_db(toilet_id, toilet_dict["open_times"])
         conn.commit()
         conn.close()
+        return
     else:
         conn.close()
 
@@ -131,6 +132,12 @@ def create_image_dir(toilet_id):
 
     if not os.path.exists(directory):
         os.mkdir(directory)
+
+    hours_dir = '/srv/klozet/hours_img/{0}/'.format(toilet_id)
+
+    if not os.path.exists(hours_dir):
+        os.mkdir(hours_dir)
+
 
 def parse():
     file = open('verejnawc.json', 'r')

@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 
-class DetailViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, ShowDelegate, PresentDelegate, CameraDelegate {
+class DetailViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, ShowDelegate, PresentDelegate, CameraDelegate, ImagePostable {
     
     var uploadImageType: UploadImageType = .toilet
     var toilet: Toilet?
@@ -72,7 +72,8 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         finishPicking(toilet: toilet, info: info, completion: { [weak self] image, toiletId in
-            self?.postImage(image: image, toiletId: toiletId)
+            guard let uploadImageType = self?.uploadImageType else {return}
+            self?.postImage(image: image, toiletId: toiletId, uploadImageType: uploadImageType)
         })
     }
 

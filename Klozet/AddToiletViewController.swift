@@ -45,7 +45,7 @@ class AddToiletViewController: UIViewController, UIGestureRecognizerDelegate, UI
         addToiletCollectionView.register(AddToiletCollectionViewCell.self, forCellWithReuseIdentifier: "addToiletCell")
         addToiletCollectionView.register(PriceCollectionViewCell.self, forCellWithReuseIdentifier: "priceCell")
         view.addSubview(addToiletCollectionView)
-        addToiletCollectionView.heightAnchor.constraint(equalToConstant: 435).isActive = true
+        addToiletCollectionView.heightAnchor.constraint(equalToConstant: 480).isActive = true
         addToiletCollectionView.pinToViewHorizontally(view)
         addToiletCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         self.addToiletCollectionView = addToiletCollectionView

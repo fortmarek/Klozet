@@ -7,7 +7,21 @@
 //
 
 import UIKit
-import Alamofire 
+import Alamofire
+
+protocol ImagePostable {
+    
+}
+
+extension ImagePostable {
+    func postImage(image: UIImage, toiletId: Int, uploadImageType: UploadImageType) {
+        guard let encodedImage = UIImageJPEGRepresentation(image, 0.9)?.base64EncodedString() else {return}
+        let subpath = uploadImageType == .hours ? "hours" : ""
+        let path = "http://139.59.144.155/klozet/toilet/" + subpath + "/\(toiletId)"
+        print(path)
+        _ = Alamofire.request(path, method: .post, parameters: ["encoded_image" : encodedImage])
+    }
+}
 
 protocol CameraDelegate {
     var uploadImageType: UploadImageType {get}
@@ -68,14 +82,5 @@ extension CameraDelegate where Self: UIViewController, Self: UINavigationControl
         imagePicker.modalPresentationStyle = .overFullScreen
         imagePicker.allowsEditing = false
         present(imagePicker, animated: true, completion: nil)
-    }
-    
-    func postImage(image: UIImage, toiletId: Int) {
-        guard let encodedImage = UIImageJPEGRepresentation(image, 0.9)?.base64EncodedString() else {return}
-        let subpath = uploadImageType == .hours ? "hours" : ""
-        let path = "http://139.59.144.155/klozet/toilet/\(toiletId)" + subpath
-        
-        
-        _ = Alamofire.request(path, method: .post, parameters: ["encoded_image" : encodedImage])
     }
 }

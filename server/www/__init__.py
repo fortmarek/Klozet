@@ -6,6 +6,7 @@ import templates.address as address
 from pymysql.converters import escape_item
 from PIL import Image
 from io import BytesIO
+import cStringIO
 import base64
 import getpass
 
@@ -15,6 +16,11 @@ api = Api(app)
 @app.route('/toilets_img/<string:klozet_id>/<string:image_name>')
 def toilet_img(klozet_id, image_name):
     directory = '/srv/klozet/toilets_img/{0}/'.format(klozet_id)
+    return send_from_directory(directory, image_name)
+
+@app.route('/hours_img/<string:toilet_id>/<string:image_name>')
+def hours_img(toilet_id, image_name):
+    directory = '/srv/klozet/hours_img/{0}/'.format(toilet_id)
     return send_from_directory(directory, image_name)
 
 class Toilets(Resource):
@@ -49,8 +55,9 @@ class Toilets(Resource):
         toilet_dict = request.get_json(self)
         toilet_dict["address"]["main_address"] = address.get_main_address(toilet_dict["coordinates"])
         toilet_dict["open_times"] = [{"hours": [], "days": [1, 2, 3, 4, 5, 6, 7], "nonstop": "True"}]
-        parse.toilet_to_db(toilet_dict)
-
+        toilet_id = parse.toilet_to_db(toilet_dict)
+        toilet_id_dict = {"toilet_id": toilet_id}
+        return toilet_id_dict
 
 
 def get_open_times(c, toilet_id):
@@ -110,6 +117,8 @@ class ToiletImages(Resource):
 
         sql = "UPDATE `toilets` SET `image_count` = `image_count` + 1 WHERE `toilet_id`=%s"
         c.execute(sql, klozet_id)
+        conn.commit()
+        conn.close()
 
         directory = '/srv/klozet/toilets_img/{0}/'.format(klozet_id)
 
@@ -128,7 +137,7 @@ class ToiletImages(Resource):
         file.write("Posted image: {0} for toilet {1}\n".format(image_index_str, klozet_id))
         file.close()
 
-        conn.commit()
+
 
 def minimize_image(decoded_image):
     width, height = decoded_image.size
@@ -140,5 +149,33 @@ def minimize_image(decoded_image):
 
 api.add_resource(ToiletImages, '/toilet/<string:klozet_id>')
 
+
+class HoursImages(Resource):
+    def post(self, toilet_id):
+        c, conn = connection()
+        unchecked_hours_sql = "SELECT `unchecked_hours` FROM `toilets` WHERE `toilet_id`=%s"
+        c.execute(unchecked_hours_sql, toilet_id)
+        unchecked_hours = c.fetchone()[0]
+
+        sql = "UPDATE `toilets` SET `unchecked_hours` = `unchecked_hours` + 1 WHERE `toilet_id`=%s"
+        c.execute(sql, toilet_id)
+        conn.commit()
+        conn.close()
+
+        unchecked_img_string = "{0}".format(unchecked_hours)
+
+        directory = '/srv/klozet/hours_img/{0}/'.format(toilet_id)
+
+        encoded_image = parser.parse_args()['encoded_image']
+        decoded_image = Image.open(BytesIO(base64.b64decode(encoded_image)))
+
+        decoded_image.save(directory + unchecked_img_string + '.jpg', 'JPEG')
+
+        file = open('/srv/klozet/hours_img/log-file.txt', 'a')
+        file.write("Posted image: {0} for toilet {1}\n".format(unchecked_img_string, toilet_id))
+        file.close()
+
+
+api.add_resource(HoursImages, '/toilet/hours/<string:toilet_id>')
 
 
