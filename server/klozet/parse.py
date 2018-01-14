@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from open_times import get_open_times
-from adress import get_adresses
+from address import get_main_address
 import simplejson as json
 import io
 from dbconnect import connection
@@ -56,7 +56,10 @@ def get_properties(properties_json, coordinates):
 
     try:
         adress = properties_json['ADRESA'].encode('utf-8')
-        dict['address'] = get_adresses(adress, coordinates)
+        address_dict = {}
+        address_dict["main_address"] = get_main_address(coordinates)
+        address_dict["sub_address"] = adress
+        dict["address"] = address_dict
     #Adress is null
     except AttributeError:
         pass

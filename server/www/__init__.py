@@ -2,6 +2,7 @@ from flask import Flask, render_template, json, send_from_directory, request
 from flask_restful import Resource, Api, abort, reqparse
 from templates.dbconnect import connection
 import templates.parse as parse
+import templates.address as address
 from pymysql.converters import escape_item
 from PIL import Image
 from io import BytesIO
@@ -46,6 +47,7 @@ class Toilets(Resource):
 
     def post(self, language_version):
         toilet_dict = request.get_json(self)
+        toilet_dict["address"]["main_address"] = address.get_main_address(toilet_dict["coordinates"])
         parse.toilet_to_db(toilet_dict)
 
 
