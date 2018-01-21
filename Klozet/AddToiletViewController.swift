@@ -9,9 +9,11 @@
 import UIKit
 import CoreLocation
 import MapKit
+import TPKeyboardAvoiding 
 
 class AddToiletViewController: UIViewController, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, CameraDelegate, UINavigationControllerDelegate, PricePickerViewDelegate {
     
+    let addToiletButton = UIButton()
     let pricePickerView = PricePickerView()
     var selectedPrice: String = "Free"
     var toilet: Toilet = Toilet(title: "", subtitle: "", coordinate: CLLocationCoordinate2D(), openTimes: [], price: "", toiletId: 0, imageCount: 0)
@@ -20,7 +22,9 @@ class AddToiletViewController: UIViewController, UIGestureRecognizerDelegate, UI
     var uploadImageType: UploadImageType = .toilet
     var toiletImage: UIImage?
     var hoursImage: UIImage?
-    let addToiletViewModel = AddToiletViewModel()
+    let toiletViewModel = AddToiletViewModel()
+
+    var uploadCompletion: ((Toilet, UIImage?, UIImage?, String?) -> ())?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,24 +32,27 @@ class AddToiletViewController: UIViewController, UIGestureRecognizerDelegate, UI
         title = "Add Toilet"
         
         view.backgroundColor = .white
+
+        uploadCompletion = { [weak self] toilet, hoursImage, toiletImage, _ in
+            self?.toiletViewModel.uploadToilet(toilet, hoursImage: hoursImage, toiletImage: toiletImage).start()
+        }
         
 
         let cancelBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelBarButtonTapped))
         let cancelAttributes: [NSAttributedStringKey : Any] = [.font : UIFont.systemFont(ofSize: 17, weight: .medium), .foregroundColor : UIColor.mainOrange]
         cancelBarButtonItem.setTitleTextAttributes(cancelAttributes, for: .normal)
         navigationItem.leftBarButtonItem = cancelBarButtonItem
-        
-        
-        let addToiletCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+
+        let addToiletCollectionView = TPKeyboardAvoidingCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         addToiletCollectionView.dataSource = self
         addToiletCollectionView.delegate = self
         addToiletCollectionView.backgroundColor = .white
         addToiletCollectionView.register(MapCollectionViewCell.self, forCellWithReuseIdentifier: "mapCell")
-        addToiletCollectionView.register(LocationDetailCollectionViewCell.self, forCellWithReuseIdentifier: "locationDetails")
+        addToiletCollectionView.register(TextViewCollectionViewCell.self, forCellWithReuseIdentifier: "textViewCell")
         addToiletCollectionView.register(AddToiletCollectionViewCell.self, forCellWithReuseIdentifier: "addToiletCell")
         addToiletCollectionView.register(PriceCollectionViewCell.self, forCellWithReuseIdentifier: "priceCell")
         view.addSubview(addToiletCollectionView)
-        addToiletCollectionView.heightAnchor.constraint(equalToConstant: 480).isActive = true
+        addToiletCollectionView.heightAnchor.constraint(equalToConstant: 550).isActive = true
         addToiletCollectionView.pinToViewHorizontally(view)
         addToiletCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         self.addToiletCollectionView = addToiletCollectionView
@@ -58,7 +65,7 @@ class AddToiletViewController: UIViewController, UIGestureRecognizerDelegate, UI
         proxyView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
         
-        let addToiletButton = UIButton()
+        
         addToiletButton.backgroundColor = .mainOrange
         addToiletButton.setTitle("Add Toilet", for: .normal)
         addToiletButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
@@ -117,11 +124,14 @@ class AddToiletViewController: UIViewController, UIGestureRecognizerDelegate, UI
     
     private func uploadToilet() {
         toilet.price = selectedPrice
-        guard let addToiletCollectionView = self.addToiletCollectionView, let locationDetailsCell =
-            addToiletCollectionView.cellForItem(at: IndexPath(row: 1, section: 0))  as? LocationDetailCollectionViewCell else {return}
-        
-        toilet.subtitle = locationDetailsCell.locationDetailTextView.text
-        addToiletViewModel.uploadToilet(toilet, hoursImage: hoursImage, toiletImage: toiletImage).start()
+        guard let addToiletCollectionView = self.addToiletCollectionView,
+        let locationDetailsCell = addToiletCollectionView.cellForItem(at: IndexPath(row: 1, section: 0)) as? TextViewCollectionViewCell else {return}
+
+        let notesCell = addToiletCollectionView.cellForItem(at: IndexPath(row: 1, section: 0)) as? TextViewCollectionViewCell
+        let notes = notesCell?.cellTextView.text
+
+        toilet.subtitle = locationDetailsCell.cellTextView.text
+        uploadCompletion?(toilet, hoursImage, toiletImage, notes)
         
     }
     
@@ -155,7 +165,9 @@ extension AddToiletViewController: UICollectionViewDataSource {
             mapCell.centerToToilet()
             cell = mapCell
         case 1:
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "locationDetails", for: indexPath) as! LocationDetailCollectionViewCell
+            let locationCell = collectionView.dequeueReusableCell(withReuseIdentifier: "textViewCell", for: indexPath) as! TextViewCollectionViewCell
+            locationCell.textViewDetailLabel.text = "Location details"
+            cell = locationCell
         case 2:
             let priceToiletCell = collectionView.dequeueReusableCell(withReuseIdentifier: "priceCell", for: indexPath) as! PriceCollectionViewCell
             priceToiletCell.tappableCellView.cellViewLabel.text = "Price"
@@ -165,6 +177,10 @@ extension AddToiletViewController: UICollectionViewDataSource {
             let addToiletCell = collectionView.dequeueReusableCell(withReuseIdentifier: "addToiletCell", for: indexPath) as! AddToiletCollectionViewCell
             addToiletCell.tappableCellView.cellViewLabel.text = indexPath.row == 3 ? "Add photo of hours" : "Add photo of toilet"
             cell = addToiletCell
+        case 5:
+            let notesCell = collectionView.dequeueReusableCell(withReuseIdentifier: "textViewCell", for: indexPath) as! TextViewCollectionViewCell
+            notesCell.textViewDetailLabel.text = "Notes"
+            cell = notesCell
         default:
             cell = UICollectionViewCell()
         }

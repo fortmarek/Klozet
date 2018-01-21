@@ -11,6 +11,7 @@ PODS:
     - Result (~> 3.2)
   - Result (3.2.4)
   - SwiftyJSON (3.1.4)
+  - TPKeyboardAvoiding (1.3.2)
 
 DEPENDENCIES:
   - Alamofire
@@ -19,6 +20,7 @@ DEPENDENCIES:
   - ReactiveCocoa
   - ReactiveSwift
   - SwiftyJSON (~> 3.1.0)
+  - TPKeyboardAvoiding
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
@@ -28,7 +30,8 @@ SPEC CHECKSUMS:
   ReactiveSwift: 60a29ff35988a964fd2bb759755cb6594de523fc
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
 
-PODFILE CHECKSUM: ff9523c5a6ab1044eecdd05cf45b4325b18d1c5f
+PODFILE CHECKSUM: 1c164f70e807d4e902265093efb4012168308c25
 
 COCOAPODS: 1.2.1

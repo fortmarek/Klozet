@@ -28,8 +28,8 @@
       <file leaf-file-name="parse.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/klozet/parse.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+            <state relative-caret-position="330">
+              <caret line="118" column="46" selection-start-line="118" selection-start-column="46" selection-end-line="118" selection-end-column="76" />
               <folding>
                 <element signature="e#24#61#0" expanded="true" />
                 <marker date="1515960045644" expanded="true" signature="2160:2286" ph="INSERT INTO `open_times`... " />
@@ -41,27 +41,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="152" column="28" selection-start-line="152" selection-start-column="28" selection-end-line="152" selection-end-column="28" />
+            <state relative-caret-position="750">
+              <caret line="69" column="180" selection-start-line="69" selection-start-column="180" selection-end-line="69" selection-end-column="180" />
               <folding>
                 <element signature="e#0#76#0" expanded="true" />
-                <marker date="1515966968562" expanded="true" signature="1015:1038" ph="SELECT * FRO... toilets" />
-                <marker date="1515966968562" expanded="true" signature="2381:2407" ph="SELECT * FRO... " />
-                <marker date="1515966968562" expanded="true" signature="2381:2429" ph="SELECT * FRO... open_times" />
-                <marker date="1515966968562" expanded="true" signature="4135:4191" ph="SELECT `imag... toilets" />
-                <marker date="1515966968562" expanded="true" signature="4293:4327" ph="UPDATE `toil... " />
-                <marker date="1515966968562" expanded="true" signature="4293:4328" ph="UPDATE `toil... " />
-                <marker date="1515966968562" expanded="true" signature="4293:4343" ph="UPDATE `toil... " />
-                <marker date="1515966968562" expanded="true" signature="4293:4345" ph="UPDATE `toil... " />
-                <marker date="1515966968562" expanded="true" signature="4293:4347" ph="UPDATE `toil... " />
-                <marker date="1515966968562" expanded="true" signature="4293:4353" ph="UPDATE `toil... " />
-                <marker date="1515966968562" expanded="true" signature="4293:4354" ph="UPDATE `toil... " />
-                <marker date="1515966968562" expanded="true" signature="4293:4368" ph="UPDATE `toil... " />
-                <marker date="1515966968562" expanded="true" signature="5555:5615" ph="SELECT `unch... toilets" />
-                <marker date="1515966968562" expanded="true" signature="5725:5808" ph="UPDATE `toil... " />
+                <marker date="1516572155803" expanded="true" signature="1015:1038" ph="SELECT * FRO... toilets" />
+                <marker date="1516572155803" expanded="true" signature="2764:2914" ph="INSERT INTO `edit_toilets`... " />
+                <marker date="1516572155803" expanded="true" signature="3306:3332" ph="SELECT * FRO... " />
+                <marker date="1516572155803" expanded="true" signature="3306:3354" ph="SELECT * FRO... open_times" />
+                <marker date="1516572155803" expanded="true" signature="5060:5116" ph="SELECT `imag... toilets" />
+                <marker date="1516572155803" expanded="true" signature="5218:5252" ph="UPDATE `toil... " />
+                <marker date="1516572155803" expanded="true" signature="5218:5253" ph="UPDATE `toil... " />
+                <marker date="1516572155803" expanded="true" signature="5218:5268" ph="UPDATE `toil... " />
+                <marker date="1516572155803" expanded="true" signature="5218:5270" ph="UPDATE `toil... " />
+                <marker date="1516572155803" expanded="true" signature="5218:5272" ph="UPDATE `toil... " />
+                <marker date="1516572155803" expanded="true" signature="5218:5278" ph="UPDATE `toil... " />
+                <marker date="1516572155803" expanded="true" signature="5218:5279" ph="UPDATE `toil... " />
+                <marker date="1516572155803" expanded="true" signature="5218:5293" ph="UPDATE `toil... " />
+                <marker date="1516572155803" expanded="true" signature="6480:6540" ph="SELECT `unch... toilets" />
+                <marker date="1516572155803" expanded="true" signature="6650:6733" ph="UPDATE `toil... " />
               </folding>
             </state>
           </provider>
@@ -77,10 +78,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wc_en.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="wc_en.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/klozet/wc_en.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1840">
+            <state relative-caret-position="15">
               <caret line="2892" column="25" selection-start-line="2892" selection-start-column="21" selection-end-line="2892" selection-end-column="25" />
               <folding />
             </state>
@@ -135,9 +136,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
-    <option name="width" value="1440" />
-    <option name="height" value="877" />
+    <option name="y" value="22" />
+    <option name="width" value="1920" />
+    <option name="height" value="1058" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -261,8 +262,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -560,10 +561,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="877" extended-state="6" />
+    <frame x="0" y="22" width="1920" height="1058" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25608012" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1171459" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32909605" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.66621065" sideWeight="0.50555557" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -986,10 +987,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/klozet/wc_cs.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3705">
+          <caret line="247" column="33" selection-start-line="247" selection-start-column="33" selection-end-line="247" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/klozet/wc_en.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="2892" column="25" selection-start-line="2892" selection-start-column="21" selection-end-line="2892" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/klozet/database_import.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="12" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/klozet/parse.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        <state relative-caret-position="330">
+          <caret line="118" column="46" selection-start-line="118" selection-start-column="46" selection-end-line="118" selection-end-column="76" />
           <folding>
             <element signature="e#24#61#0" expanded="true" />
             <marker date="1515960045644" expanded="true" signature="2160:2286" ph="INSERT INTO `open_times`... " />
@@ -1002,49 +1027,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="152" column="28" selection-start-line="152" selection-start-column="28" selection-end-line="152" selection-end-column="28" />
+        <state relative-caret-position="750">
+          <caret line="69" column="180" selection-start-line="69" selection-start-column="180" selection-end-line="69" selection-end-column="180" />
           <folding>
             <element signature="e#0#76#0" expanded="true" />
-            <marker date="1515966968562" expanded="true" signature="1015:1038" ph="SELECT * FRO... toilets" />
-            <marker date="1515966968562" expanded="true" signature="2381:2407" ph="SELECT * FRO... " />
-            <marker date="1515966968562" expanded="true" signature="2381:2429" ph="SELECT * FRO... open_times" />
-            <marker date="1515966968562" expanded="true" signature="4135:4191" ph="SELECT `imag... toilets" />
-            <marker date="1515966968562" expanded="true" signature="4293:4327" ph="UPDATE `toil... " />
-            <marker date="1515966968562" expanded="true" signature="4293:4328" ph="UPDATE `toil... " />
-            <marker date="1515966968562" expanded="true" signature="4293:4343" ph="UPDATE `toil... " />
-            <marker date="1515966968562" expanded="true" signature="4293:4345" ph="UPDATE `toil... " />
-            <marker date="1515966968562" expanded="true" signature="4293:4347" ph="UPDATE `toil... " />
-            <marker date="1515966968562" expanded="true" signature="4293:4353" ph="UPDATE `toil... " />
-            <marker date="1515966968562" expanded="true" signature="4293:4354" ph="UPDATE `toil... " />
-            <marker date="1515966968562" expanded="true" signature="4293:4368" ph="UPDATE `toil... " />
-            <marker date="1515966968562" expanded="true" signature="5555:5615" ph="SELECT `unch... toilets" />
-            <marker date="1515966968562" expanded="true" signature="5725:5808" ph="UPDATE `toil... " />
+            <marker date="1516572155803" expanded="true" signature="1015:1038" ph="SELECT * FRO... toilets" />
+            <marker date="1516572155803" expanded="true" signature="2764:2914" ph="INSERT INTO `edit_toilets`... " />
+            <marker date="1516572155803" expanded="true" signature="3306:3332" ph="SELECT * FRO... " />
+            <marker date="1516572155803" expanded="true" signature="3306:3354" ph="SELECT * FRO... open_times" />
+            <marker date="1516572155803" expanded="true" signature="5060:5116" ph="SELECT `imag... toilets" />
+            <marker date="1516572155803" expanded="true" signature="5218:5252" ph="UPDATE `toil... " />
+            <marker date="1516572155803" expanded="true" signature="5218:5253" ph="UPDATE `toil... " />
+            <marker date="1516572155803" expanded="true" signature="5218:5268" ph="UPDATE `toil... " />
+            <marker date="1516572155803" expanded="true" signature="5218:5270" ph="UPDATE `toil... " />
+            <marker date="1516572155803" expanded="true" signature="5218:5272" ph="UPDATE `toil... " />
+            <marker date="1516572155803" expanded="true" signature="5218:5278" ph="UPDATE `toil... " />
+            <marker date="1516572155803" expanded="true" signature="5218:5279" ph="UPDATE `toil... " />
+            <marker date="1516572155803" expanded="true" signature="5218:5293" ph="UPDATE `toil... " />
+            <marker date="1516572155803" expanded="true" signature="6480:6540" ph="SELECT `unch... toilets" />
+            <marker date="1516572155803" expanded="true" signature="6650:6733" ph="UPDATE `toil... " />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/klozet/database_import.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="12" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/klozet/wc_cs.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3705">
-          <caret line="247" column="33" selection-start-line="247" selection-start-column="33" selection-end-line="247" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/klozet/wc_en.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1840">
-          <caret line="2892" column="25" selection-start-line="2892" selection-start-column="21" selection-end-line="2892" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>

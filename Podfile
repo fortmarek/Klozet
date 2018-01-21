@@ -1,5 +1,3 @@
-
-
 platform :ios, '10.0'
 
 use_frameworks!
@@ -16,6 +14,7 @@ target 'Klozet' do
     pod 'AlamofireImage', ' ~> 3.1'
     pod 'ReactiveCocoa'
     pod 'ReactiveSwift'
+    pod 'TPKeyboardAvoiding'
     target 'KlozetTests' do
         inherit! :search_paths
         testing_pods

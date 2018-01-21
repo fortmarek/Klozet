@@ -59,6 +59,19 @@ class Toilets(Resource):
         toilet_id_dict = {"toilet_id": toilet_id}
         return toilet_id_dict
 
+    def put(self, language_version):
+        toilet_dict = request.get_json(self)
+        toilet_dict["address"]["main_address"] = address.get_main_address(toilet_dict["coordinates"])
+        toilet_dict["open_times"] = [{"hours": [], "days": [1, 2, 3, 4, 5, 6, 7], "nonstop": "True"}]
+        toilet_dict["notes"] = toilet_dict["notes"]
+        toilet_id = toilet_dict["toilet_id"]
+        c, conn = connection()
+        sql = "INSERT INTO `edit_toilets` (`toilet_id`, `price`, `latitude`, `longitude`, `main_address`, `sub_address`, `notes`) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+        c.execute(sql, (toilet_id, toilet_dict["price"], toilet_dict["coordinates"][0], toilet_dict["coordinates"][1], toilet_dict["address"]["main_address"], toilet_dict["address"]["sub_address"], toilet_dict["notes"]))
+        conn.commit()
+        conn.close()
+        toilet_id_dict = {"toilet_id": toilet_id}
+        return toilet_id_dict
 
 def get_open_times(c, toilet_id):
     sql = "SELECT * FROM `open_times` WHERE `toilet_id` =%s"

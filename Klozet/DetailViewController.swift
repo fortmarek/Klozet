@@ -9,7 +9,6 @@
 import UIKit
 import Alamofire
 
-
 class DetailViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, ShowDelegate, PresentDelegate, CameraDelegate, ImagePostable {
     
     var uploadImageType: UploadImageType = .toilet
@@ -22,9 +21,8 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
         
         view.backgroundColor = .white
         
-        let imageBarButtonItem = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(imageButtonTapped))
-        
-        navigationItem.rightBarButtonItem = imageBarButtonItem
+        let editBarButtonItem = UIBarButtonItem.init(image: UIImage(asset: Asset.editIcon), style: .plain, target: self, action: #selector(editBarButtonTapped))
+        navigationItem.rightBarButtonItem = editBarButtonItem
         
         //Main Stack View
         let detailStackView = setDetailStackView()
@@ -66,8 +64,11 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
         return detailStackView
     }
     
-    @objc func imageButtonTapped() {
-        uploadImage()
+    @objc private func editBarButtonTapped() {
+        let editToiletViewController = EditToiletViewController()
+        editToiletViewController.toilet.toiletId = toilet?.toiletId ?? 0
+        let editNavigationController = UINavigationController(rootViewController: editToiletViewController)
+        navigationController?.present(editNavigationController, animated: true, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {

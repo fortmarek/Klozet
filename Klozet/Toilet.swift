@@ -35,7 +35,7 @@ class Toilet: NSObject, MKAnnotation, Decodable {
     var coordinate: CLLocationCoordinate2D
     let openTimes: [OpenTimes]
     var price: String
-    let toiletId: Int
+    var toiletId: Int
     let imageCount: Int
     
     init(title: String, subtitle: String, coordinate: CLLocationCoordinate2D, openTimes: [OpenTimes], price: String, toiletId: Int, imageCount: Int) {

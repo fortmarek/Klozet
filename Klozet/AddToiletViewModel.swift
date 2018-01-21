@@ -10,6 +10,7 @@ import ReactiveSwift
 
 protocol AddToiletViewModeling {
     func uploadToilet(_ toilet: Toilet, hoursImage: UIImage?, toiletImage: UIImage?)  -> SignalProducer<Void, ServerError>
+    func editToilet(_ toilet: Toilet, hoursImage: UIImage?, toiletImage: UIImage?, notes: String?) -> SignalProducer<Void, ServerError>
 }
 
 class AddToiletViewModel: APIService, AddToiletViewModeling, ImagePostable {
@@ -24,22 +25,43 @@ class AddToiletViewModel: APIService, AddToiletViewModeling, ImagePostable {
         addressDict["main_address"] = toilet.title ?? ""
         addressDict["sub_address"] = toilet.subtitle ?? ""
         toiletDict["address"] = addressDict
-        print(toiletDict)
         return toiletDict
     }
-    
+
+    func editToilet(_ toilet: Toilet, hoursImage: UIImage?, toiletImage: UIImage?, notes: String?) -> SignalProducer<Void, ServerError> {
+        return SignalProducer<Void, ServerError> { [weak self] sink, disposable in
+            self?.editToiletData(toilet, notes: notes ?? "").startWithResult { result in
+                guard let toiletId = result.value?.toiletId else {return}
+                self?.uploadImages(toiletId: toiletId, toiletImage: toiletImage, hoursImage: hoursImage)
+            }
+        }
+    }
     
     func uploadToilet(_ toilet: Toilet, hoursImage: UIImage?, toiletImage: UIImage?) -> SignalProducer<Void, ServerError> {
         return SignalProducer<Void, ServerError> { [weak self] sink, disposable in
             self?.uploadToiletData(toilet).startWithResult { result in
                 guard let toiletId = result.value?.toiletId else {return}
-                print(toiletId)
-                if let toiletImage = toiletImage {
-                    self?.postImage(image: toiletImage, toiletId: toiletId, uploadImageType: .toilet)
-                }
-                if let hoursImage = hoursImage {
-                    self?.postImage(image: hoursImage, toiletId: toiletId, uploadImageType: .hours)
-                }
+                self?.uploadImages(toiletId: toiletId, toiletImage: toiletImage, hoursImage: hoursImage)
+            }
+        }
+    }
+
+    private func uploadImages(toiletId: Int, toiletImage: UIImage?, hoursImage: UIImage?) {
+        if let toiletImage = toiletImage {
+            postImage(image: toiletImage, toiletId: toiletId, uploadImageType: .toilet)
+        }
+        if let hoursImage = hoursImage {
+            postImage(image: hoursImage, toiletId: toiletId, uploadImageType: .hours)
+        }
+    }
+
+    private func editToiletData(_ toilet: Toilet, notes: String) -> SignalProducer<ToiletId, ServerError> {
+        return SignalProducer<ToiletId, ServerError> { [weak self] sink, disposable in
+            guard var toiletDict = self?.createToiletDict(toilet) else {return}
+            toiletDict["notes"] = notes
+            self?.putCodableData(jsonDictionary: toiletDict, subpath: "en", codableType: ToiletId.self).startWithResult { result in
+                guard let toiletId = result.value else {sink.send(error: result.error ?? .defaultError); return}
+                sink.send(value: toiletId)
             }
         }
     }
@@ -49,7 +71,6 @@ class AddToiletViewModel: APIService, AddToiletViewModeling, ImagePostable {
             guard let toiletDict = self?.createToiletDict(toilet) else {return}
             self?.postCodableData(jsonDictionary: toiletDict, subpath: "en", codableType: ToiletId.self).startWithResult { result in
                 guard let toiletId = result.value else {sink.send(error: result.error ?? .defaultError); return}
-                print(toiletId)
                 sink.send(value: toiletId)
             }
         }

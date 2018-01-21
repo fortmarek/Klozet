@@ -75,6 +75,7 @@ enum Asset {
   static let directionIconHeading = ImageAsset(name: "directionIconHeading")
   static let directionIconSelected = ImageAsset(name: "directionIconSelected")
   static let dodgerBlue = ColorAsset(name: "dodgerBlue")
+  static let editIcon = ImageAsset(name: "editIcon")
   static let greenSuccess = ColorAsset(name: "greenSuccess")
   static let icon = ImageAsset(name: "icon")
   static let lightGold = ColorAsset(name: "lightGold")
@@ -136,6 +137,7 @@ enum Asset {
     directionIcon,
     directionIconHeading,
     directionIconSelected,
+    editIcon,
     icon,
     listIcon,
     listIconSelected,
