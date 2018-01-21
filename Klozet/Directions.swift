@@ -59,13 +59,13 @@ extension DirectionsDelegate {
         guard
             let locationDelegate = self.locationDelegate,
             let userLocation = locationDelegate.getUserLocation() else {return MKDirections()}
-        
+
         request.source = MKMapItem(placemark: MKPlacemark(coordinate: userLocation.coordinate, addressDictionary: nil))
         request.destination = MKMapItem(placemark: MKPlacemark(coordinate: destination, addressDictionary: nil))
         request.transportType = .walking
-        
+
         let directions = MKDirections(request: request)
-        
+
         return directions
     }
     

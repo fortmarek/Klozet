@@ -52,30 +52,23 @@ class AddToiletViewController: UIViewController, UIGestureRecognizerDelegate, UI
         addToiletCollectionView.register(AddToiletCollectionViewCell.self, forCellWithReuseIdentifier: "addToiletCell")
         addToiletCollectionView.register(PriceCollectionViewCell.self, forCellWithReuseIdentifier: "priceCell")
         view.addSubview(addToiletCollectionView)
-        addToiletCollectionView.heightAnchor.constraint(equalToConstant: 550).isActive = true
         addToiletCollectionView.pinToViewHorizontally(view)
         addToiletCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        self.addToiletCollectionView = addToiletCollectionView
 
-        
-        let proxyView = UIView()
-        view.addSubview(proxyView)
-        proxyView.pinToViewHorizontally(view)
-        proxyView.topAnchor.constraint(equalTo: addToiletCollectionView.bottomAnchor).isActive = true
-        proxyView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        
-        
-        
         addToiletButton.backgroundColor = .mainOrange
         addToiletButton.setTitle("Add Toilet", for: .normal)
-        addToiletButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        addToiletButton.titleLabel?.font = UIFont.systemFont(ofSize: AppDelegate.isScreenSmall ? 15 : 18, weight: .bold)
         addToiletButton.addTarget(self, action: #selector(addToiletButtonTapped), for: .touchUpInside)
+        addToiletButton.translatesAutoresizingMaskIntoConstraints = false 
         view.addSubview(addToiletButton)
-        addToiletButton.centerInView(proxyView)
-        addToiletButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        addToiletButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        addToiletButton.layer.cornerRadius = 22
-        
+        addToiletButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        addToiletButton.heightAnchor.constraint(equalToConstant: AppDelegate.isScreenSmall ? 30 : 44).isActive = true
+        addToiletButton.widthAnchor.constraint(equalToConstant: AppDelegate.isScreenSmall ? 100 : 150).isActive = true
+        addToiletButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
+        addToiletButton.layer.cornerRadius = AppDelegate.isScreenSmall ? 15 : 22
+
+        addToiletCollectionView.bottomAnchor.constraint(equalTo: addToiletButton.topAnchor, constant: -10).isActive = true
+        self.addToiletCollectionView = addToiletCollectionView
         
         pricePickerView.pricePickerViewDelegate = self
         pricePickerView.translatesAutoresizingMaskIntoConstraints = false
@@ -228,12 +221,24 @@ extension AddToiletViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height: CGFloat
         switch indexPath.row {
-        case 0: height = AppDelegate.isScreenSmall ? 163 : 223
+        case 0: height = heightForMapView()
         case 1: height = 105
         case 2...4: height = 53
         default: height = 100
         }
         return CGSize(width: view.frame.width, height: height)
+    }
+
+    private func heightForMapView() -> CGFloat {
+        if AppDelegate.isScreenSmall {
+            return 100
+        }
+        else if AppDelegate.isScreenMedium {
+            return 180
+        }
+        else {
+            return 223
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
