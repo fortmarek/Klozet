@@ -106,21 +106,6 @@ parser = reqparse.RequestParser()
 parser.add_argument('encoded_image', type=str)
 
 class ToiletImages(Resource):
-    ''''
-        def get(self, klozet_id):
-        directory = '/var/www/Klozet/Klozet/static/toilets_img/{0}/'.format(klozet_id)
-        images = {'toilet_images':[]}
-        image_count = 0
-        for file in os.listdir(directory):
-            if file.find('.jpg') != -1:
-                image_count += 1
-                image_file = open(directory + file, 'rb')
-                image_data = image_file.read()
-                encoded_image_data = image_data.encode('base64')
-                images['toilet_images'].append({'image_id': image_count, 'image_data': encoded_image_data})
-        return images
-    '''
-
     def post(self, klozet_id):
 
         c, conn = connection()

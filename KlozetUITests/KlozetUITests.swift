@@ -38,11 +38,7 @@ class KlozetUITests: XCTestCase {
     func tesdS() {
         
         let app = XCUIApplication()
-        
-        
-        
-        
-        
+
         let annotation = app.otherElements["Divadelní 2-10"]
         annotation.tap()
         
@@ -51,9 +47,7 @@ class KlozetUITests: XCTestCase {
     func testSnaps() {
         
         let app = XCUIApplication()
-        
-        
-    
+
         let predicate = NSPredicate(format: "exists == 1")
 
         let query = app.otherElements["My Location"]
@@ -66,8 +60,8 @@ class KlozetUITests: XCTestCase {
         annotation.tap()
         
         snapshot("main-screen")
-        
-        app.navigationBars["Klozet"].buttons["List"].tap()
+
+        app.tabBars.buttons["List"].tap()
         //app.navigationBars["Klozet"].buttons["Seznam"].tap()
         
         snapshot("list")

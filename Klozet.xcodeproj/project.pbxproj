@@ -121,8 +121,6 @@
 		F81B79151DBFD60900812139 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Main.strings; sourceTree = "<group>"; };
 		F81B79161DBFD60A00812139 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		F81B791A1DBFD73A00812139 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		F81B791C1DBFD73D00812139 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
-		F81B79331DC0EE2D00812139 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F81B79351DC0EE3600812139 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F8243BEA1DA2F3C700BE5D13 /* SingleToiletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleToiletViewController.swift; sourceTree = "<group>"; };
 		F82655471D930A190007A089 /* ListActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListActivity.swift; sourceTree = "<group>"; };
@@ -842,7 +840,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				F81B791A1DBFD73A00812139 /* Base */,
-				F81B791C1DBFD73D00812139 /* cs */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -850,7 +847,6 @@
 		F81B79341DC0EE2D00812139 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F81B79331DC0EE2D00812139 /* cs */,
 				F81B79351DC0EE3600812139 /* Base */,
 			);
 			name = InfoPlist.strings;

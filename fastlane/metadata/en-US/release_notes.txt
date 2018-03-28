@@ -1,6 +1,1 @@
-Fix color for free toilets
-Fix free toilets filter
-
-CZ: 
-Oprava barvy pro záchody zdarma
-Oprava filtrování záchodů zdarma
+Possibility of adding toilets and completely redesigned app!

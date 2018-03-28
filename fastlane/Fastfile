@@ -19,7 +19,7 @@ platform :ios do
   before_all do
     # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
     
-    carthage
+    # carthage
   end
 
   desc "Runs all the tests"
@@ -38,13 +38,21 @@ platform :ios do
     # You can also use other beta testing services here (run `fastlane actions`)
   end
 
+  lane :appstore do
+  # increment_build_number
+  # snapshot                       # generate new screenshots for the App Store
+  gym(scheme: "Klozet")          # build your app
+  appstore                      # upload your app to iTunes Connect
+end
+
+
   desc "Deploy a new version to the App Store"
   lane :release do
     # match(type: "appstore")
     snapshot
     gym # Build your app - more options available
     deliver(force: true)
-    # frameit
+    frameit
   end
 
   # You can define as many lanes as you want

@@ -41,7 +41,7 @@ class SettingsViewController: UIViewController {
         
         
         let creditsLabel = UILabel()
-        creditsLabel.text = "Version 1.0.1\nCreated by Marek Fořt".localized
+        creditsLabel.text = "Version 2.0\nCreated by Marek Fořt".localized
         creditsLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.light)
         creditsLabel.textAlignment = .center
         creditsLabel.numberOfLines = 2

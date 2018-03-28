@@ -23,7 +23,7 @@ class ToiletViewModelTests: XCTestCase {
     
     func testGettingToiletsGetsToilets() {
         let getToiletsExpectation = expectation(description: "Wait for getting toilets")
-        let expectedToilet = Toilet(title: "Ondříčkova 580/39", subtitle: "Close to Stadium", coordinate: CLLocationCoordinate2D(latitude: 14.456224317, longitude: 50.0823295810001) , openTimes: [OpenTimes(hours: ["08:00", "22:00"], days: [1, 2], isNonstop: false)], price: "5 CZK", toiletId: 1)
+        let expectedToilet = Toilet(title: "Ondříčkova 580/39", subtitle: "Close to Stadium", coordinate: CLLocationCoordinate2D(latitude: 14.456224317, longitude: 50.0823295810001) , openTimes: [OpenTimes(hours: ["08:00", "22:00"], days: [1, 2], isNonstop: false)], price: "5 CZK", toiletId: 1, imageCount: 0)
         toiletViewModelMock.toilets.producer.startWithValues { toilets in
             guard let toilet = toilets.first else {return}
             XCTAssertEqual(toilet.title, expectedToilet.title)
